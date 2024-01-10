@@ -95,6 +95,7 @@ abstract class Sender extends Base\Sender
                 case Notification::TYPE_NEW_BOOKING_RECURRING:
                 case Notification::TYPE_CUSTOMER_APPOINTMENT_STATUS_CHANGED:
                 case Notification::TYPE_CUSTOMER_APPOINTMENT_STATUS_CHANGED_RECURRING:
+                case Notification::TYPE_MOBILE_SC_GRANT_ACCESS_TOKEN:
                     if ( $gateway === 'email' ) {
                         if ( $notification->getToAdmin() ) {
                             return static::_sendEmailTo(

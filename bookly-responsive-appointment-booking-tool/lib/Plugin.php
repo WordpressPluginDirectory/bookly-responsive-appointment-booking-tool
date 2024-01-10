@@ -53,6 +53,7 @@ abstract class Plugin extends Base\Plugin
         Backend\Components\Dialogs\Mailing\AddRecipients\Ajax::init();
         Backend\Components\Dialogs\Mailing\Campaign\Ajax::init();
         Backend\Components\Dialogs\Mailing\CreateList\Ajax::init();
+        Backend\Components\Dialogs\MobileStaffCabinet\AccessEdit\Ajax::init();
         Backend\Components\Dialogs\Payment\Ajax::init();
         Backend\Components\Dialogs\Service\Edit\Ajax::init();
         Backend\Components\Dialogs\Service\Order\Ajax::init();
@@ -77,6 +78,7 @@ abstract class Plugin extends Base\Plugin
         Backend\Modules\Appointments\Ajax::init();
         Backend\Modules\Calendar\Ajax::init();
         Backend\Modules\CloudBilling\Ajax::init();
+        Backend\Modules\CloudMobileStaffCabinet\Ajax::init();
         Backend\Modules\CloudProducts\Ajax::init();
         Backend\Modules\CloudSettings\Ajax::init();
         Backend\Modules\CloudSms\Ajax::init();
@@ -94,6 +96,7 @@ abstract class Plugin extends Base\Plugin
         Backend\Modules\Staff\Ajax::init();
         Frontend\Modules\Booking\Ajax::init();
         Frontend\Modules\Cron\Ajax::init();
+        Frontend\Modules\MobileStaffCabinet\Ajax::init();
         Frontend\Modules\Payment\Ajax::init();
         Frontend\Modules\Stripe\Ajax::init();
         Frontend\Modules\Zapier\Ajax::init();

@@ -712,6 +712,7 @@ class QueryBuilder
             'bookly_staff.icalendar_days_after' => array( 'type' => "int", 'is_nullabe' => 0, 'extra' => "", 'default' => "365", 'key' => "" ),
             'bookly_staff.color' => array( 'type' => "varchar(255)", 'is_nullabe' => 0, 'extra' => "", 'default' => "#dddddd", 'key' => "" ),
             'bookly_staff.gateways' => array( 'type' => "varchar(255)", 'is_nullabe' => 1, 'extra' => "", 'default' => null, 'key' => "" ),
+            'bookly_staff.cloud_msc_token' => array( 'type' => "varchar(32)", 'is_nullabe' => 1, 'extra' => "", 'default' => null, 'key' => "" ),
             'bookly_staff_categories.id' => array( 'type' => "int unsigned", 'is_nullabe' => 0, 'extra' => "auto_increment", 'default' => null, 'key' => "PRI" ),
             'bookly_staff_categories.name' => array( 'type' => "varchar(255)", 'is_nullabe' => 0, 'extra' => "", 'default' => null, 'key' => "" ),
             'bookly_staff_categories.attachment_id' => array( 'type' => "int unsigned", 'is_nullabe' => 1, 'extra' => "", 'default' => null, 'key' => "" ),

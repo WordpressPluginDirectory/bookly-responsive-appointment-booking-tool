@@ -322,7 +322,7 @@ class Cart
 
                         // Online meeting.
                         Proxy\Shared::syncOnlineMeeting( array(), $appointment, $service );
-                        if( $sync ) {
+                        if ( $sync ) {
                             // Google Calendar.
                             $gc && Proxy\Pro::syncGoogleCalendarEvent( $appointment );
                             // Outlook Calendar.
@@ -475,8 +475,13 @@ class Cart
                     $bound_start = Slots\DatePoint::fromStr( $datetime );
                     $bound_end = Slots\DatePoint::fromStr( $datetime )->modify( ( (int) ( $service->isCollaborative() ? $service->getCollaborativeDuration() : $service->getDuration() ) * $cart_item->getUnits() ) . ' sec' );
                     if ( Config::proActive() ) {
-                        $bound_start->modify( '-' . (int) $service->getPaddingLeft() . ' sec' );
-                        $bound_end->modify( ( (int) $service->getPaddingRight() + $cart_item->getExtrasDuration() ) . ' sec' );
+                        $bound_start = $bound_start->modify( '-' . (int) $service->getPaddingLeft() . ' sec' );
+                        $bound_end = $bound_end->modify( ( (int) $service->getPaddingRight() + $cart_item->getExtrasDuration() ) . ' sec' );
+                    }
+
+                    if ( Slots\DatePoint::now()->gte( $bound_start->modify( -Proxy\Pro::getMinimumTimePriorBooking( $cart_item->getServiceId() ) ) ) ) {
+                        // The appointment cannot be booked, the condition for getMinimumTimePriorBooking is violated.
+                        return $cart_key;
                     }
 
                     if ( $bound_end->lte( $max_date ) ) {

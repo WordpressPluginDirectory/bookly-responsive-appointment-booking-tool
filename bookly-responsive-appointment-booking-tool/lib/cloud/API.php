@@ -40,6 +40,8 @@ class API extends Cache
     public $gift;
     /** @var WhatsApp */
     public $whatsapp;
+    /** @var MobileStaffCabinet */
+    public $mobile_staff_cabinet;
 
     /**
      * Constructor.
@@ -55,6 +57,7 @@ class API extends Cache
         $this->cron = new Cron( $this );
         $this->voice = new Voice( $this );
         $this->whatsapp = new WhatsApp( $this );
+        $this->mobile_staff_cabinet = new MobileStaffCabinet( $this );
 
         Proxy\Shared::initApi( $this );
     }

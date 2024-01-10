@@ -220,6 +220,25 @@ class Installer extends Base\Installer
             'to_customer' => 1,
             'settings' => '[]',
         );
+        $this->notifications[] = array(
+            'gateway' => 'email',
+            'type' => Notification::TYPE_MOBILE_SC_GRANT_ACCESS_TOKEN,
+            'name' => __( 'New staff member\'s Bookly Staff Cabinet mobile app access token details', 'bookly' ),
+            'subject' => __( 'Your Bookly Staff Cabinet mobile app access token', 'bookly' ),
+            'message' => __( "Hello.\nYour access token for Bookly Staff Cabinet mobile app: {access_token}", 'bookly' ),
+            'active' => 1,
+            'to_staff' => 1,
+            'settings' => '[]',
+        );
+        $this->notifications[] = array(
+            'gateway' => 'sms',
+            'type' => Notification::TYPE_MOBILE_SC_GRANT_ACCESS_TOKEN,
+            'name' => __( 'New staff member\'s Bookly Staff Cabinet mobile app access token details', 'bookly' ),
+            'message' => __( "Hello.\nYour access token for Bookly Staff Cabinet mobile app: {access_token}", 'bookly' ),
+            'active' => 1,
+            'to_staff' => 1,
+            'settings' => '[]',
+        );
 
         /*
          * Options.
@@ -541,7 +560,8 @@ class Installer extends Base\Installer
                 `icalendar_days_before` INT NOT NULL DEFAULT 365,
                 `icalendar_days_after`  INT NOT NULL DEFAULT 365,
                 `color`                 VARCHAR(255) NOT NULL DEFAULT "#dddddd",
-                `gateways`              VARCHAR(255) DEFAULT NULL
+                `gateways`              VARCHAR(255) DEFAULT NULL,
+                `cloud_msc_token`       VARCHAR(32) DEFAULT NULL
             ) ENGINE = INNODB
             ' . $charset_collate
         );

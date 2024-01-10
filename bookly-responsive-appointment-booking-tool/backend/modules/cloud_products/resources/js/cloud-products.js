@@ -142,7 +142,7 @@ jQuery(function ($) {
         ladda.start();
         $.ajax({
             type: 'POST',
-            url : ajaxurl,
+            url: ajaxurl,
             data: {
                 action: 'bookly_cloud_revert_cancel_subscription',
                 product: product,
@@ -178,6 +178,7 @@ jQuery(function ($) {
             case 'cron':
             case 'voice':
             case 'square':
+            case 'mobile-staff-cabinet':
             default:
                 action = 'bookly_cloud_change_product_status';
                 break;
@@ -186,7 +187,7 @@ jQuery(function ($) {
         ladda.start();
         $.ajax({
             type: 'POST',
-            url : ajaxurl,
+            url: ajaxurl,
             data: {
                 action: action,
                 status: status,

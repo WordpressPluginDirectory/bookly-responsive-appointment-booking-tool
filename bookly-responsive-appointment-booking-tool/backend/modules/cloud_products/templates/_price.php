@@ -1,6 +1,5 @@
 <?php defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 use Bookly\Lib\Utils\Common;
-
 /**
  * @var array $product
  */

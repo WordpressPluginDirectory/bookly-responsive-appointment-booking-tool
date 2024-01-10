@@ -2304,6 +2304,17 @@ msgstr ""
 msgid "Bookly verification code"
 msgstr ""
 
+msgid "New staff member's Bookly Staff Cabinet mobile app access token details"
+msgstr ""
+
+msgid "Your Bookly Staff Cabinet mobile app access token"
+msgstr ""
+
+msgid ""
+"Hello.\n"
+"Your access token for Bookly Staff Cabinet mobile app: {access_token}"
+msgstr ""
+
 msgid "&lt;"
 msgstr ""
 
@@ -2760,6 +2771,22 @@ msgstr ""
 msgid "Last month"
 msgstr ""
 
+msgid "Start time must not be empty"
+msgstr ""
+
+msgid "End time must not be empty"
+msgstr ""
+
+msgid "End time must not be equal to start time"
+msgstr ""
+
+msgid "Could not save appointment in database."
+msgstr ""
+
+#, php-format
+msgid "%s has reached the limit of bookings for this service"
+msgstr ""
+
 msgid "No."
 msgstr ""
 
@@ -2851,6 +2878,9 @@ msgid "Requested ID"
 msgstr ""
 
 msgid "Status date"
+msgstr ""
+
+msgid "Access token"
 msgstr ""
 
 msgid "Action"
@@ -2980,6 +3010,9 @@ msgstr ""
 msgid "Mailing message"
 msgstr ""
 
+msgid "New staff member's Staff Cabinet mobile app access token details"
+msgstr ""
+
 msgid "Test message"
 msgstr ""
 
@@ -3074,6 +3107,27 @@ msgid "Attachments"
 msgstr ""
 
 msgid "Archived"
+msgstr ""
+
+msgid "Staff Cabinet App"
+msgstr ""
+
+msgid "Access tokens"
+msgstr ""
+
+msgid "Revoke"
+msgstr ""
+
+msgid "Invite"
+msgstr ""
+
+msgid ""
+"You are going to delete access token(s). Please note that tokens will be "
+"automatically revoked, so user(s) associated with deleted token(s) will lose "
+"access"
+msgstr ""
+
+msgid "No records."
 msgstr ""
 
 msgid "1 - 9 employees"
@@ -3172,9 +3226,6 @@ msgid "next day"
 msgstr ""
 
 msgid "Reorder"
-msgstr ""
-
-msgid "No records."
 msgstr ""
 
 msgid "Image"
@@ -5046,6 +5097,9 @@ msgstr ""
 msgid "New notification"
 msgstr ""
 
+msgid "Associated staff member"
+msgstr ""
+
 msgid "Select from WordPress users"
 msgstr ""
 
@@ -5200,22 +5254,6 @@ msgstr ""
 msgid "No timeslots available"
 msgstr ""
 
-msgid "Start time must not be empty"
-msgstr ""
-
-msgid "End time must not be empty"
-msgstr ""
-
-msgid "End time must not be equal to start time"
-msgstr ""
-
-msgid "Could not save appointment in database."
-msgstr ""
-
-#, php-format
-msgid "%s has reached the limit of bookings for this service"
-msgstr ""
-
 msgid "Appointment notes"
 msgstr ""
 
@@ -5226,6 +5264,15 @@ msgstr ""
 msgid ""
 "You are going to delete appointment(s). Notifications will be sent in "
 "accordance with your settings."
+msgstr ""
+
+msgid "Edit access token"
+msgstr ""
+
+msgid "New access token"
+msgstr ""
+
+msgid "Staff member required"
 msgstr ""
 
 msgid "Header"
@@ -5742,6 +5789,16 @@ msgid "Default value for service"
 msgstr ""
 
 msgid "Default value for employee"
+msgstr ""
+
+msgid "Selected period doesn't match service schedule"
+msgstr ""
+
+#, php-format
+msgid "The number of customers should not be more than %d"
+msgstr ""
+
+msgid "Booking exceeds your working hours limit"
 msgstr ""
 
 msgid "Remember Me"
@@ -6874,9 +6931,6 @@ msgstr ""
 msgid "Use it in the form below on this page."
 msgstr ""
 
-msgid "Access token"
-msgstr ""
-
 msgid "Location ID"
 msgstr ""
 
@@ -7633,14 +7687,7 @@ msgstr ""
 msgid "Please enter a service name"
 msgstr ""
 
-#, php-format
-msgid "The number of customers should not be more than %d"
-msgstr ""
-
 msgid "Booking exceeds the working hours limit for staff member"
-msgstr ""
-
-msgid "Booking exceeds your working hours limit"
 msgstr ""
 
 msgid ""
@@ -8111,9 +8158,6 @@ msgid ""
 "allow a customer to skip it."
 msgstr ""
 
-msgid "Selected period doesn't match service schedule"
-msgstr ""
-
 msgid "Agent ID"
 msgstr ""
 
@@ -8150,50 +8194,6 @@ msgid "Number of times used"
 msgstr ""
 
 msgid "Coupons"
-msgstr ""
-
-msgid "Associated staff member"
-msgstr ""
-
-msgid "Edit access token"
-msgstr ""
-
-msgid "New access token"
-msgstr ""
-
-msgid "Staff member required"
-msgstr ""
-
-msgid "Staff Cabinet App"
-msgstr ""
-
-msgid "Access tokens"
-msgstr ""
-
-msgid "Revoke"
-msgstr ""
-
-msgid "Invite"
-msgstr ""
-
-msgid ""
-"You are going to delete access token(s). Please note that tokens will be "
-"automatically revoked, so user(s) associated with deleted token(s) will lose "
-"access"
-msgstr ""
-
-msgid "New staff member's Staff Cabinet mobile app access token details"
-msgstr ""
-
-msgid "New staff member's Bookly Staff Cabinet mobile app access token details"
-msgstr ""
-
-msgid "Your Bookly Staff Cabinet mobile app access token"
-msgstr ""
-
-msgid ""
-"Hello.\n"
-"Your access token for Bookly Staff Cabinet mobile app: {access_token}"
 msgstr ""
 
 msgid "Add Coupon Series"

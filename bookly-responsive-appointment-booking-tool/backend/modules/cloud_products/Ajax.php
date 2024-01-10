@@ -6,6 +6,7 @@ use Bookly\Backend\Modules\CloudSMS\Page as CloudSMSPage;
 use Bookly\Backend\Modules\CloudZapier\Page as CloudZapierPage;
 use Bookly\Backend\Modules\CloudVoice\Page as CloudVoicePage;
 use Bookly\Backend\Modules\CloudWhatsapp\Page as CloudWhatsAppPage;
+use Bookly\Backend\Modules\CloudMobileStaffCabinet\Page as CloudMobileStaffCabinetPage;
 use Bookly\Lib;
 use Bookly\Lib\Cloud\Account;
 
@@ -181,6 +182,13 @@ class Ajax extends Lib\Base\Ajax
                     );
                     wp_send_json_success( $data );
                     break;
+                case Account::PRODUCT_MOBILE_STAFF_CABINET:
+                    $data['button'] = array(
+                        'caption' => $texts['button'],
+                        'url' => add_query_arg( array( 'page' => CloudMobileStaffCabinetPage::pageSlug() ), admin_url( 'admin.php' ) )
+                    );
+                    wp_send_json_success( $data );
+                    break;
                 case Account::PRODUCT_CRON:
                 default:
                     wp_send_json_success( $data );
@@ -211,6 +219,8 @@ class Ajax extends Lib\Base\Ajax
                 return $cloud->gift;
             case Lib\Cloud\Account::PRODUCT_WHATSAPP:
                 return $cloud->whatsapp;
+            case Lib\Cloud\Account::PRODUCT_MOBILE_STAFF_CABINET:
+                return $cloud->mobile_staff_cabinet;
         }
 
         return null;

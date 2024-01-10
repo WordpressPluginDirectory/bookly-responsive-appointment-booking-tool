@@ -53,6 +53,7 @@ class Settings
             case Notification::TYPE_CUSTOMER_APPOINTMENT_STATUS_CHANGED_RECURRING:
             case Notification::TYPE_NEW_BOOKING:
             case Notification::TYPE_NEW_BOOKING_RECURRING:
+            case Notification::TYPE_MOBILE_SC_GRANT_ACCESS_TOKEN:
                 $this->status   = $this->settings['status'];
                 $this->instant  = 1;
                 $this->services = $this->_handleService( $this->settings );

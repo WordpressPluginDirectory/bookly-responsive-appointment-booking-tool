@@ -47,6 +47,8 @@ class Staff extends Lib\Base\Entity
     protected $color;
     /** @var string */
     protected $gateways;
+    /** @var string */
+    protected $cloud_msc_token;
 
     protected static $table = 'bookly_staff';
 
@@ -72,7 +74,8 @@ class Staff extends Lib\Base\Entity
         'icalendar_days_before' => array( 'format' => '%d' ),
         'icalendar_days_after' => array( 'format' => '%d' ),
         'color' => array( 'format' => '%s' ),
-        'gateways'  => array( 'format' => '%s' ),
+        'gateways' => array( 'format' => '%s' ),
+        'cloud_msc_token' => array( 'format' => '%s' ),
     );
 
     /**
@@ -793,6 +796,29 @@ class Staff extends Lib\Base\Entity
         return $this;
     }
 
+    /**
+     * Gets cloud_msc_token
+     *
+     * @return string
+     */
+    public function getMobileStaffCabinetToken()
+    {
+        return $this->cloud_msc_token;
+    }
+
+    /**
+     * Sets cloud_msc_token
+     *
+     * @param string $cloud_mobile_staff_cabinet_key
+     * @return $this
+     */
+    public function setMobileStaffCabinetToken( $cloud_mobile_staff_cabinet_key )
+    {
+        $this->cloud_msc_token = $cloud_mobile_staff_cabinet_key;
+
+        return $this;
+    }
+
     /**************************************************************************
      * Overridden Methods                                                     *
      **************************************************************************/
@@ -803,6 +829,10 @@ class Staff extends Lib\Base\Entity
     public function delete()
     {
         Lib\Proxy\Pro::revokeGoogleCalendarToken( $this );
+        if ( $this->getMobileStaffCabinetToken() ) {
+            $cloud = Lib\Cloud\API::getInstance();
+            $cloud->mobile_staff_cabinet->revokeKeys( array ( $this->getMobileStaffCabinetToken() ) );
+        }
 
         parent::delete();
     }

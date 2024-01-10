@@ -58,7 +58,7 @@ class Codes extends Assets\Item\Codes
             'appointment_price' => 24,
             'cancel_url' => '#',
             'appointment_start_info' => null,
-            'deposit'           => Lib\Proxy\DepositPayments::formatDeposit( 12, '50%' )
+            'deposit' => Lib\Proxy\DepositPayments::formatDeposit( 12, '50%' ),
         ) );
         $schedule = array(
             array(
@@ -128,6 +128,7 @@ class Codes extends Assets\Item\Codes
     {
         $replace_codes = parent::getReplaceCodes( $format );
         $replace_codes['verification_code'] = 123456;
+        $replace_codes['access_token'] = 'nice-access-token';
 
         return Proxy\Shared::prepareReplaceCodes( $replace_codes, $this, $format );
     }

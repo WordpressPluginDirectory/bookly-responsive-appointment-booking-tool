@@ -104,6 +104,9 @@ class Codes
             'verification_code' => array(
                 'verification_code' => array( 'description' => __( 'Verification code', 'bookly' ) ),
             ),
+            'mobile_staff_cabinet' => array(
+                'access_token' => array( 'description' => __( 'Access token', 'bookly' ) ),
+            )
         );
         $this->codes['appointments_list'] = array(
             'appointments' => array(
@@ -255,6 +258,13 @@ class Codes
                     $this->codes['company'],
                     $this->codes['customer'],
                     $this->codes['verification_code']
+                );
+                break;
+            case Notification::TYPE_MOBILE_SC_GRANT_ACCESS_TOKEN:
+                $codes = array_merge(
+                    $this->codes['company'],
+                    $this->codes['staff'],
+                    $this->codes['mobile_staff_cabinet']
                 );
                 break;
             default:

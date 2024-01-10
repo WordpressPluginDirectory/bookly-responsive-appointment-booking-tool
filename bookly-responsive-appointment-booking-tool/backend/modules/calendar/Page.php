@@ -31,7 +31,7 @@ class Page extends Lib\Base\Ajax
                     ->whereNot( 'visibility', 'archive' )
                     ->sortBy( 'position' )
                     ->find();
-                $staff_dropdown_data = Lib\Proxy\Pro::getStaffDataForDropDown();
+                $staff_dropdown_data = Lib\Proxy\Pro::getStaffDataForDropDown( array( 'archive' ) );
             } else {
                 $staff_members = Staff::query()
                     ->where( 'wp_user_id', get_current_user_id() )
@@ -102,6 +102,82 @@ class Page extends Lib\Base\Ajax
     }
 
     /**
+     * @param Lib\Query $query
+     * @param $display_tz
+     * @return array
+     */
+    public static function getAppointmentsForCalendar( Lib\Query $query, $display_tz )
+    {
+        $query
+            ->addSelect(
+                'a.id, ca.id as ca_id, ca.series_id, a.staff_any, a.location_id, a.internal_note, a.start_date, DATE_ADD(a.end_date, INTERVAL a.extras_duration SECOND) AS end_date,
+                COALESCE(s.title,a.custom_service_name) AS service_name, COALESCE(s.color,"silver") AS service_color, s.info AS service_info,
+                COALESCE(ss.price,s.price,a.custom_service_price) AS service_price,
+                st.id AS staff_id,
+                st.full_name AS staff_name, st.email AS staff_email, st.info AS staff_info, st.phone AS staff_phone, st.color AS staff_color,
+                (SELECT SUM(ca.number_of_persons) FROM ' . CustomerAppointment::getTableName() . ' ca WHERE ca.appointment_id = a.id) AS total_number_of_persons,
+                s.duration,
+                s.start_time_info,
+                s.end_time_info,
+                ca.number_of_persons,
+                ca.units,
+                ca.custom_fields,
+                ca.status AS status,
+                ca.extras,
+                ca.extras_multiply_nop,
+                ca.package_id,
+                ca.notes AS appointment_notes,
+                ct.name AS category_name,
+                c.full_name AS client_name, c.first_name AS client_first_name, c.last_name AS client_last_name, c.phone AS client_phone, c.email AS client_email, c.id AS customer_id, c.birthday AS client_birthday, c.notes AS client_note,
+                p.total, p.type AS payment_gateway, p.status AS payment_status, p.paid,
+                (SELECT SUM(ca.number_of_persons) FROM ' . CustomerAppointment::getTableName() . ' ca WHERE ca.appointment_id = a.id AND ca.status = "waitlisted") AS on_waiting_list'
+            )
+            ->leftJoin( 'CustomerAppointment', 'ca', 'ca.appointment_id = a.id' )
+            ->leftJoin( 'Customer', 'c', 'c.id = ca.customer_id' )
+            ->leftJoin( 'Payment', 'p', 'p.id = ca.payment_id' )
+            ->leftJoin( 'Service', 's', 's.id = a.service_id' )
+            ->leftJoin( 'Category', 'ct', 'ct.id = s.category_id' )
+            ->leftJoin( 'Staff', 'st', 'st.id = a.staff_id' )
+            ->whereNot( 'a.start_date', null )
+            // Custom service without customers have not ca.id
+            ->groupBy( 'COALESCE(ca.id,CONCAT(\'appointment-\',a.id))' )
+            ->sortBy( 'a.start_date' );
+        if ( Lib\Proxy\Locations::servicesPerLocationAllowed() ) {
+            $query = Proxy\Locations::prepareCalendarQuery( $query );
+        } else {
+            $query->leftJoin( 'StaffService', 'ss', 'ss.staff_id = a.staff_id AND ss.service_id = a.service_id AND ss.location_id IS NULL' );
+        }
+
+        if ( Config::groupBookingActive() ) {
+            $query->addSelect( 'COALESCE(ss.capacity_max,s.capacity_max,9999) AS service_capacity' );
+        } else {
+            $query->addSelect( '1 AS service_capacity' );
+        }
+
+        if ( Config::proActive() ) {
+            $query->addSelect( 'c.country, c.state, c.postcode, c.city, c.street, c.street_number, c.additional_address, c.info_fields' );
+        }
+
+        // Fetch appointments,
+        // and shift the dates to appropriate time zone if needed
+        $appointments = array();
+        $wp_tz = Config::getWPTimeZone();
+        $convert_tz = $display_tz !== $wp_tz;
+
+        foreach ( $query->fetchArray() as $appointment ) {
+            if ( ! isset ( $appointments[ $appointment['id'] ] ) ) {
+                if ( $convert_tz ) {
+                    $appointment['start_date'] = DateTime::convertTimeZone( $appointment['start_date'], $wp_tz, $display_tz );
+                    $appointment['end_date'] = DateTime::convertTimeZone( $appointment['end_date'], $wp_tz, $display_tz );
+                }
+                $appointments[ $appointment['id'] ] = $appointment;
+            }
+        }
+
+        return $appointments;
+    }
+
+    /**
      * Build appointments for Event Calendar.
      *
      * @param Lib\Query $query
@@ -161,69 +237,9 @@ class Page extends Lib\Base\Ajax
             'status' => '',
             'total_price' => '',
         );
-        $query
-            ->select(
-                'a.id, ca.id as ca_id, ca.series_id, a.staff_any, a.location_id, a.internal_note, a.start_date, DATE_ADD(a.end_date, INTERVAL a.extras_duration SECOND) AS end_date,
-                COALESCE(s.title,a.custom_service_name) AS service_name, COALESCE(s.color,"silver") AS service_color, s.info AS service_info,
-                COALESCE(ss.price,s.price,a.custom_service_price) AS service_price,
-                st.id AS staff_id,
-                st.full_name AS staff_name, st.email AS staff_email, st.info AS staff_info, st.phone AS staff_phone, st.color AS staff_color,
-                (SELECT SUM(ca.number_of_persons) FROM ' . CustomerAppointment::getTableName() . ' ca WHERE ca.appointment_id = a.id) AS total_number_of_persons,
-                s.duration,
-                s.start_time_info,
-                s.end_time_info,
-                ca.number_of_persons,
-                ca.units,
-                ca.custom_fields,
-                ca.status AS status,
-                ca.extras,
-                ca.extras_multiply_nop,
-                ca.package_id,
-                ca.notes AS appointment_notes,
-                ct.name AS category_name,
-                c.full_name AS client_name, c.first_name AS client_first_name, c.last_name AS client_last_name, c.phone AS client_phone, c.email AS client_email, c.id AS customer_id, c.birthday AS client_birthday, c.notes AS client_note,
-                p.total, p.type AS payment_gateway, p.status AS payment_status, p.paid,
-                (SELECT SUM(ca.number_of_persons) FROM ' . CustomerAppointment::getTableName() . ' ca WHERE ca.appointment_id = a.id AND ca.status = "waitlisted") AS on_waiting_list'
-            )
-            ->leftJoin( 'CustomerAppointment', 'ca', 'ca.appointment_id = a.id' )
-            ->leftJoin( 'Customer', 'c', 'c.id = ca.customer_id' )
-            ->leftJoin( 'Payment', 'p', 'p.id = ca.payment_id' )
-            ->leftJoin( 'Service', 's', 's.id = a.service_id' )
-            ->leftJoin( 'Category', 'ct', 'ct.id = s.category_id' )
-            ->leftJoin( 'Staff', 'st', 'st.id = a.staff_id' )
-            ->whereNot( 'a.start_date', null )
-            // Custom service without customers have not ca.id
-            ->groupBy( 'COALESCE(ca.id,CONCAT(\'appointment-\',a.id))' );
-        if ( Lib\Proxy\Locations::servicesPerLocationAllowed() ) {
-            $query = Proxy\Locations::prepareCalendarQuery( $query );
-        } else {
-            $query->leftJoin( 'StaffService', 'ss', 'ss.staff_id = a.staff_id AND ss.service_id = a.service_id AND ss.location_id IS NULL' );
-        }
 
-        if ( Config::groupBookingActive() ) {
-            $query->addSelect( 'COALESCE(ss.capacity_max,s.capacity_max,9999) AS service_capacity' );
-        } else {
-            $query->addSelect( '1 AS service_capacity' );
-        }
-
-        if ( Config::proActive() ) {
-            $query->addSelect( 'c.country, c.state, c.postcode, c.city, c.street, c.street_number, c.additional_address, c.info_fields' );
-        }
-
-        // Fetch appointments,
-        // and shift the dates to appropriate time zone if needed
-        $appointments = array();
-        $wp_tz = Config::getWPTimeZone();
-        $convert_tz = $display_tz !== $wp_tz;
-
-        foreach ( $query->fetchArray() as $appointment ) {
-            if ( ! isset ( $appointments[ $appointment['id'] ] ) ) {
-                if ( $convert_tz ) {
-                    $appointment['start_date'] = DateTime::convertTimeZone( $appointment['start_date'], $wp_tz, $display_tz );
-                    $appointment['end_date'] = DateTime::convertTimeZone( $appointment['end_date'], $wp_tz, $display_tz );
-                }
-                $appointments[ $appointment['id'] ] = $appointment;
-            }
+        $appointments = self::getAppointmentsForCalendar( $query, $display_tz );
+        foreach ( $appointments as $appointment ) {
             $appointments[ $appointment['id'] ]['customers'][] = array(
                 'appointment_id' => $appointment['id'],
                 'appointment_notes' => $appointment['appointment_notes'],
@@ -419,10 +435,10 @@ class Page extends Lib\Base\Ajax
         $calendar = __( 'Calendar', 'bookly' );
         if ( $calendar_badge ) {
             add_submenu_page( 'bookly-menu', $calendar, sprintf( '%s <span class="update-plugins count-%d"><span class="update-count">%d</span></span>', $calendar, $calendar_badge, $calendar_badge ), 'read',
-                self::pageSlug(), function () { Page::render(); } );
+                self::pageSlug(), function() { Page::render(); } );
         } else {
             add_submenu_page( 'bookly-menu', $calendar, $calendar, 'read',
-                self::pageSlug(), function () { Page::render(); } );
+                self::pageSlug(), function() { Page::render(); } );
         }
     }
 }

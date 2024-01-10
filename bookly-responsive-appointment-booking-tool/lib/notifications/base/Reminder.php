@@ -416,7 +416,7 @@ abstract class Reminder
      * @param string $phone
      * @param Notification $notification
      * @param Codes $codes
-     * @param array $queue_data ,
+     * @param array $queue_data
      * @param array|bool $queue
      * @return bool
      */

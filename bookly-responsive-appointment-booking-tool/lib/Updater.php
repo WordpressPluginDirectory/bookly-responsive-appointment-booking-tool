@@ -3,6 +3,37 @@ namespace Bookly\Lib;
 
 class Updater extends Base\Updater
 {
+    function update_22_8()
+    {
+        $this->alterTables( array(
+            'bookly_staff' => array(
+                'ALTER TABLE `%s` ADD COLUMN `cloud_msc_token` VARCHAR(32) DEFAULT NULL',
+            ),
+        ) );
+
+        $this->addNotifications( array(
+            array(
+                'gateway' => 'email',
+                'type' => 'mobile_sc_grant_access_token',
+                'name' => __( 'New staff member\'s Bookly Staff Cabinet mobile app access token details', 'bookly' ),
+                'subject' => __( 'Your Bookly Staff Cabinet mobile app access token', 'bookly' ),
+                'message' => __( "Hello.\nYour access token for Bookly Staff Cabinet mobile app: {access_token}", 'bookly' ),
+                'to_staff' => 1,
+                'active' => 1,
+                'settings' => '[]'
+            ),
+            array(
+                'gateway' => 'sms',
+                'type' => 'mobile_sc_grant_access_token',
+                'name' => __( 'New staff member\'s Bookly Staff Cabinet mobile app access token details', 'bookly' ),
+                'message' => __( "Hello.\nYour access token for Bookly Staff Cabinet mobile app: {access_token}", 'bookly' ),
+                'to_staff' => 1,
+                'active' => 1,
+                'settings' => '[]'
+            ),
+        ) );
+    }
+
     function update_22_7()
     {
         if ( get_option( 'bookly_logs_expire' ) === false ) {

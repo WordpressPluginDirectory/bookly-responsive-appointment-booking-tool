@@ -6,6 +6,7 @@ use Bookly\Lib;
 abstract class Tables
 {
     const APPOINTMENTS = 'appointments';
+    const CLOUD_MOBILE_STAFF_CABINET = 'cloud_mobile_staff_cabinet';
     const CLOUD_PURCHASES = 'cloud_purchases';
     const COUPONS = 'coupons';
     const CUSTOMERS = 'customers';
@@ -221,6 +222,14 @@ abstract class Tables
                     'email' => esc_html__( 'Email', 'bookly' ),
                     'phone' => esc_html__( 'Phone', 'bookly' ),
                     'wp_user' => esc_html__( 'User', 'bookly' ),
+                );
+                break;
+            case self::CLOUD_MOBILE_STAFF_CABINET:
+                $columns = array(
+                    'id' => esc_html__( 'ID', 'bookly' ),
+                    'full_name' => esc_html__( 'Name', 'bookly' ),
+                    'email' => esc_html__( 'Email', 'bookly' ),
+                    'cloud_msc_token' => esc_html__( 'Access token', 'bookly' ),
                 );
                 break;
             case self::CUSTOMER_CABINET_APPOINTMENTS:
@@ -444,6 +453,7 @@ abstract class Tables
             case self::SMS_MAILING_RECIPIENTS_LIST:
             case self::SMS_NOTIFICATIONS:
             case self::STAFF_MEMBERS:
+            case self::CLOUD_MOBILE_STAFF_CABINET:
                 $columns = array( 'id' => false, );
                 break;
         }
