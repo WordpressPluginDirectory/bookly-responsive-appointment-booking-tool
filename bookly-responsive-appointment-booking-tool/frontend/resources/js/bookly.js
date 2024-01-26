@@ -1,3 +1,5 @@
+const booklyJsVersion="22.9";
+/*!*/
 var bookly = (function ($$1b) {
 	'use strict';
 
@@ -5708,8 +5710,7 @@ var bookly = (function ($$1b) {
 	              },
 	              response_url: window.location.pathname + window.location.search.split('#')[0],
 	              form_id: params.form_id,
-	              gateway: gateway,
-	              form_slug: 'booking-form'
+	              gateway: gateway
 	            }
 	          }).then(function (response) {
 	            retrieveRequest(response.data, params.form_id);
@@ -5724,8 +5725,7 @@ var bookly = (function ($$1b) {
 	              action: 'bookly_create_payment_intent',
 	              form_id: params.form_id,
 	              response_url: window.location.pathname + window.location.search.split('#')[0],
-	              gateway: gateway,
-	              form_slug: 'booking-form'
+	              gateway: gateway
 	            }
 	          }).then(function (response) {
 	            stripe.confirmCardPayment(response.data.intent_secret, {
@@ -5739,7 +5739,6 @@ var bookly = (function ($$1b) {
 	                  data: {
 	                    action: 'bookly_rollback_order',
 	                    form_id: params.form_id,
-	                    form_slug: 'booking-form',
 	                    bookly_order: response.data.bookly_order
 	                  }
 	                }).then(function (response) {
@@ -5767,8 +5766,7 @@ var bookly = (function ($$1b) {
 	            action: 'bookly_create_payment_intent',
 	            form_id: params.form_id,
 	            gateway: $gateway_checked.val(),
-	            response_url: window.location.pathname + window.location.search.split('#')[0],
-	            form_slug: 'booking-form'
+	            response_url: window.location.pathname + window.location.search.split('#')[0]
 	          }
 	        }).then(function (response) {
 	          retrieveRequest(response.data, params.form_id);
@@ -14047,4 +14045,3 @@ var bookly = (function ($$1b) {
 	return main;
 
 })(jQuery);
-const bookly_js_created_at = "2023-12-11";

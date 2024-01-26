@@ -328,6 +328,9 @@ abstract class Reminder
             $subject = $notification->getTranslatedSubject();
             $message = $notification->getTranslatedMessage();
         } else {
+            if ( Proxy\RecurringAppointments::sendToStaff( false, $notification, $codes, $attachments, $reply_to, $queue ) ) {
+                return true;
+            }
             $subject = $notification->getSubject();
             $message = Proxy\Pro::prepareNotificationMessage( $notification->getMessage(), $recipient, 'email' );
         }

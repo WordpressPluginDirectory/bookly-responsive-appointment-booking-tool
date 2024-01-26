@@ -229,7 +229,7 @@ class Request extends Lib\Base\Component
                         if ( $this->gateway->getType() === Entities\Payment::TYPE_FREE ) {
                             throw new \Exception( __( 'Incorrect payment data', 'bookly' ) );
                         }
-                    } elseif ( $ci->getDue() > 0 ) {
+                    } elseif ( ( $ci->getSubtotal() + $ci->getDiscount() ) > 0 ) {
                         $this->gateway = new Payment\LocalGateway( $this );
                     } else {
                         // Coupon, Gift Card or Discounts make free service

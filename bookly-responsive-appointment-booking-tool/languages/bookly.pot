@@ -3109,7 +3109,7 @@ msgstr ""
 msgid "Archived"
 msgstr ""
 
-msgid "Staff Cabinet App"
+msgid "Staff Cabinet Mobile App"
 msgstr ""
 
 msgid "Access tokens"
@@ -4108,9 +4108,10 @@ msgstr ""
 msgid "This test checks for critical errors in Bookly."
 msgstr ""
 
-msgid ""
-"Some critical errors in Bookly were found recently. Please check Settings > "
-"Logs and contact Bookly support."
+msgid "Some critical errors in Bookly were found recently."
+msgstr ""
+
+msgid "Please contact Bookly support."
 msgstr ""
 
 msgid "Time settings"

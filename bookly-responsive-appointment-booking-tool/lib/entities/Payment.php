@@ -23,8 +23,8 @@ class Payment extends Lib\Base\Entity
 
     const STATUS_COMPLETED = 'completed';
     const STATUS_PENDING = 'pending';
-    const STATUS_REJECTED  = 'rejected';
-    const STATUS_REFUNDED  = 'refunded';
+    const STATUS_REJECTED = 'rejected';
+    const STATUS_REFUNDED = 'refunded';
 
     const PAY_DEPOSIT = 'deposit';
     const PAY_IN_FULL = 'in_full';
@@ -643,7 +643,7 @@ class Payment extends Lib\Base\Entity
         if ( $pay_now > 0 ) {
             $type = $cart_info->getGateway();
         } else {
-            $type = ( Lib\Config::depositPaymentsActive() ? $cart_info->getDue() : $cart_info->getTotal() ) > 0
+            $type = $cart_info->getSubtotal() + $cart_info->getDiscount() > 0
                 ? self::TYPE_LOCAL
                 : self::TYPE_FREE;
         }

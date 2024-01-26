@@ -112,7 +112,7 @@ class Codes extends Order\Codes
         $this->recipient = $recipient;
         $service_category = $item->getService()->getCategoryId() ? Category::find( $item->getService()->getCategoryId() ) : false;
 
-        $this->appointment_end = $this->tz( $item->getTotalEnd()->format( 'Y-m-d H:i:s' ) );
+        $this->appointment_end = $item->getTotalEnd() ? $this->tz( $item->getTotalEnd()->format( 'Y-m-d H:i:s' ) ) : null;
         $this->appointment_end_info = $item->getService()->getEndTimeInfo();
         $this->appointment_id = $item->getAppointment()->getId();
         $this->appointment_notes = $item->getCA()->getNotes();
@@ -197,13 +197,15 @@ class Codes extends Order\Codes
             'category_name' => $this->category_name,
             'category_info' => $this->category_info,
             'category_image' => $category_image,
-            'google_calendar_url' => sprintf(
-                'https://calendar.google.com/calendar/render?action=TEMPLATE&text=%s&dates=%s/%s&details=%s',
-                urlencode( $this->service_name ),
-                date( 'Ymd\THis', strtotime( $this->appointment_start ) ),
-                date( 'Ymd\THis', strtotime( $this->appointment_end ) ),
-                urlencode( sprintf( "%s\n%s", $this->service_name, $this->staff_name ) )
-            ),
+            'google_calendar_url' => $this->appointment_start === null
+                ? ''
+                : sprintf(
+                    'https://calendar.google.com/calendar/render?action=TEMPLATE&text=%s&dates=%s/%s&details=%s',
+                    urlencode( $this->service_name ),
+                    date( 'Ymd\THis', strtotime( $this->appointment_start ) ),
+                    date( 'Ymd\THis', strtotime( $this->appointment_end ) ),
+                    urlencode( sprintf( "%s\n%s", $this->service_name, $this->staff_name ) )
+                ),
             'number_of_persons' => $this->number_of_persons,
             'reject_appointment_url' => $this->appointment_token
                 ? admin_url( 'admin-ajax.php?action=bookly_reject_appointment&token=' . urlencode( Utils\Common::xorEncrypt( $this->appointment_token, 'reject' ) ) )

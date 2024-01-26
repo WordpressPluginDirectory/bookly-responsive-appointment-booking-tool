@@ -108,6 +108,11 @@ class Page extends Lib\Base\Ajax
      */
     public static function getAppointmentsForCalendar( Lib\Query $query, $display_tz )
     {
+        $busy_statuses = Lib\Proxy\CustomStatuses::prepareBusyStatuses( array(
+            Lib\Entities\CustomerAppointment::STATUS_PENDING,
+            Lib\Entities\CustomerAppointment::STATUS_APPROVED,
+        ) );
+        $busy_statuses_list = "'" . implode( "', '", $busy_statuses ) . "'";
         $query
             ->addSelect(
                 'a.id, ca.id as ca_id, ca.series_id, a.staff_any, a.location_id, a.internal_note, a.start_date, DATE_ADD(a.end_date, INTERVAL a.extras_duration SECOND) AS end_date,
@@ -116,6 +121,7 @@ class Page extends Lib\Base\Ajax
                 st.id AS staff_id,
                 st.full_name AS staff_name, st.email AS staff_email, st.info AS staff_info, st.phone AS staff_phone, st.color AS staff_color,
                 (SELECT SUM(ca.number_of_persons) FROM ' . CustomerAppointment::getTableName() . ' ca WHERE ca.appointment_id = a.id) AS total_number_of_persons,
+                (SELECT SUM(ca.number_of_persons) FROM ' . CustomerAppointment::getTableName() . ' ca WHERE ca.appointment_id = a.id AND ca.status IN (' . $busy_statuses_list . ')) AS signed_up,
                 s.duration,
                 s.start_time_info,
                 s.end_time_info,
@@ -284,10 +290,6 @@ class Page extends Lib\Base\Ajax
             ) );
             $colors['mixed'] = get_option( 'bookly_appointment_status_mixed_color' );
         }
-        $busy_statuses = Lib\Proxy\CustomStatuses::prepareBusyStatuses( array(
-            Lib\Entities\CustomerAppointment::STATUS_PENDING,
-            Lib\Entities\CustomerAppointment::STATUS_APPROVED,
-        ) );
         foreach ( $appointments as $key => $appointment ) {
             $codes = $default_codes;
             $codes['appointment_id'] = $appointment['id'];
@@ -299,6 +301,7 @@ class Page extends Lib\Base\Ajax
             $codes['service_name'] = $appointment['service_name'] ? esc_html( $appointment['service_name'] ) : __( 'Untitled', 'bookly' );
             $codes['service_price'] = Price::format( $appointment['service_price'] * $appointment['units'] );
             $codes['service_duration'] = DateTime::secondsToInterval( $appointment['duration'] * $appointment['units'] );
+            $codes['signed_up'] = $appointment['signed_up'];
             foreach ( array( 'staff_name', 'staff_phone', 'staff_info', 'staff_email', 'service_info', 'service_capacity', 'category_name', 'client_note' ) as $field ) {
                 $codes[ $field ] = esc_html( $appointment[ $field ] );
             }
@@ -311,11 +314,7 @@ class Page extends Lib\Base\Ajax
 
             $codes['participants'] = array();
             $event_status = null;
-            $signed_up = 0;
             foreach ( $appointment['customers'] as $customer ) {
-                if ( in_array( $customer['status'], $busy_statuses, true ) ) {
-                    $signed_up += $customer['number_of_persons'];
-                }
                 $status_color = 'secondary';
                 if ( isset( $status_codes[ $customer['status'] ] ) ) {
                     $status_color = $status_codes[ $customer['status'] ];
@@ -344,7 +343,6 @@ class Page extends Lib\Base\Ajax
                 $customer['status'] = CustomerAppointment::statusToString( $customer['status'] );
                 $codes['participants'][] = $customer;
             }
-            $codes['signed_up'] = $signed_up;
 
             // Display customer information only if there is 1 customer. Don't confuse with number_of_persons.
             if ( $appointment['number_of_persons'] === $appointment['total_number_of_persons'] ) {
@@ -376,7 +374,7 @@ class Page extends Lib\Base\Ajax
 
             switch ( $coloring_mode ) {
                 case 'status';
-                    $color = $colors[ $event_status ?: 'mixed' ];
+                    $color = isset( $colors[ $event_status ] ) ? $colors[ $event_status ] : $colors['mixed'];
                     break;
                 case 'staff':
                     $color = $appointment['staff_color'];

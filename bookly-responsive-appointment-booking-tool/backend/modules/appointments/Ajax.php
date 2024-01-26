@@ -281,19 +281,8 @@ class Ajax extends Lib\Base\Ajax
             // Custom fields
             $customer_appointment = new Lib\Entities\CustomerAppointment();
             $customer_appointment->load( $row['ca_id'] );
-            foreach ( (array) Lib\Proxy\CustomFields::getForCustomerAppointment( $customer_appointment, false, null, false ) as $custom_field ) {
-                if ( $custom_field['value'] != '' ) {
-                    switch ( $custom_field['type'] ) {
-                        case 'time':
-                            $custom_fields[ $custom_field['id'] ] = Lib\Utils\DateTime::formatTime( $custom_field['value'] );
-                            break;
-                        case 'date':
-                            $custom_fields[ $custom_field['id'] ] = Lib\Utils\DateTime::formatDate( $custom_field['value'] );
-                            break;
-                        default:
-                            $custom_fields[ $custom_field['id'] ] = $custom_field['value'];
-                    }
-                }
+            foreach ( Lib\Proxy\CustomFields::getForCustomerAppointment( $customer_appointment, false, null, false ) ?: array() as $custom_field ) {
+                $custom_fields[ $custom_field['id'] ] = $custom_field['value'];
             }
             if ( $row['ca_id'] !== null ) {
                 $extras = (array) Lib\Proxy\ServiceExtras::getInfo( json_decode( $row['extras'], true ) ?: array(), false );

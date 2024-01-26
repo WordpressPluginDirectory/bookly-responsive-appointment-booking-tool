@@ -220,8 +220,7 @@ export default function stepPayment(params) {
                             },
                             response_url: window.location.pathname + window.location.search.split('#')[0],
                             form_id: params.form_id,
-                            gateway: gateway,
-                            form_slug: 'booking-form'
+                            gateway: gateway
                         },
                     }).then(response => {
                         retrieveRequest(response.data, params.form_id);
@@ -236,8 +235,7 @@ export default function stepPayment(params) {
                             action: 'bookly_create_payment_intent',
                             form_id: params.form_id,
                             response_url: window.location.pathname + window.location.search.split('#')[0],
-                            gateway: gateway,
-                            form_slug: 'booking-form'
+                            gateway: gateway
                         }
                     }).then(response => {
                         stripe.confirmCardPayment(
@@ -250,7 +248,6 @@ export default function stepPayment(params) {
                                     data: {
                                         action: 'bookly_rollback_order',
                                         form_id: params.form_id,
-                                        form_slug: 'booking-form',
                                         bookly_order: response.data.bookly_order
                                     }
                                 }).then(response => {
@@ -281,8 +278,7 @@ export default function stepPayment(params) {
                         action: 'bookly_create_payment_intent',
                         form_id: params.form_id,
                         gateway: $gateway_checked.val(),
-                        response_url: window.location.pathname + window.location.search.split('#')[0],
-                        form_slug: 'booking-form'
+                        response_url: window.location.pathname + window.location.search.split('#')[0]
                     }
                 }).then(response => {
                     retrieveRequest(response.data, params.form_id);

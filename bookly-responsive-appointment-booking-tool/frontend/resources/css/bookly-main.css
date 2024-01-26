@@ -1,4 +1,7 @@
-/* Global */
+:root {
+    --bookly-css-version: "22.9";
+}
+
 .bookly-list-none {
     list-style: none;
 }

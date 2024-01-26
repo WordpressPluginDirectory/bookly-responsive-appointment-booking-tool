@@ -18,7 +18,7 @@ export default {
 		globals: {
 			jquery: 'jQuery'
 		},
-		footer: 'const bookly_js_created_at = "' + (new Date()).toISOString().slice(0, 10) + '";',
+		banner: 'const booklyJsVersion="' + (new Date()).toISOString().slice(0, 10) + '";' + "\n/*!*/",
 	},
 	external: ['jquery'],
 	plugins: [

@@ -13,7 +13,7 @@ class Account extends Base
     const CHANGE_PASSWORD                = '/1.0/users/%token%';                          //PATCH
     const CONFIRM_EMAIL                  = '/1.3/users/%token%/confirm';                  //POST
     const CREATE_PAYPAL_ORDER            = '/1.0/users/%token%/paypal/order';             //POST
-    const CREATE_PREAPPROVAL             = '/1.1/users/%token%/paypal/pre-approvals';     //POST
+    const CREATE_BILLING_AGREEMENT       = '/1.0/users/%token%/paypal/billing-agreement'; //POST
     const RENEW_PAYPAL_AUTO_RECHARGE     = '/1.1/users/%token%/paypal/renew/auto-recharge'; //POST
     const CREATE_STRIPE_CHECKOUT_SESSION = '/1.0/users/%token%/stripe/checkout/sessions'; //POST
     const RENEW_STRIPE_AUTO_RECHARGE     = '/1.0/users/%token%/stripe/renew/auto-recharge'; //POST
@@ -248,17 +248,17 @@ class Account extends Base
     }
 
     /**
-     * Get PayPal PreApproval url, (for enabling auto recharge)
+     * Get PayPal billing agreement url, (for enabling auto recharge)
      *
      * @param string $recharge_id
      * @param string $url
      * @return bool|string
      */
-    public function getPreApprovalUrl( $recharge_id, $url )
+    public function getBillingAgreementUrl( $recharge_id, $url )
     {
         if ( $this->api->getToken() ) {
             $response = $this->api->sendPostRequest(
-                self::CREATE_PREAPPROVAL,
+                self::CREATE_BILLING_AGREEMENT,
                 array(
                     'recharge' => $recharge_id,
                     'enabled_url' => $url . '#auto-recharge=enabled',

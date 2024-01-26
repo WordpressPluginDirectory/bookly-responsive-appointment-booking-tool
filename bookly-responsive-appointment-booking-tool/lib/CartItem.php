@@ -209,11 +209,11 @@ class CartItem
     /**
      * Get staff ID.
      *
-     * @return int
+     * @return int|null
      */
     public function getStaffId()
     {
-        return (int) $this->slots[0][1];
+        return isset( $this->slots[0][1] ) ? (int) $this->slots[0][1] : null;
     }
 
     /**

@@ -441,7 +441,7 @@ abstract class Routine
                                     $ca = new CustomerAppointment();
                                     $ca->load( $appointment->ca_id );
                                     $custom_filed_str = '';
-                                    foreach ( Lib\Proxy\CustomFields::getForCustomerAppointment( $ca ) as $custom_field ) {
+                                    foreach ( Lib\Proxy\CustomFields::getForCustomerAppointment( $ca ) ?: array() as $custom_field ) {
                                         if ( $is_html ) {
                                             $custom_filed_str .= sprintf( '%s: %s<br/>', $custom_field['label'], $custom_field['value'] );
                                         } else {

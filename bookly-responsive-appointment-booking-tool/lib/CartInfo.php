@@ -376,14 +376,10 @@ class CartInfo
         return $this->userData;
     }
 
-    /**************************************************************************
-     * Private                                                                *
-     **************************************************************************/
-
     /**
      * @return float
      */
-    private function getDiscount()
+    public function getDiscount()
     {
         return $this->coupon_discount + $this->group_discount + $this->price_correction + $this->addon_discount;
     }
@@ -437,6 +433,14 @@ class CartInfo
     }
 
     /**
+     * @return bool
+     */
+    public function getPayFull()
+    {
+        return $this->pay_full;
+    }
+
+    /**
      * Get total price.
      *
      * @return float
@@ -480,7 +484,7 @@ class CartInfo
                 'without_coupon' => 0,
             );
             $coupon_total = 0;
-            array_walk( $this->amounts_taxable, function ( $amount ) use ( &$taxes, &$coupon_total ) {
+            array_walk( $this->amounts_taxable, function( $amount ) use ( &$taxes, &$coupon_total ) {
                 if ( $amount['allow_coupon'] ) {
                     $taxes['allow_coupon'] += Proxy\Taxes::calculateTax( $amount['total'], $amount['rate'] );
                     $coupon_total += $amount['total'];
