@@ -250,6 +250,16 @@ class Ajax extends Lib\Base\Ajax
                         add_option( $option_name, $data['options'][ $option_name ] );
                     }
                 }
+
+                $wpdb->insert( $wpdb->prefix . 'bookly_log', array(
+                    'action' => 'debug',
+                    'target' => 'bookly-restore',
+                    'author' => get_current_user_id(),
+                    'details' => json_encode( $info ),
+                    'comment' => 'Restore from ' . $_FILES['import']['name'],
+                    'ref' => $_SERVER['REMOTE_ADDR'],
+                    'created_at' => current_time( 'mysql' ),
+                ) );
             }
         }
 
@@ -330,7 +340,7 @@ class Ajax extends Lib\Base\Ajax
 
         $query->whereBetween( 'created_at', $start, $end );
         if ( isset( $filter['search'] ) && $filter['search'] !== '' ) {
-            $query->whereRaw( 'target LIKE "%%%s%" OR details LIKE "%%%s%" OR target_id LIKE "%%%s%" OR ref LIKE "%%%s%" OR comment LIKE "%%%s%" OR author LIKE "%%%s%"', array_fill( 0, 5, $wpdb->esc_like( $filter['search'] ) ) );
+            $query->whereRaw( 'target LIKE "%%%s%" OR details LIKE "%%%s%" OR target_id LIKE "%%%s%" OR ref LIKE "%%%s%" OR comment LIKE "%%%s%" OR author LIKE "%%%s%"', array_fill( 0, 6, $wpdb->esc_like( $filter['search'] ) ) );
         }
         if ( isset( $filter['target'] ) && $filter['target'] !== '' ) {
             $query->where( 'target_id', $filter['target'] );

@@ -187,8 +187,8 @@ class UserBookingData
                     $date = explode( '-', $customer->getBirthday() );
                     $this->setBirthday( array(
                         'year' => $date[0],
-                        'month' => isset( $date[1] ) ? (int)$date[1] : 0,
-                        'day' => isset( $date[2] ) ? (int)$date[2] : 0,
+                        'month' => isset( $date[1] ) ? (int) $date[1] : 0,
+                        'day' => isset( $date[2] ) ? (int) $date[2] : 0,
                     ) );
                 }
                 $this
@@ -223,8 +223,8 @@ class UserBookingData
                 $date = explode( '-', $_COOKIE['bookly-customer-birthday'] );
                 $birthday = array(
                     'year' => $date[0],
-                    'month' => isset( $date[1] ) ? (int)$date[1] : 0,
-                    'day' => isset( $date[2] ) ? (int)$date[2] : 0,
+                    'month' => isset( $date[1] ) ? (int) $date[1] : 0,
+                    'day' => isset( $date[2] ) ? (int) $date[2] : 0,
                 );
                 $this->setBirthday( $birthday );
             }
@@ -810,13 +810,21 @@ class UserBookingData
                 } else if ( $customer_data['phone'] && ! $this->customer->loadBy( array( 'phone' => $customer_data['phone'] ) ) ) {
                     $this->customer->loadBy( array( 'email' => $customer_data['email'] ) );
                 }
+            } else {
+                $this->customer->loadBy( array( 'email' => $customer_data['email'], 'phone' => $customer_data['phone'] ) );
             }
 
             foreach ( $customer_fields as $field ) {
                 $this->fillData( array( $field => $customer_data[ $field ] ?: '' ) );
                 $this->customer->setFields( array( $field => $customer_data[ $field ] ?: '' ) );
             }
-
+            if ( isset( $customer_data['customer_information'] ) && Config::customerInformationActive() ) {
+                $customer_information = array();
+                foreach ( $customer_data['customer_information'] as $id => $value ) {
+                    $customer_information[] = array( 'id' => $id, 'value' => $value );
+                }
+                $this->setInfoFields( $customer_information );
+            }
             if ( isset( $customer_data['time_zone'] ) && $customer_data['time_zone'] !== '' ) {
                 $this->setTimeZone( $customer_data['time_zone'] );
             }

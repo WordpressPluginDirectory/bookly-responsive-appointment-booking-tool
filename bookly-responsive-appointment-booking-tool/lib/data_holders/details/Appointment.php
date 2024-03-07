@@ -89,7 +89,7 @@ class Appointment extends Base
      */
     private function setCaExtras( CustomerAppointment $ca, array $extras )
     {
-        $appointment = \Bookly\Lib\Entities\Appointment::find( $ca->getAppointmentId() );
+        $appointment = Lib\Entities\Appointment::find( $ca->getAppointmentId() );
         $service = null;
         if ( $appointment->getCustomServiceName() === null ) {
             $service  = Service::find( $appointment->getServiceId() );
@@ -139,7 +139,7 @@ class Appointment extends Base
         $extras = array();
         if ( $ca->getExtras() != '[]' ) {
             $_extras = json_decode( $ca->getExtras(), true );
-            $service_id = \Bookly\Lib\Entities\Appointment::find( $ca->getAppointmentId() )->getServiceId();
+            $service_id = Lib\Entities\Appointment::find( $ca->getAppointmentId() )->getServiceId();
             $rate = $use_rate && array_key_exists( $service_id, $rates ) ? $rates[ $service_id ] : 0;
             /** @var \BooklyServiceExtras\Lib\Entities\ServiceExtra $service_extra */
             foreach ( Lib\Proxy\ServiceExtras::findByIds( array_keys( $_extras ) ) ?: array() as $service_extra ) {

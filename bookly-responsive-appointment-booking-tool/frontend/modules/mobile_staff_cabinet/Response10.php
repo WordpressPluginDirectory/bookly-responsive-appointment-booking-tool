@@ -2,6 +2,7 @@
 namespace Bookly\Frontend\Modules\MobileStaffCabinet;
 
 use Bookly\Lib;
+use Bookly\Lib\Config;
 use Bookly\Lib\Entities;
 use Bookly\Lib\Entities\Appointment;
 use Bookly\Lib\Entities\CustomerAppointment;
@@ -390,7 +391,20 @@ class Response10
 
         $query = \Bookly\Backend\Modules\Calendar\Ajax::getAppointmentsQueryForCalendar( array( $this->staff ), $start_date, $end_date, $location_ids );
         $query->addSelect( 'a.service_id' );
-        $appointments = \Bookly\Backend\Modules\Calendar\Ajax::getAppointmentsForCalendar( $query, $display_tz );
+        $records = \Bookly\Backend\Modules\Calendar\Ajax::getAppointmentsForCalendar( $query );
+
+        $appointments = array();
+        $wp_tz = Config::getWPTimeZone();
+        $convert_tz = $display_tz !== $wp_tz;
+        foreach ( $records as $appointment ) {
+            if ( ! isset ( $appointments[ $appointment['id'] ] ) ) {
+                if ( $convert_tz ) {
+                    $appointment['start_date'] = DateTime::convertTimeZone( $appointment['start_date'], $wp_tz, $display_tz );
+                    $appointment['end_date'] = DateTime::convertTimeZone( $appointment['end_date'], $wp_tz, $display_tz );
+                }
+                $appointments[ $appointment['id'] ] = $appointment;
+            }
+        }
 
         foreach ( $appointments as $appointment ) {
             $customer_id = (int) $appointment['customer_id'];
@@ -411,7 +425,7 @@ class Response10
                     'name' => $appointment['service_name'],
                 ),
                 'color' => $appointment['service_color'],
-                'internal_note' => trim($appointment['internal_note']),
+                'internal_note' => trim( $appointment['internal_note'] ),
                 'customer_appointments' => $customer ? array( $customer ) : array(),
             );
         }

@@ -2,6 +2,7 @@
 namespace Bookly\Backend\Components\Dialogs\Appointment\Delete;
 
 use Bookly\Lib;
+use Bookly\Backend\Components\Dialogs\Queue\NotificationList;
 
 class Ajax extends Lib\Base\Ajax
 {
@@ -19,9 +20,9 @@ class Ajax extends Lib\Base\Ajax
     public static function deleteAppointment()
     {
         $appointment_id = self::parameter( 'appointment_id' );
-        $reason         = self::parameter( 'reason' );
+        $reason = self::parameter( 'reason' );
 
-        $queue = array();
+        $queue = new NotificationList();
 
         if ( self::parameter( 'notify' ) ) {
             $ca_list = Lib\Entities\CustomerAppointment::query()
@@ -59,13 +60,14 @@ class Ajax extends Lib\Base\Ajax
         }
 
         $response = array();
-        if ( $queue ) {
+        $list = $queue->getList();
+        if ( $list ) {
             $db_queue = new Lib\Entities\NotificationQueue();
             $db_queue
-                ->setData( json_encode( array( 'all' => $queue ) ) )
+                ->setData( json_encode( array( 'all' => $list ) ) )
                 ->save();
 
-            $response['queue'] = array( 'token' => $db_queue->getToken(), 'all' => $queue );
+            $response['queue'] = array( 'token' => $db_queue->getToken(), 'all' => $list );
         }
 
         wp_send_json_success( $response );

@@ -6,11 +6,11 @@ use Bookly\Lib\Slots\DatePoint;
 
 class Scheduler
 {
-    const REPEAT_DAILY    = 'daily';
-    const REPEAT_WEEKLY   = 'weekly';
+    const REPEAT_DAILY = 'daily';
+    const REPEAT_WEEKLY = 'weekly';
     const REPEAT_BIWEEKLY = 'biweekly';
-    const REPEAT_MONTHLY  = 'monthly';
-    const REPEAT_YEARLY   = 'yearly';//not implemented yet
+    const REPEAT_MONTHLY = 'monthly';
+    const REPEAT_YEARLY = 'yearly';//not implemented yet
 
     private $client_from;
 
@@ -101,10 +101,10 @@ class Scheduler
         // Set up Finder.
         $this->finder = new Lib\Slots\Finder(
             $this->userData,
-            function ( DatePoint $client_dp ) {
+            function( DatePoint $client_dp ) {
                 return $client_dp->format( 'Y-m-d' );
             },
-            function ( DatePoint $client_dp, $groups_count, $slots_count ) {
+            function( DatePoint $client_dp, $groups_count, $slots_count ) {
                 return $groups_count >= 1 ? 2 : 0;
             },
             $waiting_list_enabled,
@@ -296,7 +296,7 @@ class Scheduler
 
         $this->finder->load(
             $skip_days_off ?
-                function ( DatePoint $dp, $srv_duration_days, $slots_count ) use ( $client_dp ) {
+                function( DatePoint $dp, $srv_duration_days, $slots_count ) use ( $client_dp ) {
                     return ( $dp->gte( $client_dp->modify( max( $srv_duration_days, 1 ) . ' days' ) ) && $slots_count == 0 ) || $dp->gte( $this->finder->client_end_dp );
                 }
                 : null
@@ -359,12 +359,17 @@ class Scheduler
                         $client_start_dp = $slot->start()->toClientTz();
                         $title = $client_start_dp->formatI18n( get_option( 'time_format' ) );
                         if ( $this->with_options ) {
-                            $options[] = array(
+                            $option = array(
                                 'value' => json_encode( $data ),
                                 'title' => $title,
                                 'disabled' => $slot->fullyBooked(),
                                 'waiting_list_count' => $slot->waitingListEverStarted() ? $slot->maxOnWaitingList() : null,
                             );
+                            if ( isset( $this->params['with_nop'] ) && $this->params['with_nop'] ) {
+                                $option['nop'] = $slot->data()->nop();
+                                $option['capacity'] = $slot->data()->capacity();
+                            }
+                            $options[] = $option;
                         }
                         if ( $client_res_dp === null && $slot->notFullyBooked() && $client_start_dp->gte( $client_req_dp ) ) {
                             $client_res_dp = $client_start_dp;
@@ -416,7 +421,7 @@ class Scheduler
     {
         $weekdays = array( 'mon' => 1, 'tue' => 2, 'wed' => 3, 'thu' => 4, 'fri' => 5, 'sat' => 6, 'sun' => 7 );
 
-        usort( $input, function ( $a, $b ) use ( $weekdays ) {
+        usort( $input, function( $a, $b ) use ( $weekdays ) {
             return $weekdays[ $a ] - $weekdays[ $b ];
         } );
     }

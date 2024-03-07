@@ -56,10 +56,10 @@ abstract class Updater extends Schema
                         update_option( $version_option_name, $version );
                     }
                 }
+                $logs_table = $this->getTableName( 'bookly_log' );
                 // Log errors.
                 if ( $this->errors ) {
                     try {
-                        $logs_table = $this->getTableName( 'bookly_log' );
                         foreach ( $this->errors as $error ) {
                             $wpdb->insert( $logs_table, array(
                                 'action' => 'error',
@@ -75,6 +75,15 @@ abstract class Updater extends Schema
                 }
                 // Make sure db_version is set to plugin version (even though there were no updates).
                 update_option( $version_option_name, $plugin_version );
+                $wpdb->insert( $logs_table, array(
+                    'action' => 'debug',
+                    'target' => $plugin_class::getTitle() . ' ' . $plugin_version,
+                    'author' => get_current_user_id(),
+                    'details' => $plugin_class::getSlug(),
+                    'comment' => 'Updated',
+                    'ref' => '',
+                    'created_at' => current_time( 'mysql' ),
+                ) );
             }
         }
     }

@@ -73,7 +73,7 @@ class Ajax extends Lib\Base\Ajax
                 $sub_services = $service->getSubServices();
                 if ( $type == Service::TYPE_SIMPLE || ! empty( $sub_services ) ) {
                     if ( $staff_service->getLocationId() === null || Lib\Proxy\Locations::prepareStaffLocationId( $staff_service->getLocationId(), $staff_service->getStaffId() ) == $staff_service->getLocationId() ) {
-                        if ( ! in_array( $service->getId(), array_map( function ( $service ) {
+                        if ( ! in_array( $service->getId(), array_map( function( $service ) {
                             return $service['id'];
                         }, $services ) ) ) {
                             $service_data = array(
@@ -122,7 +122,7 @@ class Ajax extends Lib\Base\Ajax
 
                             $services[] = $service_data;
                         } else {
-                            array_walk( $services, function ( &$item ) use ( $staff_service, $service ) {
+                            array_walk( $services, function( &$item ) use ( $staff_service, $service ) {
                                 if ( $item['id'] == $service->getId() ) {
                                     $item['locations'][ $staff_service->getLocationId() ?: 0 ] = array(
                                         'capacity_min' => Lib\Config::groupBookingActive() ? (int) $staff_service->getCapacityMin() : 1,
@@ -425,7 +425,7 @@ class Ajax extends Lib\Base\Ajax
             self::parameter( 'end_date' ),
             (int) self::parameter( 'staff_id' ),
             (int) self::parameter( 'service_id' ),
-            self::parameter( 'location_id' ),
+            (int) self::parameter( 'location_id' ),
             json_decode( self::parameter( 'customers', '[]' ), true )
         );
 

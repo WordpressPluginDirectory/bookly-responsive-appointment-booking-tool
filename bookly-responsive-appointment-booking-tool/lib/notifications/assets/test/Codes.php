@@ -60,23 +60,6 @@ class Codes extends Assets\Item\Codes
             'appointment_start_info' => null,
             'deposit' => Lib\Proxy\DepositPayments::formatDeposit( 12, '50%' ),
         ) );
-        $schedule = array(
-            array(
-                'start' => $start_date->format( 'Y-m-d 12:00:00' ),
-                'token' => '3000300030003000300030003',
-                'duration' => '3600'
-            ),
-            array(
-                'start' => $start_date->modify( '1 day' )->format( 'Y-m-d 14:00:00' ),
-                'token' => '4000400040004000400040004',
-                'duration' => '3600'
-            ),
-            array(
-                'start' => $start_date->modify( '1 day' )->format( 'Y-m-d 12:00:00' ),
-                'token' => '5000500050005000500050005',
-                'duration' => '3600'
-            ),
-        );
         $this->series_token = '1000100010001000100010001';
         $this->agenda_date = Utils\DateTime::formatDate( current_time( 'mysql' ) );
         $this->amount_due = '';
@@ -105,7 +88,6 @@ class Codes extends Assets\Item\Codes
         $this->service_name = 'Service Name';
         $this->service_image = 'https://dummyimage.com/100/dddddd/000000';
         $this->service_price = '10';
-        $this->schedule = $schedule;
         $this->staff_email = 'staff@example.com';
         $this->staff_info = 'Staff info text';
         $this->staff_name = 'Staff Name';
@@ -117,6 +99,29 @@ class Codes extends Assets\Item\Codes
         $this->total_price = '24';
         $this->client_birthday = date_i18n( 'F j', strtotime( $customer->getBirthday() ) );
         $this->client_full_birthday = \Bookly\Lib\Utils\DateTime::formatDate( $customer->getBirthday() );
+        $this->schedule = array(
+            array(
+                'start' => $start_date->format( 'Y-m-d 12:00:00' ),
+                'token' => '3000300030003000300030003',
+                'duration' => '3600',
+                'staff_name' => $this->staff_name,
+                'staff_email' => $this->staff_email,
+            ),
+            array(
+                'start' => $start_date->modify( '1 day' )->format( 'Y-m-d 14:00:00' ),
+                'token' => '4000400040004000400040004',
+                'duration' => '3600',
+                'staff_name' => $this->staff_name,
+                'staff_email' => $this->staff_email,
+            ),
+            array(
+                'start' => $start_date->modify( '1 day' )->format( 'Y-m-d 12:00:00' ),
+                'token' => '5000500050005000500050005',
+                'duration' => '3600',
+                'staff_name' => $this->staff_name,
+                'staff_email' => $this->staff_email,
+            ),
+        );
 
         Proxy\Shared::prepareCodes( $this );
     }

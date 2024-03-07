@@ -3,6 +3,15 @@ namespace Bookly\Lib;
 
 class Updater extends Base\Updater
 {
+    function update_23_1()
+    {
+        $this->alterTables( array(
+            'bookly_customers' => array(
+                'ALTER TABLE `%s` ADD COLUMN `attachment_id` INT UNSIGNED DEFAULT NULL AFTER `info_fields`',
+            ),
+        ) );
+    }
+
     function update_22_8()
     {
         $this->alterTables( array(

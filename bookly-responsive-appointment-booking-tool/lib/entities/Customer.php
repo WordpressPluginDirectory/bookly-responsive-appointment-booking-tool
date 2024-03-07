@@ -43,10 +43,12 @@ class Customer extends Lib\Base\Entity
     protected $notes = '';
     /** @var string */
     protected $birthday;
-    /** @var  string */
+    /** @var string */
     protected $info_fields = '[]';
-    /** @var  string */
+    /** @var string */
     protected $stripe_account;
+    /** @var int */
+    protected $attachment_id;
     /** @var string */
     protected $created_at;
 
@@ -76,6 +78,7 @@ class Customer extends Lib\Base\Entity
         'notes' => array( 'format' => '%s' ),
         'info_fields' => array( 'format' => '%s' ),
         'stripe_account' => array( 'format' => '%s' ),
+        'attachment_id' => array( 'format' => '%d' ),
         'created_at' => array( 'format' => '%s' ),
     );
 
@@ -673,10 +676,30 @@ class Customer extends Lib\Base\Entity
 
     /**
      * @param string $full_address
+     * @return $this
      */
     public function setFullAddress( $full_address )
     {
         $this->full_address = $full_address;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAttachmentId()
+    {
+        return $this->attachment_id;
+    }
+
+    /**
+     * @param int $attachment_id
+     * @return $this
+     */
+    public function setAttachmentId( $attachment_id )
+    {
+        $this->attachment_id = $attachment_id;
 
         return $this;
     }

@@ -8,8 +8,8 @@ msgstr ""
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 10:03+0000\n"
-"PO-Revision-Date: 2023-12-18 07:58+0000\n"
+"POT-Creation-Date: 2024-02-21 09:29+0000\n"
+"PO-Revision-Date: 2024-02-21 10:54+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: French (France)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -2027,6 +2027,9 @@ msgstr "Champ d'information"
 msgid "Download"
 msgstr "Télécharger"
 
+msgid "Customer information"
+msgstr "Information client"
+
 msgid ""
 "To receive REST API credentials, in <b>My Apps & Credentials</b> of your "
 "PayPal account do the following steps:"
@@ -2109,6 +2112,12 @@ msgid ""
 msgstr ""
 "Activez cette option si vous voulez limiter la possibilité de réservation à "
 "la limite de capacité du service."
+
+msgid "Busy"
+msgstr "Occupé"
+
+msgid "Free"
+msgstr "Libre"
 
 msgid "Address"
 msgstr "Adresse"
@@ -2237,6 +2246,9 @@ msgstr "Gestion du profil"
 msgid "Birthday"
 msgstr "Anniversaire"
 
+msgid "Customer address"
+msgstr "Adresse client"
+
 msgid "Wordpress password"
 msgstr "Mot de passe Wordpress"
 
@@ -2263,9 +2275,6 @@ msgstr "Fuseau horaire"
 
 msgid "Employee"
 msgstr "Employé"
-
-msgid "Customer information"
-msgstr "Information client"
 
 msgid "Appointments"
 msgstr "Rendez-vous"
@@ -2865,6 +2874,22 @@ msgstr "Notification au client avec le code de vérification"
 msgid "Bookly verification code"
 msgstr "Code de vérification de Bookly"
 
+msgid "New staff member's Bookly Staff Cabinet mobile app access token details"
+msgstr ""
+"Détails du jeton d'accès à l'application mobile Bookly Staff Cabinet du "
+"nouveau membre du personnel"
+
+msgid "Your Bookly Staff Cabinet mobile app access token"
+msgstr "Votre jeton d'accès à l'application mobile Bookly Staff Cabinet"
+
+msgid ""
+"Hello.\n"
+"Your access token for Bookly Staff Cabinet mobile app: {access_token}"
+msgstr ""
+"Bonjour. \n"
+"Votre jeton d'accès à l'application mobile de Bookly Staff Cabinet : "
+"{access_token}"
+
 msgid "&lt;"
 msgstr "&lt;"
 
@@ -3336,6 +3361,22 @@ msgstr "Mois suivant"
 msgid "Last month"
 msgstr "Mois dernier"
 
+msgid "Start time must not be empty"
+msgstr "L'heure de début ne peut être vide"
+
+msgid "End time must not be empty"
+msgstr "L'heure de fin ne peut être vide"
+
+msgid "End time must not be equal to start time"
+msgstr "L'heure de fin ne peut être égale à l'heure de début"
+
+msgid "Could not save appointment in database."
+msgstr "Impossible d'enregistrer le rendez-vous dans la base."
+
+#, php-format
+msgid "%s has reached the limit of bookings for this service"
+msgstr "%s a atteint la limite de réservation pour ce service"
+
 msgid "No."
 msgstr "Non."
 
@@ -3428,6 +3469,9 @@ msgstr "ID demandé"
 
 msgid "Status date"
 msgstr "Date du statut"
+
+msgid "Access token"
+msgstr "Token d'accès"
 
 msgid "Action"
 msgstr "Action"
@@ -3537,9 +3581,6 @@ msgstr "Pas de mises à jour disponibles"
 msgid "Local"
 msgstr "Local"
 
-msgid "Free"
-msgstr "Libre"
-
 msgid "Completed"
 msgstr "Terminé"
 
@@ -3578,6 +3619,11 @@ msgstr "Vérifier le téléphone du client"
 
 msgid "Mailing message"
 msgstr "Message publipostage"
+
+msgid "New staff member's Staff Cabinet mobile app access token details"
+msgstr ""
+"Détails du jeton d'accès à l'application mobile Staff Cabinet du nouveau "
+"membre du personnel"
 
 msgid "Test message"
 msgstr "Message test"
@@ -3679,6 +3725,30 @@ msgstr "Attachements"
 
 msgid "Archived"
 msgstr "Archivé"
+
+msgid "Staff Cabinet Mobile App"
+msgstr "Application mobile Staff Cabinet"
+
+msgid "Access tokens"
+msgstr "Jetons d'accès"
+
+msgid "Revoke"
+msgstr "Révoquer "
+
+msgid "Invite"
+msgstr "Inviter"
+
+msgid ""
+"You are going to delete access token(s). Please note that tokens will be "
+"automatically revoked, so user(s) associated with deleted token(s) will lose "
+"access"
+msgstr ""
+"Vous êtes sur le point de supprimer le(s) jeton(s) d'accès. Veuillez noter "
+"que les jetons seront automatiquement révoqués, donc l'/les utilisateur(s) "
+"associé(s) au(x) jeton(s) supprimé(s) perdront accès."
+
+msgid "No records."
+msgstr "Pas d'enregistrements."
 
 msgid "1 - 9 employees"
 msgstr "1 à 9 employés"
@@ -3787,9 +3857,6 @@ msgstr "le jour suivant"
 
 msgid "Reorder"
 msgstr "Réorganiser"
-
-msgid "No records."
-msgstr "Pas d'enregistrements."
 
 msgid "Image"
 msgstr "Image"
@@ -4819,12 +4886,11 @@ msgstr "Erreurs critiques"
 msgid "This test checks for critical errors in Bookly."
 msgstr "Ce test vérifie la présence d'erreurs critiques dans Bookly."
 
-msgid ""
-"Some critical errors in Bookly were found recently. Please check Settings > "
-"Logs and contact Bookly support."
-msgstr ""
-"Des erreurs critiques dans Bookly ont été trouvées récemment. Veuillez "
-"vérifier Paramètres > Journaux et contacter le support Bookly."
+msgid "Some critical errors in Bookly were found recently."
+msgstr "Des erreurs critiques dans Bookly ont été trouvées récemment."
+
+msgid "Please contact Bookly support."
+msgstr "Veuillez contacter le support Bookly."
 
 msgid "Time settings"
 msgstr "Paramètres horaires"
@@ -5488,9 +5554,6 @@ msgstr "Tester les notifications vocales"
 msgid "Select the language of your notifications"
 msgstr "Sélectionnez la langue de vos notifications"
 
-msgid "Busy"
-msgstr "Occupé"
-
 msgid "No answer"
 msgstr "Pas de réponse"
 
@@ -5933,6 +5996,9 @@ msgstr "Créer notification"
 msgid "New notification"
 msgstr "Nouvelle notification"
 
+msgid "Associated staff member"
+msgstr "Associé au membre du personnel"
+
 msgid "Select from WordPress users"
 msgstr "Select from WordPress users"
 
@@ -6100,29 +6166,13 @@ msgid "The selected period is occupied by another appointment"
 msgstr "La période choisie est occupée par un autre rendez-vous"
 
 msgid "Selected period doesn't match service duration"
-msgstr "Aucun créneau disponible pour la période choisie"
+msgstr "Le créneau choisi ne correspond pas à la durée du service"
 
 msgid "Selected period doesn't match provider's schedule"
 msgstr "La période sélectionnée ne correspond pas au planning du prestataire"
 
 msgid "No timeslots available"
 msgstr "Aucun créneau horaire disponible"
-
-msgid "Start time must not be empty"
-msgstr "L'heure de début ne peut être vide"
-
-msgid "End time must not be empty"
-msgstr "L'heure de fin ne peut être vide"
-
-msgid "End time must not be equal to start time"
-msgstr "L'heure de fin ne peut être égale à l'heure de début"
-
-msgid "Could not save appointment in database."
-msgstr "Impossible d'enregistrer le rendez-vous dans la base."
-
-#, php-format
-msgid "%s has reached the limit of bookings for this service"
-msgstr "%s a atteint la limite de réservation pour ce service"
 
 msgid "Appointment notes"
 msgstr "Notes pour le rendez-vous"
@@ -6139,6 +6189,15 @@ msgid ""
 msgstr ""
 "Vous allez supprimer un/des rendez-vous. Les notifications seront envoyées "
 "en fonction de vos paramètres."
+
+msgid "Edit access token"
+msgstr "Modifier le jeton d'accès"
+
+msgid "New access token"
+msgstr "Nouveau jeton d'accès"
+
+msgid "Staff member required"
+msgstr "Membre du personnel requis"
 
 msgid "Header"
 msgstr "En-tête"
@@ -6734,6 +6793,16 @@ msgstr "Valeurs par défaut pour le service"
 
 msgid "Default value for employee"
 msgstr "Valeurs par défaut pour les employés"
+
+msgid "Selected period doesn't match service schedule"
+msgstr "La période sélectionnée ne correspond pas au planning du service"
+
+#, php-format
+msgid "The number of customers should not be more than %d"
+msgstr "Le nombre de clients ne peut pas dépasser %d"
+
+msgid "Booking exceeds your working hours limit"
+msgstr "La réservation excède la limite des heures travaillées"
 
 msgid "Remember Me"
 msgstr "Me le rappeler"
@@ -7533,9 +7602,6 @@ msgstr ""
 "Si vous ne fournissez pas un code d'achat valide d'ici {days}, votre accès "
 "aux réservations sera désactivé."
 
-msgid "Customer address"
-msgstr "Adresse client"
-
 msgid "Customer birthday"
 msgstr "Anniversaire du client"
 
@@ -8173,9 +8239,6 @@ msgstr ""
 msgid "Use it in the form below on this page."
 msgstr "Utilisez-le dans le formulaire ci-dessous sur cette page."
 
-msgid "Access token"
-msgstr "Token d'accès"
-
 msgid "Location ID"
 msgstr "ID de la localisation"
 
@@ -8659,6 +8722,15 @@ msgstr "Afficher les cartes avec des plages horaires uniquement"
 msgid "Save cart locally"
 msgstr "Sauvegarder le panier localement"
 
+msgid "Verify credentials"
+msgstr "Vérifier les informations d'identification"
+
+msgid "Verify phone"
+msgstr "Vérifier le téléphone"
+
+msgid "Verify email"
+msgstr "Vérifier l'email"
+
 msgid "Add new form"
 msgstr "Ajouter un nouveau formulaire"
 
@@ -8776,6 +8848,15 @@ msgstr "Votre fuseau horaire"
 msgid "Select city"
 msgstr "Sélectionnez une ville"
 
+msgid "Amount to pay"
+msgstr "Montant à payer"
+
+msgid "Resend code"
+msgstr "Renvoyer le code"
+
+msgid "Incorrect verification code"
+msgstr "Code de vérification incorrect"
+
 msgid "Please select a category"
 msgstr "Veuillez sélectionner une catégorie"
 
@@ -8854,6 +8935,9 @@ msgstr "Notes du client pour la carte cadeau"
 
 msgid "Time zone of staff"
 msgstr "Fuseau horaire du personnel"
+
+msgid "Image of gift card"
+msgstr "Image de la carte cadeau"
 
 msgid "Email logs"
 msgstr "Journaux de mail"
@@ -9058,17 +9142,10 @@ msgstr "Sauvegarder le rendez-vous pour créer une réunion"
 msgid "Please enter a service name"
 msgstr "Veuillez entrer un nom de service"
 
-#, php-format
-msgid "The number of customers should not be more than %d"
-msgstr "Le nombre de clients ne peut pas dépasser %d"
-
 msgid "Booking exceeds the working hours limit for staff member"
 msgstr ""
 "La réservation excède la limite des heures travaillées par le membre de "
 "l'équipe"
-
-msgid "Booking exceeds your working hours limit"
-msgstr "La réservation excède la limite des heures travaillées"
 
 msgid ""
 "Please setup and enable New customer's WordPress user login details "
@@ -9529,9 +9606,6 @@ msgstr ""
 "un acompte. si vous activez \"Acompte ou prix total\", les clients pourront "
 "payer u acompte ou le prix total."
 
-msgid "Amount to pay"
-msgstr "Montant à payer"
-
 msgid "Total deposit amount to be paid"
 msgstr "Montant total de l'accompte à payer"
 
@@ -9650,9 +9724,6 @@ msgstr ""
 "vous, cachez-le et créez un tâche sans heure définie, ou affichez l'étape "
 "Time, mais autorisez le client à la passer. "
 
-msgid "Selected period doesn't match service schedule"
-msgstr "La période sélectionnée ne correspond pas au planning du service"
-
 msgid "Agent ID"
 msgstr "ID Agent"
 
@@ -9692,60 +9763,6 @@ msgstr "Nombre de fois utilisé"
 
 msgid "Coupons"
 msgstr "Codes promo"
-
-msgid "Associated staff member"
-msgstr "Associé au membre du personnel"
-
-msgid "Edit access token"
-msgstr "Modifier le jeton d'accès"
-
-msgid "New access token"
-msgstr "Nouveau jeton d'accès"
-
-msgid "Staff member required"
-msgstr "Membre du personnel requis"
-
-msgid "Staff Cabinet App"
-msgstr "Application Staff Cabinet"
-
-msgid "Access tokens"
-msgstr "Jetons d'accès"
-
-msgid "Revoke"
-msgstr "Révoquer "
-
-msgid "Invite"
-msgstr "Inviter"
-
-msgid ""
-"You are going to delete access token(s). Please note that tokens will be "
-"automatically revoked, so user(s) associated with deleted token(s) will lose "
-"access"
-msgstr ""
-"Vous êtes sur le point de supprimer le(s) jeton(s) d'accès. Veuillez noter "
-"que les jetons seront automatiquement révoqués, donc l'/les utilisateur(s) "
-"associé(s) au(x) jeton(s) supprimé(s) perdront accès."
-
-msgid "New staff member's Staff Cabinet mobile app access token details"
-msgstr ""
-"Détails du jeton d'accès à l'application mobile Staff Cabinet du nouveau "
-"membre du personnel"
-
-msgid "New staff member's Bookly Staff Cabinet mobile app access token details"
-msgstr ""
-"Détails du jeton d'accès à l'application mobile Bookly Staff Cabinet du "
-"nouveau membre du personnel"
-
-msgid "Your Bookly Staff Cabinet mobile app access token"
-msgstr "Votre jeton d'accès à l'application mobile Bookly Staff Cabinet"
-
-msgid ""
-"Hello.\n"
-"Your access token for Bookly Staff Cabinet mobile app: {access_token}"
-msgstr ""
-"Bonjour. \n"
-"Votre jeton d'accès à l'application mobile de Bookly Staff Cabinet : "
-"{access_token}"
 
 msgid "Add Coupon Series"
 msgstr "Ajouter série code promo"
@@ -10152,8 +10169,8 @@ msgstr ""
 "Attribuez la valeur 0 pour désactiver la liste d'attente pour ce service ou "
 "attribuez la valeur requise."
 
-msgid "waiting list"
-msgstr "liste d'attente"
+msgid "Waiting list"
+msgstr "Liste d'attente"
 
 msgid "You have been added to waiting list for appointment."
 msgstr "Vous avez été ajouté à la liste d'attente pour un rendez-vous."
@@ -10340,9 +10357,6 @@ msgstr "cacher l'étape du panier"
 
 msgid "Total tax"
 msgstr "Total taxe"
-
-msgid "Waiting list"
-msgstr "Liste d'attente"
 
 msgid "Free/Busy"
 msgstr "Libre/Occupé"

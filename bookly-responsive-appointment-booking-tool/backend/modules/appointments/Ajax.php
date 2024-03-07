@@ -2,6 +2,7 @@
 namespace Bookly\Backend\Modules\Appointments;
 
 use Bookly\Lib;
+use Bookly\Backend\Components\Dialogs\Queue\NotificationList;
 
 class Ajax extends Lib\Base\Ajax
 {
@@ -56,7 +57,7 @@ class Ajax extends Lib\Base\Ajax
                 $ca_list[] = $ca_data['ca_id'];
             }
         }
-        $queue = array();
+        $queue = new NotificationList();
         /** @var Lib\Entities\CustomerAppointment $ca */
         foreach ( Lib\Entities\CustomerAppointment::query()->whereIn( 'id', $ca_list )->find() as $ca ) {
             if ( self::parameter( 'notify' ) ) {
@@ -93,13 +94,14 @@ class Ajax extends Lib\Base\Ajax
             }
         }
         $response = array();
-        if ( $queue ) {
+        $list = $queue->getList();
+        if ( $list ) {
             $db_queue = new Lib\Entities\NotificationQueue();
             $db_queue
-                ->setData( json_encode( array( 'all' => $queue ) ) )
+                ->setData( json_encode( array( 'all' => $list ) ) )
                 ->save();
 
-            $response['queue'] = array( 'token' => $db_queue->getToken(), 'all' => $queue );
+            $response['queue'] = array( 'token' => $db_queue->getToken(), 'all' => $list );
         }
         wp_send_json_success( $response );
     }
@@ -236,7 +238,7 @@ class Ajax extends Lib\Base\Ajax
         }
 
         $custom_fields = array();
-        $fields_data = (array) Lib\Proxy\CustomFields::getWhichHaveData();
+        $fields_data = Lib\Proxy\CustomFields::getWhichHaveData() ?: array();
         foreach ( $fields_data as $field_data ) {
             $custom_fields[ $field_data->id ] = '';
         }
@@ -281,7 +283,7 @@ class Ajax extends Lib\Base\Ajax
             // Custom fields
             $customer_appointment = new Lib\Entities\CustomerAppointment();
             $customer_appointment->load( $row['ca_id'] );
-            foreach ( Lib\Proxy\CustomFields::getForCustomerAppointment( $customer_appointment, false, null, false ) ?: array() as $custom_field ) {
+            foreach ( Lib\Proxy\CustomFields::getForCustomerAppointment( $customer_appointment ) ?: array() as $custom_field ) {
                 $custom_fields[ $custom_field['id'] ] = $custom_field['value'];
             }
             if ( $row['ca_id'] !== null ) {

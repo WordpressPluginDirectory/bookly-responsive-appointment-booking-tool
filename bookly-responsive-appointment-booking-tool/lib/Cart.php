@@ -418,6 +418,8 @@ class Cart
                 $title = Payment\Proxy\Shared::getTranslatedTitle( null, $item );
         }
 
+        $title = wp_strip_all_tags( $title );
+
         $tail = '';
         $more = count( $this->items ) - 1;
         if ( $more > 0 ) {

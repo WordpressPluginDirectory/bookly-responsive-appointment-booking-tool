@@ -8,8 +8,8 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 10:03+0000\n"
-"PO-Revision-Date: 2023-12-15 15:30+0000\n"
+"POT-Creation-Date: 2024-02-21 09:32+0000\n"
+"PO-Revision-Date: 2024-02-21 13:05+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Chinese (Taiwan)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -1876,6 +1876,9 @@ msgstr "信息欄"
 msgid "Download"
 msgstr "下載"
 
+msgid "Customer information"
+msgstr "客戶資料"
+
 msgid ""
 "To receive REST API credentials, in <b>My Apps & Credentials</b> of your "
 "PayPal account do the following steps:"
@@ -1947,6 +1950,12 @@ msgid ""
 "Enable this option if you want to limit the possibility of booking within "
 "the service capacity to one time."
 msgstr "如果要將服務能力內的預訂次數限制為一次，請啟用此選項。"
+
+msgid "Busy"
+msgstr "忙碌"
+
+msgid "Free"
+msgstr "空閒"
 
 msgid "Address"
 msgstr "地址"
@@ -2063,6 +2072,9 @@ msgstr "個人資料管理"
 msgid "Birthday"
 msgstr "生日"
 
+msgid "Customer address"
+msgstr "自定地址"
+
 msgid "Wordpress password"
 msgstr "Wordpress 密碼"
 
@@ -2091,9 +2103,6 @@ msgstr "時區"
 
 msgid "Employee"
 msgstr "員工"
-
-msgid "Customer information"
-msgstr "客戶資料"
 
 msgid "Appointments"
 msgstr "預約"
@@ -2669,6 +2678,19 @@ msgstr "向客戶發送帶驗證碼的通知"
 msgid "Bookly verification code"
 msgstr "Bookly驗證碼"
 
+msgid "New staff member's Bookly Staff Cabinet mobile app access token details"
+msgstr "新員工Bookly Staff Cabinet移動應用程式訪問令牌詳情"
+
+msgid "Your Bookly Staff Cabinet mobile app access token"
+msgstr "您的Bookly Staff Cabinet移動應用程式訪問令牌"
+
+msgid ""
+"Hello.\n"
+"Your access token for Bookly Staff Cabinet mobile app: {access_token}"
+msgstr ""
+"您好。\n"
+"您的Bookly Staff Cabinet移動應用程式訪問令牌：{access_token}"
+
 msgid "&lt;"
 msgstr "<"
 
@@ -3130,6 +3152,22 @@ msgstr "下月"
 msgid "Last month"
 msgstr "上個月"
 
+msgid "Start time must not be empty"
+msgstr "必須輸入開始時間"
+
+msgid "End time must not be empty"
+msgstr "必須輸入結束時間"
+
+msgid "End time must not be equal to start time"
+msgstr "結束時間不能等於開始時間"
+
+msgid "Could not save appointment in database."
+msgstr "無法將預約存進系統"
+
+#, php-format
+msgid "%s has reached the limit of bookings for this service"
+msgstr "%s 已達到此服務的限制數量"
+
 msgid "No."
 msgstr "號"
 
@@ -3223,6 +3261,9 @@ msgstr "請求ID"
 msgid "Status date"
 msgstr "狀態日期"
 
+msgid "Access token"
+msgstr "訪問令牌"
+
 msgid "Action"
 msgstr "行動"
 
@@ -3311,9 +3352,6 @@ msgstr "沒有更新"
 msgid "Local"
 msgstr "即場"
 
-msgid "Free"
-msgstr "空閒"
-
 msgid "Completed"
 msgstr "已完成"
 
@@ -3352,6 +3390,9 @@ msgstr "驗證客戶的電話"
 
 msgid "Mailing message"
 msgstr "郵件消息"
+
+msgid "New staff member's Staff Cabinet mobile app access token details"
+msgstr "新員工Staff Cabinet移動應用程式訪問令牌詳情"
 
 msgid "Test message"
 msgstr "測試消息"
@@ -3448,6 +3489,27 @@ msgstr "附件"
 
 msgid "Archived"
 msgstr "已存檔"
+
+msgid "Staff Cabinet Mobile App"
+msgstr "Staff Cabinet移動應用程式"
+
+msgid "Access tokens"
+msgstr "訪問令牌"
+
+msgid "Revoke"
+msgstr "撤銷"
+
+msgid "Invite"
+msgstr "邀請"
+
+msgid ""
+"You are going to delete access token(s). Please note that tokens will be "
+"automatically revoked, so user(s) associated with deleted token(s) will lose "
+"access"
+msgstr "您將刪除訪問令牌。請注意，令牌將被自動撤銷，因此與刪除令牌關聯的用戶將失去訪問權限"
+
+msgid "No records."
+msgstr "沒有記錄。"
 
 msgid "1 - 9 employees"
 msgstr "1 - 9 名員工"
@@ -3547,9 +3609,6 @@ msgstr "第二天"
 
 msgid "Reorder"
 msgstr "重新排序"
-
-msgid "No records."
-msgstr "沒有記錄。"
 
 msgid "Image"
 msgstr "圖片"
@@ -4449,10 +4508,11 @@ msgstr "關鍵性誤差"
 msgid "This test checks for critical errors in Bookly."
 msgstr "該測試檢查Bookly中的關鍵性誤差。"
 
-msgid ""
-"Some critical errors in Bookly were found recently. Please check Settings > "
-"Logs and contact Bookly support."
-msgstr "Bookly最近發現了一些關鍵性誤差。請檢查設定>日誌並聯絡Bookly支援。"
+msgid "Some critical errors in Bookly were found recently."
+msgstr ""
+
+msgid "Please contact Bookly support."
+msgstr ""
 
 msgid "Time settings"
 msgstr "時間設定"
@@ -5047,9 +5107,6 @@ msgstr "測試語音通知"
 msgid "Select the language of your notifications"
 msgstr "選擇通知的語言"
 
-msgid "Busy"
-msgstr "忙碌"
-
 msgid "No answer"
 msgstr "無應答"
 
@@ -5452,6 +5509,9 @@ msgstr "建立通知"
 msgid "New notification"
 msgstr "新通知"
 
+msgid "Associated staff member"
+msgstr "關聯員工"
+
 msgid "Select from WordPress users"
 msgstr "從WordPress用戶中選擇"
 
@@ -5607,22 +5667,6 @@ msgstr "所選時間不符合供應商的時間表"
 msgid "No timeslots available"
 msgstr "無可用的時段"
 
-msgid "Start time must not be empty"
-msgstr "必須輸入開始時間"
-
-msgid "End time must not be empty"
-msgstr "必須輸入結束時間"
-
-msgid "End time must not be equal to start time"
-msgstr "結束時間不能等於開始時間"
-
-msgid "Could not save appointment in database."
-msgstr "無法將預約存進系統"
-
-#, php-format
-msgid "%s has reached the limit of bookings for this service"
-msgstr "%s 已達到此服務的限制數量"
-
 msgid "Appointment notes"
 msgstr "預約備註"
 
@@ -5634,6 +5678,15 @@ msgid ""
 "You are going to delete appointment(s). Notifications will be sent in "
 "accordance with your settings."
 msgstr "您將要刪除預約。通知將根據您的設置發送。"
+
+msgid "Edit access token"
+msgstr "編輯訪問令牌"
+
+msgid "New access token"
+msgstr "新訪問令牌"
+
+msgid "Staff member required"
+msgstr "需要員工"
 
 msgid "Header"
 msgstr "頁頭"
@@ -6156,6 +6209,16 @@ msgstr "服務預設值"
 
 msgid "Default value for employee"
 msgstr "員工預設值"
+
+msgid "Selected period doesn't match service schedule"
+msgstr "所選時間與服務時間表不符"
+
+#, php-format
+msgid "The number of customers should not be more than %d"
+msgstr "客戶的數量不應超過%d"
+
+msgid "Booking exceeds your working hours limit"
+msgstr "預約超出您的工作時間限制"
 
 msgid "Remember Me"
 msgstr "記住我"
@@ -6934,9 +6997,6 @@ msgid ""
 "be disabled."
 msgstr "如果您在{days}內未驗證許可，您的預約將被禁用。"
 
-msgid "Customer address"
-msgstr "自定地址"
-
 msgid "Customer birthday"
 msgstr "客戶生日日期"
 
@@ -7463,9 +7523,6 @@ msgstr "查找必要位置並複製<b>位置ID</b>。"
 msgid "Use it in the form below on this page."
 msgstr "在本頁面下的表單中使用它。"
 
-msgid "Access token"
-msgstr "訪問令牌"
-
 msgid "Location ID"
 msgstr "位置ID"
 
@@ -7873,6 +7930,15 @@ msgstr "僅顯示帶時段的卡片"
 msgid "Save cart locally"
 msgstr "本地保存購物車"
 
+msgid "Verify credentials"
+msgstr ""
+
+msgid "Verify phone"
+msgstr ""
+
+msgid "Verify email"
+msgstr ""
+
 msgid "Add new form"
 msgstr "添加新表單"
 
@@ -7983,6 +8049,15 @@ msgstr "您的時區"
 msgid "Select city"
 msgstr "選擇城市"
 
+msgid "Amount to pay"
+msgstr "要付數目"
+
+msgid "Resend code"
+msgstr ""
+
+msgid "Incorrect verification code"
+msgstr ""
+
 msgid "Please select a category"
 msgstr "請選擇一個類別"
 
@@ -8056,6 +8131,9 @@ msgstr "禮品卡客戶須知"
 
 msgid "Time zone of staff"
 msgstr "員工的時區"
+
+msgid "Image of gift card"
+msgstr ""
 
 msgid "Email logs"
 msgstr "電子郵件日誌"
@@ -8233,15 +8311,8 @@ msgstr "儲存約會以建立會議"
 msgid "Please enter a service name"
 msgstr "請輸入服務名稱"
 
-#, php-format
-msgid "The number of customers should not be more than %d"
-msgstr "客戶的數量不應超過%d"
-
 msgid "Booking exceeds the working hours limit for staff member"
 msgstr "預約超出員工的工作時間限制"
-
-msgid "Booking exceeds your working hours limit"
-msgstr "預約超出您的工作時間限制"
 
 msgid ""
 "Please setup and enable New customer's WordPress user login details "
@@ -8633,9 +8704,6 @@ msgid ""
 "requested to pay a deposit amount or a full amount."
 msgstr "如果啟用\"只收取定金\"，則將要求客戶僅支付定金。如果啟用\"定金或全價\"，將要求客戶支付定金或全額。"
 
-msgid "Amount to pay"
-msgstr "要付數目"
-
 msgid "Total deposit amount to be paid"
 msgstr "需支付的總按金"
 
@@ -8751,9 +8819,6 @@ msgid ""
 "allow a customer to skip it."
 msgstr "此設置允許顯示選擇預約時間的步驟，隱藏它並創建沒有到期時間的任務，或者顯示时间步长，但允許客戶跳過。"
 
-msgid "Selected period doesn't match service schedule"
-msgstr "所選時間與服務時間表不符"
-
 msgid "Agent ID"
 msgstr "代理商號"
 
@@ -8791,52 +8856,6 @@ msgstr "優惠券已經被使用過"
 
 msgid "Coupons"
 msgstr "優惠券"
-
-msgid "Associated staff member"
-msgstr "關聯員工"
-
-msgid "Edit access token"
-msgstr "編輯訪問令牌"
-
-msgid "New access token"
-msgstr "新訪問令牌"
-
-msgid "Staff member required"
-msgstr "需要員工"
-
-msgid "Staff Cabinet App"
-msgstr "Staff Cabinet應用程式"
-
-msgid "Access tokens"
-msgstr "訪問令牌"
-
-msgid "Revoke"
-msgstr "撤銷"
-
-msgid "Invite"
-msgstr "邀請"
-
-msgid ""
-"You are going to delete access token(s). Please note that tokens will be "
-"automatically revoked, so user(s) associated with deleted token(s) will lose "
-"access"
-msgstr "您將刪除訪問令牌。請注意，令牌將被自動撤銷，因此與刪除令牌關聯的用戶將失去訪問權限"
-
-msgid "New staff member's Staff Cabinet mobile app access token details"
-msgstr "新員工Staff Cabinet移動應用程式訪問令牌詳情"
-
-msgid "New staff member's Bookly Staff Cabinet mobile app access token details"
-msgstr "新員工Bookly Staff Cabinet移動應用程式訪問令牌詳情"
-
-msgid "Your Bookly Staff Cabinet mobile app access token"
-msgstr "您的Bookly Staff Cabinet移動應用程式訪問令牌"
-
-msgid ""
-"Hello.\n"
-"Your access token for Bookly Staff Cabinet mobile app: {access_token}"
-msgstr ""
-"您好。\n"
-"您的Bookly Staff Cabinet移動應用程式訪問令牌：{access_token}"
 
 msgid "Add Coupon Series"
 msgstr "添加優惠券系列"
@@ -9205,7 +9224,7 @@ msgid ""
 "Set 0 to disable waiting list for this service or set the required value."
 msgstr "設定\"0\"來禁用此服務的候補名單或設定所需值。"
 
-msgid "waiting list"
+msgid "Waiting list"
 msgstr "候補名單"
 
 msgid "You have been added to waiting list for appointment."
@@ -9379,9 +9398,6 @@ msgstr "隐藏購物車步驟"
 
 msgid "Total tax"
 msgstr "總稅費"
-
-msgid "Waiting list"
-msgstr "候補名單"
 
 msgid "Free/Busy"
 msgstr "空閒/忙碌"

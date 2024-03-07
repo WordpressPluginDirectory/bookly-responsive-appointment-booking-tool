@@ -160,7 +160,9 @@ abstract class Config
             ->leftJoin( 'Service', 's', 's.id = ss.service_id' )
             ->where( 'st.visibility', 'public' )
             ->where( 's.type', Entities\Service::TYPE_SIMPLE );
-
+        if ( self::depositPaymentsActive() ) {
+            $query->addSelect( 'ss.deposit' );
+        }
         $query = Proxy\Shared::prepareCaSeStQuery( $query );
 
         if ( ! Proxy\Locations::servicesPerLocationAllowed() ) {
@@ -199,6 +201,9 @@ abstract class Config
                 'max_capacity' => (int) $row['capacity_max'],
                 'price' => Utils\Price::format( $row['price'] ),
             );
+            if ( self::depositPaymentsActive() ) {
+                $location_data['deposit'] = $row['deposit'];
+            }
             $location_data = Proxy\Shared::prepareCategoryServiceStaffLocation( $location_data, $row );
 
             $result['staff'][ $row['id'] ]['services'][ $row['service_id'] ]['locations'][ (int) $row['location_id'] ] = $location_data;
@@ -289,7 +294,7 @@ abstract class Config
         $week_days = array_values( $wp_locale->weekday_abbrev );
 
         // Sort days considering start_of_week;
-        uksort( $days, function ( $a, $b ) use ( $start_of_week ) {
+        uksort( $days, function( $a, $b ) use ( $start_of_week ) {
             $a -= $start_of_week;
             $b -= $start_of_week;
             if ( $a < 1 ) {

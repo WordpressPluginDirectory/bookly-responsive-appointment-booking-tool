@@ -1652,6 +1652,9 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
+msgid "Customer information"
+msgstr ""
+
 msgid ""
 "To receive REST API credentials, in <b>My Apps & Credentials</b> of your "
 "PayPal account do the following steps:"
@@ -1722,6 +1725,12 @@ msgstr ""
 msgid ""
 "Enable this option if you want to limit the possibility of booking within "
 "the service capacity to one time."
+msgstr ""
+
+msgid "Busy"
+msgstr ""
+
+msgid "Free"
 msgstr ""
 
 msgid "Address"
@@ -1835,6 +1844,9 @@ msgstr ""
 msgid "Birthday"
 msgstr ""
 
+msgid "Customer address"
+msgstr ""
+
 msgid "Wordpress password"
 msgstr ""
 
@@ -1860,9 +1872,6 @@ msgid "Timezone"
 msgstr ""
 
 msgid "Employee"
-msgstr ""
-
-msgid "Customer information"
 msgstr ""
 
 msgid "Appointments"
@@ -2966,9 +2975,6 @@ msgid "No updates available"
 msgstr ""
 
 msgid "Local"
-msgstr ""
-
-msgid "Free"
 msgstr ""
 
 msgid "Completed"
@@ -4696,9 +4702,6 @@ msgstr ""
 msgid "Select the language of your notifications"
 msgstr ""
 
-msgid "Busy"
-msgstr ""
-
 msgid "No answer"
 msgstr ""
 
@@ -6422,9 +6425,6 @@ msgid ""
 "be disabled."
 msgstr ""
 
-msgid "Customer address"
-msgstr ""
-
 msgid "Customer birthday"
 msgstr ""
 
@@ -7332,6 +7332,15 @@ msgstr ""
 msgid "Save cart locally"
 msgstr ""
 
+msgid "Verify credentials"
+msgstr ""
+
+msgid "Verify phone"
+msgstr ""
+
+msgid "Verify email"
+msgstr ""
+
 msgid "Add new form"
 msgstr ""
 
@@ -7441,6 +7450,15 @@ msgstr ""
 msgid "Select city"
 msgstr ""
 
+msgid "Amount to pay"
+msgstr ""
+
+msgid "Resend code"
+msgstr ""
+
+msgid "Incorrect verification code"
+msgstr ""
+
 msgid "Please select a category"
 msgstr ""
 
@@ -7513,6 +7531,9 @@ msgid "Customer notes for gift card"
 msgstr ""
 
 msgid "Time zone of staff"
+msgstr ""
+
+msgid "Image of gift card"
 msgstr ""
 
 msgid "Email logs"
@@ -8073,9 +8094,6 @@ msgid ""
 "requested to pay a deposit amount or a full amount."
 msgstr ""
 
-msgid "Amount to pay"
-msgstr ""
-
 msgid "Total deposit amount to be paid"
 msgstr ""
 
@@ -8513,7 +8531,7 @@ msgid ""
 "Set 0 to disable waiting list for this service or set the required value."
 msgstr ""
 
-msgid "waiting list"
+msgid "Waiting list"
 msgstr ""
 
 msgid "You have been added to waiting list for appointment."
@@ -8684,9 +8702,6 @@ msgid "Hide cart step"
 msgstr ""
 
 msgid "Total tax"
-msgstr ""
-
-msgid "Waiting list"
 msgstr ""
 
 msgid "Free/Busy"

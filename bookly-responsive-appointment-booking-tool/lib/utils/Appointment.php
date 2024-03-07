@@ -9,6 +9,7 @@ use Bookly\Lib\Entities\Staff;
 use Bookly\Lib;
 use Bookly\Lib\DataHolders\Booking as DataHolders;
 use Bookly\Backend\Components\Dialogs\Appointment\Edit\Proxy;
+use Bookly\Backend\Components\Dialogs\Queue\NotificationList;
 use Bookly\Backend\Modules\Calendar;
 
 class Appointment
@@ -141,7 +142,7 @@ class Appointment
                 $duration = Lib\Slots\DatePoint::fromStr( $end_date )->diff( Lib\Slots\DatePoint::fromStr( $start_date ) );
             }
             if ( ! $skip_date && isset( $repeat['enabled'] ) && $repeat['enabled'] ) {
-                $queue = array();
+                $queue = new NotificationList();
                 // Series.
                 if ( ! empty ( $schedule ) ) {
                     /** @var DataHolders\Order[] $orders */
@@ -172,11 +173,11 @@ class Appointment
                         }
 
                         foreach ( $schedule as $i => $slot ) {
-                            $slot       = json_decode( $slot, true );
+                            $slot = json_decode( $slot, true );
                             $start_date = $slot[0][2];
-                            $end_date   = Lib\Slots\DatePoint::fromStr( $start_date )->modify( $duration )->format( 'Y-m-d H:i:s' );
+                            $end_date = Lib\Slots\DatePoint::fromStr( $start_date )->modify( $duration )->format( 'Y-m-d H:i:s' );
                             // Try to find existing appointment
-                            /** @var \Bookly\Lib\Entities\Appointment $appointment */
+                            /** @var Entities\Appointment $appointment */
                             $appointment = Entities\Appointment::query( 'a' )
                                 ->leftJoin( 'CustomerAppointment', 'ca', 'ca.appointment_id = a.id' )
                                 ->where( 'a.staff_id', $staff_id )
@@ -191,11 +192,11 @@ class Appointment
                             $ca_customers = array();
                             if ( $appointment ) {
                                 foreach ( $appointment->getCustomerAppointments( true ) as $ca ) {
-                                    $ca_customer                  = $ca->getFields();
-                                    $ca_customer['ca_id']         = $ca->getId();
-                                    $ca_customer['extras']        = json_decode( $ca_customer['extras'], true );
+                                    $ca_customer = $ca->getFields();
+                                    $ca_customer['ca_id'] = $ca->getId();
+                                    $ca_customer['extras'] = json_decode( $ca_customer['extras'], true );
                                     $ca_customer['custom_fields'] = json_decode( $ca_customer['custom_fields'], true );
-                                    $ca_customers[]               = $ca_customer;
+                                    $ca_customers[] = $ca_customer;
                                 }
                             } else {
                                 // Create appointment.
@@ -250,13 +251,14 @@ class Appointment
                     }
                 }
                 $response['success'] = true;
-                if ( $queue ) {
+                $list = $queue->getList();
+                if ( $list ) {
                     $db_queue = new Lib\Entities\NotificationQueue();
                     $db_queue
-                        ->setData( json_encode( array( 'all' => $queue ) ) )
+                        ->setData( json_encode( array( 'all' => $list ) ) )
                         ->save();
 
-                    $response['queue'] = array( 'token' => $db_queue->getToken(), 'all' => $queue, 'changed_status' => array() );
+                    $response['queue'] = array( 'token' => $db_queue->getToken(), 'all' => $list, 'changed_status' => array() );
                 }
 
                 $response['data'] = array( 'resourceId' => $staff_id );  // make EventCalendar refetch events
@@ -270,10 +272,10 @@ class Appointment
                         $appointment->setStaffAny( 0 );
                     }
                     if ( $reschedule_type != 'current' ) {
-                        $start_date_timestamp  = strtotime( $start_date );
-                        $days_offset           = floor( $start_date_timestamp / DAY_IN_SECONDS ) - floor( strtotime( $appointment->getStartDate() ) / DAY_IN_SECONDS );
+                        $start_date_timestamp = strtotime( $start_date );
+                        $days_offset = floor( $start_date_timestamp / DAY_IN_SECONDS ) - floor( strtotime( $appointment->getStartDate() ) / DAY_IN_SECONDS );
                         $reschedule_start_time = $start_date_timestamp % DAY_IN_SECONDS;
-                        $current_start_date    = $appointment->getStartDate();
+                        $current_start_date = $appointment->getStartDate();
                     }
                 }
                 $appointment
@@ -289,8 +291,8 @@ class Appointment
                 $modified = $appointment->getModified();
                 if ( $appointment->save() !== false ) {
 
-                    $queue_changed_status = array();
-                    $queue = array();
+                    $queue_changed_status = new NotificationList();
+                    $queue = new NotificationList();
 
                     foreach ( $customers as &$customer ) {
                         if ( $customer['payment_for'] === 'series' ) {
@@ -324,8 +326,8 @@ class Appointment
                             $reschedule_appointments = $query->find();
                             /** @var Entities\Appointment $reschedule_appointment */
                             foreach ( $reschedule_appointments as $reschedule_appointment ) {
-                                $start_timestamp     = strtotime( $reschedule_appointment->getStartDate() );
-                                $duration            = strtotime( $reschedule_appointment->getEndDate() ) - $start_timestamp;
+                                $start_timestamp = strtotime( $reschedule_appointment->getStartDate() );
+                                $duration = strtotime( $reschedule_appointment->getEndDate() ) - $start_timestamp;
                                 $new_start_timestamp = ( (int) ( $start_timestamp / DAY_IN_SECONDS ) + $days_offset ) * DAY_IN_SECONDS + $reschedule_start_time;
                                 $reschedule_appointment
                                     ->setStartDate( date( 'Y-m-d H:i:s', $new_start_timestamp ) )
@@ -381,13 +383,15 @@ class Appointment
                     $response['data'] = $skip_date
                         ? array()
                         : self::_getAppointmentForCalendar( $appointment->getId(), $display_tz );
-                    if( $queue || $queue_changed_status ) {
+                    $list = $queue->getList();
+                    $changed_status = $queue_changed_status->getList();
+                    if ( $list || $changed_status ) {
                         $db_queue = new Lib\Entities\NotificationQueue();
                         $db_queue
-                            ->setData( json_encode( array( 'all' => $queue, 'changed_status' => $queue_changed_status ) ) )
+                            ->setData( json_encode( array( 'all' => $list, 'changed_status' => $changed_status ) ) )
                             ->save();
 
-                        $response['queue'] = array( 'token' => $db_queue->getToken(), 'all' => $queue, 'changed_status' => $queue_changed_status );
+                        $response['queue'] = array( 'token' => $db_queue->getToken(), 'all' => $list, 'changed_status' => $changed_status );
                     }
 
                     self::_deleteSentReminders( $appointment, $modified );
@@ -420,8 +424,8 @@ class Appointment
         $service_id,
         $location_id,
         $customers
-    ) {
-        $location_id = Lib\Proxy\Locations::prepareStaffScheduleLocationId( $location_id, $staff_id ) ?: null;
+    )
+    {
         $appointment_duration = isset ( $start_date, $end_date )
             ? strtotime( $end_date ) - strtotime( $start_date )
             : 0;
@@ -443,7 +447,7 @@ class Appointment
             $wp_tz = Lib\Config::getWPTimeZone();
             if ( $display_tz !== $wp_tz ) {
                 $start_date = DateTime::convertTimeZone( $start_date, $display_tz, $wp_tz );
-                $end_date   = DateTime::convertTimeZone( $end_date, $display_tz, $wp_tz );
+                $end_date = DateTime::convertTimeZone( $end_date, $display_tz, $wp_tz );
             }
             // Dates in staff time zone
             $staff_start_date = $start_date;
@@ -499,7 +503,7 @@ class Appointment
                 $special_days = array();
                 $special_days_location_id = Lib\Proxy\Locations::prepareStaffSpecialDaysLocationId( $location_id, $staff_id ) ?: null;
                 $schedule = Lib\Proxy\SpecialDays::getSchedule( array( $staff_id ), $start, $end ) ?: array();
-                foreach ( $schedule  as $day ) {
+                foreach ( $schedule as $day ) {
                     if ( $special_days_location_id === ( Lib\Proxy\Locations::prepareStaffSpecialDaysLocationId( $day['location_id'], $staff_id ) ?: null ) ) {
                         $special_days[ $day['date'] ][] = $day;
                     }
@@ -668,7 +672,7 @@ class Appointment
         // When changed start_date need resend the reminders
         if ( array_key_exists( 'start_date', $modified ) ) {
             $ca_ids = CustomerAppointment::query()
-                ->select( 'id')
+                ->select( 'id' )
                 ->where( 'appointment_id', $appointment->getId() )
                 ->fetchCol( 'id' );
             if ( $ca_ids ) {

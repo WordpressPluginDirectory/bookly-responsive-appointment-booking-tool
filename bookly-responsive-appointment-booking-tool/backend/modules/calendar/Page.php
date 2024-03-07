@@ -31,7 +31,7 @@ class Page extends Lib\Base\Ajax
                     ->whereNot( 'visibility', 'archive' )
                     ->sortBy( 'position' )
                     ->find();
-                $staff_dropdown_data = Lib\Proxy\Pro::getStaffDataForDropDown( array( 'archive' ) );
+                $staff_dropdown_data = Lib\Proxy\Pro::getStaffDataForDropDown();
             } else {
                 $staff_members = Staff::query()
                     ->where( 'wp_user_id', get_current_user_id() )
@@ -103,10 +103,9 @@ class Page extends Lib\Base\Ajax
 
     /**
      * @param Lib\Query $query
-     * @param $display_tz
      * @return array
      */
-    public static function getAppointmentsForCalendar( Lib\Query $query, $display_tz )
+    public static function getAppointmentsForCalendar( Lib\Query $query )
     {
         $busy_statuses = Lib\Proxy\CustomStatuses::prepareBusyStatuses( array(
             Lib\Entities\CustomerAppointment::STATUS_PENDING,
@@ -148,6 +147,9 @@ class Page extends Lib\Base\Ajax
             // Custom service without customers have not ca.id
             ->groupBy( 'COALESCE(ca.id,CONCAT(\'appointment-\',a.id))' )
             ->sortBy( 'a.start_date' );
+
+        $query = Proxy\Shared::prepareCalendarQuery( $query );
+
         if ( Lib\Proxy\Locations::servicesPerLocationAllowed() ) {
             $query = Proxy\Locations::prepareCalendarQuery( $query );
         } else {
@@ -160,27 +162,11 @@ class Page extends Lib\Base\Ajax
             $query->addSelect( '1 AS service_capacity' );
         }
 
-        if ( Config::proActive() ) {
-            $query->addSelect( 'c.country, c.state, c.postcode, c.city, c.street, c.street_number, c.additional_address, c.info_fields' );
+        if ( ! Config::couponsActive() ) {
+            $query->addSelect( '\'\' AS coupon_code' );
         }
 
-        // Fetch appointments,
-        // and shift the dates to appropriate time zone if needed
-        $appointments = array();
-        $wp_tz = Config::getWPTimeZone();
-        $convert_tz = $display_tz !== $wp_tz;
-
-        foreach ( $query->fetchArray() as $appointment ) {
-            if ( ! isset ( $appointments[ $appointment['id'] ] ) ) {
-                if ( $convert_tz ) {
-                    $appointment['start_date'] = DateTime::convertTimeZone( $appointment['start_date'], $wp_tz, $display_tz );
-                    $appointment['end_date'] = DateTime::convertTimeZone( $appointment['end_date'], $wp_tz, $display_tz );
-                }
-                $appointments[ $appointment['id'] ] = $appointment;
-            }
-        }
-
-        return $appointments;
+        return $query->fetchArray();
     }
 
     /**
@@ -194,8 +180,8 @@ class Page extends Lib\Base\Ajax
     {
         $one_participant = Lib\Utils\Codes::tokenize( '<div>' . str_replace( "\n", '</div><div>', get_option( 'bookly_cal_one_participant' ) ) . '</div>' );
         $many_participants = Lib\Utils\Codes::tokenize( '<div>' . str_replace( "\n", '</div><div>', get_option( 'bookly_cal_many_participants' ) ) . '</div>' );
-        $tooltip = Lib\Utils\Codes::tokenize( '<i class="fas fa-fw fa-circle mr-1" style="color:{appointment_color}"></i><span>{service_name}</span>{#each participants as participant}<div class="d-flex"><div class="text-muted flex-fill" style="overflow-wrap: anywhere;">{participant.client_name}</div><div class="text-nowrap">{participant.nop}<span class="badge badge-{participant.status_color}">{participant.status}</span></div></div>{/each}<span class="d-block text-muted">{appointment_time} - {appointment_end_time}</span>' );
-        $tooltip_all_day = Lib\Utils\Codes::tokenize( '<i class="fas fa-fw fa-circle mr-1" style="color:{appointment_color}"></i><span>{service_name}</span>{#each participants as participant}<div class="d-flex"><div class="text-muted flex-fill" style="overflow-wrap: anywhere;">{participant.client_name}</div><div class="text-nowrap">{participant.nop}<span class="badge badge-{participant.status_color}">{participant.status}</span></div></div>{/each}<span class="d-block text-muted">{description}</span>' );
+        $tooltip = Lib\Utils\Codes::tokenize( '<i class="fas fa-fw fa-circle mr-1" style="color:{appointment_color}"></i><span>{service_name}</span>{#each participants as participant}<div class="d-flex"><div class="text-muted flex-fill" style="overflow-wrap: anywhere;">{participant.client_name}</div><div class="text-nowrap ml-1">{#if participant.nop > 1}<span class="badge badge-info mr-1"><i class="fas fa-fw fa-user"></i>×{participant.nop}</span>{/if}<span class="badge badge-{participant.status_color}">{participant.status}</span></div></div>{/each}<span class="d-block text-muted">{appointment_time} - {appointment_end_time}</span>' );
+        $tooltip_all_day = Lib\Utils\Codes::tokenize( '<i class="fas fa-fw fa-circle mr-1" style="color:{appointment_color}"></i><span>{service_name}</span>{#each participants as participant}<div class="d-flex"><div class="text-muted flex-fill" style="overflow-wrap: anywhere;">{participant.client_name}</div><div class="text-nowrap">{#if participant.nop > 1}<span class="badge badge-info mr-1"><i class="fas fa-fw fa-user"></i>×{participant.nop}</span>{/if}<span class="badge badge-{participant.status_color}">{participant.status}</span></div></div>{/each}<span class="d-block text-muted">{description}</span>' );
         $postfix_any = sprintf( ' (%s)', get_option( 'bookly_l10n_option_employee' ) );
         $coloring_mode = get_option( 'bookly_cal_coloring_mode' );
         $default_codes = array(
@@ -242,10 +228,21 @@ class Page extends Lib\Base\Ajax
             'staff_phone' => '',
             'status' => '',
             'total_price' => '',
+            'coupon' => '',
         );
 
-        $appointments = self::getAppointmentsForCalendar( $query, $display_tz );
-        foreach ( $appointments as $appointment ) {
+        $records = self::getAppointmentsForCalendar( $query );
+        $appointments = array();
+        $wp_tz = Config::getWPTimeZone();
+        $convert_tz = $display_tz !== $wp_tz;
+        foreach ( $records as $appointment ) {
+            if ( ! isset ( $appointments[ $appointment['id'] ] ) ) {
+                if ( $convert_tz ) {
+                    $appointment['start_date'] = DateTime::convertTimeZone( $appointment['start_date'], $wp_tz, $display_tz );
+                    $appointment['end_date'] = DateTime::convertTimeZone( $appointment['end_date'], $wp_tz, $display_tz );
+                }
+                $appointments[ $appointment['id'] ] = $appointment;
+            }
             $appointments[ $appointment['id'] ]['customers'][] = array(
                 'appointment_id' => $appointment['id'],
                 'appointment_notes' => $appointment['appointment_notes'],
@@ -261,6 +258,7 @@ class Page extends Lib\Base\Ajax
                 'payment_status' => Lib\Entities\Payment::statusToString( $appointment['payment_status'] ),
                 'payment_type' => Lib\Entities\Payment::typeToString( $appointment['payment_gateway'] ),
                 'status' => $appointment['status'],
+                'coupon' => $appointment['coupon_code'],
                 '_info_fields' => isset( $appointment['info_fields'] ) ? json_decode( $appointment['info_fields'], true ) : array(),
                 '_custom_fields' => isset( $appointment['custom_fields'] ) ? json_decode( $appointment['custom_fields'], true ) : array(),
             );
@@ -301,7 +299,7 @@ class Page extends Lib\Base\Ajax
             $codes['service_name'] = $appointment['service_name'] ? esc_html( $appointment['service_name'] ) : __( 'Untitled', 'bookly' );
             $codes['service_price'] = Price::format( $appointment['service_price'] * $appointment['units'] );
             $codes['service_duration'] = DateTime::secondsToInterval( $appointment['duration'] * $appointment['units'] );
-            $codes['signed_up'] = $appointment['signed_up'];
+            $codes['signed_up'] = (int) $appointment['signed_up'];
             foreach ( array( 'staff_name', 'staff_phone', 'staff_info', 'staff_email', 'service_info', 'service_capacity', 'category_name', 'client_note' ) as $field ) {
                 $codes[ $field ] = esc_html( $appointment[ $field ] );
             }
@@ -333,13 +331,8 @@ class Page extends Lib\Base\Ajax
                         $overall_status = '';
                     }
                 }
-                if ( $customer['number_of_persons'] > 1 ) {
-                    $number_of_persons = '<span class="badge badge-info mr-1"><i class="far fa-fw fa-user"></i>×' . $customer['number_of_persons'] . '</span>';
-                } else {
-                    $number_of_persons = '';
-                }
                 $customer['status_color'] = $status_color;
-                $customer['nop'] = $number_of_persons;
+                $customer['nop'] = $customer['number_of_persons'] > 1 ? $customer['number_of_persons'] : '';
                 $customer['status'] = CustomerAppointment::statusToString( $customer['status'] );
                 $codes['participants'][] = $customer;
             }

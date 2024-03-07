@@ -86,7 +86,9 @@ abstract class Gateway
             }
             $data['on_site'] = $this->isOnSite();
             // Storing order_id
-            $this->request->getUserData()->sessionSave();
+            if ( $this->request->isBookingForm() ) {
+                $this->request->getUserData()->sessionSave();
+            }
 
             return $data;
         }
@@ -247,7 +249,9 @@ abstract class Gateway
                 $cart_item->setAppointmentId( null );
             }
         }
-        $this->request->getUserData()->setPaymentStatus( self::STATUS_FAILED )->sessionSave();
+        if ( $this->request->isBookingForm() ) {
+            $this->request->getUserData()->setPaymentStatus( self::STATUS_FAILED )->sessionSave();
+        }
         Entities\Order::query()->delete()->where( 'token', $this->request->get( 'bookly_order' ) )->execute();
     }
 
@@ -309,6 +313,7 @@ abstract class Gateway
         } else {
             $data = array(
                 'action' => 'bookly_pro_checkout_response',
+                'modern_booking_form' => true
             );
         }
         $data['bookly_event'] = $event;

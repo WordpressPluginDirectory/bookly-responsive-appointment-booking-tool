@@ -1041,40 +1041,44 @@ class Ajax extends Lib\Base\Ajax
         $order = new Lib\Entities\Order();
         if ( $order->loadBy( array( 'token' => self::parameter( 'bookly_order' ) ) ) ) {
             $calendar = self::parameter( 'calendar' );
-            $link = 'https://calendar.google.com/calendar/u/0/r/eventedit?dates=%s/%s&text=%s&location=%s&details=%s';
-            switch ( $calendar ) {
-                case 'google':
-                case 'outlook':
-                    if ( $calendar === 'outlook' ) {
-                        $link = 'https://outlook.live.com/calendar/action/compose/?rru=addevent&startdt=%s&enddt=%s&subject=%s&location=%s&body=%s&authRedirect=true&state=0';
-                    }
-                case 'yahoo':
-                    if ( $calendar === 'yahoo' ) {
+            if ( $calendar === 'ics' ) {
+                self::renderIcs( $order );
+            } else {
+                $format = 'Ymd\THis\Z';
+                switch ( $calendar ) {
+                    case 'outlook':
+                        $link = 'https://outlook.live.com/calendar/action/compose?rru=addevent&startdt=%s&enddt=%s&subject=%s&location=%s&body=%s&authRedirect=true&state=0';
+                        $format = 'Y-m-d\TH:i:s\Z';
+                        break;
+                    case 'yahoo':
                         $link = 'https://calendar.yahoo.com/?v=60&st=%s&et=%s&title=%s&in_loc=%s&desc=%s';
-                    }
-                    $list = $order->getCaItems();
-                    if ( count( $list ) > 1 ) {
-                        self::renderIcs( $order );
-                    } elseif ( count( $list ) === 1 ) {
-                        $staff = Lib\Entities\Staff::find( $list[0]['item']->getAppointment()->getStaffId() );
-                        $location_id = $list[0]['item']->getAppointment()->getLocationId();
-                        $location = $location_id
-                            ? Lib\Proxy\Locations::findById( $location_id )
-                            : null;
-                        $redirect_url = sprintf(
-                            $link,
-                            date( 'Ymd\THis', strtotime( $list[0]['item']->getAppointment()->getStartDate() ) ),
-                            date( 'Ymd\THis', strtotime( $list[0]['item']->getAppointment()->getEndDate() ) ),
-                            urlencode( $list[0]['title'] ),
-                            $location ? $location->getTranslatedName() : '',
-                            urlencode( sprintf( "%s<br>%s", $list[0]['title'], $staff ? $staff->getTranslatedName() : '' ) )
-                        );
-                        Lib\Utils\Common::redirect( $redirect_url );
-                    }
-                    break;
-                case 'ics':
+                        break;
+                    case 'google':
+                    default:
+                        $link = 'https://calendar.google.com/calendar/u/0/r/eventedit?dates=%s/%s&text=%s&location=%s&details=%s';
+                        break;
+                }
+                $list = $order->getCaItems();
+                if ( count( $list ) > 1 ) {
                     self::renderIcs( $order );
-                    break;
+                } elseif ( count( $list ) === 1 ) {
+                    $staff = Lib\Entities\Staff::find( $list[0]['item']->getAppointment()->getStaffId() );
+                    $location_id = $list[0]['item']->getAppointment()->getLocationId();
+                    $location = $location_id
+                        ? Lib\Proxy\Locations::findById( $location_id )
+                        : null;
+                    $start = date_create( Lib\Utils\DateTime::convertTimeZone( $list[0]['item']->getAppointment()->getStartDate(), Lib\Config::getWPTimeZone(), 'UTC' ) );
+                    $end = date_create( Lib\Utils\DateTime::convertTimeZone( $list[0]['item']->getAppointment()->getEndDate(), Lib\Config::getWPTimeZone(), 'UTC' ) );
+                    $redirect_url = sprintf(
+                        $link,
+                        $start->format( $format ),
+                        $end->format( $format ),
+                        urlencode( $list[0]['title'] ),
+                        $location ? $location->getTranslatedName() : '',
+                        urlencode( sprintf( "%s<br>%s", $list[0]['title'], $staff ? $staff->getTranslatedName() : '' ) )
+                    );
+                    Lib\Utils\Common::redirect( $redirect_url );
+                }
             }
         }
 

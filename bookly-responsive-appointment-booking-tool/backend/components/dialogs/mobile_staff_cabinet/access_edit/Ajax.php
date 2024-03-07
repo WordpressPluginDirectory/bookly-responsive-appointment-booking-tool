@@ -4,6 +4,7 @@ namespace Bookly\Backend\Components\Dialogs\MobileStaffCabinet\AccessEdit;
 use Bookly\Lib;
 use Bookly\Lib\Notifications\Base\Sender;
 use Bookly\Lib\Notifications\Assets\App;
+use Bookly\Backend\Components\Dialogs\Queue\NotificationList;
 
 class Ajax extends Lib\Base\Ajax
 {
@@ -46,7 +47,7 @@ class Ajax extends Lib\Base\Ajax
             ->where( 'cloud_msc_token', null )
             ->fetchArray();
 
-        $queue = array();
+        $queue = new NotificationList();
         if ( $access_token && self::parameter( 'send_notification' ) ) {
             $attachments = null;
             $codes = new App\StaffCabinet\Codes();
@@ -60,14 +61,14 @@ class Ajax extends Lib\Base\Ajax
         }
 
         $response = compact( 'staff_members' );
-
-        if ( $queue ) {
+        $list = $queue->getList();
+        if ( $list ) {
             $db_queue = new Lib\Entities\NotificationQueue();
             $db_queue
-                ->setData( json_encode( array( 'all' => $queue ) ) )
+                ->setData( json_encode( array( 'all' => $list ) ) )
                 ->save();
 
-            $response['queue'] = array( 'token' => $db_queue->getToken(), 'all' => $queue );
+            $response['queue'] = array( 'token' => $db_queue->getToken(), 'all' => $list );
         }
 
         wp_send_json_success( $response );

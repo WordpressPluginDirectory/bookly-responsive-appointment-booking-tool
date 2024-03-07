@@ -165,7 +165,7 @@ abstract class Component extends Cache
     /**
      * Get all request parameters.
      *
-     * @return mixed
+     * @return array
      */
     protected static function parameters()
     {

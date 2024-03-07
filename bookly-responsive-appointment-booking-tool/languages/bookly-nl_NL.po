@@ -8,8 +8,8 @@ msgstr ""
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 10:03+0000\n"
-"PO-Revision-Date: 2023-12-16 21:08+0000\n"
+"POT-Creation-Date: 2024-02-21 09:29+0000\n"
+"PO-Revision-Date: 2024-02-21 10:23+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Dutch\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -2017,6 +2017,9 @@ msgstr "Informatieveld"
 msgid "Download"
 msgstr "Download"
 
+msgid "Customer information"
+msgstr "Klant informatie"
+
 msgid ""
 "To receive REST API credentials, in <b>My Apps & Credentials</b> of your "
 "PayPal account do the following steps:"
@@ -2098,6 +2101,12 @@ msgid ""
 msgstr ""
 "Schakel deze optie in als u de mogelijkheid van boeken binnen een bepaalde "
 "service capaciteit wilt beperking tot een keer."
+
+msgid "Busy"
+msgstr "Bezet"
+
+msgid "Free"
+msgstr "Vrij"
 
 msgid "Address"
 msgstr "Adres"
@@ -2225,6 +2234,9 @@ msgstr "Profiel beheer"
 msgid "Birthday"
 msgstr "Verjaardag"
 
+msgid "Customer address"
+msgstr "Adres van de klant"
+
 msgid "Wordpress password"
 msgstr "Wordpress wachtwoord"
 
@@ -2251,9 +2263,6 @@ msgstr "Tijdzone"
 
 msgid "Employee"
 msgstr "Medewerker"
-
-msgid "Customer information"
-msgstr "Klant informatie"
 
 msgid "Appointments"
 msgstr "Afspraken"
@@ -2851,6 +2860,21 @@ msgstr "Melding aan klant met verificatiecode"
 msgid "Bookly verification code"
 msgstr "Bookly verificatiecode"
 
+msgid "New staff member's Bookly Staff Cabinet mobile app access token details"
+msgstr ""
+"Toegangstoken voor nieuwe medewerkers van de mobiele appa Bookly Staff "
+"Cabinet"
+
+msgid "Your Bookly Staff Cabinet mobile app access token"
+msgstr "Uw toegangscode voor de mobiele app Bookly Staff Cabinet"
+
+msgid ""
+"Hello.\n"
+"Your access token for Bookly Staff Cabinet mobile app: {access_token}"
+msgstr ""
+"Hallo.\n"
+"Uw toegangscode voor de Bookly Staff Cabinet mobiele app: {access_token}"
+
 msgid "&lt;"
 msgstr "&lt;"
 
@@ -3319,6 +3343,22 @@ msgstr "Volgende maand"
 msgid "Last month"
 msgstr "Afgelopen maand"
 
+msgid "Start time must not be empty"
+msgstr "Begintijd mag niet leeg zijn"
+
+msgid "End time must not be empty"
+msgstr "Eindtijd mag niet leeg zijn"
+
+msgid "End time must not be equal to start time"
+msgstr "Eindtijd mag niet gelijk zijn aan de begintijd"
+
+msgid "Could not save appointment in database."
+msgstr "Kon afspraak niet opslaan in de database."
+
+#, php-format
+msgid "%s has reached the limit of bookings for this service"
+msgstr "%s heeft de limiet bereikt van het aantal boekingen voor deze dienst"
+
 msgid "No."
 msgstr "Nr."
 
@@ -3411,6 +3451,9 @@ msgstr "Aangevraagde ID"
 
 msgid "Status date"
 msgstr "Datum status"
+
+msgid "Access token"
+msgstr "Toegangstoken"
 
 msgid "Action"
 msgstr "Actie"
@@ -3518,9 +3561,6 @@ msgstr "Geen updates beschikbaar"
 msgid "Local"
 msgstr "Lokaal"
 
-msgid "Free"
-msgstr "Vrij"
-
 msgid "Completed"
 msgstr "Voltooid"
 
@@ -3559,6 +3599,10 @@ msgstr "Verifieer telefoonnummer klant"
 
 msgid "Mailing message"
 msgstr "Mailingbericht"
+
+msgid "New staff member's Staff Cabinet mobile app access token details"
+msgstr ""
+"Toegangstoken voor de mobiele app Staff Cabinet van het nieuwe personeelslid"
 
 msgid "Test message"
 msgstr "Testbericht"
@@ -3660,6 +3704,30 @@ msgstr "Bijlagen"
 
 msgid "Archived"
 msgstr "Gearchiveerd"
+
+msgid "Staff Cabinet Mobile App"
+msgstr "Staff Cabinet Mobile App"
+
+msgid "Access tokens"
+msgstr "Toegangstokens"
+
+msgid "Revoke"
+msgstr "Intrekken"
+
+msgid "Invite"
+msgstr "Uitnodigen"
+
+msgid ""
+"You are going to delete access token(s). Please note that tokens will be "
+"automatically revoked, so user(s) associated with deleted token(s) will lose "
+"access"
+msgstr ""
+"U gaat toegangstoken(s) verwijderen. Let op: tokens worden automatisch "
+"ingetrokken, dus gebruikers die zijn gekoppeld aan verwijderde token(s) "
+"hebben geen toegang meer."
+
+msgid "No records."
+msgstr "Geen records."
 
 msgid "1 - 9 employees"
 msgstr "1 - 9 werknemers"
@@ -3767,9 +3835,6 @@ msgstr "volgende dag"
 
 msgid "Reorder"
 msgstr "Herschikken"
-
-msgid "No records."
-msgstr "Geen records."
 
 msgid "Image"
 msgstr "Afbeelding"
@@ -4782,12 +4847,11 @@ msgstr "Kritieke fouten"
 msgid "This test checks for critical errors in Bookly."
 msgstr "Deze test controleert op kritieke fouten in Bookly."
 
-msgid ""
-"Some critical errors in Bookly were found recently. Please check Settings > "
-"Logs and contact Bookly support."
-msgstr ""
-"Er zijn onlangs enkele kritieke fouten in Bookly gevonden. Controleer "
-"Instellingen > Logboeken en neem contact op met de ondersteuning van Bookly."
+msgid "Some critical errors in Bookly were found recently."
+msgstr "Er zijn onlangs enkele kritieke fouten in Bookly gevonden."
+
+msgid "Please contact Bookly support."
+msgstr "Neem contact op met de ondersteuning van Bookly."
 
 msgid "Time settings"
 msgstr "Tijdinstellingen"
@@ -5451,9 +5515,6 @@ msgstr "Test gesproken meldingen"
 msgid "Select the language of your notifications"
 msgstr "Selecteer de taal van uw meldingen"
 
-msgid "Busy"
-msgstr "Bezet"
-
 msgid "No answer"
 msgstr "Geen antwoord"
 
@@ -5884,6 +5945,9 @@ msgstr "Melding aanmaken"
 msgid "New notification"
 msgstr "Nieuwe melding"
 
+msgid "Associated staff member"
+msgstr "Geassocieerd personeelslid"
+
 msgid "Select from WordPress users"
 msgstr "Selecteer uit WordPress gebruikers"
 
@@ -6057,22 +6121,6 @@ msgstr ""
 msgid "No timeslots available"
 msgstr "Geen tijdsloten beschikbaar"
 
-msgid "Start time must not be empty"
-msgstr "Begintijd mag niet leeg zijn"
-
-msgid "End time must not be empty"
-msgstr "Eindtijd mag niet leeg zijn"
-
-msgid "End time must not be equal to start time"
-msgstr "Eindtijd mag niet gelijk zijn aan de begintijd"
-
-msgid "Could not save appointment in database."
-msgstr "Kon afspraak niet opslaan in de database."
-
-#, php-format
-msgid "%s has reached the limit of bookings for this service"
-msgstr "%s heeft de limiet bereikt van het aantal boekingen voor deze dienst"
-
 msgid "Appointment notes"
 msgstr "Afspraaknotities"
 
@@ -6087,6 +6135,15 @@ msgid ""
 msgstr ""
 "U gaat een afspraak/afspraken verwijderen. Meldingen zullen worden verstuurd "
 "volgens uw instellingen."
+
+msgid "Edit access token"
+msgstr "Toegangstoken bewerken"
+
+msgid "New access token"
+msgstr "Nieuw toegangstoken"
+
+msgid "Staff member required"
+msgstr "Personeelslid vereist"
 
 msgid "Header"
 msgstr "Koptekst"
@@ -6673,6 +6730,16 @@ msgstr "Standaard waarde voor dienst"
 
 msgid "Default value for employee"
 msgstr "Standaard waarde voor werknemer"
+
+msgid "Selected period doesn't match service schedule"
+msgstr "Geselecteerde periode komt niet overeen planning van dienst"
+
+#, php-format
+msgid "The number of customers should not be more than %d"
+msgstr "Het aantal klanten mag niet meer zijn dan %d"
+
+msgid "Booking exceeds your working hours limit"
+msgstr "Booking overschrijdt uw limiet aan werkuren"
 
 msgid "Remember Me"
 msgstr "Onthoud mij"
@@ -7473,9 +7540,6 @@ msgstr ""
 "Als u de licentie niet binnen {days} verifieert, zal de toegang tot uw "
 "boekingen worden uitgeschakeld."
 
-msgid "Customer address"
-msgstr "Adres van de klant"
-
 msgid "Customer birthday"
 msgstr "Verjaardag klant"
 
@@ -8106,9 +8170,6 @@ msgstr "Zoek de benodigde locatie en kopieer <b>Locatie-ID</b>."
 msgid "Use it in the form below on this page."
 msgstr "Gebruik het in het formulier hieronder op deze pagina."
 
-msgid "Access token"
-msgstr "Toegangstoken"
-
 msgid "Location ID"
 msgstr "Locatie-ID"
 
@@ -8581,6 +8642,15 @@ msgstr "Toon alleen kaarten met tijdsloten"
 msgid "Save cart locally"
 msgstr "Winkelwagen lokaal opslaan"
 
+msgid "Verify credentials"
+msgstr "Verifieer inloggegevens"
+
+msgid "Verify phone"
+msgstr "Verifieer telefoon"
+
+msgid "Verify email"
+msgstr "Verifieer e-mail"
+
 msgid "Add new form"
 msgstr "Nieuw formulier toevoegen"
 
@@ -8699,6 +8769,15 @@ msgstr "Uw tijdzone"
 msgid "Select city"
 msgstr "Selecteer stad"
 
+msgid "Amount to pay"
+msgstr "Te betalen bedrag"
+
+msgid "Resend code"
+msgstr "Code opnieuw verzenden"
+
+msgid "Incorrect verification code"
+msgstr "Onjuiste verificatiecode"
+
 msgid "Please select a category"
 msgstr "Kies een categorie"
 
@@ -8777,6 +8856,9 @@ msgstr "Klantnotities voor cadeaubon"
 
 msgid "Time zone of staff"
 msgstr "Tijdzone van personeelslid"
+
+msgid "Image of gift card"
+msgstr "Afbeelding van cadeaubon"
 
 msgid "Email logs"
 msgstr "E-mail logboeken"
@@ -8978,15 +9060,8 @@ msgstr "Bewaar afspraak om een vergadering te maken"
 msgid "Please enter a service name"
 msgstr "Vul naam van de dienst in"
 
-#, php-format
-msgid "The number of customers should not be more than %d"
-msgstr "Het aantal klanten mag niet meer zijn dan %d"
-
 msgid "Booking exceeds the working hours limit for staff member"
 msgstr "Boeking overschrijdt de limiet van werkuren van personeelslid"
-
-msgid "Booking exceeds your working hours limit"
-msgstr "Booking overschrijdt uw limiet aan werkuren"
 
 msgid ""
 "Please setup and enable New customer's WordPress user login details "
@@ -9444,9 +9519,6 @@ msgstr ""
 "inschakelt, zal klanten worden gevraagd om een aanbetaling te doen of het "
 "totale bedrag te betalen."
 
-msgid "Amount to pay"
-msgstr "Te betalen bedrag"
-
 msgid "Total deposit amount to be paid"
 msgstr "Totaal stortingsbedrag te betalen"
 
@@ -9565,9 +9637,6 @@ msgstr ""
 "afspraaktijd, deze verbergen en een taak zonder opgestelde tijd te maken, of "
 "de tijdstap weergeven, maar een klant toestaan deze over te slaan."
 
-msgid "Selected period doesn't match service schedule"
-msgstr "Geselecteerde periode komt niet overeen planning van dienst"
-
 msgid "Agent ID"
 msgstr "Agent ID"
 
@@ -9607,58 +9676,6 @@ msgstr "Aantal keer gebruikt"
 
 msgid "Coupons"
 msgstr "Kortingsbonnen"
-
-msgid "Associated staff member"
-msgstr "Geassocieerd personeelslid"
-
-msgid "Edit access token"
-msgstr "Toegangstoken bewerken"
-
-msgid "New access token"
-msgstr "Nieuw toegangstoken"
-
-msgid "Staff member required"
-msgstr "Personeelslid vereist"
-
-msgid "Staff Cabinet App"
-msgstr "Staff Cabinet App"
-
-msgid "Access tokens"
-msgstr "Toegangstokens"
-
-msgid "Revoke"
-msgstr "Intrekken"
-
-msgid "Invite"
-msgstr "Uitnodigen"
-
-msgid ""
-"You are going to delete access token(s). Please note that tokens will be "
-"automatically revoked, so user(s) associated with deleted token(s) will lose "
-"access"
-msgstr ""
-"U gaat toegangstoken(s) verwijderen. Let op: tokens worden automatisch "
-"ingetrokken, dus gebruikers die zijn gekoppeld aan verwijderde token(s) "
-"hebben geen toegang meer."
-
-msgid "New staff member's Staff Cabinet mobile app access token details"
-msgstr ""
-"Toegangstoken voor de mobiele app Staff Cabinet van het nieuwe personeelslid"
-
-msgid "New staff member's Bookly Staff Cabinet mobile app access token details"
-msgstr ""
-"Toegangstoken voor nieuwe medewerkers van de mobiele appa Bookly Staff "
-"Cabinet"
-
-msgid "Your Bookly Staff Cabinet mobile app access token"
-msgstr "Uw toegangscode voor de mobiele app Bookly Staff Cabinet"
-
-msgid ""
-"Hello.\n"
-"Your access token for Bookly Staff Cabinet mobile app: {access_token}"
-msgstr ""
-"Hallo.\n"
-"Uw toegangscode voor de Bookly Staff Cabinet mobiele app: {access_token}"
 
 msgid "Add Coupon Series"
 msgstr "Voeg Kortingsbon Serie toe"
@@ -10057,8 +10074,8 @@ msgstr ""
 "Stel 0 in om de wachtlijst om deze service uit te schakelen of stel de "
 "gewenste waarde in."
 
-msgid "waiting list"
-msgstr "wachtlijst"
+msgid "Waiting list"
+msgstr "Wachtlijst"
 
 msgid "You have been added to waiting list for appointment."
 msgstr "U bent toegevoegd aan de wachtlijst voor een afspraak."
@@ -10243,9 +10260,6 @@ msgstr "Verberg winkelwagen stap"
 
 msgid "Total tax"
 msgstr "Totale belasting"
-
-msgid "Waiting list"
-msgstr "Wachtlijst"
 
 msgid "Free/Busy"
 msgstr "Vrij/Bezet"

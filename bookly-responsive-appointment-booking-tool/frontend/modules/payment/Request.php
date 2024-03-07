@@ -140,6 +140,11 @@ class Request extends Lib\Base\Component
                         }
                     }
 
+                    // Deposit
+                    if ( Lib\Config::depositPaymentsActive() && get_option( 'bookly_deposit_allow_full_payment', '0' ) !== '0' ) {
+                        $this->userData->setDepositFull( ! self::parameter( 'deposit' ) );
+                    }
+
                     $slots = array();
                     foreach ( self::parameter( 'cart' ) as $item ) {
                         $service_id = $item['service_id'];
@@ -164,7 +169,7 @@ class Request extends Lib\Base\Component
                                 $slots[] = $slot;
 
                                 $custom_fields = isset( $item['custom_fields'] ) ? $item['custom_fields'] : array();
-                                $custom_fields = array_map( function ( $id, $value ) {
+                                $custom_fields = array_map( function( $id, $value ) {
                                     return compact( 'id', 'value' );
                                 }, array_keys( $custom_fields ), $custom_fields );
 

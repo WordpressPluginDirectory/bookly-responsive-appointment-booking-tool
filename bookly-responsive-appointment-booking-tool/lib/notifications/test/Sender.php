@@ -22,7 +22,7 @@ abstract class Sender extends Base\Sender
     public static function send( $to_email, $sender_name, $sender_email, $send_as, $reply_to_customers, array $notification_ids, $gateway )
     {
         $codes = new Codes();
-        $attachments  = new Attachments( $codes );
+        $attachments = new Attachments( $codes );
         $notification = new Notification();
 
         $from = array(

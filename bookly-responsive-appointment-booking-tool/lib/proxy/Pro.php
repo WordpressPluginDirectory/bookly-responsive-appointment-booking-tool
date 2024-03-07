@@ -22,7 +22,7 @@ use Bookly\Lib;
  * @method static array  getTimeZoneOffset( string $time_zone_value ) Get timezone offset from string.
  * @method static bool   graceExpired() Check whether grace period has expired or not.
  * @method static void   logEmail( string $to, string $subject, string $body, array $headers, array $attachments, int $type_id ) Log sent emails.
- * @method static string prepareNotificationMessage( \string $message, \string $recipient, \string $gateway ) Prepare notification for staff.
+ * @method static string prepareNotificationMessage( string $message, string $recipient, string $gateway ) Prepare notification for staff.
  * @method static Lib\Slots\RangeCollection prepareGeneratorRanges( Lib\Slots\RangeCollection $ranges, Lib\Slots\Staff $staff, int $duration ) Prepare range collection depends on staff hours limit.
  * @method static bool   getWorkingTimeLimitError( Lib\Entities\Staff $staff, string $start_date, string $end_date, int $duration, int $appointment_id ) Check if interval is suitable for staff's hours limit.
  * @method static void   revokeGoogleCalendarToken( Lib\Entities\Staff $staff ) Revoke Google Calendar token for given staff.

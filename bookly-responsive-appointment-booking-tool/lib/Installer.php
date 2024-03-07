@@ -755,6 +755,7 @@ class Installer extends Base\Installer
                 `notes`              TEXT NOT NULL,
                 `info_fields`        TEXT DEFAULT NULL,
                 `stripe_account`     VARCHAR(255) DEFAULT NULL,
+                `attachment_id`      INT UNSIGNED DEFAULT NULL,
                 `created_at`         DATETIME NOT NULL
             ) ENGINE = INNODB
             ' . $charset_collate
