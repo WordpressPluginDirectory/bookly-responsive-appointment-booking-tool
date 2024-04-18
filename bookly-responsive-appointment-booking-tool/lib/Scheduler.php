@@ -109,14 +109,15 @@ class Scheduler
             },
             $waiting_list_enabled,
             $ignore_appointments,
-            false
+            isset( $params['show_blocked_slots'] ) && $params['show_blocked_slots']
         );
 
         $this->finder->prepare();
 
         $this->client_from = DatePoint::fromStr( $datetime )->toClientTz();
         $this->client_until = DatePoint::fromStrInClientTz( $until );
-        $this->time = $this->client_from->format( 'H:i:s' );
+
+        $this->time = ( isset( $params['full_day'] ) && $params['full_day'] ) ? '00:00:00' : $this->client_from->format( 'H:i:s' );
         $this->repeat = $repeat;
         $this->params = $params;
     }

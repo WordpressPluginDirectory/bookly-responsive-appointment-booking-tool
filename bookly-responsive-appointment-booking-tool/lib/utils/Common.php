@@ -186,7 +186,7 @@ abstract class Common extends Lib\Base\Cache
     private static function hasBooklyShortCode( $blocks, $short_code )
     {
         foreach ( $blocks as $block ) {
-            if ( isset( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
+            if ( ! empty( $block['innerBlocks'] ) ) {
                 return self::hasBooklyShortCode( $block['innerBlocks'], $short_code );
             }
 

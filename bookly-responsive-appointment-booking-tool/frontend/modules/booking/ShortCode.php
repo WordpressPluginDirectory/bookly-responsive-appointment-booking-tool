@@ -53,7 +53,8 @@ class ShortCode extends Lib\Base\ShortCode
                 'frontend/resources/js/jquery.hammer.min.js' => array( 'jquery' ),
                 'frontend/resources/js/picker.js' => array( 'jquery' ),
                 'frontend/resources/js/picker.date.js' => array( 'bookly-picker.js' ),
-                'frontend/resources/js/bookly.min.js' => Proxy\Shared::enqueueBookingScripts( array( 'bookly-hammer.min.js', 'bookly-picker.date.js' ) ),
+                'frontend/resources/js/qrcode.js' => array(),
+                'frontend/resources/js/bookly.min.js' => Proxy\Shared::enqueueBookingScripts( array( 'bookly-hammer.min.js', 'bookly-picker.date.js', 'bookly-qrcode.js' ) ),
             ),
         ) );
         if ( get_option( 'bookly_cst_phone_default_country' ) !== 'disabled' ) {

@@ -18,27 +18,32 @@ export default function stepComplete(params) {
             let $qc = $('.bookly-js-qr', $container),
                 url = BooklyL10n.ajaxurl + (BooklyL10n.ajaxurl.indexOf('?') > 0 ? '&' : '?') + 'bookly_order=' + response.bookly_order + '&csrf_token=' + BooklyL10n.csrf_token;
 
-            $('img', $qc)
-                .on('error', function() {$qc.remove()})
-                .on('load', function() {$qc.removeClass('bookly-loading')});
+            new QRCode($qc.get(0), {
+                text: response.qr,
+                width: 256,
+                height: 256,
+                useSVG: true,
+                correctLevel: 1,
+            });
+            
             scrollTo($container, params.form_id);
-            $('.bookly-js-start-over', $container).on('click', function(e) {
+            $('.bookly-js-start-over', $container).on('click', function (e) {
                 e.stopPropagation();
                 e.preventDefault();
                 laddaStart(this);
                 stepService({form_id: params.form_id, reset_form: true, new_chain: true});
             });
-            $('.bookly-js-download-ics', $container).on('click', function(e) {
+            $('.bookly-js-download-ics', $container).on('click', function (e) {
                 let ladda = laddaStart(this);
                 window.location = url + '&action=bookly_add_to_calendar&calendar=ics';
                 setTimeout(() => ladda.stop(), 1500);
             });
-            $('.bookly-js-download-invoice', $container).on('click', function(e) {
+            $('.bookly-js-download-invoice', $container).on('click', function (e) {
                 let ladda = laddaStart(this);
                 window.location = url + '&action=bookly_invoices_download_invoice';
                 setTimeout(() => ladda.stop(), 1500);
             });
-            $('.bookly-js-add-to-calendar', $container).on('click', function(e) {
+            $('.bookly-js-add-to-calendar', $container).on('click', function (e) {
                 e.preventDefault();
                 let ladda = laddaStart(this);
                 window.open(url + '&action=bookly_add_to_calendar&calendar=' + $(this).data('calendar'), '_blank');

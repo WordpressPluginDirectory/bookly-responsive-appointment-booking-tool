@@ -74,7 +74,7 @@ abstract class Config
 
         // Services.
         $query = Entities\Service::query( 's' )
-            ->select( 's.id, s.category_id, s.title, s.position, s.duration, s.price, s.type, s.info, s.attachment_id, s.recurrence_enabled' )
+            ->select( 's.id, s.category_id, s.title, s.position, s.duration, s.price, s.type, s.info, s.attachment_id, s.recurrence_enabled, s.recurrence_frequencies' )
             ->addSelect( sprintf( '%s AS min_capacity, %s AS max_capacity',
                 Proxy\Shared::prepareStatement( 1, 'MIN(ss.capacity_min)', 'StaffService' ),
                 Proxy\Shared::prepareStatement( 1, 'MAX(ss.capacity_max)', 'StaffService' )
@@ -111,6 +111,7 @@ abstract class Config
                 'type' => $row['type'],
                 'pos' => (int) $row['position'],
                 'recurrence_enabled' => (int) $row['recurrence_enabled'],
+                'recurrence_frequencies' => $row['recurrence_frequencies'],
                 'min_time_prior_booking' => array( (int) $min_time_prior_booking->format( 'Y' ), (int) $min_time_prior_booking->format( 'n' ) - 1, (int) $min_time_prior_booking->format( 'j' ), ),
             );
 
@@ -822,7 +823,6 @@ abstract class Config
     public static function __callStatic( $name, array $arguments )
     {
         // <add-on>Active
-        // <add-on>Enabled
         if ( preg_match( '/^(\w+)Active/', $name, $match ) ) {
             // Check if Pro Active
             /** @var \BooklyPro\Lib\Plugin $pro_class */

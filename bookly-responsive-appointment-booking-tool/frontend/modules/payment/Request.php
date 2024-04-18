@@ -113,7 +113,7 @@ class Request extends Lib\Base\Component
                 $this->userData->load();
             } else {
                 $this->userData = new Lib\UserBookingData( null );
-                $customer = $this->get( 'customer' );
+                $customer = $this->get( 'customer', array() );
                 if ( $customer ) {
                     $coupon = self::parameter( 'coupon' );
                     $gift_card = self::parameter( 'gift_card' );
@@ -121,7 +121,6 @@ class Request extends Lib\Base\Component
                     $this->userData
                         ->setCouponCode( $coupon )
                         ->setGiftCode( $gift_card )
-                        ->setFullAddress( isset( $customer['full_address'] ) && $customer['full_address'] !== '' ? $customer['full_address'] : null )
                         ->setModernFormCustomer( $customer );
 
                     $client_fields = array();
@@ -181,6 +180,7 @@ class Request extends Lib\Base\Component
                                     ->setUnits( $units )
                                     ->setExtras( $extras )
                                     ->setCustomFields( $custom_fields )
+                                    ->setSeriesUniqueId( isset( $item['seriesId'] ) ? $item['seriesId'] : 0 )
                                     ->setSlots( $slot );
                                 break;
                             default:

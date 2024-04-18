@@ -134,7 +134,6 @@ class CartInfo
 
         if ( $this->gift_card ) {
             $this->gift_card_discount = min( $gift_card_total, $this->gift_card->getBalance() );
-            $this->total += $this->gift_card_discount;
         }
 
         $total_without_discount = $this->total;

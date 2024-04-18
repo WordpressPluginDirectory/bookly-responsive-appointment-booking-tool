@@ -154,6 +154,10 @@ abstract class Gateway
                         $status = self::STATUS_FAILED;
                 }
             }
+        } catch ( \LogicException $e ) {
+            $status = self::STATUS_PROCESSING;
+            $path = explode( '\\', get_class( $this ) );
+            BooklyLib\Utils\Log::put( BooklyLib\Utils\Log::ACTION_DEBUG, array_pop( $path ), null, $e->getFile() . ':' . $e->getLine(), $this->payment->getRefId(), $e->getMessage() . ', set status=' . $status );
         } catch ( \Exception $e ) {
             $path = explode( '\\', get_class( $this ) );
             BooklyLib\Utils\Log::put( BooklyLib\Utils\Log::ACTION_ERROR, array_pop( $path ), null, $e->getFile() . ':' . $e->getLine(), $this->payment->getRefId(), $e->getMessage() );
@@ -414,5 +418,4 @@ abstract class Gateway
 
         return $codes;
     }
-
 }

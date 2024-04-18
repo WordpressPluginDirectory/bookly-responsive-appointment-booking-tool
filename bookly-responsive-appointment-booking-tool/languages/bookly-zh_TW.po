@@ -8,9 +8,9 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-21 09:32+0000\n"
-"PO-Revision-Date: 2024-02-21 13:05+0000\n"
-"Last-Translator: support@bookly.info\n"
+"POT-Creation-Date: 2024-04-09 10:51+0000\n"
+"PO-Revision-Date: 2024-04-09 14:07+0000\n"
+"Last-Translator: Wina H <chillhchill@gmail.com>\n"
 "Language-Team: Chinese (Taiwan)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
 
@@ -115,8 +115,8 @@ msgstr "發票"
 msgid "Settings saved."
 msgstr "設定已保存。"
 
-msgid "Download invoices"
-msgstr "下載發票"
+msgid "Download selected invoices"
+msgstr "下載選定發票"
 
 msgid "Show 'Download invoice' button"
 msgstr "顯示'下載發票'按鈕"
@@ -226,9 +226,9 @@ msgid ""
 msgstr "如果您的帳戶允許您訪問多個租戶，請在右上角選擇您的帳戶，然後將平台設為所需的Azure AD租戶。"
 
 msgid ""
-"In the left-hand navigation panel, select the <b>Azure Active Directory</b>. "
-"Then select <b>Add > App registration</b>."
-msgstr "在左側導航面板中，選擇<b>Azure活躍目錄</b>。然後選擇<b>添加>應用註冊</b>."
+"In the left-hand navigation panel, select <b>Microsoft Entra ID</b>. Then "
+"select <b>Add > App registration</b>."
+msgstr "在左側的導航面板中選擇<b>Microsoft Entra ID</b>。然後選擇<b>新增 > 應用程式註冊</b>。"
 
 msgid ""
 "When the <b>Register an application</b> page appears, enter your "
@@ -236,20 +236,27 @@ msgid ""
 msgstr "在<b>註冊一個應用程式</b>頁面出現時，輸入您的應用程式<b>名稱</b>并在本頁面下方找到<b>重新導向 URI</b>。"
 
 msgid ""
+"Under the <b>Redirect URI</b>, in <b>Select a platform</b> field, choose <b>"
+"Web</b>."
+msgstr "在<b>重新導向URI</b>下，在<b>選擇一個平台</b>欄目中，選擇<b>Web</b>。"
+
+msgid ""
 "Make sure that the <b>Supported account types</b> is set to <b>Accounts in "
-"any organizational directory (Any Azure AD directory - Multitenant) and "
-"personal Microsoft accounts (e.g. Skype, Xbox)</b>."
+"any organizational directory (Any Microsoft Entra ID tenant - Multitenant) "
+"and personal Microsoft accounts (e.g. Skype, Xbox)</b>."
 msgstr ""
-"確保<b>支持帳戶類型</b>設定為<b>任何組織目錄的帳戶（任何 Azure AD 目錄——多租用戶）和個人 Microsoft 帳戶（如 "
-"Skype、Xbox）</b>。"
+"確保<b>支持的帳戶類型</b>設置為<b>任何組織目錄中的帳戶（任何Microsoft Entra "
+"ID租使用者——多租使用者）和個人Microsoft帳戶（如Skype、Xbox）</b>。"
 
 msgid "When finished, select <b>Register</b>."
 msgstr "在完成后，選擇<b>註冊</b>。"
 
 msgid ""
 "Azure AD assigns a unique application (client) ID to your app, and you're "
-"taken to your application's <b>Overview</b> page."
-msgstr "Azure AD為您的應用程式分配一個獨一無二的應用程式（客戶端）ID，您將被帶到應用程式的<b>總覽</b>頁面。"
+"taken to the Home page. Find your application in <b>App registrations > All "
+"applications</b>, and select it."
+msgstr ""
+"Azure AD為您的應用程式分配一個唯一應用（用戶端）ID，然後您將被帶到主頁。在<b>應用程式註冊 > 所有應用程式</b>中找到您的應用，並選擇。"
 
 msgid ""
 "Copy the <b>Application (client) ID</b> and insert it into the form below on "
@@ -258,8 +265,10 @@ msgstr "複製<b>應用程式（客戶）ID </b>，並將其插入此頁面下�
 
 msgid ""
 "Under <b>Certificates & secrets</b>, choose <b>New client secret</b>, set <b>"
-"Expires</b> to <b>24 months</b> and click <b>Add</b>."
-msgstr "在<b>憑證和祕密</b>中，選擇<b>新用戶祕密</b>，設定<b>有效期</b>為<b>24個月</b>並單擊<b>新增</b>。"
+"Expires</b> to <b>24 months</b>, add description and click <b>Add</b>."
+msgstr ""
+"在<b>Certificates & secrets</b>下，選擇<b>新增客戶端密碼</b>，設置<b>到期</b>為<b>24個月</b>"
+"，新增描述並點擊<b>新增</b>。"
 
 msgid ""
 "Copy the app secret value from the <b>Client secrets</b> list before leaving "
@@ -1434,6 +1443,12 @@ msgstr "所有"
 msgid "Nothing selected"
 msgstr "沒有選擇任何東西"
 
+msgid "Interval"
+msgstr "時間間隔"
+
+msgid "Single appointment"
+msgstr "單一預約"
+
 msgid "Save"
 msgstr "保存"
 
@@ -1960,6 +1975,9 @@ msgstr "空閒"
 msgid "Address"
 msgstr "地址"
 
+msgid "Full address"
+msgstr "完整地址"
+
 msgid "Follow these steps to get an API key:"
 msgstr "請按照以下步驟獲取API金鑰："
 
@@ -2215,6 +2233,9 @@ msgid ""
 "payment system"
 msgstr "無法處理退款。稍後再試或在您的付款系統中手動處理"
 
+msgid "Error"
+msgstr "錯誤"
+
 msgid "Error connecting to server."
 msgstr "連線到伺服器發生錯誤。"
 
@@ -2292,9 +2313,6 @@ msgstr "傳送SMS短訊失敗。"
 
 msgid "Queued"
 msgstr "排列"
-
-msgid "Error"
-msgstr "錯誤"
 
 msgid "Out of credit"
 msgstr "信用額度已全用"
@@ -2823,6 +2841,9 @@ msgstr "已完成"
 
 msgid "Start over"
 msgstr "重新開始"
+
+msgid "Incorrect verification code"
+msgstr "錯誤驗證碼"
 
 msgid "Signed up"
 msgstr "報名"
@@ -4509,10 +4530,10 @@ msgid "This test checks for critical errors in Bookly."
 msgstr "該測試檢查Bookly中的關鍵性誤差。"
 
 msgid "Some critical errors in Bookly were found recently."
-msgstr ""
+msgstr "最近在Bookly發現了一些嚴重錯誤。"
 
 msgid "Please contact Bookly support."
-msgstr ""
+msgstr "請聯繫Bookly支援"
 
 msgid "Time settings"
 msgstr "時間設定"
@@ -6613,6 +6634,9 @@ msgstr "您的包裹已創建"
 msgid "Display packages"
 msgstr "展示包裹"
 
+msgid "Hidden packages"
+msgstr "隱藏包裹"
+
 msgid "Package info"
 msgstr "包裹資料"
 
@@ -7866,6 +7890,9 @@ msgstr "顯示QR碼"
 msgid "Show cancellation reason"
 msgstr "顯示取消原因"
 
+msgid "Show badge"
+msgstr "顯示標記"
+
 msgid "Default value"
 msgstr "默認值"
 
@@ -7931,13 +7958,31 @@ msgid "Save cart locally"
 msgstr "本地保存購物車"
 
 msgid "Verify credentials"
-msgstr ""
+msgstr "驗證憑證"
 
 msgid "Verify phone"
-msgstr ""
+msgstr "驗證電話"
 
 msgid "Verify email"
-msgstr ""
+msgstr "驗證電子郵件"
+
+msgid "Hidden services"
+msgstr "隱藏服務"
+
+msgid "Hidden gift cards"
+msgstr "隱藏禮品卡"
+
+msgid "Show information about time slot"
+msgstr "顯示時段的有關資訊"
+
+msgid "Available dates in calendar"
+msgstr "日曆中可用日期"
+
+msgid "Display dates according to schedule"
+msgstr "根據時間表顯示日期"
+
+msgid "Disable dates without available timeslots"
+msgstr "禁用無可用時段的日期"
 
 msgid "Add new form"
 msgstr "添加新表單"
@@ -8053,10 +8098,10 @@ msgid "Amount to pay"
 msgstr "要付數目"
 
 msgid "Resend code"
-msgstr ""
+msgstr "重新發送代碼"
 
-msgid "Incorrect verification code"
-msgstr ""
+msgid "The selected time is not available anymore"
+msgstr "選定時間不再可用"
 
 msgid "Please select a category"
 msgstr "請選擇一個類別"
@@ -8133,7 +8178,7 @@ msgid "Time zone of staff"
 msgstr "員工的時區"
 
 msgid "Image of gift card"
-msgstr ""
+msgstr "禮品卡圖像"
 
 msgid "Email logs"
 msgstr "電子郵件日誌"
@@ -8393,6 +8438,13 @@ msgstr "該文本可通過{gift_card_note}代碼插入通知中"
 
 msgid "Select card type"
 msgstr "選擇卡類型"
+
+#, php-format
+msgid "Code %s already exists"
+msgstr "代碼%s已存在"
+
+msgid "Please resolve the duplication by changing code."
+msgstr "請通過更改代碼解決重複。"
 
 msgid "Please enter a non empty mask."
 msgstr "請輸入非空掩碼。"

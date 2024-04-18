@@ -654,7 +654,10 @@ class Payment extends Lib\Base\Entity
             ->setTotal( $cart_info->getTotal() )
             ->setPaid( $pay_now )
             ->setGatewayPriceCorrection( $cart_info->getPriceCorrection() )
-            ->setPaidType( $cart_info->getTotal() == $pay_now ? self::PAY_IN_FULL : self::PAY_DEPOSIT )
+            ->setPaidType( ( $cart_info->getPayFull() || $cart_info->getTotal() == $pay_now )
+                ? self::PAY_IN_FULL
+                : self::PAY_DEPOSIT
+            )
             ->setTax( $cart_info->getTotalTax() );
 
         return $this;

@@ -347,7 +347,7 @@ class Generator implements \Iterator
                         $booking_range = $booking->range();
                         foreach ( $removed->all() as $range ) {
                             // Find range which contains booking start point.
-                            if ( ( $max_waiting_list_capacity === null || ( $booking->nop() <= $max_capacity + $max_waiting_list_capacity - $this->nop ) ) && $range->contains( $booking_range->start() ) ) {
+                            if ( ( $max_waiting_list_capacity === null || ( $booking->onWaitingList() + $this->nop <= $max_waiting_list_capacity ) ) && $range->contains( $booking_range->start() ) ) {
                                 $data = $range->data()->replaceState( Range::WAITING_LIST_STARTED )->replaceNop( $booking->nop() );
                                 if ( $booking->onWaitingList() ) {
                                     $data = $data->replaceOnWaitingList( $booking->onWaitingList() );

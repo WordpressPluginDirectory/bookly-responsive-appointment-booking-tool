@@ -9,8 +9,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-21 08:15+0000\n"
-"PO-Revision-Date: 2024-02-22 08:09+0000\n"
+"POT-Creation-Date: 2024-04-10 09:47+0000\n"
+"PO-Revision-Date: 2024-04-10 10:06+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Russian\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -120,8 +120,8 @@ msgstr "Счета"
 msgid "Settings saved."
 msgstr "Настройки сохранены."
 
-msgid "Download invoices"
-msgstr "Скачать счета"
+msgid "Download selected invoices"
+msgstr "Скачать выбранные счета"
 
 msgid "Show 'Download invoice' button"
 msgstr "Показывать кнопку \"Скачать счёт\""
@@ -238,11 +238,11 @@ msgstr ""
 "сеанса работы нужный клиент Azure AD."
 
 msgid ""
-"In the left-hand navigation panel, select the <b>Azure Active Directory</b>. "
-"Then select <b>Add > App registration</b>."
+"In the left-hand navigation panel, select <b>Microsoft Entra ID</b>. Then "
+"select <b>Add > App registration</b>."
 msgstr ""
-"В области навигации слева выберите <b>Azure Active Directory</b>. Затем "
-"выберите <b>Add > App registration</b>."
+"В области навигации слева выберите <b>Microsoft Entra ID</b>. Затем выберите "
+"<b>Добавить > Регистрация приложения</b>."
 
 msgid ""
 "When the <b>Register an application</b> page appears, enter your "
@@ -253,39 +253,49 @@ msgstr ""
 "этой странице."
 
 msgid ""
+"Under the <b>Redirect URI</b>, in <b>Select a platform</b> field, choose <b>"
+"Web</b>."
+msgstr ""
+"В разделе <b>URI перенаправления</b>, в поле <b>Выберите платформу</b>, "
+"укажите <b>Веб</b>."
+
+msgid ""
 "Make sure that the <b>Supported account types</b> is set to <b>Accounts in "
-"any organizational directory (Any Azure AD directory - Multitenant) and "
-"personal Microsoft accounts (e.g. Skype, Xbox)</b>."
+"any organizational directory (Any Microsoft Entra ID tenant - Multitenant) "
+"and personal Microsoft accounts (e.g. Skype, Xbox)</b>."
 msgstr ""
 "Убедитесь, что для параметра <b>Поддерживаемые типы учетных записей</b> "
-"задано значение <b>Учетные записи в любом каталоге организации (Any Azure AD "
-"directory - Multitenant) и личные учетные записи Майкрософт (e.g. Skype, "
-"Xbox)</b>."
+"задано значение <b>Учетные записи в любом каталоге организации (любой клиент "
+"Microsoft Entra ID — мультитенантное решение) и личные учетные записи "
+"Майкрософт (например, Skype, Xbox)</b>."
 
 msgid "When finished, select <b>Register</b>."
 msgstr "По завершении нажмите кнопку <b>Зарегистрировать</b>."
 
 msgid ""
 "Azure AD assigns a unique application (client) ID to your app, and you're "
-"taken to your application's <b>Overview</b> page."
+"taken to the Home page. Find your application in <b>App registrations > All "
+"applications</b>, and select it."
 msgstr ""
-"Azure AD присвоит вашему приложению уникальный идентификатор, после чего "
-"откроется страница приложения <b>Обзор</b>."
+"Azure AD присвоит вашему приложению уникальный идентификатор приложения "
+"(клиента), после чего вы попадёте на домашнюю страницу. Найдите свое "
+"приложение в разделе <b>Регистрация приложений > Все приложения</b> и "
+"выберите его."
 
 msgid ""
 "Copy the <b>Application (client) ID</b> and insert it into the form below on "
 "this page."
 msgstr ""
-"Скопируйте <b>Application (client) ID</b> и вставьте его в форму ниже на "
-"этой странице."
+"Скопируйте <b>Идентификатор приложения (клиент)</b> и вставьте его в форму "
+"ниже на этой странице."
 
 msgid ""
 "Under <b>Certificates & secrets</b>, choose <b>New client secret</b>, set <b>"
-"Expires</b> to <b>24 months</b> and click <b>Add</b>."
+"Expires</b> to <b>24 months</b>, add description and click <b>Add</b>."
 msgstr ""
 "В разделе <b>Сертификаты и секреты</b>, выберите <b>Новый секрет клиента</b>,"
-" в поле <b>Срок действия</b> укажите <b>24 месяца</b> и нажмите <b>"
-"Добавить</b>."
+" для параметра <b>Истекает срок действия</b> установите значение <b>24 "
+"месяца</b>, добавьте описание и нажмите <b>Добавить</b>."
 
 msgid ""
 "Copy the app secret value from the <b>Client secrets</b> list before leaving "
@@ -1561,6 +1571,12 @@ msgstr "Все"
 msgid "Nothing selected"
 msgstr "Ничего не выбрано"
 
+msgid "Interval"
+msgstr "Интервал"
+
+msgid "Single appointment"
+msgstr "Одиночная запись"
+
 msgid "Save"
 msgstr "Сохранить"
 
@@ -2122,6 +2138,9 @@ msgstr "Нулевая стоимость"
 msgid "Address"
 msgstr "Адрес"
 
+msgid "Full address"
+msgstr "Полный адрес"
+
 msgid "Follow these steps to get an API key:"
 msgstr "Выполните следующие шаги, чтобы получить API key:"
 
@@ -2399,6 +2418,9 @@ msgstr ""
 "Невозможно обработать возврат. Повторите попытку позже или обработайте его "
 "вручную в вашей платёжной системе"
 
+msgid "Error"
+msgstr "Ошибка"
+
 msgid "Error connecting to server."
 msgstr "Ошибка соединения с сервером."
 
@@ -2483,9 +2505,6 @@ msgstr "Отправка SMS не удалась."
 
 msgid "Queued"
 msgstr "В очереди"
-
-msgid "Error"
-msgstr "Ошибка"
 
 msgid "Out of credit"
 msgstr "Недостаточно средств"
@@ -3025,6 +3044,9 @@ msgstr "Готово"
 
 msgid "Start over"
 msgstr "Начать сначала"
+
+msgid "Incorrect verification code"
+msgstr "Неправильный код подтверждения"
 
 msgid "Signed up"
 msgstr "Забронировано"
@@ -7183,6 +7205,9 @@ msgstr "Ваш пакет создан."
 msgid "Display packages"
 msgstr "Отображать пакеты услуг"
 
+msgid "Hidden packages"
+msgstr "Скрытые пакеты услуг"
+
 msgid "Package info"
 msgstr "Информация о пакете услуг"
 
@@ -8606,6 +8631,9 @@ msgstr "Показывать QR-код"
 msgid "Show cancellation reason"
 msgstr "Показывать причину отмены"
 
+msgid "Show badge"
+msgstr "Показывать бейдж"
+
 msgid "Default value"
 msgstr "Значение по умолчанию"
 
@@ -8682,6 +8710,24 @@ msgstr "Верифицировать номер телефона"
 
 msgid "Verify email"
 msgstr "Верифицировать адрес эл. почты"
+
+msgid "Hidden services"
+msgstr "Скрытые услуги"
+
+msgid "Hidden gift cards"
+msgstr "Скрытые подарочные карты"
+
+msgid "Show information about time slot"
+msgstr "Показывать информацию о временном интервале"
+
+msgid "Available dates in calendar"
+msgstr "Доступные даты в календаре"
+
+msgid "Display dates according to schedule"
+msgstr "Отображать даты согласно расписанию"
+
+msgid "Disable dates without available timeslots"
+msgstr "Отключить даты без доступных временных интервалов"
 
 msgid "Add new form"
 msgstr "Добавить новую форму"
@@ -8805,8 +8851,8 @@ msgstr "Сумма к оплате"
 msgid "Resend code"
 msgstr "Отправить код еще раз"
 
-msgid "Incorrect verification code"
-msgstr "Неправильный код подтверждения"
+msgid "The selected time is not available anymore"
+msgstr "Выбранное время больше недоступно"
 
 msgid "Please select a category"
 msgstr "Пожалуйста, выберите категорию"
@@ -9190,6 +9236,13 @@ msgstr ""
 
 msgid "Select card type"
 msgstr "Выберите тип карты"
+
+#, php-format
+msgid "Code %s already exists"
+msgstr "Код %s уже существует"
+
+msgid "Please resolve the duplication by changing code."
+msgstr "Пожалуйста, устраните дублирование, изменив код."
 
 msgid "Please enter a non empty mask."
 msgstr "Пожалуйста, введите непустую маску."

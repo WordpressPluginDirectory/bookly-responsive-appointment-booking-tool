@@ -94,7 +94,7 @@ class Staff extends Lib\Base\Entity
         // If it is 2(Tue) then the result should be 3,4,5,6,7,1,2. Etc.
         $schedule = StaffScheduleItem::query()
             ->where( 'staff_id', $staff_id )
-            ->sortBy( "IF(r.day_index + 10 - {$start_of_week} > 10, r.day_index + 10 - {$start_of_week}, 16 + r.day_index)" )
+            ->sortBy( 'IF(r.day_index + 10 - ' . $start_of_week . ' > 10, r.day_index + 10 - ' . $start_of_week . ', 16 + r.day_index)' )
             ->indexBy( 'day_index' )
             ->where( 'location_id', $location_id )
             ->find();

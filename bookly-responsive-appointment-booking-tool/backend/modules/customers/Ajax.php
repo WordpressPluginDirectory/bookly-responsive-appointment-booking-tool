@@ -102,6 +102,7 @@ class Ajax extends Lib\Base\Ajax
                 'id' => $row['id'],
                 'additional_address' => $row['additional_address'],
                 'address' => $address,
+                'full_address' => $row['full_address'],
                 'birthday' => $birthday ? $birthday->format( 'Y-m-d' ) : null,
                 'birthday_formatted' => $birthday_formatted,
                 'city' => $row['city'],

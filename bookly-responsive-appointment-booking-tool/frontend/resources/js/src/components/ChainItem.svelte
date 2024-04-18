@@ -1,8 +1,8 @@
 <script>
     import {createEventDispatcher, tick} from 'svelte';
+    import {slide} from 'svelte/transition';
     import jQuery from 'jquery';
     import Select from './Select.svelte';
-    import { slide } from 'svelte/transition';
 
     export let item = {};
     export let index = 0;
@@ -290,6 +290,9 @@
         if (!(locationId in locations)) {
             locationId = 0;
         }
+        if (locationId != 0) {
+            locationError = null;
+        }
         // Update related values
         if (locationId) {
             let lookupLocationId = servicesPerLocation ? locationId : 0;
@@ -381,6 +384,7 @@
             if (date_from_element[0]) {
                 dateMin = services[serviceId].hasOwnProperty('min_time_prior_booking') ? services[serviceId].min_time_prior_booking : date_from_element.data('date_min');
             }
+            serviceError = null;
         } else if (!categorySelected) {
             categoryId = 0;
             if (date_from_element[0]) {
@@ -402,6 +406,9 @@
         // Validate value
         if (!(staffId in staffItems)) {
             staffId = 0;
+        }
+        if (staffId != 0) {
+            staffError = null;
         }
     }
 

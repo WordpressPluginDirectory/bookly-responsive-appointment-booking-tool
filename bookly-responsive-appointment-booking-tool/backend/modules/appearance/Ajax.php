@@ -82,6 +82,8 @@ class Ajax extends Lib\Base\Ajax
             'bookly_l10n_required_last_name',
             'bookly_l10n_required_phone',
             'bookly_l10n_required_service',
+            'bookly_l10n_incorrect_phone_verification_code',
+            'bookly_l10n_incorrect_email_verification_code',
             // Color.
             'bookly_app_color',
             // Checkboxes.

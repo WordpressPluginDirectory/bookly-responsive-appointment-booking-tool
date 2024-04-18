@@ -47,6 +47,8 @@ class Customer extends Lib\Base\Entity
     protected $info_fields = '[]';
     /** @var string */
     protected $stripe_account;
+    /** @var string */
+    protected $stripe_cloud_account;
     /** @var int */
     protected $attachment_id;
     /** @var string */
@@ -78,6 +80,7 @@ class Customer extends Lib\Base\Entity
         'notes' => array( 'format' => '%s' ),
         'info_fields' => array( 'format' => '%s' ),
         'stripe_account' => array( 'format' => '%s' ),
+        'stripe_cloud_account' => array( 'format' => '%s' ),
         'attachment_id' => array( 'format' => '%d' ),
         'created_at' => array( 'format' => '%s' ),
     );
@@ -645,6 +648,25 @@ class Customer extends Lib\Base\Entity
     public function setStripeAccount( $stripe_account )
     {
         $this->stripe_account = $stripe_account;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStripeCloudAccount()
+    {
+        return $this->stripe_cloud_account;
+    }
+
+    /**
+     * @param string $stripe_cloud_account
+     * @return Customer
+     */
+    public function setStripeCloudAccount( $stripe_cloud_account )
+    {
+        $this->stripe_cloud_account = $stripe_cloud_account;
 
         return $this;
     }

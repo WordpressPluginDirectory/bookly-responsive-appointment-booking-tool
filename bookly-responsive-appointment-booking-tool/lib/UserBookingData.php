@@ -831,6 +831,9 @@ class UserBookingData
             if ( isset( $customer_data['time_zone_offset'] ) && $customer_data['time_zone_offset'] !== '' ) {
                 $this->setTimeZoneOffset( $customer_data['time_zone_offset'] );
             }
+            if ( isset( $customer_data['full_address'] ) && $customer_data['full_address'] !== '' ) {
+                $this->setFullAddress( $customer_data['full_address'] );
+            }
         }
 
         return $this;

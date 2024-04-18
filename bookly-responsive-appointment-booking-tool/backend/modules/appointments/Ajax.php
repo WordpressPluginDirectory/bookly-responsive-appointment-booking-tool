@@ -70,7 +70,7 @@ class Ajax extends Lib\Base\Ajax
                         $ca->setStatus( Lib\Entities\CustomerAppointment::STATUS_CANCELLED );
                         break;
                     default:
-                        $busy_statuses = (array) Lib\Proxy\CustomStatuses::prepareBusyStatuses( array() );
+                        $busy_statuses = Lib\Proxy\CustomStatuses::prepareBusyStatuses( array() );
                         if ( in_array( $ca->getStatus(), $busy_statuses ) ) {
                             $ca->setStatus( Lib\Entities\CustomerAppointment::STATUS_CANCELLED );
                         }
@@ -287,7 +287,7 @@ class Ajax extends Lib\Base\Ajax
                 $custom_fields[ $custom_field['id'] ] = $custom_field['value'];
             }
             if ( $row['ca_id'] !== null ) {
-                $extras = (array) Lib\Proxy\ServiceExtras::getInfo( json_decode( $row['extras'], true ) ?: array(), false );
+                $extras = Lib\Proxy\ServiceExtras::getInfo( json_decode( $row['extras'], true ) ?: array(), false ) ?: array();
                 if ( $row['extras_multiply_nop'] && $row['number_of_persons'] > 1 ) {
                     foreach ( $extras as $index => $extra ) {
                         $extras[ $index ]['title'] = '<i class="far fa-user"></i>&nbsp;' . $row['number_of_persons'] . '&nbsp;&times;&nbsp;' . $extra['title'];

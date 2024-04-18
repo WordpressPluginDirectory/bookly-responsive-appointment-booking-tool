@@ -43,13 +43,18 @@ class StripeCloudGateway extends Lib\Base\Gateway
                 array(
                     'total' => $this->getGatewayAmount(),
                     'description' => $this->request->getUserData()->cart->getItemsTitle(),
-                    'customer_email' => $this->request->getUserData()->getEmail(),
                     'metadata' => $this->getMetaData(),
+                ),
+                array(
+                    'email' => $this->request->getUserData()->getEmail(),
+                    'name' => $this->request->getUserData()->getCustomer()->getFullName(),
+                    'stripe_customer' => $this->request->getUserData()->getCustomer()->getStripeCloudAccount(),
                 ),
                 $this->getResponseUrl( self::EVENT_RETRIEVE ),
                 $this->getResponseUrl( self::EVENT_CANCEL )
             );
         if ( $response ) {
+            $this->request->getUserData()->getCustomer()->setStripeCloudAccount( $response['customer'] )->save();
             return array(
                 'ref_id' => $response['payment_intent'],
                 'target_url' => $response['redirect_url'],

@@ -8,8 +8,8 @@ msgstr ""
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-21 09:29+0000\n"
-"PO-Revision-Date: 2024-02-21 10:23+0000\n"
+"POT-Creation-Date: 2024-04-09 10:51+0000\n"
+"PO-Revision-Date: 2024-04-09 19:08+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Dutch\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -120,8 +120,8 @@ msgstr "Facturen"
 msgid "Settings saved."
 msgstr "Instellingen opgeslagen."
 
-msgid "Download invoices"
-msgstr "Download facturen"
+msgid "Download selected invoices"
+msgstr "Geselecteerde facturen downloaden"
 
 msgid "Show 'Download invoice' button"
 msgstr "Toon 'Factuur downloaden' knop"
@@ -239,11 +239,11 @@ msgstr ""
 "Azure AD huurder."
 
 msgid ""
-"In the left-hand navigation panel, select the <b>Azure Active Directory</b>. "
-"Then select <b>Add > App registration</b>."
+"In the left-hand navigation panel, select <b>Microsoft Entra ID</b>. Then "
+"select <b>Add > App registration</b>."
 msgstr ""
-"Selecteer in het linkernavigatievenster de <b>Azure Active Directory</b>. "
-"Selecteer vervolgens <b>Toevoegen > App-registratie</b>."
+"Selecteer <b>Microsoft Entra ID</b> in het linker navigatiepaneel. Selecteer "
+"vervolgens <b>Toevoegen > App-registratie</b>."
 
 msgid ""
 "When the <b>Register an application</b> page appears, enter your "
@@ -254,23 +254,32 @@ msgstr ""
 "hieronder op deze pagina vindt."
 
 msgid ""
-"Make sure that the <b>Supported account types</b> is set to <b>Accounts in "
-"any organizational directory (Any Azure AD directory - Multitenant) and "
-"personal Microsoft accounts (e.g. Skype, Xbox)</b>."
+"Under the <b>Redirect URI</b>, in <b>Select a platform</b> field, choose <b>"
+"Web</b>."
 msgstr ""
-"Zorg ervoor dat de <b>Ondersteunde accounttypen</b> zijn ingesteld op <b>"
-"Accounts in elke organisatiedirectory (Elke Azure AD-directory - Multitenant)"
-" en persoonlijke Microsoft-accounts (bijv. Skype, Xbox)</b>."
+"Kies <b>Web</b> onder de <b>URI doorsturen</b> in het veld <b>Selecteer een "
+"platform</b>."
+
+msgid ""
+"Make sure that the <b>Supported account types</b> is set to <b>Accounts in "
+"any organizational directory (Any Microsoft Entra ID tenant - Multitenant) "
+"and personal Microsoft accounts (e.g. Skype, Xbox)</b>."
+msgstr ""
+"Zorg ervoor dat de <b>Ondersteunde accounttypes</b> is ingesteld op <b>"
+"Accounts in elke organisatiemap (Elke Microsoft Entra ID tenant - "
+"Multitenant) en persoonlijke Microsoft-accounts (bijv. Skype, Xbox)</b>."
 
 msgid "When finished, select <b>Register</b>."
 msgstr "Als u klaar bent, selecteert u <b>Registreren</b>."
 
 msgid ""
 "Azure AD assigns a unique application (client) ID to your app, and you're "
-"taken to your application's <b>Overview</b> page."
+"taken to the Home page. Find your application in <b>App registrations > All "
+"applications</b>, and select it."
 msgstr ""
-"Azure AD wijst een unieke applicatie (client) ID toe aan uw app en u gaat "
-"naar de pagina <b>Overzicht</b> van uw applicatie."
+"Azure AD wijst een unieke applicatie (client) ID toe aan uw app, en u wordt "
+"naar de startpagina geleid. Zoek uw applicatie in <b>App registraties > Alle "
+"applicaties</b> en selecteer deze."
 
 msgid ""
 "Copy the <b>Application (client) ID</b> and insert it into the form below on "
@@ -281,10 +290,11 @@ msgstr ""
 
 msgid ""
 "Under <b>Certificates & secrets</b>, choose <b>New client secret</b>, set <b>"
-"Expires</b> to <b>24 months</b> and click <b>Add</b>."
+"Expires</b> to <b>24 months</b>, add description and click <b>Add</b>."
 msgstr ""
-"Kies onder <b>Certificaten en geheimen</b> <b>Nieuw klantgeheim</b>, stel <b>"
-"Verloopt</b> in op <b>24 maanden</b> en klik op <b>Toevoegen</b>."
+"Kies onder <b>Certificaten & geheimen</b> <b>Nieuw klantgeheim</b>, stel <b>"
+"Verlopen</b> in op <b>24 maanden</b>, voeg een beschrijving toe en klik op "
+"<b>Toevoegen</b>."
 
 msgid ""
 "Copy the app secret value from the <b>Client secrets</b> list before leaving "
@@ -1543,6 +1553,12 @@ msgstr "Allemaal"
 msgid "Nothing selected"
 msgstr "Niets geselecteerd"
 
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Single appointment"
+msgstr "Eenmalige afspraak"
+
 msgid "Save"
 msgstr "Opslaan"
 
@@ -2111,6 +2127,9 @@ msgstr "Vrij"
 msgid "Address"
 msgstr "Adres"
 
+msgid "Full address"
+msgstr "Volledig adres"
+
 msgid "Follow these steps to get an API key:"
 msgstr "Volg deze stappen om een API sleutel te krijgen:"
 
@@ -2388,6 +2407,9 @@ msgstr ""
 "Terugbetaling kan niet worden verwerkt. Probeer het later opnieuw of verwerk "
 "het handmatig in uw betalingssysteem"
 
+msgid "Error"
+msgstr "Fout"
+
 msgid "Error connecting to server."
 msgstr "Fout bij verbinden met server."
 
@@ -2472,9 +2494,6 @@ msgstr "Kon SMS niet versturen."
 
 msgid "Queued"
 msgstr "In de wachtrij"
-
-msgid "Error"
-msgstr "Fout"
 
 msgid "Out of credit"
 msgstr "Geen krediet"
@@ -3012,6 +3031,9 @@ msgstr "Klaar"
 
 msgid "Start over"
 msgstr "Opnieuw starten"
+
+msgid "Incorrect verification code"
+msgstr "Onjuiste verificatiecode"
 
 msgid "Signed up"
 msgstr "Ingeschreven"
@@ -7147,6 +7169,9 @@ msgstr "Uw pakket is aangemaakt."
 msgid "Display packages"
 msgstr "Pakketten weergeven"
 
+msgid "Hidden packages"
+msgstr "Verborgen pakketten"
+
 msgid "Package info"
 msgstr "Pakket informatie"
 
@@ -8573,6 +8598,9 @@ msgstr "QR-code tonen"
 msgid "Show cancellation reason"
 msgstr "Toon annuleringsreden"
 
+msgid "Show badge"
+msgstr "Badge tonen"
+
 msgid "Default value"
 msgstr "Standaardwaarde"
 
@@ -8650,6 +8678,24 @@ msgstr "Verifieer telefoon"
 
 msgid "Verify email"
 msgstr "Verifieer e-mail"
+
+msgid "Hidden services"
+msgstr "Verborgen diensten"
+
+msgid "Hidden gift cards"
+msgstr "Verborgen cadeaubonnen"
+
+msgid "Show information about time slot"
+msgstr "Informatie over tijdslot weergeven"
+
+msgid "Available dates in calendar"
+msgstr "Beschikbare data in kalender"
+
+msgid "Display dates according to schedule"
+msgstr "Data weergeven volgens schema"
+
+msgid "Disable dates without available timeslots"
+msgstr "Data zonder beschikbare timeslots uitschakelen"
 
 msgid "Add new form"
 msgstr "Nieuw formulier toevoegen"
@@ -8775,8 +8821,8 @@ msgstr "Te betalen bedrag"
 msgid "Resend code"
 msgstr "Code opnieuw verzenden"
 
-msgid "Incorrect verification code"
-msgstr "Onjuiste verificatiecode"
+msgid "The selected time is not available anymore"
+msgstr "De geselecteerde tijd is niet meer beschikbaar"
 
 msgid "Please select a category"
 msgstr "Kies een categorie"
@@ -9156,6 +9202,13 @@ msgstr "Deze tekst kan worden ingevoegd in meldingen met {gift_card_note} code"
 
 msgid "Select card type"
 msgstr "Selecteer type kaart"
+
+#, php-format
+msgid "Code %s already exists"
+msgstr "Code %s bestaat al"
+
+msgid "Please resolve the duplication by changing code."
+msgstr "Los de duplicatie op door de code te wijzigen."
 
 msgid "Please enter a non empty mask."
 msgstr "Voer een niet leeg masker in."

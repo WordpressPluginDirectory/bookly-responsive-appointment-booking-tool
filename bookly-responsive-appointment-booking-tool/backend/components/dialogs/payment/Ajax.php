@@ -41,10 +41,12 @@ class Ajax extends Lib\Base\Ajax
         if ( $payment ) {
             $data = $payment->getPaymentData();
             $show_deposit = false;
-            foreach ( $data['payment']['items'] as $item ) {
-                if ( array_key_exists( 'deposit_format', $item ) && $item['deposit_format'] ) {
-                    $show_deposit = true;
-                    break;
+            if ( $payment->getPaidType() === Lib\Entities\Payment::PAY_DEPOSIT ) {
+                foreach ( $data['payment']['items'] as $item ) {
+                    if ( array_key_exists( 'deposit_format', $item ) && $item['deposit_format'] ) {
+                        $show_deposit = true;
+                        break;
+                    }
                 }
             }
 

@@ -474,7 +474,7 @@ abstract class Plugin
     {
         /** @var static $plugin_class */
         $plugin_class = get_called_class();
-        if ( $plugin_class != 'Bookly\Lib\Plugin' && Lib\Config::proActive() ) {
+        if ( $plugin_class != 'Bookly\Lib\Plugin' && Lib\Config::proActive() && $plugin_class::getPurchaseCode() ) {
             PluginPro::initPluginUpdateChecker( $plugin_class );
         }
     }

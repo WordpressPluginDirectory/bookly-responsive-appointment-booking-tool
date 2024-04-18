@@ -8,9 +8,9 @@ msgstr ""
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-21 09:32+0000\n"
-"PO-Revision-Date: 2024-02-21 11:13+0000\n"
-"Last-Translator: support@bookly.info\n"
+"POT-Creation-Date: 2024-04-09 10:52+0000\n"
+"PO-Revision-Date: 2024-04-10 12:18+0000\n"
+"Last-Translator: Isabel Andrade <estgf_nemo@hotmail.com>\n"
 "Language-Team: Portuguese (Portugal)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
 
@@ -121,8 +121,8 @@ msgstr "Faturas"
 msgid "Settings saved."
 msgstr "Definições guardadas."
 
-msgid "Download invoices"
-msgstr "Carregamento das faturas"
+msgid "Download selected invoices"
+msgstr "Descarregar faturas selecionadas"
 
 msgid "Show 'Download invoice' button"
 msgstr "Ver botão 'Download fatura'"
@@ -245,12 +245,11 @@ msgstr ""
 "do Azure AD que pretende."
 
 msgid ""
-"In the left-hand navigation panel, select the <b>Azure Active Directory</b>. "
-"Then select <b>Add > App registration</b>."
+"In the left-hand navigation panel, select <b>Microsoft Entra ID</b>. Then "
+"select <b>Add > App registration</b>."
 msgstr ""
-"No painel de navegação à esquerda, selecione o <b>Diretório Ativo Azure</b>. "
-"Em seguida, <b>selecione Adicionar > registo da App</b>.\n"
-"\n"
+"No painel de navegação do lado esquerdo, selecione <b>Microsoft Entra ID</b>."
+" Em seguida, selecione <b>Adicionar > Registro de Aplicação</b>."
 
 msgid ""
 "When the <b>Register an application</b> page appears, enter your "
@@ -260,24 +259,33 @@ msgstr ""
 "aplicação e <b>redirecione o URI</b> encontrado abaixo nesta página."
 
 msgid ""
-"Make sure that the <b>Supported account types</b> is set to <b>Accounts in "
-"any organizational directory (Any Azure AD directory - Multitenant) and "
-"personal Microsoft accounts (e.g. Skype, Xbox)</b>."
+"Under the <b>Redirect URI</b>, in <b>Select a platform</b> field, choose <b>"
+"Web</b>."
 msgstr ""
-"Certifique-se de que os <b>tipos de conta suportados</b> estão <b>definidos "
-"para Contas em qualquer diretório organizacional (qualquer diretório AD AD - "
-"Multi inquilino) e contas pessoais da Microsoft (por exemplo, Skype, Xbox)"
-"</b>."
+"Em <b>Redirect URI</b>, no campo <b>Selecionar uma plataforma</b>, escolha "
+"<b>Web</b>."
+
+msgid ""
+"Make sure that the <b>Supported account types</b> is set to <b>Accounts in "
+"any organizational directory (Any Microsoft Entra ID tenant - Multitenant) "
+"and personal Microsoft accounts (e.g. Skype, Xbox)</b>."
+msgstr ""
+"Certifique-se de que <b>Tipos de conta suportados</b> está definido como <b>"
+"Contas em qualquer diretório organizacional (Qualquer inquilino Microsoft "
+"Entra ID - Multi-inquilino) e contas pessoais Microsoft (por exemplo, Skype, "
+"Xbox)</b>."
 
 msgid "When finished, select <b>Register</b>."
 msgstr "Quando terminar, <b>selecione Registar</b>."
 
 msgid ""
 "Azure AD assigns a unique application (client) ID to your app, and you're "
-"taken to your application's <b>Overview</b> page."
+"taken to the Home page. Find your application in <b>App registrations > All "
+"applications</b>, and select it."
 msgstr ""
-"Azure AD atribui um ID da aplicação (cliente) única à sua aplicação, de "
-"seguida a página <b>Overview</b> da aplicação é exibida."
+"O Azure AD atribui uma ID de aplicação (cliente) exclusiva à sua aplicação e "
+"é encaminhado para a página inicial. Encontre seu aplicativo em <b>Registros "
+"de Aplicações > Todos as Aplicações</b> e selecione-o."
 
 msgid ""
 "Copy the <b>Application (client) ID</b> and insert it into the form below on "
@@ -288,10 +296,11 @@ msgstr ""
 
 msgid ""
 "Under <b>Certificates & secrets</b>, choose <b>New client secret</b>, set <b>"
-"Expires</b> to <b>24 months</b> and click <b>Add</b>."
+"Expires</b> to <b>24 months</b>, add description and click <b>Add</b>."
 msgstr ""
-"Em <b>Certificados & Segredos</b>, escolha <b>novo segredo de cliente</b>, "
-"<b>Expira </b> para <b>24 meses</b> e clique em <b>Adicionar</b>.\n"
+"Em <b>Certificados & segredos</b>, escolha <b>Novo segredo de cliente</b>, "
+"defina <b>Expira</b> para <b>24 meses</b>, adicione uma descrição e clique "
+"em <b>Adicionar</b>."
 
 msgid ""
 "Copy the app secret value from the <b>Client secrets</b> list before leaving "
@@ -1565,6 +1574,12 @@ msgstr "Tudo"
 msgid "Nothing selected"
 msgstr "Nada selecionado"
 
+msgid "Interval"
+msgstr "Intervalo"
+
+msgid "Single appointment"
+msgstr "Marcação única"
+
 msgid "Save"
 msgstr "Guardar"
 
@@ -2134,6 +2149,9 @@ msgstr "Livre"
 msgid "Address"
 msgstr "Endereço"
 
+msgid "Full address"
+msgstr "Endereço completo"
+
 msgid "Follow these steps to get an API key:"
 msgstr "Siga estes passos para obter uma chave API:"
 
@@ -2412,6 +2430,9 @@ msgstr ""
 "O reembolso não pode ser processado. Tente novamente mais tarde ou processe-"
 "o manualmente no seu sistema de pagamento\n"
 
+msgid "Error"
+msgstr "Erro"
+
 msgid "Error connecting to server."
 msgstr "Erro ao conectar ao servidor."
 
@@ -2499,9 +2520,6 @@ msgstr "Não foi possível enviar a SMS."
 
 msgid "Queued"
 msgstr "Na Fila"
-
-msgid "Error"
-msgstr "Erro"
 
 msgid "Out of credit"
 msgstr "Sem crédito"
@@ -3043,6 +3061,9 @@ msgstr "Concluir"
 
 msgid "Start over"
 msgstr "\"Começar de novo\""
+
+msgid "Incorrect verification code"
+msgstr "Código de verificação incorreto"
 
 msgid "Signed up"
 msgstr "Registrado"
@@ -7384,6 +7405,9 @@ msgstr ""
 msgid "Display packages"
 msgstr "Exibir pacotes"
 
+msgid "Hidden packages"
+msgstr "Pacotes ocultos"
+
 msgid "Package info"
 msgstr "Informações do pacote"
 
@@ -8872,6 +8896,9 @@ msgstr "Mostrar Código QR"
 msgid "Show cancellation reason"
 msgstr "Mostrar motivo de cancelamento"
 
+msgid "Show badge"
+msgstr "Mostrar distintivo"
+
 msgid "Default value"
 msgstr "Valor por defeito"
 
@@ -8949,6 +8976,24 @@ msgstr "Verifique o telefone"
 
 msgid "Verify email"
 msgstr "Verifique o email"
+
+msgid "Hidden services"
+msgstr "Serviços ocultos"
+
+msgid "Hidden gift cards"
+msgstr "Cartões-presente ocultos"
+
+msgid "Show information about time slot"
+msgstr "Mostrar informações sobre o intervalo de tempo"
+
+msgid "Available dates in calendar"
+msgstr "Datas disponíveis no calendário"
+
+msgid "Display dates according to schedule"
+msgstr "Visualizar datas de acordo com o calendário"
+
+msgid "Disable dates without available timeslots"
+msgstr "Desativar datas sem horários disponíveis"
 
 msgid "Add new form"
 msgstr "Adicionar novo formulário"
@@ -9074,8 +9119,8 @@ msgstr "Valor a pagar"
 msgid "Resend code"
 msgstr "Reenviar código"
 
-msgid "Incorrect verification code"
-msgstr "Código de verificação incorreto"
+msgid "The selected time is not available anymore"
+msgstr "A hora selecionada já não está disponível"
 
 msgid "Please select a category"
 msgstr "Por favor selecione uma categoria"
@@ -9468,6 +9513,13 @@ msgstr ""
 
 msgid "Select card type"
 msgstr "Selecione o tipo de cartão"
+
+#, php-format
+msgid "Code %s already exists"
+msgstr "O código %s já existe"
+
+msgid "Please resolve the duplication by changing code."
+msgstr "Por favor, resolva a duplicação alterando o código."
 
 msgid "Please enter a non empty mask."
 msgstr "Por favor, insira uma máscara não-vazia."

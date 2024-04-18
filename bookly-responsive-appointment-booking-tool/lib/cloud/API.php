@@ -314,10 +314,14 @@ class API extends Cache
 
                 return $response;
             }
-            if ( strncmp( $response['message'], 'ERROR_', 6 ) === 0 ) {
-                $this->errors[ $response['message'] ] = $this->_translateError( $response['message'] );
+            if ( isset( $response['message'] ) ) {
+                if ( strncmp( $response['message'], 'ERROR_', 6 ) === 0 ) {
+                    $this->errors[ $response['message'] ] = $this->_translateError( $response['message'] );
+                } else {
+                    $this->errors[] = $this->_translateError( $response['message'] );
+                }
             } else {
-                $this->errors[] = $this->_translateError( $response['message'] );
+                $this->errors[] = __( 'Error', 'bookly' );
             }
         } else {
             $this->errors[] = __( 'Error connecting to server.', 'bookly' );

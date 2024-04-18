@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bookly\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-21 09:49+0000\n"
-"PO-Revision-Date: 2024-02-21 13:03+0000\n"
+"POT-Creation-Date: 2024-04-09 10:52+0000\n"
+"PO-Revision-Date: 2024-04-11 07:17+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -121,8 +121,8 @@ msgstr "Fatture"
 msgid "Settings saved."
 msgstr "Impostazioni salvate."
 
-msgid "Download invoices"
-msgstr "Scarica le fatture"
+msgid "Download selected invoices"
+msgstr "Scarica le fatture selezionate"
 
 msgid "Show 'Download invoice' button"
 msgstr "Mostra il pulsante \"Scarica la fattura\""
@@ -238,11 +238,11 @@ msgstr ""
 "tenant Azure AD che desideri."
 
 msgid ""
-"In the left-hand navigation panel, select the <b>Azure Active Directory</b>. "
-"Then select <b>Add > App registration</b>."
+"In the left-hand navigation panel, select <b>Microsoft Entra ID</b>. Then "
+"select <b>Add > App registration</b>."
 msgstr ""
-"Nel pannello di navigazione di sinistra, seleziona <b>Azure Active "
-"Directory</b>. Quindi seleziona <b>Aggiungi > Registrazione app</b>."
+"Nel pannello di navigazione a sinistra, seleziona <b>Microsoft Entra ID</b>. "
+"Dopodiché seleziona <b>Aggiungi > Registrazione app</b>."
 
 msgid ""
 "When the <b>Register an application</b> page appears, enter your "
@@ -253,23 +253,32 @@ msgstr ""
 "trova più sotto in questa pagina."
 
 msgid ""
-"Make sure that the <b>Supported account types</b> is set to <b>Accounts in "
-"any organizational directory (Any Azure AD directory - Multitenant) and "
-"personal Microsoft accounts (e.g. Skype, Xbox)</b>."
+"Under the <b>Redirect URI</b>, in <b>Select a platform</b> field, choose <b>"
+"Web</b>."
 msgstr ""
-"Assicurarsi che <b>Tipi di account supportati</b> sia impostato su <b>"
-"Account di qualsiasi directory organizzativa (qualsiasi directory Azure AD - "
-"Multitenant) e account Microsoft personali (ad esempio, Skype, Xbox)</b>."
+"In <b>URI di reindirizzamento</b>, nel campo <b>Selezionare una "
+"piattaforma</b>, scegli <b>Web</b>."
+
+msgid ""
+"Make sure that the <b>Supported account types</b> is set to <b>Accounts in "
+"any organizational directory (Any Microsoft Entra ID tenant - Multitenant) "
+"and personal Microsoft accounts (e.g. Skype, Xbox)</b>."
+msgstr ""
+"Assicurati che i <b>tipi di account supportati</b> siano impostati su <b>"
+"Account in ogni directory organizzativa (qualsiasi tenant Microsoft Entra ID "
+"- Multitenant) e account personali Microsoft (ad esempio, Skype, Xbox)</b>."
 
 msgid "When finished, select <b>Register</b>."
 msgstr "Quando hai terminato, seleziona <b>Registra</b>."
 
 msgid ""
 "Azure AD assigns a unique application (client) ID to your app, and you're "
-"taken to your application's <b>Overview</b> page."
+"taken to the Home page. Find your application in <b>App registrations > All "
+"applications</b>, and select it."
 msgstr ""
-"Azure AD assegna un application (client) ID univoco alla tua applicazione e "
-"ti porta alla pagina \"<b>Panoramica</b>\" della tua applicazione."
+"Azure AD attribuisce un ID applicazione (cliente) univoco alla tua "
+"applicazione e ti porta alla pagina iniziale. Trova la tua applicazione in "
+"<b>Registrazioni applicazioni > Tutte le applicazioni</b> e selezionala."
 
 msgid ""
 "Copy the <b>Application (client) ID</b> and insert it into the form below on "
@@ -280,10 +289,11 @@ msgstr ""
 
 msgid ""
 "Under <b>Certificates & secrets</b>, choose <b>New client secret</b>, set <b>"
-"Expires</b> to <b>24 months</b> and click <b>Add</b>."
+"Expires</b> to <b>24 months</b>, add description and click <b>Add</b>."
 msgstr ""
-"In <b>Certificates & secrets</b>, scegli <b>New client secret</b>, imposta "
-"<b>Scade</b> a <b>24 mesi</b> e fai clic su <b>Aggiungi</b>."
+"In <b>Certificati e segreti</b>, scegliere <b>Nuovo segreto cliente</b>, "
+"impostare <b>Scadenza</b> su <b>24 mesi</b>, aggiungere una descrizione e "
+"fare clic su <b>Aggiungi</b>."
 
 msgid ""
 "Copy the app secret value from the <b>Client secrets</b> list before leaving "
@@ -1583,6 +1593,12 @@ msgstr "Tutto"
 msgid "Nothing selected"
 msgstr "Nessuna selezione"
 
+msgid "Interval"
+msgstr "Intervallo"
+
+msgid "Single appointment"
+msgstr "Appuntamento unico"
+
 msgid "Save"
 msgstr "Salva"
 
@@ -2151,6 +2167,9 @@ msgstr "Gratuito"
 msgid "Address"
 msgstr "Indirizzo"
 
+msgid "Full address"
+msgstr "Indirizzo completo"
+
 msgid "Follow these steps to get an API key:"
 msgstr "Segui questi passaggi per ottenere la chiave API:"
 
@@ -2427,6 +2446,9 @@ msgstr ""
 "Il rimborso non può essere elaborato. Riprova più tardi o elaboralo "
 "manualmente nel tuo sistema di pagamento"
 
+msgid "Error"
+msgstr "Errore"
+
 msgid "Error connecting to server."
 msgstr "Errore durante la connessione al server."
 
@@ -2511,9 +2533,6 @@ msgstr "Impossibile inviare SMS."
 
 msgid "Queued"
 msgstr "In coda"
-
-msgid "Error"
-msgstr "Errore"
 
 msgid "Out of credit"
 msgstr "Credito esaurito"
@@ -3075,6 +3094,9 @@ msgstr "Fatto"
 
 msgid "Start over"
 msgstr "Ricomincia da capo"
+
+msgid "Incorrect verification code"
+msgstr "Codice di verifica errato"
 
 msgid "Signed up"
 msgstr "Registrato"
@@ -7254,6 +7276,9 @@ msgstr "Il tuo pacchetto è stato creato."
 msgid "Display packages"
 msgstr "Visualizza pacchetti"
 
+msgid "Hidden packages"
+msgstr "Pacchetti nascosti"
+
 msgid "Package info"
 msgstr "Informazioni pacchetto"
 
@@ -8570,7 +8595,7 @@ msgstr "Modulo visualizzato per una prenotazione singola"
 msgid "Form view in case of multiple booking"
 msgstr "Modulo visualizzato per prenotazione multipla"
 
-#, php-format
+#, no-php-format
 msgid "Form in case of 100% discount"
 msgstr "Modulo visualizzato per il 100% di sconto"
 
@@ -8692,6 +8717,9 @@ msgstr "Mostra codice QR"
 msgid "Show cancellation reason"
 msgstr "Mostra il motivo della disdetta"
 
+msgid "Show badge"
+msgstr "Mostra badge"
+
 msgid "Default value"
 msgstr "Valore predefinito"
 
@@ -8769,6 +8797,24 @@ msgstr "Verifica il telefono"
 
 msgid "Verify email"
 msgstr "Verifica l'email"
+
+msgid "Hidden services"
+msgstr "Servizi nascosti"
+
+msgid "Hidden gift cards"
+msgstr "Carte regalo nascoste"
+
+msgid "Show information about time slot"
+msgstr "Mostra informazioni sulle fasce orarie"
+
+msgid "Available dates in calendar"
+msgstr "Date disponibili nel calendario"
+
+msgid "Display dates according to schedule"
+msgstr "Visualizza le date in base al programma"
+
+msgid "Disable dates without available timeslots"
+msgstr "Disabilita le date che non hanno fasce orarie disponibili"
 
 msgid "Add new form"
 msgstr "Aggiungi nuovo modulo"
@@ -8892,8 +8938,8 @@ msgstr "Importo da pagare"
 msgid "Resend code"
 msgstr "Rispedisci codice"
 
-msgid "Incorrect verification code"
-msgstr "Codice di verifica errato"
+msgid "The selected time is not available anymore"
+msgstr "L'orario selezionato non è più disponibile"
 
 msgid "Please select a category"
 msgstr "Seleziona una categoria"
@@ -9281,6 +9327,13 @@ msgstr ""
 
 msgid "Select card type"
 msgstr "Seleziona il tipo di carta"
+
+#, php-format
+msgid "Code %s already exists"
+msgstr "Il codice %s esiste già"
+
+msgid "Please resolve the duplication by changing code."
+msgstr "Puoi risolvere la duplicazione cambiando il codice."
 
 msgid "Please enter a non empty mask."
 msgstr "Inserisci una maschera non vuota."
@@ -9946,7 +9999,7 @@ msgstr "Salta passaggio pagamento"
 msgid "Total discount"
 msgstr "Sconto totale"
 
-#, php-format
+#, no-php-format
 msgid ""
 "Enter the fixed amount of discount (e.g. 10 off). To specify a percentage "
 "discount (e.g. 10% off), add '%' symbol to a numerical value."

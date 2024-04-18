@@ -83,15 +83,15 @@ class Ajax extends Lib\Base\Ajax
                 'locations' => $locasest,
                 'services' => $casest['services'],
                 'staff' => $casest['staff'],
-                'show_category_info' => (bool)get_option( 'bookly_app_show_category_info' ),
-                'show_service_info' => (bool)get_option( 'bookly_app_show_service_info' ),
-                'show_staff_info' => (bool)get_option( 'bookly_app_show_staff_info' ),
-                'show_ratings' => (bool)get_option( 'bookly_ratings_app_show_on_frontend' ),
-                'service_name_with_duration' => (bool)get_option( 'bookly_app_service_name_with_duration' ),
-                'staff_name_with_price' => (bool)get_option( 'bookly_app_staff_name_with_price' ),
-                'collaborative_hide_staff' => (bool)get_option( 'bookly_collaborative_hide_staff' ),
+                'show_category_info' => (bool) get_option( 'bookly_app_show_category_info' ),
+                'show_service_info' => (bool) get_option( 'bookly_app_show_service_info' ),
+                'show_staff_info' => (bool) get_option( 'bookly_app_show_staff_info' ),
+                'show_ratings' => (bool) get_option( 'bookly_ratings_app_show_on_frontend' ),
+                'service_name_with_duration' => (bool) get_option( 'bookly_app_service_name_with_duration' ),
+                'staff_name_with_price' => (bool) get_option( 'bookly_app_staff_name_with_price' ),
+                'collaborative_hide_staff' => (bool) get_option( 'bookly_collaborative_hide_staff' ),
                 'required' => array(
-                    'staff' => (int)get_option( 'bookly_app_required_employee' ),
+                    'staff' => (int) get_option( 'bookly_app_required_employee' ),
                 ),
                 'l10n' => array(
                     'category_label' => Lib\Utils\Common::getTranslatedOption( 'bookly_l10n_label_category' ),
@@ -218,13 +218,13 @@ class Ajax extends Lib\Base\Ajax
                 foreach ( $finder->getSlots() as $group => $group_slots ) {
                     /** @var Lib\Slots\Range[] $group_slots */
                     $slots_data[ $group ] = array(
-                        'title' => date_i18n( ( $finder->isServiceDurationInDays() ? 'M' : 'D, M d' ), strtotime( $group ) ),
+                        'title' => date_i18n( ( $finder->isServiceDurationInDays() ? 'M' : ( get_option( 'bookly_advanced_slot_date_format' ) ?: 'D, M d' ) ), strtotime( $group ) ),
                         'slots' => array(),
                     );
                     foreach ( $group_slots as $slot ) {
                         $slots_data[ $group ]['slots'][] = array(
                             'data' => $slot->buildSlotData(),
-                            'time_text' => $slot->start()->toClientTz()->formatI18n( $finder->isServiceDurationInDays() ? 'D, M d' : get_option( 'time_format' ) ),
+                            'time_text' => $slot->start()->toClientTz()->formatI18n( $finder->isServiceDurationInDays() ? ( get_option( 'bookly_advanced_slot_date_format' ) ?: 'D, M d' ) : get_option( 'time_format' ) ),
                             'status' => $block_time_slots ? 'booked' : ( $slot->waitingListEverStarted() ? 'waiting-list' : ( $slot->fullyBooked() ? 'booked' : '' ) ),
                             'additional_text' => $slot->waitingListEverStarted() ? '(' . $slot->maxOnWaitingList() . ')' : ( Lib\Config::groupBookingActive() ? Proxy\GroupBooking::getTimeSlotText( $slot ) : '' ),
                             'slot' => $slot,
@@ -274,7 +274,7 @@ class Ajax extends Lib\Base\Ajax
 
             $slots_data = Proxy\Shared::prepareSlotsData( $slots_data );
 
-            $slots_data = array_map( function ( $slot_data ) {
+            $slots_data = array_map( function( $slot_data ) {
                 unset ( $slot_data['slot'] );
 
                 return $slot_data;
@@ -354,13 +354,13 @@ class Ajax extends Lib\Base\Ajax
             foreach ( $finder->getSlots() as $group => $group_slots ) {
                 /** @var Lib\Slots\Range[] $group_slots */
                 $slots_data[ $group ] = array(
-                    'title' => date_i18n( ( $finder->isServiceDurationInDays() ? 'M' : 'D, M d' ), strtotime( $group ) ),
+                    'title' => date_i18n( ( $finder->isServiceDurationInDays() ? 'M' : ( get_option( 'bookly_advanced_slot_date_format' ) ?: 'D, M d' ) ), strtotime( $group ) ),
                     'slots' => array(),
                 );
                 foreach ( $group_slots as $slot ) {
                     $slots_data[ $group ]['slots'][] = array(
                         'data' => $slot->buildSlotData(),
-                        'time_text' => $slot->start()->toClientTz()->formatI18n( $finder->isServiceDurationInDays() ? 'D, M d' : get_option( 'time_format' ) ),
+                        'time_text' => $slot->start()->toClientTz()->formatI18n( $finder->isServiceDurationInDays() ? ( get_option( 'bookly_advanced_slot_date_format' ) ?: 'D, M d' ) : get_option( 'time_format' ) ),
                         'status' => $slot->waitingListEverStarted() ? 'waiting-list' : ( $slot->fullyBooked() ? 'booked' : '' ),
                         'additional_text' => $slot->waitingListEverStarted() ? '(' . $slot->maxOnWaitingList() . ')' : ( Lib\Config::groupBookingActive() ? Proxy\GroupBooking::getTimeSlotText( $slot ) : '' ),
                         'slot' => $slot,
@@ -370,7 +370,7 @@ class Ajax extends Lib\Base\Ajax
 
             $slots_data = Proxy\Shared::prepareSlotsData( $slots_data );
 
-            $slots_data = array_map( function ( $slot_data ) {
+            $slots_data = array_map( function( $slot_data ) {
                 unset ( $slot_data['slot'] );
 
                 return $slot_data;
@@ -511,7 +511,7 @@ class Ajax extends Lib\Base\Ajax
             $response = Proxy\Shared::stepOptions( array(
                 'success' => true,
                 'html' => $html,
-                'update_details_dialog' => (int)get_option( 'bookly_cst_show_update_details_dialog' ),
+                'update_details_dialog' => (int) get_option( 'bookly_cst_show_update_details_dialog' ),
                 'intlTelInput' => get_option( 'bookly_cst_phone_default_country' ) != 'disabled' ? array(
                     'enabled' => 1,
                     'utils' => plugins_url( 'intlTelInput.utils.js', Lib\Plugin::getDirectory() . '/frontend/resources/js/intlTelInput.utils.js' ),
@@ -736,7 +736,7 @@ class Ajax extends Lib\Base\Ajax
                         $parameters['captcha_ids'] = json_decode( $parameters['captcha_ids'], true );
                         foreach ( $parameters['cart'] as &$service ) {
                             // Remove captcha from custom fields.
-                            $custom_fields = array_filter( json_decode( $service['custom_fields'], true ), function ( $field ) use ( $parameters ) {
+                            $custom_fields = array_filter( json_decode( $service['custom_fields'], true ), function( $field ) use ( $parameters ) {
                                 return ! in_array( $field['id'], $parameters['captcha_ids'] );
                             } );
                             // Index the array numerically.
@@ -986,7 +986,7 @@ class Ajax extends Lib\Base\Ajax
         $userData = new Lib\UserBookingData( self::parameter( 'form_id' ) );
 
         if ( $userData->load() ) {
-            add_action( 'set_logged_in_cookie', function ( $logged_in_cookie ) {
+            add_action( 'set_logged_in_cookie', function( $logged_in_cookie ) {
                 $_COOKIE[ LOGGED_IN_COOKIE ] = $logged_in_cookie;
             } );
             /** @var \WP_User $user */

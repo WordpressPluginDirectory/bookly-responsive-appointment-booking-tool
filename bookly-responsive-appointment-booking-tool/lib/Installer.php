@@ -326,6 +326,8 @@ class Installer extends Base\Installer
             'bookly_l10n_step_service_category_info' => '{category_info}',
             'bookly_l10n_step_service_service_info' => '{service_info}',
             'bookly_l10n_step_service_staff_info' => '{staff_info}',
+            'bookly_l10n_incorrect_phone_verification_code' => __( 'Incorrect verification code', 'bookly' ),
+            'bookly_l10n_incorrect_email_verification_code' => __( 'Incorrect verification code', 'bookly' ),
             // Button Next.
             'bookly_l10n_step_service_button_next' => __( 'Next', 'bookly' ),
             'bookly_l10n_step_service_mobile_button_next' => __( 'Next', 'bookly' ),
@@ -754,7 +756,8 @@ class Installer extends Base\Installer
                 `full_address`       VARCHAR(255) DEFAULT NULL,
                 `notes`              TEXT NOT NULL,
                 `info_fields`        TEXT DEFAULT NULL,
-                `stripe_account`     VARCHAR(255) DEFAULT NULL,
+                `stripe_account`     VARCHAR(36) DEFAULT NULL,
+                `stripe_cloud_account` VARCHAR(36) DEFAULT NULL,
                 `attachment_id`      INT UNSIGNED DEFAULT NULL,
                 `created_at`         DATETIME NOT NULL
             ) ENGINE = INNODB
@@ -1113,11 +1116,11 @@ class Installer extends Base\Installer
     {
         global $wpdb;
         $wpml_strings_table = $wpdb->prefix . 'icl_strings';
-        $result = $wpdb->query( "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '$wpml_strings_table' AND TABLE_SCHEMA=SCHEMA()" );
+        $result = $wpdb->query( 'SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = \'' . $wpml_strings_table . '\' AND TABLE_SCHEMA=SCHEMA()' );
         if ( $result == 1 ) {
-            @$wpdb->query( "DELETE FROM {$wpdb->prefix}icl_string_translations WHERE string_id IN (SELECT id FROM $wpml_strings_table WHERE context='bookly')" );
-            @$wpdb->query( "DELETE FROM {$wpdb->prefix}icl_string_positions WHERE string_id IN (SELECT id FROM $wpml_strings_table WHERE context='bookly')" );
-            @$wpdb->query( "DELETE FROM $wpml_strings_table WHERE context='bookly'" );
+            @$wpdb->query( 'DELETE FROM ' . $wpdb->prefix . 'icl_string_translations WHERE string_id IN (SELECT id FROM ' . $wpml_strings_table . ' WHERE context=\'bookly\')' );
+            @$wpdb->query( 'DELETE FROM ' . $wpdb->prefix . 'icl_string_positions WHERE string_id IN (SELECT id FROM ' . $wpml_strings_table . ' WHERE context=\'bookly\')' );
+            @$wpdb->query( 'DELETE FROM ' . $wpml_strings_table . ' WHERE context=\'bookly\'' );
         }
     }
 }

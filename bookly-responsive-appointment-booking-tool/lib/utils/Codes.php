@@ -363,6 +363,7 @@ abstract class Codes
             $codes['participants'][] = self::getCustomerAppointmentCodes( $customer_appointment );
             $codes['signed_up'] += $customer_appointment->getNumberOfPersons();
             $codes['number_of_persons'] += $customer_appointment->getNumberOfPersons();
+            $codes['booking_number'] = Lib\Config::groupBookingActive() ? $codes['appointment_id'] . '-' . $customer_appointment->getId() : $customer_appointment->getId();
             $appointment_notes[] = $customer_appointment->getNotes();
             $client_names[] = $customer_appointment->customer->getFullName();
         }

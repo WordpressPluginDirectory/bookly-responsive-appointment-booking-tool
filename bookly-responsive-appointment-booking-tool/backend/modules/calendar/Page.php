@@ -293,7 +293,7 @@ class Page extends Lib\Base\Ajax
             $codes['appointment_id'] = $appointment['id'];
             $codes['appointment_date'] = DateTime::formatDate( $appointment['start_date'] );
             $codes['appointment_time'] = $appointment['duration'] >= DAY_IN_SECONDS && $appointment['start_time_info'] ? $appointment['start_time_info'] : Lib\Utils\DateTime::formatTime( $appointment['start_date'] );
-            $codes['booking_number'] = $appointment['id'];
+            $codes['booking_number'] = Config::groupBookingActive() ? $appointment['id'] . '-' . $appointment['ca_id'] : $appointment['ca_id'];
             $codes['internal_note'] = esc_html( $appointment['internal_note'] );
             $codes['on_waiting_list'] = $appointment['on_waiting_list'];
             $codes['service_name'] = $appointment['service_name'] ? esc_html( $appointment['service_name'] ) : __( 'Untitled', 'bookly' );

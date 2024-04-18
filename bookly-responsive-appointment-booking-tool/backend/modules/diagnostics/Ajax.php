@@ -336,9 +336,10 @@ class Ajax extends Lib\Base\Ajax
 
         // Filters.
         list ( $start, $end ) = explode( ' - ', $filter['created_at'], 2 );
-        $end = date( 'Y-m-d', strtotime( '+1 day', strtotime( $end ) ) );
-
-        $query->whereBetween( 'created_at', $start, $end );
+        if ( $start !== 'any' ) {
+            $end = date( 'Y-m-d', strtotime( '+1 day', strtotime( $end ) ) );
+            $query->whereBetween( 'created_at', $start, $end );
+        }
         if ( isset( $filter['search'] ) && $filter['search'] !== '' ) {
             $query->whereRaw( 'target LIKE "%%%s%" OR details LIKE "%%%s%" OR target_id LIKE "%%%s%" OR ref LIKE "%%%s%" OR comment LIKE "%%%s%" OR author LIKE "%%%s%"', array_fill( 0, 6, $wpdb->esc_like( $filter['search'] ) ) );
         }
@@ -356,8 +357,12 @@ class Ajax extends Lib\Base\Ajax
         }
 
         foreach ( $order as $sort_by ) {
-            $query->sortBy( str_replace( '.', '_', $columns[ $sort_by['column'] ]['data'] ) )
-                ->order( isset( $sort_by['dir'] ) && $sort_by['dir'] == 'desc' ? Lib\Query::ORDER_DESCENDING : Lib\Query::ORDER_ASCENDING );
+            $field = str_replace( '.', '_', $columns[ $sort_by['column'] ]['data'] );
+            $field = $field === 'created_at'
+                ? 'id'
+                : $field;
+            $query->sortBy( $field )
+                ->order( isset( $sort_by['dir'] ) && $sort_by['dir'] === 'desc' ? Lib\Query::ORDER_DESCENDING : Lib\Query::ORDER_ASCENDING );
         }
 
         $logs = $query->fetchArray();

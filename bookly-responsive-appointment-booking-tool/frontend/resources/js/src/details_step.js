@@ -256,8 +256,12 @@ export default function stepDetails(params) {
             $cf_date.pickadate({
                 formatSubmit: 'yyyy-mm-dd',
                 format: opt[params.form_id].date_format,
-                min: $(this).data('min') !== '' ? $(this).data('min').split('-').map(function (value, index) { if (index === 1) return value - 1; else return parseInt(value);}) : false,
-                max: $(this).data('max') !== '' ? $(this).data('max').split('-').map(function (value, index) { if (index === 1) return value - 1; else return parseInt(value);}) : false,
+                min: $(this).data('min') !== '' ? $(this).data('min').split('-').map(function (value, index) {
+                    if (index === 1) return value - 1; else return parseInt(value);
+                }) : false,
+                max: $(this).data('max') !== '' ? $(this).data('max').split('-').map(function (value, index) {
+                    if (index === 1) return value - 1; else return parseInt(value);
+                }) : false,
                 clear: false,
                 close: false,
                 today: BooklyL10n.today,
@@ -282,7 +286,8 @@ export default function stepDetails(params) {
                 preferredCountries: [intlTelInput.country],
                 initialCountry: intlTelInput.country,
                 geoIpLookup: function (callback) {
-                    $.get('https://ipinfo.io', function () {}, 'jsonp').always(function (resp) {
+                    $.get('https://ipinfo.io', function () {
+                    }, 'jsonp').always(function (resp) {
                         var countryCode = (resp && resp.country) ? resp.country : '';
                         callback(countryCode);
                     });
@@ -332,7 +337,9 @@ export default function stepDetails(params) {
                     $login_modal.find('input').addClass('bookly-error');
                     $login_modal.find('.bookly-label-error').html(opt[params.form_id].errors[response.error]);
                 }
-            }).finally(() => { ladda.stop(); })
+            }).finally(() => {
+                ladda.stop();
+            })
         });
         // Customer duplicate modal.
         $('button:submit', $cst_modal).on('click', function (e) {
@@ -588,6 +595,13 @@ export default function stepDetails(params) {
                         $verification_modal
                             .find('#bookly-verification-code-text').html(response.verify_text).end()
                             .addClass('bookly-in');
+                        let $error = $verification_modal.find('.bookly-js-verification-code-error');
+                        if (response.success === false && $verification_code.val()) {
+                            $verification_modal.find('#bookly-verification-code').addClass('bookly-error');
+                            $error.html(response.incorrect_code_text).show();
+                        } else {
+                            $error.hide();
+                        }
                     } else if (response.group_skip_payment) {
                         booklyAjax({
                             type: 'POST',

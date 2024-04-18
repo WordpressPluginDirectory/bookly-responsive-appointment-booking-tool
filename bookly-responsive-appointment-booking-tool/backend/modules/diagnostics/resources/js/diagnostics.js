@@ -103,10 +103,10 @@ jQuery(function ($) {
             formData.append('safe', $('[name=safe]', $(this).closest('.input-group')).prop('checked') ? '1' : '0');
             formData.append('import', e.target.files[0]);
             fetch(ajaxurl, {method: 'POST', body: formData})
-                .then(function(response) {
+                .then(function (response) {
                     return response.json();
                 })
-                .then(function(result) {
+                .then(function (result) {
                     if (result.success) {
                         booklyAlert({success: [result.data.message]});
                     } else {
@@ -117,7 +117,7 @@ jQuery(function ($) {
                         .on('bs.click.main.button', function (event, modal, mainButton) {
                             location.reload();
                         });
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('.modal-footer .btn-success', $modal).focus();
                     }, 500);
                 });
@@ -225,6 +225,29 @@ jQuery(function ($) {
                 if (response.success) {
                     window.open(response.data.url, '_blank').focus();
                 }
+            }
+        });
+    });
+
+    // Advanced options
+    $('#advanced-options').on('click', 'button', function (e) {
+        let ladda = Ladda.create(this);
+        let $input = $(this).closest('.bookly-js-diagnostic-option').find('input');
+        ladda.start();
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'bookly_diagnostics_ajax',
+                tool: 'AdvancedOptions',
+                ajax: 'apply',
+                option: $input.attr('name'),
+                value: $input.val(),
+                csrf_token: BooklyL10nGlobal.csrf_token
+            },
+            dataType: 'json',
+            success: function () {
+                ladda.stop();
             }
         });
     });
