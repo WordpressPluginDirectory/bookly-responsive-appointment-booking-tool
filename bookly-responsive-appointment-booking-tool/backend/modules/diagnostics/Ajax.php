@@ -164,7 +164,7 @@ class Ajax extends Lib\Base\Ajax
                 if ( isset( $data['plugins'] ) ) {
                     foreach ( $bookly_plugins as $plugin ) {
                         if ( array_key_exists( $plugin::getBasename(), $data['plugins'] ) ) {
-                            $info[] = $plugin::getTitle() . ' v' . $data['plugins'][ $plugin::getBasename() ] . ( version_compare( $plugin::getVersion(), $data['plugins'][ $plugin::getBasename() ], '==' ) ? '' : ' ⚠️' );
+                            $info[] = $plugin::getTitle() . ' v' . $data['plugins'][ $plugin::getBasename() ] . ( version_compare( $plugin::getVersion(), $data['plugins'][ $plugin::getBasename() ], '==' ) ? '' : ' ⚠️ code v' . $plugin::getVersion() );
                         } else {
                             deactivate_plugins( $plugin::getBasename(), true, is_network_admin() );
                         }
@@ -244,11 +244,17 @@ class Ajax extends Lib\Base\Ajax
                     }
 
                     $plugin_prefix = $plugin::getPrefix();
-                    $options_postfix = array( 'data_loaded', 'grace_start', 'db_version' );
+                    $options_postfix = array( 'data_loaded', 'grace_start' );
                     foreach ( $options_postfix as $option ) {
                         $option_name = $plugin_prefix . $option;
                         add_option( $option_name, $data['options'][ $option_name ] );
                     }
+
+                    $option_name = $plugin_prefix . 'db_version';
+                    $min_version = version_compare( $data['options'][ $option_name ], $plugin::getVersion(), '>' )
+                        ? $plugin::getVersion()
+                        : $data['options'][ $option_name ];
+                    add_option( $option_name, $min_version );
                 }
 
                 $wpdb->insert( $wpdb->prefix . 'bookly_log', array(
@@ -341,7 +347,7 @@ class Ajax extends Lib\Base\Ajax
             $query->whereBetween( 'created_at', $start, $end );
         }
         if ( isset( $filter['search'] ) && $filter['search'] !== '' ) {
-            $query->whereRaw( 'target LIKE "%%%s%" OR details LIKE "%%%s%" OR target_id LIKE "%%%s%" OR ref LIKE "%%%s%" OR comment LIKE "%%%s%" OR author LIKE "%%%s%"', array_fill( 0, 6, $wpdb->esc_like( $filter['search'] ) ) );
+            $query->whereRaw( 'target LIKE "%%%s%" OR details LIKE "%%%s%" OR target_id LIKE "%%%s%" OR ref LIKE "%%%s%" OR comment LIKE "%%%s%" OR author LIKE "%%%s%" OR id LIKE "%%%s%"', array_fill( 0, 7, $wpdb->esc_like( $filter['search'] ) ) );
         }
         if ( isset( $filter['target'] ) && $filter['target'] !== '' ) {
             $query->where( 'target_id', $filter['target'] );

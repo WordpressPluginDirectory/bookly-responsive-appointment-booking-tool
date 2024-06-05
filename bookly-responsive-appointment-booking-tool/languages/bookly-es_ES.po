@@ -8,8 +8,8 @@ msgstr ""
 "Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-09 10:43+0000\n"
-"PO-Revision-Date: 2024-04-16 10:46+0000\n"
+"POT-Creation-Date: 2024-05-20 10:10+0000\n"
+"PO-Revision-Date: 2024-05-23 13:33+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Spanish (Spain)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -122,8 +122,14 @@ msgstr "Facturas"
 msgid "Settings saved."
 msgstr "Configuración guardada."
 
+msgid "Download invoices"
+msgstr "Descargar facturas"
+
 msgid "Download selected invoices"
 msgstr "Descargar facturas seleccionadas"
+
+msgid "Download filtered invoices"
+msgstr "Descargar facturas filtradas"
 
 msgid "Show 'Download invoice' button"
 msgstr "Mostrar el botón 'Descargar factura'"
@@ -432,12 +438,14 @@ msgstr "Plantilla para el título del evento"
 
 msgid ""
 "Configure what information should be placed in the title of Outlook Calendar "
-"event. Available codes are {service_name}, {category_name}, {staff_name} and "
-"{client_names}."
+"event."
 msgstr ""
-"Configure qué información debe colocarse en el título del evento del "
-"calendario de Outlook. Los códigos disponibles son {service_name}, "
-"{category_name}, {staff_name} y {client_names}."
+"Configure qué información se debe colocar en el título del evento del "
+"Calendario de Outlook."
+
+#, php-format
+msgid "Available codes are %s and %s."
+msgstr "Los códigos disponibles son %s y %s."
 
 msgid "Template for event description"
 msgstr "Plantilla para la descripción del evento"
@@ -2401,6 +2409,19 @@ msgstr "Número de teléfono está vacía."
 #, php-format
 msgid "%d min"
 msgstr "%d min"
+
+msgid "Purchase code is not valid"
+msgstr "El código de compra no es válido"
+
+msgid "Purchase code is used on another account"
+msgstr "El código de compra se utiliza en otra cuenta."
+
+msgid ""
+"Purchase code verification is temporarily unavailable. Please try again "
+"later."
+msgstr ""
+"Verificación de código de compra no está disponible temporalmente. Por favor,"
+" inténtelo de nuevo más tarde."
 
 msgid "Bookly Cloud couldn't connect to your server."
 msgstr "Bookly Cloud no pudo conectarse a su servidor."
@@ -4836,6 +4857,9 @@ msgstr ""
 "El producto se desactivará inmediatamente. Para volver a habilitar el "
 "producto, deberá registrarse para obtener una nueva suscripción."
 
+msgid "Get started"
+msgstr "Empezar"
+
 msgid "Congrats!"
 msgstr "¡Felicidades!"
 
@@ -4844,6 +4868,9 @@ msgstr "mejor oferta"
 
 msgid "users choice"
 msgstr "elección de los usuarios"
+
+msgid "Purchase code"
+msgstr "Código de compra"
 
 msgid "Next billing date"
 msgstr "Siguiente fecha de facturación"
@@ -5323,9 +5350,6 @@ msgstr "Nombre de la categoría del personal"
 
 msgid "URL of staff photo (to use inside img tag)"
 msgstr "URL de la foto del personal (para usar dentro de la etiqueta img)"
-
-msgid "Previous month"
-msgstr "El mes anterior"
 
 msgid "Your custom CSS was saved. Please refresh the page to see your changes."
 msgstr ""
@@ -7764,13 +7788,6 @@ msgstr ""
 msgid "%s is not a valid purchase code for %s."
 msgstr "%s no es un código de compra válida para %s."
 
-msgid ""
-"Purchase code verification is temporarily unavailable. Please try again "
-"later."
-msgstr ""
-"Verificación de código de compra no está disponible temporalmente. Por favor,"
-" inténtelo de nuevo más tarde."
-
 #, php-format
 msgid "Your support period has expired on %s."
 msgstr "Su período de soporte ha expirado el %s. "
@@ -8163,12 +8180,10 @@ msgstr ""
 
 msgid ""
 "Configure what information should be placed in the title of Google Calendar "
-"event. Available codes are {service_name}, {category_name}, {staff_name} and "
-"{client_names}."
+"event."
 msgstr ""
-"Configure qué información debe colocarse en el título del evento del "
-"Calendario de Google. Los códigos disponibles son {service_name}, "
-"{category_name}, {staff_name} y {client_names}."
+"Configure qué información se debe colocar en el título del evento del "
+"Calendario de Google."
 
 msgid "To set up Facebook integration, do the following:"
 msgstr "Para configurar la integración de Facebook, haga lo siguiente:"
@@ -8998,10 +9013,10 @@ msgstr "Nombre del formulario de apariencia"
 
 #, php-format
 msgid ""
-"Check status of this option in Settings > Calendar > <a href=\"%s\" "
+"Check status of this option in Settings > Additional > <a href=\"%s\" "
 "target=\"_blank\"/>Display front-end calendar</a>"
 msgstr ""
-"Verifique el estado de esta opción en Configuración > Calendario > <a "
+"Verifique el estado de esta opción en Configuración > Adicional > <a "
 "href=\"%s\" target=\"_blank\"/>Mostrar calendario front-end</a>"
 
 msgid "Titles"

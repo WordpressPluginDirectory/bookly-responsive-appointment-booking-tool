@@ -5,16 +5,10 @@ use Bookly\Frontend\Modules\Booking\Proxy as BookingProxy;
 use Bookly\Lib;
 use Bookly\Lib\Entities;
 use Bookly\Lib\CartItem;
-use Bookly\Lib\Payment;
 use BooklyPro\Backend\Modules\Appearance;
 
 class Request extends Lib\Base\Component
 {
-    const BOOKING_STATUS_COMPLETED = 'completed';
-    const BOOKING_STATUS_GROUP_SKIP_PAYMENT = 'group_skip_payment';
-    const BOOKING_STATUS_PAYMENT_IMPOSSIBLE = 'payment_impossible';
-    const BOOKING_STATUS_APPOINTMENTS_LIMIT_REACHED = 'appointments_limit_reached';
-
     /** @var array */
     protected $customer = array();
     /** @var Lib\UserBookingData */
@@ -206,7 +200,7 @@ class Request extends Lib\Base\Component
     {
         if ( $this->gateway === null ) {
             if ( Lib\Config::paymentStepDisabled() || BookingProxy\CustomerGroups::getSkipPayment( $this->getUserData()->getCustomer() ) ) {
-                $this->gateway = new Payment\NullGateway( $this );
+                $this->gateway = new Lib\Payment\NullGateway( $this );
             } else {
                 $gateway = $this->getGatewayName();
                 if ( $gateway === null ) {
@@ -222,7 +216,7 @@ class Request extends Lib\Base\Component
                         $this->gateway = $this->getGatewayByName( $payment->getType() );
                         $this->gateway->setPayment( $payment );
                     } else {
-                        $this->gateway = new Payment\ZeroGateway( $this );
+                        $this->gateway = new Lib\Payment\ZeroGateway( $this );
                         if ( $this->getCartInfo()->getPayNow() > 0 ) {
                             throw new \Exception( __( 'Incorrect payment data', 'bookly' ) );
                         }
@@ -235,10 +229,10 @@ class Request extends Lib\Base\Component
                             throw new \Exception( __( 'Incorrect payment data', 'bookly' ) );
                         }
                     } elseif ( ( $ci->getSubtotal() + $ci->getDiscount() ) > 0 ) {
-                        $this->gateway = new Payment\LocalGateway( $this );
+                        $this->gateway = new Lib\Payment\LocalGateway( $this );
                     } else {
                         // Coupon, Gift Card or Discounts make free service
-                        $this->gateway = new Payment\ZeroGateway( $this );
+                        $this->gateway = new Lib\Payment\ZeroGateway( $this );
                     }
                 }
             }
@@ -314,13 +308,13 @@ class Request extends Lib\Base\Component
     {
         switch ( $gateway ) {
             case Entities\Payment::TYPE_CLOUD_STRIPE:
-                return new Payment\StripeCloudGateway( $this );
+                return new Lib\Payment\StripeCloudGateway( $this );
             case Entities\Payment::TYPE_LOCAL:
-                return new Payment\LocalGateway( $this );
+                return new Lib\Payment\LocalGateway( $this );
             case Entities\Payment::TYPE_FREE:
-                return new Payment\ZeroGateway( $this );
+                return new Lib\Payment\ZeroGateway( $this );
             default:
-                return Payment\Proxy\Shared::getGatewayByName( $gateway, $this );
+                return Lib\Payment\Proxy\Shared::getGatewayByName( $gateway, $this );
         }
     }
 }

@@ -133,7 +133,7 @@ class Ajax extends Lib\Base\Ajax
             && ( $payment->getType() == Lib\Entities\Payment::TYPE_CLOUD_STRIPE )
         ) {
             $cloud = Lib\Cloud\API::getInstance();
-            if ( $cloud->stripe->refund( $payment->getRefId() ) ) {
+            if ( $cloud->getProduct( Lib\Cloud\Account::PRODUCT_STRIPE )->refund( $payment->getRefId() ) ) {
                 $payment
                     ->setStatus( Lib\Entities\Payment::STATUS_REFUNDED )
                     ->save();

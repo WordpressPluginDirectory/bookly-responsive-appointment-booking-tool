@@ -4,6 +4,7 @@ import stepExtras from './extras_step.js';
 import stepTime from './time_step.js';
 import stepCart from './cart_step.js';
 import Chain from './components/Chain.svelte';
+import Calendar from '../../../../../../../assets/js/frontend/components/Calendar.svelte';
 
 /**
  * Service step.
@@ -64,7 +65,7 @@ export default function stepService(params) {
 
         // Set up selects.
         if (serviceNameWithDuration) {
-            $.each(services, function(id, service) {
+            $.each(services, function (id, service) {
                 service.name = service.name + ' ( ' + service.duration + ' )';
             });
         }
@@ -102,41 +103,48 @@ export default function stepService(params) {
             }
         });
 
-        // Init Pickadate.
+        c.$on('changeMinDate', function (e) {
+            _cal.limits = {
+                start: new Date(e.detail[0], e.detail[1], e.detail[2]),
+                end: response.date_max ? new Date(response.date_max[0], response.date_max[1], response.date_max[2]) : false
+            }
+        })
+
         $date_from.data('date_min', response.date_min || true);
-        $date_from.pickadate({
-            formatSubmit: 'yyyy-mm-dd',
-            format: opt[params.form_id].date_format,
-            min: response.date_min || true,
-            max: response.date_max || true,
-            clear: false,
-            close: false,
-            today: BooklyL10n.today,
-            monthsFull: BooklyL10n.months,
-            monthsShort: BooklyL10n.monthsShort,
-            weekdaysFull: BooklyL10n.days,
-            weekdaysShort: BooklyL10n.daysShort,
-            labelMonthNext: BooklyL10n.nextMonth,
-            labelMonthPrev: BooklyL10n.prevMonth,
-            firstDay: opt[params.form_id].firstDay,
-            onSet: function(timestamp) {
-                if ($.isNumeric(timestamp.select)) {
-                    // Checks appropriate day of the week
-                    var date = new Date(timestamp.select);
-                    $('.bookly-js-week-days input:checkbox[value="' + (date.getDay() + 1) + '"]:not(:checked)', $container).attr('checked', true).trigger('change');
+        let _cal = new Calendar({
+            target: $('.bookly-js-datepicker-calendar', $container).get(0),
+            props: {
+                datePicker: BooklyL10nGlobal.datePicker,
+                date: $date_from.data('value'),
+                startDate: new Date($date_from.data('value')),
+                loading: false,
+                show: false,
+                border: true,
+                limits: {
+                    start: response.date_min ? new Date(response.date_min[0], response.date_min[1], response.date_min[2]) : new Date(),
+                    end: response.date_max ? new Date(response.date_max[0], response.date_max[1], response.date_max[2]) : false
                 }
-            },
-            onClose: function() {
-                $date_from.data('updated', true);
-                // Hide for skip tab navigations by days of the month when the calendar is closed
-                $('#' + $date_from.attr('aria-owns')).hide();
-            },
-        }).focusin(function() {
-            // Restore calendar visibility, changed on onClose
-            $('#' + $date_from.attr('aria-owns')).show();
+            }
         });
 
-        $('.bookly-js-go-to-cart', $container).on('click', function(e) {
+        $date_from.val(moment($date_from.data('value')).format(BooklyL10nGlobal.datePicker.format));
+
+        $(document).on('click', function (e) {
+            if ($(e.target).closest('.bookly-js-available-date').length === 0) {
+                _cal.show = false;
+            }
+        }).trigger('click');
+
+        $date_from.on('focus', function (e) {
+            _cal.show = true;
+        });
+
+        _cal.$on('change', function () {
+            _cal.show = false;
+            $date_from.val(moment(_cal.date).format(BooklyL10nGlobal.datePicker.format));
+        });
+
+        $('.bookly-js-go-to-cart', $container).on('click', function (e) {
             e.stopPropagation();
             e.preventDefault();
             laddaStart(this);
@@ -154,7 +162,7 @@ export default function stepService(params) {
         }
 
         // time from
-        $select_time_from.on('change', function() {
+        $select_time_from.on('change', function () {
             var start_time = $(this).val(),
                 end_time = $select_time_to.val(),
                 $last_time_entry = $('option:last', $select_time_from);
@@ -164,7 +172,7 @@ export default function stepService(params) {
             // case when we click on the not last time entry
             if ($select_time_from[0].selectedIndex < $last_time_entry.index()) {
                 // clone and append all next "time_from" time entries to "time_to" list
-                $('option', this).each(function() {
+                $('option', this).each(function () {
                     if ($(this).val() > start_time) {
                         $select_time_to.append($(this).clone());
                     }
@@ -178,11 +186,11 @@ export default function stepService(params) {
             $select_time_to.val(end_time >= first_value ? end_time : first_value);
         });
 
-        let stepServiceValidator = function() {
+        let stepServiceValidator = function () {
             let valid = true,
                 $scroll_to = null;
 
-            $(c.validate()).each(function(_, status) {
+            $(c.validate()).each(function (_, status) {
                 if (!status.valid) {
                     valid = false;
                     let $el = $(status.el);
@@ -222,7 +230,7 @@ export default function stepService(params) {
         };
 
         // "Next" click
-        $next_step.on('click', function(e) {
+        $next_step.on('click', function (e) {
             e.stopPropagation();
             e.preventDefault();
 
@@ -245,7 +253,7 @@ export default function stepService(params) {
                     time_requirements = 0,
                     recurrence_enabled = 1,
                     _time_requirements = {'required': 2, 'optional': 1, 'off': 0};
-                $.each(c.getValues(), function(_, values) {
+                $.each(c.getValues(), function (_, values) {
                     let _service = services[values.serviceId];
 
                     chain.push({
@@ -268,7 +276,7 @@ export default function stepService(params) {
 
                 // Prepare days.
                 var days = [];
-                $('.bookly-js-week-days input:checked', $container).each(function() {
+                $('.bookly-js-week-days input:checked', $container).each(function () {
                     days.push(this.value);
                 });
                 booklyAjax({
@@ -277,7 +285,7 @@ export default function stepService(params) {
                         action: 'bookly_session_save',
                         form_id: params.form_id,
                         chain: chain,
-                        date_from: $date_from.pickadate('picker').get('select', 'yyyy-mm-dd'),
+                        date_from: _cal.date,
                         days: days,
                         time_from: opt[params.form_id].form_attributes.hide_time_range ? null : $select_time_from.val(),
                         time_to: opt[params.form_id].form_attributes.hide_time_range ? null : $select_time_to.val(),
@@ -300,7 +308,7 @@ export default function stepService(params) {
             }
         });
 
-        $mobile_next_step.on('click', function(e) {
+        $mobile_next_step.on('click', function (e) {
             e.stopPropagation();
             e.preventDefault();
             if (stepServiceValidator()) {
@@ -322,7 +330,7 @@ export default function stepService(params) {
         if (opt[params.form_id].skip_steps.service_part1) {
             // Skip scrolling
             // Timeout to let form set default values
-            setTimeout(function() {
+            setTimeout(function () {
                 opt[params.form_id].scroll = false;
                 $mobile_next_step.trigger('click');
                 $('.bookly-stepper li:eq(0)', $container).addClass('bookly-step-active');
@@ -330,7 +338,7 @@ export default function stepService(params) {
             }, 0);
             $mobile_prev_step.remove();
         } else {
-            $mobile_prev_step.on('click', function(e) {
+            $mobile_prev_step.on('click', function (e) {
                 e.stopPropagation();
                 e.preventDefault();
                 $('.bookly-js-mobile-step-1', $container).show();

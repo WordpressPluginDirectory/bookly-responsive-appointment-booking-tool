@@ -43,7 +43,7 @@ class Ajax extends Lib\Base\Ajax
                         $ca->setStatus( Lib\Entities\CustomerAppointment::STATUS_CANCELLED );
                         break;
                     default:
-                        $busy_statuses = (array) Lib\Proxy\CustomStatuses::prepareBusyStatuses( array() );
+                        $busy_statuses = Lib\Proxy\CustomStatuses::prepareBusyStatuses( array() );
                         if ( in_array( $ca->getStatus(), $busy_statuses ) ) {
                             $ca->setStatus( Lib\Entities\CustomerAppointment::STATUS_CANCELLED );
                         } else {

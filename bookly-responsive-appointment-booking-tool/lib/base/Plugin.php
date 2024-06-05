@@ -421,7 +421,7 @@ abstract class Plugin
     }
 
     /**
-     * Check if add-on is embedded.
+     * Check is product.
      *
      * @return bool
      */

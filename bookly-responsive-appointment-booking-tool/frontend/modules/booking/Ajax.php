@@ -54,7 +54,7 @@ class Ajax extends Lib\Base\Ajax
                 // Check all available days.
                 $days_checked = array_keys( $days_times['days'] );
             }
-            $bounding = Lib\Config::getBoundingDaysForPickadate();
+            $bounding = Lib\Config::getDateLimits();
 
             $casest = Lib\Config::getCaSeSt();
 
@@ -210,7 +210,10 @@ class Ajax extends Lib\Base\Ajax
 
             $show_blocked_slots = Lib\Config::showBlockedTimeSlots();
             $finder = new Lib\Slots\Finder( $userData, null, null, null, array(), null, Lib\Config::showSingleTimeSlotPerDay() );
-            $finder->setSelectedDate( Lib\Config::showSingleTimeSlot() ? null : self::parameter( 'selected_date', $userData->getDateFrom() ) );
+            $slots = $userData->getSlots();
+            $selected_date = isset ( $slots[0][2] ) ? $slots[0][2] : $userData->getDateFrom();
+
+            $finder->setSelectedDate( Lib\Config::showSingleTimeSlot() ? null : self::parameter( 'selected_date', $selected_date ) );
             $slots_data = array();
             $block_time_slots = false;
             while ( true ) {
@@ -289,13 +292,14 @@ class Ajax extends Lib\Base\Ajax
                 'day_one_column' => Lib\Config::showDayPerColumn(),
                 'slots_data' => $slots_data,
                 'selected_date' => $selected_date,
+                'current_date' => self::parameter( 'selected_date' ),
                 'time_slots_wide' => Lib\Config::showWideTimeSlots(),
                 'show_calendar' => Lib\Config::showCalendar(),
                 'is_rtl' => is_rtl(),
                 'html' => self::renderTemplate( '3_time', array(
                     'progress_tracker' => $progress_tracker,
                     'info_text' => $info_text,
-                    'date' => Lib\Config::showCalendar() ? $finder->getSelectedDateForPickadate() : null,
+                    'date' => Lib\Config::showCalendar() ? $finder->getSelectedDateForCalendar() : null,
                     'has_slots' => ! empty ( $slots_data ),
                     'show_cart_btn' => self::_showCartButton( $userData ),
                     'userData' => $userData,
@@ -319,10 +323,12 @@ class Ajax extends Lib\Base\Ajax
                         $response['date_min'] = $date_with_slot;
                     }
                 } else {
-                    $bounding = Lib\Config::getBoundingDaysForPickadate( $userData->chain );
+                    $bounding = Lib\Config::getDateLimits( $userData->chain );
                     $response['date_max'] = $bounding['date_max'];
                     $response['date_min'] = $bounding['date_min'];
-                    $response['disabled_days'] = $finder->getDisabledDaysForPickadate();
+                    $disabled_days = $finder->getMonthDisabledDays();
+                    $response['disabled_days'] = $disabled_days['holidays'];
+                    $response['first_available_date'] = $disabled_days['first_available_date'];
                 }
             }
             $userData->sessionSave();
@@ -747,9 +753,11 @@ class Ajax extends Lib\Base\Ajax
                         $cf_per_service = Lib\Config::customFieldsPerService();
                         $merge_cf = Lib\Config::customFieldsMergeRepeating();
                         foreach ( $userData->cart->getItems() as $cart_key => $_cart_item ) {
-                            $cart[ $cart_key ] = $cf_per_service
-                                ? $parameters['cart'][ $merge_cf ? $_cart_item->getService()->getId() : $cart_key ]
-                                : $parameters['cart'][0];
+                            if ( ( $cf_per_service && isset( $parameters['cart'][ $merge_cf ? $_cart_item->getService()->getId() : $cart_key ] ) ) || ( ! $cf_per_service && isset( $parameters['cart'][0] ) ) ) {
+                                $cart[ $cart_key ] = $cf_per_service
+                                    ? $parameters['cart'][ $merge_cf ? $_cart_item->getService()->getId() : $cart_key ]
+                                    : $parameters['cart'][0];
+                            }
                         }
                         $parameters['cart'] = $cart;
                     }

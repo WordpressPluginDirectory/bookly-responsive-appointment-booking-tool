@@ -8,9 +8,9 @@ msgstr ""
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-09 10:47+0000\n"
-"PO-Revision-Date: 2024-04-12 10:26+0000\n"
-"Last-Translator: Birk Stern <birk.m.stern@gmail.com>\n"
+"POT-Creation-Date: 2024-05-20 10:10+0000\n"
+"PO-Revision-Date: 2024-05-23 15:55+0000\n"
+"Last-Translator: support@bookly.info\n"
 "Language-Team: German\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
 
@@ -128,8 +128,14 @@ msgstr "Rechnungen"
 msgid "Settings saved."
 msgstr "Einstellung wurden gespeichert."
 
+msgid "Download invoices"
+msgstr "Rechnungen herunterladen"
+
 msgid "Download selected invoices"
 msgstr "Ausgewählte Rechnungen herunterladen"
+
+msgid "Download filtered invoices"
+msgstr "Gefilterte Rechnungen herunterladen"
 
 msgid "Show 'Download invoice' button"
 msgstr "Schaltfläche \"Rechnung herunterladen\" anzeigen"
@@ -464,12 +470,14 @@ msgstr "Vorlage für Ereignistitel"
 
 msgid ""
 "Configure what information should be placed in the title of Outlook Calendar "
-"event. Available codes are {service_name}, {category_name}, {staff_name} and "
-"{client_names}."
+"event."
 msgstr ""
-"Legen Sie fest, welche Informationen in den Titel des Outlook Kalender-"
-"Ereignisses aufgenommen werden sollen. Verfügbare Codes sind {service_name}, "
-"{category_name}, {staff_name} und {client_names}."
+"Legen Sie fest, welche Informationen im Titel des Outlook-Kalender-"
+"Ereignisses angezeigt werden sollen."
+
+#, php-format
+msgid "Available codes are %s and %s."
+msgstr "Die verfügbaren Codes sind %s und %s."
 
 msgid "Template for event description"
 msgstr "Vorlage für Ereignisbeschreibung"
@@ -2492,6 +2500,20 @@ msgstr "Telefonnummer ist leer."
 #, php-format
 msgid "%d min"
 msgstr "%d min"
+
+msgid "Purchase code is not valid"
+msgstr "Der Einkaufscode ist nicht gültig"
+
+msgid "Purchase code is used on another account"
+msgstr "Der Einkaufscode wird von einem anderen Konto verwendet"
+
+# Registrierung Code-Verifikation ist vorübergehend nicht verfügbar. Bitte versuchen Sie es später noch einmal. wrong
+msgid ""
+"Purchase code verification is temporarily unavailable. Please try again "
+"later."
+msgstr ""
+"Die Überprüfung des Bestellcodes ist vorübergehend nicht verfügbar. Bitte "
+"versuchen Sie es später noch einmal."
 
 msgid "Bookly Cloud couldn't connect to your server."
 msgstr "Bookly Cloud konnte keine Verbindung zu Ihrem Server herstellen."
@@ -5014,6 +5036,9 @@ msgstr ""
 "Das Produkt wird sofort deaktiviert. Um das Produkt wieder zu aktivieren, "
 "müssen Sie ein neues Abonnement abschließen."
 
+msgid "Get started"
+msgstr "Jetzt loslegen"
+
 msgid "Congrats!"
 msgstr "Herzlichen Glückwunsch!"
 
@@ -5022,6 +5047,9 @@ msgstr "bestes Angebot"
 
 msgid "users choice"
 msgstr "Benutzer-Auswahl"
+
+msgid "Purchase code"
+msgstr "Einkaufscode"
 
 msgid "Next billing date"
 msgstr "Nächstes Abrechnungsdatum"
@@ -5521,9 +5549,6 @@ msgstr "Name der Mitarbeiterkategorie"
 
 msgid "URL of staff photo (to use inside img tag)"
 msgstr "Mitarbeiterbild-URL (zur Nutzung innerhalb eines img-Tags)"
-
-msgid "Previous month"
-msgstr "Vorheriger Monat"
 
 msgid "Your custom CSS was saved. Please refresh the page to see your changes."
 msgstr ""
@@ -8121,14 +8146,6 @@ msgstr ""
 msgid "%s is not a valid purchase code for %s."
 msgstr "%s ist kein gültiger Bestellcode für %s."
 
-# Registrierung Code-Verifikation ist vorübergehend nicht verfügbar. Bitte versuchen Sie es später noch einmal. wrong
-msgid ""
-"Purchase code verification is temporarily unavailable. Please try again "
-"later."
-msgstr ""
-"Die Überprüfung des Bestellcodes ist vorübergehend nicht verfügbar. Bitte "
-"versuchen Sie es später noch einmal."
-
 #, php-format
 msgid "Your support period has expired on %s."
 msgstr "Ihr Support-Zeitraum ist für %s abgelaufen."
@@ -8544,12 +8561,10 @@ msgstr ""
 
 msgid ""
 "Configure what information should be placed in the title of Google Calendar "
-"event. Available codes are {service_name}, {category_name}, {staff_name} and "
-"{client_names}."
+"event."
 msgstr ""
-"Legen Sie fest, welche Informationen in den Titel eines Google Kalender-"
-"Ereignisses aufgenommen werden sollen. Verfügbare Codes sind {service_name}, "
-"{category_name}, {staff_name} und {client_names}."
+"Legen Sie fest, welche Informationen im Titel des Google-Kalender-"
+"Ereignisses angezeigt werden sollen."
 
 msgid "To set up Facebook integration, do the following:"
 msgstr ""
@@ -9391,11 +9406,11 @@ msgstr "Darstellungsformularname"
 
 #, php-format
 msgid ""
-"Check status of this option in Settings > Calendar > <a href=\"%s\" "
+"Check status of this option in Settings > Additional > <a href=\"%s\" "
 "target=\"_blank\"/>Display front-end calendar</a>"
 msgstr ""
-"Überprüfen Sie den Status dieser Option in Einstellungen > Kalender > <a "
-"href=\"%s\" target=\"_blank\"/>Front-End-Kalender anzeigen</a>"
+"Sie können den Status dieser Option unter Einstellungen > Weitere > <a "
+"href=\"%s\" target=\"_blank\"/>Front-End-Kalender anzeigen</a> überprüfen."
 
 msgid "Titles"
 msgstr "Titel"

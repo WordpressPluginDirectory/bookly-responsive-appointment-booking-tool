@@ -831,7 +831,7 @@ class Staff extends Lib\Base\Entity
         Lib\Proxy\Pro::revokeGoogleCalendarToken( $this );
         if ( $this->getMobileStaffCabinetToken() ) {
             $cloud = Lib\Cloud\API::getInstance();
-            $cloud->mobile_staff_cabinet->revokeKeys( array ( $this->getMobileStaffCabinetToken() ) );
+            $cloud->getProduct( Lib\Cloud\Account::PRODUCT_MOBILE_STAFF_CABINET )->revokeKeys( array ( $this->getMobileStaffCabinetToken() ) );
         }
 
         parent::delete();

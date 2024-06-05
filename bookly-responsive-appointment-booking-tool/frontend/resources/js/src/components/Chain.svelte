@@ -1,11 +1,14 @@
 <script>
     import ChainItem from './ChainItem.svelte';
+    import {createEventDispatcher} from 'svelte';
 
     export let items = [];
     export let data = {};
     export let multiple = false;
 
     let els = [];
+
+    const dispatch = createEventDispatcher();
 
     function onAddItem() {
         items.push({});
@@ -28,7 +31,7 @@
 </script>
 
 {#each items as item, index (item)}
-    <ChainItem bind:this={els[index]} {...data} {item} {index} hasDropBtn="{multiple}" showDropBtn="{index > 0}" on:dropItem={onDropItem}/>
+    <ChainItem bind:this={els[index]} {...data} {item} {index} hasDropBtn="{multiple}" showDropBtn="{index > 0}" on:dropItem={onDropItem} on:changeMinDate={(e) => dispatch('changeMinDate', e.detail)}/>
 {/each}
 {#if multiple}
     <div class="bookly-box">

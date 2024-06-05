@@ -38,6 +38,17 @@ class Page extends Lib\Base\Component
             }
         }
 
+        usort( $tools, static function( $a, $b ) {
+            if ( $a->position === null && $b->position !== null ) {
+                return 1;
+            }
+            if ( $a->position !== null && $b->position === null ) {
+                return -1;
+            }
+
+            return $a->position > $b->position ? 1 : -1;
+        } );
+
         $tests = array();
         foreach ( glob( __DIR__ . '/tests/*.php' ) as $path ) {
             $test = basename( $path, '.php' );
@@ -63,7 +74,7 @@ class Page extends Lib\Base\Component
         $title = __( 'Diagnostics', 'bookly' );
         add_submenu_page(
             'bookly-menu', $title, $title, Lib\Utils\Common::getRequiredCapability(),
-            self::pageSlug(), function () { Page::render(); }
+            self::pageSlug(), function() { Page::render(); }
         );
     }
 }

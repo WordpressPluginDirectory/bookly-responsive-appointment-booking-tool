@@ -267,11 +267,99 @@ class QueryBuilder
         $prefix_len = strlen( $wpdb->prefix );
         $key = substr( $table, $prefix_len ) . '.' . $column;
         $ref = substr( $ref_table, $prefix_len ) . '.' . $ref_column;
-        if ( isset( $rules[ $key ][ $ref ] ) ) {
-            return $rules[ $key ][ $ref ];
-        } else {
-            return array( 'UPDATE_RULE' => null, 'DELETE_RULE' => null );
+        $result = isset( $rules[ $key ][ $ref ] )
+            ? $rules[ $key ][ $ref ]
+            : array( 'UPDATE_RULE' => null, 'DELETE_RULE' => null );
+
+        $fix = self::getConstraintFixRule( substr( $table, $prefix_len ), $column, substr( $ref_table, $prefix_len ), $ref_column );
+        if ( $fix ) {
+            $result['fix'] = $fix;
         }
+
+        return $result;
+    }
+
+    /**
+     * @param string $table
+     * @param string $column
+     * @param string $ref_table
+     * @param string $ref_column
+     * @return array|null
+     */
+    public static function getConstraintFixRule( $table, $column, $ref_table, $ref_column )
+    {
+        $rules = array(
+            'bookly_gift_cards' => array(
+                'customer_id' => array( 'bookly_customers.id' => 'UPDATE', ),
+            ),
+            'bookly_appointments' => array(
+                'location_id' => self::getCustomConstraintFix( 'bookly_locations.id', 'Add missing locations', 'Let`s create dummy locations named Dummy_*',
+                    function( $wp_table, $column, $wp_ref_table, $ref_column, $wpdb, $missing ) {
+                        foreach ( $missing as $id ) {
+                            $wpdb->insert( $wp_ref_table, array(
+                                'id' => $id,
+                                'name' => 'Dummy_' . str_pad( $id, 2, '_', STR_PAD_LEFT ),
+                            ) );
+                        }
+                    } ),
+                'service_id' => self::getCustomConstraintFix( 'bookly_services.id', 'Add missing services', 'Let`s create private dummy services named Dummy_*',
+                    function( $wp_table, $column, $wp_ref_table, $ref_column, $wpdb, $missing ) {
+                        foreach ( $missing as $id ) {
+                            $wpdb->insert( $wp_ref_table, array(
+                                'id' => $id,
+                                'title' => 'Dummy_' . str_pad( $id, 2, '_', STR_PAD_LEFT ),
+                                'visibility' => 'private',
+                            ) );
+                        }
+                    } ),
+                'staff_id' => self::getCustomConstraintFix( 'bookly_staff.id', 'Add missing staff', 'Let`s create archived dummy employees named Dummy_*',
+                    function( $wp_table, $column, $wp_ref_table, $ref_column, $wpdb, $missing ) {
+                        foreach ( $missing as $id ) {
+                            $wpdb->insert( $wp_ref_table, array(
+                                'id' => $id,
+                                'full_name' => 'Dummy_' . str_pad( $id, 2, '_', STR_PAD_LEFT ),
+                                'visibility' => 'archive',
+                            ) );
+                        }
+                    } ),
+            ),
+        );
+
+        if ( isset( $rules[ $table ][ $column ][ $ref_table . '.' . $ref_column ] ) ) {
+            $fix = array(
+                'action' => $rules[ $table ][ $column ][ $ref_table . '.' . $ref_column ],
+                'description' => '',
+                'button' => 'Custom fix',
+                'method' => function() {},
+            );
+            foreach ( array( 'description', 'button', 'method' ) as $key ) {
+                if ( isset( $rules[ $table ][ $column ][ $key ] ) ) {
+                    $fix[ $key ] = $rules[ $table ][ $column ][ $key ];
+                }
+            }
+
+            return $fix;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $field
+     * @param string $button_caption
+     * @param string $info
+     * @param callable $closure
+     * @param bool $ellipsis
+     * @return array
+     */
+    private static function getCustomConstraintFix( $field, $button_caption, $info, $closure, $ellipsis = true )
+    {
+        return array(
+            $field => 'METHOD',
+            'button' => $button_caption . ( $ellipsis ? '…' : '' ),
+            'description' => $info,
+            'method' => $closure,
+        );
     }
 
     /**

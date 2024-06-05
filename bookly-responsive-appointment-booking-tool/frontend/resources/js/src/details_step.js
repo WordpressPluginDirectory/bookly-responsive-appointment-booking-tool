@@ -7,6 +7,7 @@ import stepPayment, {handleErrorCartItemNotAvailable} from './payment_step.js';
 import stepComplete from './complete_step.js';
 import stepService from "./service_step";
 import stepExtras from "./extras_step";
+import Calendar from '../../../../../../../assets/js/frontend/components/Calendar.svelte';
 
 /**
  * Details step.
@@ -250,34 +251,60 @@ export default function stepDetails(params) {
                 }
             }
         });
+
         // Custom fields date fields
+        let calendars = {};
+        $(document).on('click', function (e) {
+            let $calendar = $(e.target).closest('.bookly-js-datepicker-calendar-wrap'), _id;
+            if ($calendar.length !== 0) {
+                _id = $calendar.data('id');
+            }
+            Object.keys(calendars).forEach(id => {
+                if (id !== _id) calendars[id].show = false;
+            });
+        }).trigger('click');
         $('.bookly-js-cf-date', $container).each(function () {
-            let $cf_date = $(this);
-            $cf_date.pickadate({
-                formatSubmit: 'yyyy-mm-dd',
-                format: opt[params.form_id].date_format,
-                min: $(this).data('min') !== '' ? $(this).data('min').split('-').map(function (value, index) {
-                    if (index === 1) return value - 1; else return parseInt(value);
-                }) : false,
-                max: $(this).data('max') !== '' ? $(this).data('max').split('-').map(function (value, index) {
-                    if (index === 1) return value - 1; else return parseInt(value);
-                }) : false,
-                clear: false,
-                close: false,
-                today: BooklyL10n.today,
-                monthsFull: BooklyL10n.months,
-                weekdaysFull: BooklyL10n.days,
-                weekdaysShort: BooklyL10n.daysShort,
-                labelMonthNext: BooklyL10n.nextMonth,
-                labelMonthPrev: BooklyL10n.prevMonth,
-                firstDay: opt[params.form_id].firstDay,
-                onClose: function () {
-                    // Hide for skip tab navigations by days of the month when the calendar is closed
-                    $('#' + $cf_date.attr('aria-owns')).hide();
-                },
-            }).focusin(function () {
-                // Restore calendar visibility, changed on onClose
-                $('#' + $cf_date.attr('aria-owns')).show();
+            let $that = $(this),
+                id = $that.attr('id'),
+                props = {
+                    datePicker: BooklyL10nGlobal.datePicker,
+                    loading: false,
+                    show: false,
+                    border: true,
+                    limits: {}
+                }
+            ;
+            if ($that.data('value')) {
+                props.date = $that.data('value');
+                $that.val(moment($that.data('value')).format(BooklyL10nGlobal.datePicker.format));
+            }
+            let today = new Date();
+            if ($(this).data('min') !== '') {
+                let startDate = new Date($(this).data('min'));
+                props.limits.start = startDate;
+                if (startDate > today) {
+                    props.month = startDate.getMonth();
+                    props.year = startDate.getFullYear();
+                }
+            }
+            if ($(this).data('max') !== '') {
+                let endDate = new Date($(this).data('max'));
+                props.limits.end = new Date($(this).data('max'));
+                if (endDate < today) {
+                    props.month = endDate.getMonth();
+                    props.year = endDate.getFullYear();
+                }
+            }
+            calendars[id] = new Calendar({
+                target: $that.parent().find('.bookly-js-datepicker-calendar').get(0),
+                props: props
+            });
+            $(this).on('focus', function (e) {
+                calendars[id].show = true;
+            });
+            calendars[id].$on('change', function () {
+                calendars[id].show = false;
+                $that.val(moment(calendars[id].date).format(BooklyL10nGlobal.datePicker.format));
             });
         });
 
@@ -452,7 +479,7 @@ export default function stepDetails(params) {
                         case 'date':
                             info_fields.push({
                                 id: $this.data('id'),
-                                value: $this.find('input.bookly-js-info-field').pickadate('picker').get('select', 'yyyy-mm-dd')
+                                value: calendars[$this.find('.bookly-js-datepicker-calendar-wrap').data('id')].date
                             });
                             break;
                     }
@@ -506,7 +533,7 @@ export default function stepDetails(params) {
                                 case 'date':
                                     custom_fields_data.push({
                                         id: $this.data('id'),
-                                        value: $this.find('input.bookly-js-custom-field').pickadate('picker').get('select', 'yyyy-mm-dd')
+                                        value: calendars[$this.find('.bookly-js-datepicker-calendar-wrap').data('id')].date
                                     });
                                     break;
                                 case 'captcha':
@@ -544,6 +571,7 @@ export default function stepDetails(params) {
                         month: $birthday_month_field.val(),
                         year: $birthday_year_field.val()
                     },
+                    full_address: $('.bookly-js-cst-address-autocomplete', $container).val(),
                     country: $address_country_field.val(),
                     state: $address_state_field.val(),
                     postcode: $address_postcode_field.val(),

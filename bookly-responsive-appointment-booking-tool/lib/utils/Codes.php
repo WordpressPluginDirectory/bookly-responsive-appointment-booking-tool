@@ -359,6 +359,7 @@ abstract class Codes
 
         $appointment_notes = array();
         $client_names = array();
+        $client_phones = array();
         foreach ( $appointment->getCustomerAppointments( true ) as $customer_appointment ) {
             $codes['participants'][] = self::getCustomerAppointmentCodes( $customer_appointment );
             $codes['signed_up'] += $customer_appointment->getNumberOfPersons();
@@ -366,9 +367,11 @@ abstract class Codes
             $codes['booking_number'] = Lib\Config::groupBookingActive() ? $codes['appointment_id'] . '-' . $customer_appointment->getId() : $customer_appointment->getId();
             $appointment_notes[] = $customer_appointment->getNotes();
             $client_names[] = $customer_appointment->customer->getFullName();
+            $client_phones[] = $customer_appointment->customer->getPhone();
         }
         $codes['coupon'] = $codes['participants'] ? $codes['participants'][0]['coupon'] : '';
         $codes['client_names'] = implode( ', ', $client_names );
+        $codes['client_phones'] = implode( ', ', $client_phones );
         $codes['appointment_notes'] = implode( ', ', $appointment_notes );
 
         return Lib\Proxy\Shared::prepareAppointmentCodes( $codes, $appointment );

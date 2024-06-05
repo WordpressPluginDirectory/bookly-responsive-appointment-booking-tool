@@ -1,6 +1,7 @@
 <?php
 namespace Bookly\Lib;
 
+use Bookly\Lib\Cloud\Account;
 use Bookly\Lib\Entities\CustomerAppointment;
 use Bookly\Lib\Utils\Codes;
 use Bookly\Lib\Utils\Common;
@@ -333,12 +334,12 @@ abstract class Config
     }
 
     /**
-     * Get array with bounding days for Pickadate.
+     * Get array with date limits.
      *
      * @param Chain $chain
      * @return array
      */
-    public static function getBoundingDaysForPickadate( $chain = null )
+    public static function getDateLimits( $chain = null )
     {
         $result = array();
 
@@ -922,5 +923,15 @@ abstract class Config
         }
 
         return $result;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getProductsX()
+    {
+        return array(
+            Account::PRODUCT_SERVICE_EXTRAS => 'bookly-addon-service-extras',
+        );
     }
 }

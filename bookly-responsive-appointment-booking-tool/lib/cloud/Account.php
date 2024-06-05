@@ -30,14 +30,26 @@ class Account extends Base
     const PRODUCTS                       = '/1.0/users/%token%/products';                 //GET
 
     const PRODUCT_SMS_NOTIFICATIONS = 'sms';
-    const PRODUCT_STRIPE            = 'stripe';
-    const PRODUCT_ZAPIER            = 'zapier';
-    const PRODUCT_CRON              = 'cron';
-    const PRODUCT_VOICE             = 'voice';
-    const PRODUCT_SQUARE            = 'square';
-    const PRODUCT_GIFT              = 'gift';
-    const PRODUCT_WHATSAPP          = 'whatsapp';
+    const PRODUCT_STRIPE = 'stripe';
+    const PRODUCT_ZAPIER = 'zapier';
+    const PRODUCT_CRON = 'cron';
+    const PRODUCT_VOICE = 'voice';
+    const PRODUCT_SQUARE = 'square';
+    const PRODUCT_GIFT = 'gift';
+    const PRODUCT_WHATSAPP = 'whatsapp';
     const PRODUCT_MOBILE_STAFF_CABINET = 'mobile-staff-cabinet';
+
+    const PRODUCT_PAYU_LATAM = 'payu-latam';
+    const PRODUCT_PAYSON = 'payson';
+    const PRODUCT_2CHECKOUT = '2checkout';
+    const PRODUCT_AUTHORIZE_NET = 'authorize-net';
+    const PRODUCT_CART = 'cart';
+    const PRODUCT_COUPONS = 'coupons';
+    const PRODUCT_CUSTOM_FIELDS = 'custom-fields';
+    const PRODUCT_GROUP_BOOKING = 'group-booking';
+    const PRODUCT_MOLLIE = 'mollie';
+    const PRODUCT_STRIPE_CLASSIC = 'stripe-classic';
+    const PRODUCT_SERVICE_EXTRAS = 'service-extras';
 
     /** @var string */
     protected $username;

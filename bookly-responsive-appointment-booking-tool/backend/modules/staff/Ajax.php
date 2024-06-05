@@ -101,7 +101,11 @@ class Ajax extends Lib\Base\Ajax
 
         $data = $query->fetchArray();
 
-        unset( $filter['search'] );
+        foreach ( $data as &$row ) {
+            $row['color'] = esc_attr( $row['color'] );
+        }
+
+        unset( $filter['search'], $row );
 
         Lib\Utils\Tables::updateSettings( Lib\Utils\Tables::STAFF_MEMBERS, $columns, $order, $filter );
 

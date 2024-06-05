@@ -87,7 +87,13 @@ msgstr ""
 msgid "Settings saved."
 msgstr ""
 
+msgid "Download invoices"
+msgstr ""
+
 msgid "Download selected invoices"
+msgstr ""
+
+msgid "Download filtered invoices"
 msgstr ""
 
 msgid "Show 'Download invoice' button"
@@ -333,8 +339,11 @@ msgstr ""
 
 msgid ""
 "Configure what information should be placed in the title of Outlook Calendar "
-"event. Available codes are {service_name}, {category_name}, {staff_name} and "
-"{client_names}."
+"event."
+msgstr ""
+
+#, php-format
+msgid "Available codes are %s and %s."
 msgstr ""
 
 msgid "Template for event description"
@@ -1976,6 +1985,17 @@ msgstr ""
 
 #, php-format
 msgid "%d min"
+msgstr ""
+
+msgid "Purchase code is not valid"
+msgstr ""
+
+msgid "Purchase code is used on another account"
+msgstr ""
+
+msgid ""
+"Purchase code verification is temporarily unavailable. Please try again "
+"later."
 msgstr ""
 
 msgid "Bookly Cloud couldn't connect to your server."
@@ -4062,6 +4082,9 @@ msgid ""
 "need to sign up for a new subscription."
 msgstr ""
 
+msgid "Get started"
+msgstr ""
+
 msgid "Congrats!"
 msgstr ""
 
@@ -4069,6 +4092,9 @@ msgid "best offer"
 msgstr ""
 
 msgid "users choice"
+msgstr ""
+
+msgid "Purchase code"
 msgstr ""
 
 msgid "Next billing date"
@@ -4480,9 +4506,6 @@ msgid "Name of staff category"
 msgstr ""
 
 msgid "URL of staff photo (to use inside img tag)"
-msgstr ""
-
-msgid "Previous month"
 msgstr ""
 
 msgid "Your custom CSS was saved. Please refresh the page to see your changes."
@@ -6551,11 +6574,6 @@ msgstr ""
 msgid "%s is not a valid purchase code for %s."
 msgstr ""
 
-msgid ""
-"Purchase code verification is temporarily unavailable. Please try again "
-"later."
-msgstr ""
-
 #, php-format
 msgid "Your support period has expired on %s."
 msgstr ""
@@ -6863,8 +6881,7 @@ msgstr ""
 
 msgid ""
 "Configure what information should be placed in the title of Google Calendar "
-"event. Available codes are {service_name}, {category_name}, {staff_name} and "
-"{client_names}."
+"event."
 msgstr ""
 
 msgid "To set up Facebook integration, do the following:"
@@ -7586,7 +7603,7 @@ msgstr ""
 
 #, php-format
 msgid ""
-"Check status of this option in Settings > Calendar > <a href=\"%s\" target="
+"Check status of this option in Settings > Additional > <a href=\"%s\" target="
 "\"_blank\"/>Display front-end calendar</a>"
 msgstr ""
 

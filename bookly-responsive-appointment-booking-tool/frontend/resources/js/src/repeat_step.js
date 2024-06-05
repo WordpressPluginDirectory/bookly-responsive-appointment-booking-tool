@@ -3,6 +3,7 @@ import {opt, laddaStart, scrollTo, booklyAjax} from './shared.js';
 import stepExtras from './extras_step.js';
 import stepTime from './time_step.js';
 import stepCart from './cart_step.js';
+import Calendar from '../../../../../../../assets/js/frontend/components/Calendar.svelte';
 
 /**
  * Repeat step.
@@ -44,7 +45,8 @@ export default function stepRepeat(params, error) {
                 short_date_format = response.short_date_format,
                 bound_date = {min: response.date_min || true, max: response.date_max || true},
                 schedule = [],
-                customJS = response.custom_js
+                customJS = response.custom_js,
+                schedule_calendar
             ;
             var repeat = {
                 prepareButtonNextState: function () {
@@ -148,7 +150,7 @@ export default function stepRepeat(params, error) {
 
                         $pagination.html($btn);
                         for (i = 0, j = 1; i < count; i += 5, j++) {
-                            $btn = $('<li/>', {'data-page': j}).append($('<a>', {href: '#', text:j}));
+                            $btn = $('<li/>', {'data-page': j}).append($('<a>', {href: '#', text: j}));
                             $pagination.append($btn);
                             $btn.on('click', function (e) {
                                 e.preventDefault();
@@ -223,63 +225,83 @@ export default function stepRepeat(params, error) {
                                 $next_step.prop('disabled', false);
                                 break;
                             case 'edit':
-                                var $date = $('<input/>', {type: 'text'}),
+                                $schedule_slots.find('.bookly-schedule-row .bookly-js-datepicker-container').each(function () {
+                                    let $row = $(this).closest('.bookly-schedule-row'),
+                                        index = $row.data('index') - 1;
+                                    $row.find('button[data-action="edit"]').show();
+                                    $row.find('button[data-action="save"]').hide();
+                                    $row.find('.bookly-schedule-date').html(schedule[index].display_date);
+                                    $row.find('.bookly-js-schedule-time').html(schedule[index].display_time);
+                                });
+                                let slots = JSON.parse(schedule[row_index].slots),
+                                    current_date = slots[0][2].split(' ')[0],
+                                    $date = $('<input/>', {
+                                        type: 'text',
+                                        value: moment(current_date).format(short_date_format),
+                                    }),
                                     $edit_button = $(this),
                                     ladda_round = laddaStart(this);
-                                $schedule_row.find('.bookly-schedule-date').html($date);
-                                $date.pickadate({
-                                    min: bound_date.min,
-                                    max: bound_date.max,
-                                    formatSubmit: 'yyyy-mm-dd',
-                                    format: short_date_format,
-                                    clear: false,
-                                    close: false,
-                                    today: BooklyL10n.today,
-                                    monthsFull: BooklyL10n.months,
-                                    monthsShort: BooklyL10n.monthsShort,
-                                    weekdaysFull: BooklyL10n.days,
-                                    weekdaysShort: BooklyL10n.daysShort,
-                                    labelMonthNext: BooklyL10n.nextMonth,
-                                    labelMonthPrev: BooklyL10n.prevMonth,
-                                    firstDay: opt[params.form_id].firstDay,
-                                    onSet: function () {
-                                        var exclude = [];
-                                        $.each(schedule, function (index, item) {
-                                            if ((row_index != index) && !item.deleted) {
-                                                exclude.push(item.slots);
-                                            }
-                                        });
-                                        booklyAjax({
-                                            type: 'POST',
-                                            data: {
-                                                action: 'bookly_recurring_appointments_get_daily_customer_schedule',
-                                                date: this.get('select', 'yyyy-mm-dd'),
-                                                form_id: params.form_id,
-                                                exclude: exclude
-                                            }
-                                        }).then(response => {
-                                            $edit_button.hide();
-                                            ladda_round.stop();
-                                            if (response.data.length) {
-                                                repeat.addTimeSlotControl($schedule_row, response.data[0].options, preferred_time, schedule[row_index].display_time, response.data[0].all_day_service_time);
-                                                $schedule_row.find('button[data-action="save"]').show();
-                                            } else {
-                                                repeat.addTimeSlotControl($schedule_row, []);
-                                                $schedule_row.find('button[data-action="save"]').hide();
-                                            }
-                                        });
-                                    },
-                                    onClose: function () {
-                                        // Hide for skip tab navigations by days of the month when the calendar is closed
-                                        $('#' + $date.attr('aria-owns')).hide();
-                                    },
-                                }).focusin(function () {
-                                    // Restore calendar visibility, changed on onClose
-                                    $('#' + $date.attr('aria-owns')).show();
+                                $date.data('date', current_date);
+                                $schedule_row.find('.bookly-schedule-date').html($.merge($date, $('<div class="bookly-relative bookly-w-full bookly-z-10 bookly-js-datepicker-container" style="font-weight: normal;"><div class="bookly-absolute bookly-top-1 bookly-w-64 bookly-p-0 bookly-bg-white bookly-js-datepicker-calendar"></div></div>')));
+                                $date = $schedule_row.find('.bookly-schedule-date input');
+                                if (schedule_calendar) {
+                                    schedule_calendar.$destroy();
+                                }
+
+                                $(document).on('click', function (e) {
+                                    if ($(e.target).closest('.bookly-schedule-date').length === 0) {
+                                        schedule_calendar.show = false;
+                                    }
                                 });
 
-                                var slots = JSON.parse(schedule[row_index].slots);
-                                $date.pickadate('picker').set('select', new Date(slots[0][2]));
+                                schedule_calendar = new Calendar({
+                                    target: $schedule_row.find('.bookly-js-datepicker-calendar').get(0),
+                                    props: {
+                                        datePicker: BooklyL10nGlobal.datePicker,
+                                        loading: false,
+                                        show: false,
+                                        border: true,
+                                        date: current_date,
+                                        startDate: new Date(current_date),
+                                    }
+                                });
+                                $date.on('focus', function (e) {
+                                    schedule_calendar.show = true;
+                                });
+                                $date.on('change', function () {
+                                    var exclude = [];
+                                    $.each(schedule, function (index, item) {
+                                        if ((row_index != index) && !item.deleted) {
+                                            exclude.push(item.slots);
+                                        }
+                                    });
+                                    booklyAjax({
+                                        type: 'POST',
+                                        data: {
+                                            action: 'bookly_recurring_appointments_get_daily_customer_schedule',
+                                            date: $(this).data('date'),
+                                            form_id: params.form_id,
+                                            exclude: exclude
+                                        }
+                                    }).then(response => {
+                                        $edit_button.hide();
+                                        ladda_round.stop();
+                                        if (response.data.length) {
+                                            repeat.addTimeSlotControl($schedule_row, response.data[0].options, preferred_time, schedule[row_index].display_time, response.data[0].all_day_service_time);
+                                            $schedule_row.find('button[data-action="save"]').show();
+                                        } else {
+                                            repeat.addTimeSlotControl($schedule_row, []);
+                                            $schedule_row.find('button[data-action="save"]').hide();
+                                        }
+                                    });
+                                })
+                                schedule_calendar.$on('change', function () {
+                                    schedule_calendar.show = false;
+                                    $date.data('date', schedule_calendar.date);
+                                    $date.val(moment(schedule_calendar.date).format(short_date_format));
+                                    $date.trigger('change');
+                                });
+                                $date.trigger('change');
                                 break;
                             case 'save':
                                 $(this).hide();
@@ -337,8 +359,7 @@ export default function stepRepeat(params, error) {
                     var number_of_times = 0,
                         repeat_times = $repeat_times.val(),
                         date_from = bound_date.min.slice(),
-                        date_until = $date_until.pickadate('picker').get('select'),
-                        moment_until = moment().year(date_until.year).month(date_until.month).date(date_until.date).add(5, 'years');
+                        moment_until = moment(until_calendar.date).add(5, 'years');
                     date_from[1]++;
                     repeat.date_from = moment(date_from.join(','), 'YYYY,M,D');
 
@@ -359,14 +380,15 @@ export default function stepRepeat(params, error) {
                         }
                         current_date.add(1, 'days');
                     } while (number_of_times < repeat_times && current_date.isBefore(moment_until));
-                    $date_until.val(current_date.subtract(1, 'days').format('MMMM D, YYYY'));
-                    $date_until.pickadate('picker').set('select', new Date(current_date.format('YYYY'), current_date.format('M') - 1, current_date.format('D')))
+                    current_date.subtract(1, 'days');
+                    until_calendar.date = current_date.format('YYYY-MM-DD');
+                    until_calendar.startDate = new Date(current_date.format('YYYY-MM-DD'));
+                    $date_until.val(current_date.format(BooklyL10nGlobal.datePicker.format));
                 },
                 updateRepeatTimes: function () {
                     var number_of_times = 0,
                         date_from = bound_date.min.slice(),
-                        date_until = $date_until.pickadate('picker').get('select'),
-                        moment_until = moment().year(date_until.year).month(date_until.month).date(date_until.date);
+                        moment_until = moment(until_calendar.date).add(1, 'days');
 
                     date_from[1]++;
                     repeat.date_from = moment(date_from.join(','), 'YYYY,M,D');
@@ -392,27 +414,37 @@ export default function stepRepeat(params, error) {
                 }
             };
 
-            $date_until.pickadate({
-                formatSubmit: 'yyyy-mm-dd',
-                format: opt[params.form_id].date_format,
-                min: bound_date.min,
-                max: bound_date.max,
-                clear: false,
-                close: false,
-                today: BooklyL10n.today,
-                monthsFull: BooklyL10n.months,
-                weekdaysFull: BooklyL10n.days,
-                weekdaysShort: BooklyL10n.daysShort,
-                labelMonthNext: BooklyL10n.nextMonth,
-                labelMonthPrev: BooklyL10n.prevMonth,
-                firstDay: opt[params.form_id].firstDay,
-                onClose: function () {
-                    // Hide for skip tab navigations by days of the month when the calendar is closed
-                    $('#' + $date_until.attr('aria-owns')).hide();
-                },
-            }).focusin(function () {
-                // Restore calendar visibility, changed on onClose
-                $('#' + $date_until.attr('aria-owns')).show();
+            let until_calendar = new Calendar({
+                target: $date_until.parent().find('.bookly-js-datepicker-calendar').get(0),
+                props: {
+                    datePicker: BooklyL10nGlobal.datePicker,
+                    loading: false,
+                    show: false,
+                    border: true,
+                    date: $date_until.data('value'),
+                    startDate: new Date($date_until.data('value')),
+                    limits: {
+                        start: response.date_min ? new Date(response.date_min[0], response.date_min[1], response.date_min[2]) : new Date(),
+                        end: response.date_max ? new Date(response.date_max[0], response.date_max[1], response.date_max[2]) : false
+                    },
+                }
+            });
+
+            $date_until.val(moment($date_until.data('value')).format(BooklyL10nGlobal.datePicker.format));
+
+            $(document).on('click', function (e) {
+                if ($(e.target).closest('.bookly-js-repeat-until-wrap').length === 0) {
+                    until_calendar.show = false;
+                }
+            }).trigger('click');
+
+            $date_until.on('focus', function (e) {
+                until_calendar.show = true;
+            });
+
+            until_calendar.$on('change', function () {
+                until_calendar.show = false;
+                $date_until.val(moment(until_calendar.date).format(BooklyL10nGlobal.datePicker.format));
             });
 
             var open_repeat_onchange = $repeat_enabled.on('change', function () {
@@ -429,8 +461,8 @@ export default function stepRepeat(params, error) {
 
                 $repeat_enabled.prop('checked', true);
                 $repeat_variant.val(repeat_data.repeat);
-                var until = repeat_data.until.split('-');
-                $date_until.pickadate('set').set('select', new Date(until[0], until[1] - 1, until[2]));
+                until_calendar.date = repeat_data.until;
+                $date_until.val(moment(repeat_data.until).format(BooklyL10nGlobal.datePicker.format));
                 switch (repeat_data.repeat) {
                     case 'daily':
                         $repeat_every_day.val(repeat_params.every);
@@ -439,12 +471,12 @@ export default function stepRepeat(params, error) {
                     //break skipped
                     case 'biweekly':
                         $('.bookly-js-week-days input[type="checkbox"]', $repeat_container)
-                        .prop('checked', false)
-                        .parent()
-                        .removeClass('active');
+                            .prop('checked', false)
+                            .parent()
+                            .removeClass('active');
                         repeat_params.on.forEach(function (val) {
                             $('.bookly-js-week-days input:checkbox[value=' + val + ']', $repeat_container)
-                            .prop('checked', true);
+                                .prop('checked', true);
                         });
                         break;
                     case 'monthly':
@@ -492,7 +524,7 @@ export default function stepRepeat(params, error) {
                 repeat.updateRepeatTimes();
             });
 
-            $date_until.on('change', function () {
+            until_calendar.$on('change', function () {
                 repeat.updateRepeatTimes();
             });
 
@@ -510,7 +542,7 @@ export default function stepRepeat(params, error) {
                         action: 'bookly_recurring_appointments_get_customer_schedule',
                         form_id: params.form_id,
                         repeat: $repeat_variant.val(),
-                        until: $date_until.pickadate('picker').get('select', 'yyyy-mm-dd'),
+                        until: until_calendar.date,
                         params: {}
                     },
                     ladda = laddaStart(this);
@@ -578,7 +610,7 @@ export default function stepRepeat(params, error) {
                 stepCart({form_id: params.form_id, from_step: 'repeat'});
             });
 
-            $('.bookly-js-next-step', $container).on('click', function(e) {
+            $('.bookly-js-next-step', $container).on('click', function (e) {
                 e.stopPropagation();
                 e.preventDefault();
                 laddaStart(this);
@@ -595,7 +627,7 @@ export default function stepRepeat(params, error) {
                 if ($repeat_enabled.is(':checked')) {
                     var slots_to_send = [];
                     var repeat = 0;
-                    schedule.forEach(function(item) {
+                    schedule.forEach(function (item) {
                         if (!item.deleted) {
                             var slots = JSON.parse(item.slots);
                             slots_to_send = slots_to_send.concat(slots);

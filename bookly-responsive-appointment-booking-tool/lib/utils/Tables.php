@@ -251,6 +251,7 @@ abstract class Tables
                 break;
             case self::LOGS:
                 $columns = array(
+                    'id' => __( 'ID', 'bookly' ),
                     'created_at' => __( 'Date', 'bookly' ),
                     'action' => __( 'Action', 'bookly' ),
                     'target' => __( 'Target', 'bookly' ),

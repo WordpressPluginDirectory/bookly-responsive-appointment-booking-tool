@@ -135,7 +135,7 @@ class Ajax extends Lib\Base\Ajax
                 }
             }
             $locations = array();
-            foreach ( (array) Lib\Proxy\Locations::findByStaffId( $staff_member->getId() ) as $location ) {
+            foreach ( Lib\Proxy\Locations::findByStaffId( $staff_member->getId() ) ?: array() as $location ) {
                 $locations[] = array(
                     'id' => (int) $location->getId(),
                     'name' => $location->getName(),

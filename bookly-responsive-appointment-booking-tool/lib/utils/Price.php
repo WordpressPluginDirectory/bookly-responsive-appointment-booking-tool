@@ -34,6 +34,7 @@ abstract class Price
         'DOP' => array( 'symbol' => 'RD$', 'format' => '{symbol}{price|2}' ),
         'DZD' => array( 'symbol' => 'DA', 'format' => '{price|2} {symbol}' ),
         'EGP' => array( 'symbol' => 'EGP', 'format' => '{symbol} {price|2}' ),
+        'ETB' => array( 'symbol' => 'ብር', 'format' => '{price|2} {symbol}' ),
         'EUR' => array( 'symbol' => '€', 'format' => '{symbol}{price|2}' ),
         'FJD' => array( 'symbol' => 'F$', 'format' => '{symbol}{price|2}' ),
         'GBP' => array( 'symbol' => '£', 'format' => '{symbol}{price|2}' ),

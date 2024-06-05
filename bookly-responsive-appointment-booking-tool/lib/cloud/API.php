@@ -3,6 +3,7 @@ namespace Bookly\Lib\Cloud;
 
 use Bookly\Backend\Modules;
 use Bookly\Lib\Base\Cache;
+use Bookly\Lib\Config;
 use Bookly\Lib\Plugin;
 
 class API extends Cache
@@ -42,6 +43,8 @@ class API extends Cache
     public $whatsapp;
     /** @var MobileStaffCabinet */
     public $mobile_staff_cabinet;
+    /** @var ProductX[] */
+    public $productX = array();
 
     /**
      * Constructor.
@@ -51,15 +54,13 @@ class API extends Cache
         $this->token = get_option( 'bookly_cloud_token' );
         $this->general = new General( $this );
         $this->account = new Account( $this );
-        $this->sms = new SMS( $this );
-        $this->stripe = new Stripe( $this );
-        $this->zapier = new Zapier( $this );
-        $this->cron = new Cron( $this );
-        $this->voice = new Voice( $this );
-        $this->whatsapp = new WhatsApp( $this );
-        $this->mobile_staff_cabinet = new MobileStaffCabinet( $this );
-
-        Proxy\Shared::initApi( $this );
+        foreach ( get_option( 'bookly_cloud_account_products' ) ?: array() as $product ) {
+            // Init active products for listeners
+            $this->getProduct( $product );
+        }
+        foreach ( Config::getProductsX() as $product => $slug ) {
+            $this->productX[ $product ] = null;
+        }
     }
 
     /**
@@ -74,6 +75,39 @@ class API extends Cache
         }
 
         return self::getFromCache( __FUNCTION__ );
+    }
+
+    /**
+     * @param string $slug
+     * @return Product|Base
+     */
+    public function getProduct( $slug )
+    {
+        switch ( $slug ) {
+            case Account::PRODUCT_ZAPIER:
+                return $this->zapier = $this->zapier ?: new Zapier( $this );
+            case Account::PRODUCT_MOBILE_STAFF_CABINET:
+                return $this->mobile_staff_cabinet = $this->mobile_staff_cabinet ?: new MobileStaffCabinet( $this );
+            case Account::PRODUCT_WHATSAPP:
+                return $this->whatsapp = $this->whatsapp ?: new WhatsApp( $this );
+            case Account::PRODUCT_VOICE:
+                return $this->voice = $this->voice ?: new Voice( $this );
+            case Account::PRODUCT_CRON:
+                return $this->cron = $this->cron ?: new Cron( $this );
+            case Account::PRODUCT_STRIPE:
+                return $this->stripe = $this->stripe ?: new Stripe( $this );
+            case Account::PRODUCT_SMS_NOTIFICATIONS:
+                return $this->sms = $this->sms ?: new SMS( $this );
+            default:
+                if ( array_key_exists( $slug, $this->productX ) ) {
+                    if ( ! isset( $this->productX[ $slug ] ) ) {
+                        $this->productX[ $slug ] = $this->productX[ $slug ] ?: new ProductX( $this, $slug );
+                    }
+
+                    return $this->productX[ $slug ];
+                }
+                return Proxy\Shared::getProduct( $slug, $this );
+        }
     }
 
     /**

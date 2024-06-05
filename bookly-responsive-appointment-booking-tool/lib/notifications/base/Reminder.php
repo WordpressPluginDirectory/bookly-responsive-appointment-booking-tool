@@ -390,7 +390,7 @@ abstract class Reminder
             return true;
         }
 
-        return Cloud\API::getInstance()->sms->sendSms( $phone, $message['personal'], $message['impersonal'], $notification->getTypeId() );
+        return Cloud\API::getInstance()->getProduct( Cloud\Account::PRODUCT_SMS_NOTIFICATIONS )->sendSms( $phone, $message['personal'], $message['impersonal'], $notification->getTypeId() );
     }
 
     /**
@@ -424,7 +424,7 @@ abstract class Reminder
             return true;
         }
 
-        return Cloud\API::getInstance()->voice->call( $phone, $message['personal'], $message['impersonal'] );
+        return Cloud\API::getInstance()->getProduct( Cloud\Account::PRODUCT_VOICE )->call( $phone, $message['personal'], $message['impersonal'] );
     }
 
     /**

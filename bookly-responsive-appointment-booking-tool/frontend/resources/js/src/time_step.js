@@ -5,6 +5,7 @@ import stepExtras from './extras_step.js';
 import stepRepeat from './repeat_step.js';
 import stepCart from './cart_step.js';
 import stepDetails from './details_step.js';
+import Calendar from "../../../../../../../assets/js/frontend/components/Calendar.svelte";
 
 /**
  * Time step.
@@ -14,9 +15,13 @@ export default function stepTime(params, error_message) {
         if (!opt[params.form_id].skip_steps.extras && opt[params.form_id].step_extras == 'after_step_time' && !opt[params.form_id].no_extras) {
             stepExtras({form_id: params.form_id});
         } else if (!opt[params.form_id].skip_steps.cart) {
-            stepCart({form_id: params.form_id,add_to_cart: true, from_step: (params && params.prev_step) ? params.prev_step : 'service'});
+            stepCart({
+                form_id: params.form_id,
+                add_to_cart: true,
+                from_step: (params && params.prev_step) ? params.prev_step : 'service'
+            });
         } else {
-            stepDetails({form_id: params.form_id, add_to_cart : true});
+            stepDetails({form_id: params.form_id, add_to_cart: true});
         }
         return;
     }
@@ -26,13 +31,14 @@ export default function stepTime(params, error_message) {
         $container = opt[params.form_id].$container;
     if (opt[params.form_id].skip_steps.service && opt[params.form_id].use_client_time_zone) {
         // If Service step is skipped then we need to send time zone offset.
-        data.time_zone        = opt[params.form_id].timeZone;
+        data.time_zone = opt[params.form_id].timeZone;
         data.time_zone_offset = opt[params.form_id].timeZoneOffset;
     }
     $.extend(data, params);
     let columnizerObserver = false;
     let lastObserverTime = 0;
     let lastObserverWidth = 0;
+    let loadedMonths = [];
 
     // Build slots html
     function prepareSlotsHtml(slots_data, selected_date) {
@@ -61,25 +67,25 @@ export default function stepTime(params, error_message) {
             BooklyL10n.csrf_token = response.csrf_token;
 
             $container.html(response.html);
-            var $columnizer_wrap    = $('.bookly-columnizer-wrap', $container),
-                $columnizer         = $('.bookly-columnizer', $columnizer_wrap),
-                $time_next_button   = $('.bookly-time-next',  $container),
-                $time_prev_button   = $('.bookly-time-prev',  $container),
-                $current_screen     = null,
-                slot_height         = 36,
-                column_width        = response.time_slots_wide ? 205 : 127,
-                column_class        = response.time_slots_wide ? 'bookly-column bookly-column-wide' : 'bookly-column',
-                columns             = 0,
-                screen_index        = 0,
-                has_more_slots      = response.has_more_slots,
-                show_calendar       = response.show_calendar,
-                is_rtl              = response.is_rtl,
+            var $columnizer_wrap = $('.bookly-columnizer-wrap', $container),
+                $columnizer = $('.bookly-columnizer', $columnizer_wrap),
+                $time_next_button = $('.bookly-time-next', $container),
+                $time_prev_button = $('.bookly-time-prev', $container),
+                $current_screen = null,
+                slot_height = 36,
+                column_width = response.time_slots_wide ? 205 : 127,
+                column_class = response.time_slots_wide ? 'bookly-column bookly-column-wide' : 'bookly-column',
+                columns = 0,
+                screen_index = 0,
+                has_more_slots = response.has_more_slots,
+                show_calendar = response.show_calendar,
+                is_rtl = response.is_rtl,
                 $screens,
                 slots_per_column,
                 columns_per_screen,
                 show_day_per_column = response.day_one_column,
-                slots               = prepareSlotsHtml( response.slots_data, response.selected_date ),
-                customJS            = response.custom_js
+                slots = prepareSlotsHtml(response.slots_data, response.selected_date),
+                customJS = response.custom_js
             ;
             // 'BACK' button.
             $('.bookly-js-back-step', $container).on('click', function (e) {
@@ -97,16 +103,16 @@ export default function stepTime(params, error_message) {
                 }
             }).toggle(!opt[params.form_id].skip_steps.service || !opt[params.form_id].skip_steps.extras);
 
-            $('.bookly-js-go-to-cart', $container).on('click', function(e) {
+            $('.bookly-js-go-to-cart', $container).on('click', function (e) {
                 e.stopPropagation();
                 e.preventDefault();
                 laddaStart(this);
-                stepCart({form_id: params.form_id, from_step : 'time'});
+                stepCart({form_id: params.form_id, from_step: 'time'});
             });
 
             // Time zone switcher.
             $('.bookly-js-time-zone-switcher', $container).on('change', function (e) {
-                opt[params.form_id].timeZone       = this.value;
+                opt[params.form_id].timeZone = this.value;
                 opt[params.form_id].timeZoneOffset = undefined;
                 showSpinner();
                 requestRenderTime.cancel();
@@ -120,78 +126,58 @@ export default function stepTime(params, error_message) {
             });
 
             if (show_calendar) {
-                // Init calendar.
-                var $input = $('.bookly-js-selected-date', $container);
-                $input.pickadate({
-                    formatSubmit  : 'yyyy-mm-dd',
-                    format        : opt[params.form_id].date_format,
-                    min           : response.date_min || true,
-                    max           : response.date_max || true,
-                    weekdaysFull  : BooklyL10n.days,
-                    weekdaysShort : BooklyL10n.daysShort,
-                    monthsFull    : BooklyL10n.months,
-                    labelMonthNext: BooklyL10n.nextMonth,
-                    labelMonthPrev: BooklyL10n.prevMonth,
-                    firstDay      : opt[params.form_id].firstDay,
-                    clear         : false,
-                    close         : false,
-                    today         : false,
-                    disable       : response.disabled_days,
-                    closeOnSelect : false,
-                    klass : {
-                        picker: 'picker picker--opened picker--focused'
-                    },
-                    onSet: function(e) {
-                        if (e.select) {
-                            var date = this.get('select', 'yyyy-mm-dd');
-                            if (slots[date]) {
-                                // Get data from response.slots.
-                                $columnizer.html(slots[date]).css('left', '0px');
-                                columns = 0;
-                                screen_index = 0;
-                                $current_screen = null;
-                                initSlots();
-                                $time_prev_button.hide();
-                                $time_next_button.toggle($screens.length != 1);
-                            } else {
-                                // Load new data from server.
-                                requestRenderTime.cancel();
-                                stepTime({form_id: params.form_id, selected_date : date});
-                                showSpinner();
-                            }
-                        }
-                        this.open();   // Fix ultimate-member plugin
-                    },
-                    onClose: function() {
-                        this.open(false);
-                    },
-                    onRender: function() {
-                        var date = new Date(Date.UTC(this.get('view').year, this.get('view').month));
-                        $('.picker__nav--next', $container).on('click', function (e) {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            date.setUTCMonth(date.getUTCMonth() + 1);
-                            requestRenderTime.cancel();
-                            stepTime({form_id: params.form_id, selected_date: date.toJSON().substr(0, 10)});
-                            showSpinner();
-                        });
-                        $('.picker__nav--prev', $container).on('click', function (e) {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            date.setUTCMonth(date.getUTCMonth() - 1);
-                            requestRenderTime.cancel();
-                            stepTime({form_id: params.form_id, selected_date: date.toJSON().substr(0, 10)});
-                            showSpinner();
-                        });
+                let date = response.current_date ? (response.first_available_date ? response.first_available_date : response.current_date) : (response.selected_date ? response.selected_date.substring(0, 10) : $('.bookly-js-selected-date', $container).data('value'));
+                loadedMonths.push(moment(date).month() + '-' + moment(date).year());
+                let _cal = new Calendar({
+                    target: $('.bookly-js-slot-calendar', $container).get(0),
+                    props: {
+                        datePicker: BooklyL10nGlobal.datePicker,
+                        date: date,
+                        startDate: new Date(date),
+                        limits: {
+                            start: response.date_min ? new Date(response.date_min[0], response.date_min[1], response.date_min[2]) : new Date(),
+                            end: response.date_max ? new Date(response.date_max[0], response.date_max[1], response.date_max[2]) : false
+                        },
+                        holidays: response.disabled_days,
+                        loadedMonths: loadedMonths,
+                        loading: false,
+                        border: true,
                     }
                 });
-                // Insert slots for selected day.
-                var date = $input.pickadate('picker').get('select', 'yyyy-mm-dd');
+
+                function calendarMonthChange(date) {
+                    _cal.loading = true;
+                    requestRenderTime.cancel();
+                    stepTime({
+                        form_id: params.form_id,
+                        selected_date: date
+                    });
+                    showSpinner();
+                }
+
+                _cal.$on('change', function () {
+                    if (moment(_cal.date).month() !== moment(date).month()) {
+                        calendarMonthChange(_cal.date);
+                    } else {
+                        $columnizer.html(slots[_cal.date]).css('left', '0px');
+                        columns = 0;
+                        screen_index = 0;
+                        $current_screen = null;
+                        initSlots();
+                        $time_prev_button.hide();
+                        $time_next_button.toggle($screens.length != 1);
+                    }
+                });
+
+                _cal.$on('month-change', function () {
+                    calendarMonthChange(_cal.year + '-' + (_cal.month < 9 ? '0' + (_cal.month + 1) : _cal.month + 1) + '-01');
+                });
+
                 $columnizer.html(slots[date]);
             } else {
                 // Insert all slots.
                 var slots_data = '';
-                $.each(slots, function(group, group_slots) {
+                $.each(slots, function (group, group_slots) {
                     slots_data += group_slots;
                 });
                 $columnizer.html(slots_data);
@@ -314,9 +300,9 @@ export default function stepTime(params, error_message) {
             function showSpinner() {
                 $('.bookly-time-screen,.bookly-not-time-screen', $container).addClass('bookly-spin-overlay');
                 var opts = {
-                    lines : 11, // The number of lines to draw
+                    lines: 11, // The number of lines to draw
                     length: 11, // The length of each line
-                    width : 4,  // The line thickness
+                    width: 4,  // The line thickness
                     radius: 5   // The radius of the inner circle
                 };
                 if ($screens) {
@@ -328,9 +314,9 @@ export default function stepTime(params, error_message) {
             }
 
             function initSlots() {
-                var $buttons    = $('> button', $columnizer),
+                var $buttons = $('> button', $columnizer),
                     slots_count = 0,
-                    max_slots   = 0,
+                    max_slots = 0,
                     $button,
                     $column,
                     $screen;
@@ -348,7 +334,7 @@ export default function stepTime(params, error_message) {
                             $button.addClass('bookly-js-first-child');
                             $column.append($button);
                         } else {
-                            slots_count ++;
+                            slots_count++;
                             $button = $($buttons.splice(0, 1));
                             // If it is last slot in the column.
                             if (!$buttons.length || $buttons.eq(0).hasClass('bookly-day')) {
@@ -375,9 +361,9 @@ export default function stepTime(params, error_message) {
                             // If this is the first column of a screen and the first slot in this column is not day
                             // then put 1 slot less in this column because createScreens adds 1 more
                             // slot to such columns.
-                            -- max_slots;
+                            --max_slots;
                         }
-                        for (var i = 0; i < max_slots; ++ i) {
+                        for (var i = 0; i < max_slots; ++i) {
                             if (i + 1 == max_slots && $buttons.eq(0).hasClass('bookly-day')) {
                                 // Skip the last slot if it is day.
                                 break;
@@ -391,7 +377,7 @@ export default function stepTime(params, error_message) {
                             $column.append($button);
                         }
                         $columnizer.append($column);
-                        ++ columns;
+                        ++columns;
                     }
                 }
                 /**
@@ -449,7 +435,7 @@ export default function stepTime(params, error_message) {
                             form_id: params.form_id,
                             slots: this.value
                         };
-                    $this.attr({'data-style':'zoom-in','data-spinner-color':'#333','data-spinner-size':'40'});
+                    $this.attr({'data-style': 'zoom-in', 'data-spinner-color': '#333', 'data-spinner-size': '40'});
                     laddaStart(this);
 
                     // Execute custom JavaScript
@@ -539,5 +525,7 @@ export default function stepTime(params, error_message) {
                 columnizerObserver.observe($container.get(0));
             }
         })
-        .catch(response => { stepService({form_id: params.form_id}); })
-    }
+        .catch(response => {
+            stepService({form_id: params.form_id});
+        })
+}

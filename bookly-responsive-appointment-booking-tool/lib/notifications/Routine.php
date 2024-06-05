@@ -421,7 +421,7 @@ abstract class Routine
 
                                 // Extras
                                 $extras = '';
-                                $_extras = (array) Lib\Proxy\ServiceExtras::getInfo( json_decode( $appointment->extras, true ), false );
+                                $_extras = Lib\Proxy\ServiceExtras::getInfo( json_decode( $appointment->extras, true ), false ) ?: array();
                                 if ( ! empty ( $_extras ) ) {
                                     foreach ( $_extras as $extra ) {
                                         if ( $is_html ) {

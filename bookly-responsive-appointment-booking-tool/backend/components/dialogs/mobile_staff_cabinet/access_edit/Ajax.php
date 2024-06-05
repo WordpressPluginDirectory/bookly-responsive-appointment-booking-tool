@@ -33,10 +33,10 @@ class Ajax extends Lib\Base\Ajax
                 ->where( 'cloud_msc_token', $access_token )
                 ->execute();
             $staff->setMobileStaffCabinetToken( $access_token )->save();
-            if ( ! $api->mobile_staff_cabinet->patchKey( $access_token, $staff ) ) {
+            if ( ! $api->getProduct( Lib\Cloud\Account::PRODUCT_MOBILE_STAFF_CABINET )->patchKey( $access_token, $staff ) ) {
                 wp_send_json_error( array( 'message' => current( $api->getErrors() ) ) );
             }
-        } elseif ( ! $api->mobile_staff_cabinet->grantKey( $staff ) ) {
+        } elseif ( ! $api->getProduct( Lib\Cloud\Account::PRODUCT_MOBILE_STAFF_CABINET )->grantKey( $staff ) ) {
             wp_send_json_error( array( 'message' => current( $api->getErrors() ) ) );
         }
 

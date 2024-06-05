@@ -2,11 +2,10 @@
 namespace Bookly\Lib\Payment;
 
 use Bookly\Lib;
-use Bookly\Lib\Entities\Payment;
 
 class StripeCloudGateway extends Lib\Base\Gateway
 {
-    protected $type = Payment::TYPE_CLOUD_STRIPE;
+    protected $type = Lib\Entities\Payment::TYPE_CLOUD_STRIPE;
 
     /**
      * @inerhitDoc
@@ -38,7 +37,7 @@ class StripeCloudGateway extends Lib\Base\Gateway
     protected function createGatewayIntent()
     {
         $api = Lib\Cloud\API::getInstance();
-        $response = $api->stripe
+        $response = $api->getProduct( Lib\Cloud\Account::PRODUCT_STRIPE )
             ->createSession(
                 array(
                     'total' => $this->getGatewayAmount(),
@@ -71,7 +70,7 @@ class StripeCloudGateway extends Lib\Base\Gateway
     public function retrieveStatus()
     {
         $payment_intent = $this->payment->getRefId();
-        $data = Lib\Cloud\API::getInstance()->stripe->retrievePaymentIntent( $payment_intent );
+        $data = Lib\Cloud\API::getInstance()->getProduct( Lib\Cloud\Account::PRODUCT_STRIPE )->retrievePaymentIntent( $payment_intent );
         if ( ( $data['status'] !== 'canceled' )
             && strtoupper( $data['currency'] ) == Lib\Config::getCurrency()
         ) {

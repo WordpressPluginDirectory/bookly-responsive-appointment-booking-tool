@@ -85,12 +85,12 @@ class Query
     public function __construct( $entity, $default_alias = 'r' )
     {
         /** @var Base\Entity $entity */
-        $this->entity    = $entity;
+        $this->entity = $entity;
         $this->namespace = substr( $entity, 0, strrpos( $entity, '\\' ) );
-        $this->schema    = call_user_func( array ( $this->entity, 'getSchema' ) );
-        $this->alias     = $default_alias;
-        $this->target    = "`{$default_alias}`.*";
-        $this->sort_by   = "`{$default_alias}`.`id`";
+        $this->schema = call_user_func( array( $this->entity, 'getSchema' ) );
+        $this->alias = $default_alias;
+        $this->target = '`' . $default_alias . '`.*';
+        $this->sort_by = '`' . $default_alias . '`.`id`';
     }
 
     /**
@@ -112,7 +112,7 @@ class Query
     public function select( $target = null )
     {
         $this->type   = self::TYPE_SELECT;
-        $this->target = $target !== null ? $target : "`{$this->alias}`.*";
+        $this->target = $target !== null ? $target : '`' . $this->alias . '`.*';
 
         return $this;
     }
@@ -154,8 +154,8 @@ class Query
      */
     public function delete( $target = null )
     {
-        $this->type   = self::TYPE_DELETE;
-        $this->target = $target !== null ? $target : "`{$this->alias}`";
+        $this->type = self::TYPE_DELETE;
+        $this->target = $target !== null ? $target : '`' . $this->alias . '`';
 
         return $this;
     }
@@ -790,20 +790,20 @@ class Query
 
         // Join.
         foreach ( $this->joins as $alias => $t ) {
-            $join .= " {$t['type']} JOIN `{$t['table']}` AS `{$alias}` ON {$t['on']}";
+            $join .= ' ' . $t['type'] . ' JOIN `' . $t['table'] . '` AS `' . $alias . '` ON ' . $t['on'];
         }
         foreach ( $this->join_selects as $alias => $q ) {
             $query = $q['query'] instanceof self
                 ? $q['query']->composeQuery()
                 : $q['query'];
 
-            $join .= " {$q['type']} JOIN ( {$query} ) AS `{$alias}` ON {$q['on']}";
+            $join .= ' ' . $q['type'] . ' JOIN (' . $query . ') AS `' . $alias . '` ON ' . $q['on'];
         }
 
         // SET for UPDATE
         if ( ! empty( $this->set ) ) {
             foreach ( $this->set as $s ) {
-                if ( $s['type'] == 'set' ) {
+                if ( $s['type'] === 'set' ) {
                     list ( $field, $format ) = $this->_normalize( $s['column'] );
                     if ( $s['value'] === null ) {
                         $set .= $field . ' = NULL,';
@@ -811,7 +811,7 @@ class Query
                         $set .= $field . ' = ' . $format . ',';
                         $values[] = $s['value'];
                     }
-                } elseif ( $s['type'] == 'raw_set' ) {
+                } elseif ( $s['type'] === 'raw_set' ) {
                     $set .= $s['statement'] . ',';
                     foreach ( $s['values'] as $value ) {
                         $values[] = $value;
@@ -823,65 +823,65 @@ class Query
         // Where
         foreach ( $this->where as $q ) {
             // where
-            if ( $q['type'] == 'where' ) {
+            if ( $q['type'] === 'where' ) {
                 list ( $field, $format ) = $this->_normalize( $q['column'] );
-                $where .= " {$q['glue']} {$field} ";
+                $where .= ' ' . $q['glue'] . ' ' . $field . ' ';
                 if ( $q['value'] === null ) {
                     $where .= 'IS NULL';
                 } else {
-                    $where .= "= {$format}";
+                    $where .= '= ' . $format;
                     $values[] = $q['value'];
                 }
             } // where_not
-            elseif ( $q['type'] == 'not' ) {
+            elseif ( $q['type'] === 'not' ) {
                 list ( $field, $format ) = $this->_normalize( $q['column'] );
-                $where .= " {$q['glue']} {$field} ";
+                $where .= ' ' . $q['glue'] . ' ' . $field . ' ';
                 if ( $q['value'] === null ) {
                     $where .= 'IS NOT NULL';
                 } else {
-                    $where .= "!= {$format}";
+                    $where .= '!= ' . $format;
                     $values[] = $q['value'];
                 }
             } // where_like
-            elseif ( $q['type'] == 'like' ) {
+            elseif ( $q['type'] === 'like' ) {
                 list ( $field, $format ) = $this->_normalize( $q['column'] );
-                $where .= " {$q['glue']} {$field} LIKE {$format}";
+                $where .= ' ' . $q['glue'] . ' ' . $field . ' LIKE ' . $format;
                 $values[] = $q['value'];
             } // where_not_like
-            elseif ( $q['type'] == 'not_like' ) {
+            elseif ( $q['type'] === 'not_like' ) {
                 list ( $field, $format ) = $this->_normalize( $q['column'] );
-                $where .= " {$q['glue']} {$field} NOT LIKE {$format}";
+                $where .= ' ' . $q['glue'] . ' ' . $field . ' NOT LIKE ' . $format;
                 $values[] = $q['value'];
             } // where_lt
-            elseif ( $q['type'] == 'lt' ) {
+            elseif ( $q['type'] === 'lt' ) {
                 list ( $field, $format ) = $this->_normalize( $q['column'] );
-                $where .= " {$q['glue']} {$field} < {$format}";
+                $where .= ' ' . $q['glue'] . ' ' . $field . ' < ' . $format;
                 $values[] = $q['value'];
             } // where_lte
-            elseif ( $q['type'] == 'lte' ) {
+            elseif ( $q['type'] === 'lte' ) {
                 list ( $field, $format ) = $this->_normalize( $q['column'] );
-                $where .= " {$q['glue']} {$field} <= {$format}";
+                $where .= ' ' . $q['glue'] . ' ' . $field . ' <= ' . $format;
                 $values[] = $q['value'];
             } // where_gt
-            elseif ( $q['type'] == 'gt' ) {
+            elseif ( $q['type'] === 'gt' ) {
                 list ( $field, $format ) = $this->_normalize( $q['column'] );
-                $where .= " {$q['glue']} {$field} > {$format}";
+                $where .= ' ' . $q['glue'] . ' ' . $field . ' > ' . $format;
                 $values[] = $q['value'];
             } // where_gte
-            elseif ( $q['type'] == 'gte' ) {
+            elseif ( $q['type'] === 'gte' ) {
                 list ( $field, $format ) = $this->_normalize( $q['column'] );
-                $where .= " {$q['glue']} {$field} >= {$format}";
+                $where .= ' ' . $q['glue'] . ' ' . $field . ' >= ' . $format;
                 $values[] = $q['value'];
             } // where_in
-            elseif ( $q['type'] == 'in' ) {
+            elseif ( $q['type'] === 'in' ) {
                 list ( $field, $format ) = $this->_normalize( $q['column'] );
-                $where .= " {$q['glue']} {$field} IN (";
+                $where .= ' ' . $q['glue'] . ' ' . $field . ' IN (';
 
                 if ( empty ( $q['value'] ) ) {
                     $where .= 'NULL';
                 } else {
                     foreach ( $q['value'] as $value ) {
-                        $where .= "{$format},";
+                        $where .= $format . ',';
                         $values[] = $value;
                     }
                     $where = substr( $where, 0, - 1 );
@@ -889,49 +889,49 @@ class Query
 
                 $where .= ')';
             } // where_not_in
-            elseif ( $q['type'] == 'not_in' ) {
+            elseif ( $q['type'] === 'not_in' ) {
                 if ( ! empty ( $q['value'] ) ) {
                     list ( $field, $format ) = $this->_normalize( $q['column'] );
-                    $where .= " {$q['glue']} {$field} NOT IN (";
+                    $where .= ' ' . $q['glue'] . ' ' . $field . ' NOT IN (';
 
                     foreach ( $q['value'] as $value ) {
-                        $where .= "{$format},";
+                        $where .= $format . ',';
                         $values[] = $value;
                     }
 
                     $where = substr( $where, 0, - 1 ) . ')';
                 }
             } // where_any
-            elseif ( $q['type'] == 'any' ) {
-                $where .= " {$q['glue']} (";
+            elseif ( $q['type'] === 'any' ) {
+                $where .= ' ' . $q['glue'] . ' (';
 
                 foreach ( $q['where'] as $column => $value ) {
                     list ( $field, $format ) = $this->_normalize( $column );
-                    $where .= "{$field} = {$format} OR ";
+                    $where .= $field . ' = ' . $format . ' OR ';
                     $values[] = $value;
                 }
 
                 $where = substr( $where, 0, - 4 ) . ')';
             } // where_all
-            elseif ( $q['type'] == 'all' ) {
-                $where .= " {$q['glue']} (";
+            elseif ( $q['type'] === 'all' ) {
+                $where .= ' ' . $q['glue'] . ' (';
 
                 foreach ( $q['where'] as $column => $value ) {
                     list ( $field, $format ) = $this->_normalize( $column );
-                    $where .= "{$field} = {$format} AND ";
+                    $where .= $field . ' = ' . $format . ' AND ';
                     $values[] = $value;
                 }
 
                 $where = substr( $where, 0, - 5 ) . ')';
             } // between
-            elseif ( $q['type'] == 'between' ) {
+            elseif ( $q['type'] === 'between' ) {
                 list ( $field, $format ) = $this->_normalize( $q['column'] );
-                $where .= " {$q['glue']} {$field} BETWEEN {$format} AND {$format}";
+                $where .= ' ' . $q['glue'] . ' ' . $field . ' BETWEEN ' . $format . ' AND ' . $format;
                 $values[] = $q['start'];
                 $values[] = $q['end'];
             } // raw_where
-            elseif ( $q['type'] == 'raw_where' ) {
-                $where .= " {$q['glue']} ({$q['statement']})";
+            elseif ( $q['type'] === 'raw_where' ) {
+                $where .= ' ' . $q['glue'] . ' (' . $q['statement'] . ')';
                 foreach ( $q['values'] as $value ) {
                     $values[] = $value;
                 }
@@ -951,8 +951,8 @@ class Query
         // Having
         foreach ( $this->having as $q ) {
             // raw_having
-            if ( $q['type'] == 'raw_having' ) {
-                $having .= " {$q['glue']} ({$q['statement']})";
+            if ( $q['type'] === 'raw_having' ) {
+                $having .= ' ' . $q['glue'] . ' (' . $q['statement'] . ')';
                 foreach ( $q['values'] as $value ) {
                     $values[] = $value;
                 }
@@ -985,17 +985,17 @@ class Query
 
         // Query
         if ( $only_count ) {
-            return $this->_prepare( "SELECT COUNT(*) FROM `{$table}` AS `{$this->alias}`{$join}{$where}{$group}{$having}{$union_sql}", $values );
+            return $this->_prepare( 'SELECT COUNT(*) FROM `' . $table . '` AS `' . $this->alias . '`' . $join . $where . $group . $having . $union_sql, $values );
         }
 
         switch ( $this->type ) {
             case self::TYPE_DELETE:
-                return $this->_prepare( "DELETE {$this->target} FROM `{$table}` AS `{$this->alias}`{$join}{$where}", $values ) . $union_sql;
+                return $this->_prepare( 'DELETE ' . $this->target . ' FROM `' . $table . '` AS `' . $this->alias . '`' . $join . $where, $values ) . $union_sql;
             case self::TYPE_UPDATE:
-                return $this->_prepare( "UPDATE `{$table}` AS `{$this->alias}`{$join} SET {$set}{$where}", $values ) . $union_sql;
+                return $this->_prepare( 'UPDATE `' . $table . '` AS `' . $this->alias . '`' . $join . ' SET ' . $set . $where, $values ) . $union_sql;
             case self::TYPE_SELECT:
             default:
-                return $this->_prepare( "SELECT {$this->target} FROM `{$table}` AS `{$this->alias}`{$join}{$where}{$group}{$having}{$order}{$limit}{$offset}", $values ) . $union_sql;
+                return $this->_prepare( 'SELECT ' . $this->target . ' FROM `' . $table . '` AS `' . $this->alias . '`' . $join . $where . $group . $having . $order . $limit . $offset, $values ) . $union_sql;
         }
     }
 

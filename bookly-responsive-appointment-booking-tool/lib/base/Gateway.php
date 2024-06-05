@@ -38,6 +38,7 @@ abstract class Gateway
 
     /**
      * @return string
+     * @throw \LogicException
      */
     abstract public function retrieveStatus();
 

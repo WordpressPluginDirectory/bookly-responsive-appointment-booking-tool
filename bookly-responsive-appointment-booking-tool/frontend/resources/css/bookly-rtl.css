@@ -65,9 +65,6 @@
     margin-right: 0 !important;
     margin-left: 14px !important;
 }
-.bookly-form .picker__holder {
-    left: auto!important;
-}
 .bookly-mobile-step-1 {
     margin-left: -14px;
     margin-right: auto;
@@ -163,10 +160,6 @@
 
 /* Mobile */
 @media screen and (max-width: 650px) {
-    .bookly-form .picker__holder {
-        right: 0!important;
-    }
-
     .bookly-mobile-float-none {
         float: none !important;
     }

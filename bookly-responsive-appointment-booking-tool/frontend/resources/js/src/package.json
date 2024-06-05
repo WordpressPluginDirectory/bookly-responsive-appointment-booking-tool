@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "build": "rollup -c --environment minify && rollup -c",
-    "dev": "rollup -c -w"
+    "dev": "rollup -c -w",
+    "css": "npx tailwindcss -i ./tailwind.main.scss -o ../../css/tailwind.css"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

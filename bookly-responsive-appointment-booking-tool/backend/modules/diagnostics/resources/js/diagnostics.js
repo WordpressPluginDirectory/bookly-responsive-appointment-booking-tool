@@ -27,7 +27,7 @@ jQuery(function ($) {
                 $loading.hide();
                 $reload.show();
                 $failed.show();
-            },
+            }
         }).then(function (response) {
             if ($test.data('test') !== 'check-sessions') {
                 $loading.hide();
@@ -104,7 +104,11 @@ jQuery(function ($) {
             formData.append('import', e.target.files[0]);
             fetch(ajaxurl, {method: 'POST', body: formData})
                 .then(function (response) {
-                    return response.json();
+                    if (response.status == 200) {
+                        return response.json();
+                    }
+                    $spinner.hide();
+                    throw new Error(response.statusText + ' (' + response.status + ')');
                 })
                 .then(function (result) {
                     if (result.success) {
@@ -120,7 +124,9 @@ jQuery(function ($) {
                     setTimeout(function () {
                         $('.modal-footer .btn-success', $modal).focus();
                     }, 500);
-                });
+                }).catch(function (error) {
+                booklyAlert({error: ['Request failed: ' + error]});
+            });
         }
     });
     // Forms Data
@@ -230,9 +236,9 @@ jQuery(function ($) {
     });
 
     // Advanced options
-    $('#advanced-options').on('click', 'button', function (e) {
+    $('#advanced-options').on('click', 'button[data-action="set-default-option"]', function () {
         let ladda = Ladda.create(this);
-        let $input = $(this).closest('.bookly-js-diagnostic-option').find('input');
+        let $that = $(this);
         ladda.start();
         $.ajax({
             url: ajaxurl,
@@ -240,18 +246,96 @@ jQuery(function ($) {
             data: {
                 action: 'bookly_diagnostics_ajax',
                 tool: 'AdvancedOptions',
-                ajax: 'apply',
-                option: $input.attr('name'),
-                value: $input.val(),
+                ajax: 'setDefault',
+                option: $that.data('option'),
                 csrf_token: BooklyL10nGlobal.csrf_token
             },
             dataType: 'json',
             success: function () {
                 ladda.stop();
+                $that.closest('.bookly-js-advanced-option-card').hide();
+            }
+        });
+    }).on('click', '.bookly-js-advanced-options-option-name button', function () {
+        let ladda = Ladda.create(this);
+        ladda.start();
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'bookly_diagnostics_ajax',
+                tool: 'AdvancedOptions',
+                ajax: 'getOption',
+                option: $('#bookly-advanced-options-option-name').val(),
+                csrf_token: BooklyL10nGlobal.csrf_token
+            },
+            dataType: 'json',
+            success: function (response) {
+                ladda.stop();
+                if (response.success) {
+                    $('#bookly-advanced-options-option-current-value').val(response.data.current);
+                    $('#bookly-advanced-options-option-default-value').val(response.data.default);
+                    $('#bookly-advanced-options-option-value').val(response.data.current);
+                    $('.bookly-js-advanced-options-set-option').show();
+                } else {
+                    $('#bookly-advanced-options-option-current-value').val('');
+                    $('#bookly-advanced-options-option-default-value').val('');
+                    $('#bookly-advanced-options-option-value').val('');
+                    $('.bookly-js-advanced-options-set-option').hide();
+                    booklyAlert({error: ['Failed']});
+                }
+            }
+        });
+    }).on('click', '.bookly-js-advanced-options-set-option button', function () {
+        let ladda = Ladda.create(this);
+        ladda.start();
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'bookly_diagnostics_ajax',
+                tool: 'AdvancedOptions',
+                ajax: 'setOption',
+                option: $('#bookly-advanced-options-option-name').val(),
+                value: $('#bookly-advanced-options-option-value').val(),
+                csrf_token: BooklyL10nGlobal.csrf_token
+            },
+            dataType: 'json',
+            success: function () {
+                ladda.stop();
+                $('#bookly-advanced-options-option-current-value').val($('#bookly-advanced-options-option-value').val());
             }
         });
     });
 
+    // Optional logs
+    $('.bookly-js-enable-optional-logs').on('click', function () {
+        let $that = $(this),
+            ladda = Ladda.create(this);
+        ladda.start();
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'bookly_diagnostics_ajax',
+                tool: 'Logs',
+                ajax: 'enableLogs',
+                option: $that.closest('.bookly-js-optional-logs-entry').data('option'),
+                period: $that.data('period'),
+                csrf_token: BooklyL10nGlobal.csrf_token
+            },
+            dataType: 'json',
+            success: function (response) {
+                ladda.stop();
+                if (response.data.until) {
+                    $that.closest('.bookly-js-optional-logs-entry').find('.bookly-js-optional-logs-until').text(response.data.until);
+                    $that.closest('.bookly-js-optional-logs-entry').find('.bookly-js-optional-logs-active').show();
+                } else {
+                    $that.closest('.bookly-js-optional-logs-entry').find('.bookly-js-optional-logs-active').hide();
+                }
+            }
+        });
+    });
     // Logs
     $('#bookly_logs_expire').change(function (e) {
         $.ajax({
@@ -363,6 +447,7 @@ jQuery(function ($) {
             }
         },
         columns: [
+            {data: 'id', width: 40, responsivePriority: 0},
             {data: 'created_at', responsivePriority: 0},
             {
                 data: 'action', responsivePriority: 0,

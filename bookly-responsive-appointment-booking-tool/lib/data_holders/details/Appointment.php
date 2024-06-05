@@ -5,11 +5,10 @@ use Bookly\Lib;
 use Bookly\Lib\DataHolders\Booking\Item;
 use Bookly\Lib\Entities\CustomerAppointment;
 use Bookly\Lib\Entities\Service;
-use Bookly\Lib\Entities\Payment;
 
 class Appointment extends Base
 {
-    protected $type = Payment::ITEM_APPOINTMENT;
+    protected $type = Lib\Entities\Payment::ITEM_APPOINTMENT;
 
     protected $fields = array(
         'app_start_info',

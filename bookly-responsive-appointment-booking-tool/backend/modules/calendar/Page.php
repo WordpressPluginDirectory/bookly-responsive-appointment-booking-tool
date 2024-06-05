@@ -20,10 +20,8 @@ class Page extends Lib\Base\Ajax
             'module' => array( 'css/event-calendar.min.css' => array( 'bookly-backend-globals' ) ),
         ) );
 
-        $id = Lib\Entities\Appointment::query( 'a' )
-            ->select( 'MAX(id) as max_id' )
-            ->fetchRow();
-        update_option( 'bookly_cal_last_seen_appointment', $id['max_id'] );
+        $id = Lib\Entities\Appointment::query()->fetchVar( 'MAX(id)' );
+        update_option( 'bookly_cal_last_seen_appointment', $id ?: 0 );
 
         if ( Config::proActive() ) {
             if ( Common::isCurrentUserSupervisor() ) {
@@ -360,7 +358,7 @@ class Page extends Lib\Base\Ajax
                 $participants = 'many';
                 $template = $many_participants;
             }
-            $codes['appointment_color'] = $appointment['service_color'];
+            $codes['appointment_color'] = esc_attr( $appointment['service_color'] );
             $codes['appointment_end_time'] = ( $appointment['duration'] * $appointment['units'] >= DAY_IN_SECONDS && $appointment['start_time_info'] ? $appointment['end_time_info'] : DateTime::formatTime( $appointment['end_date'] ) );
 
             $codes = Proxy\Shared::prepareAppointmentCodesData( $codes, $appointment, $participants );
@@ -382,7 +380,7 @@ class Page extends Lib\Base\Ajax
                 'start' => $appointment['start_date'],
                 'end' => $appointment['end_date'],
                 'title' => ' ',
-                'color' => $color,
+                'color' => esc_attr( $color ),
                 'resourceId' => $appointment['staff_id'],
                 'allDay' => $appointment['duration'] >= DAY_IN_SECONDS,
                 'extendedProps' => array(
@@ -396,7 +394,7 @@ class Page extends Lib\Base\Ajax
                     'overall_status' => $overall_status,
                 ),
             );
-            if ( $appointment['duration'] * $appointment['units'] >= DAY_IN_SECONDS && $appointment['start_time_info'] ) {
+            if ( $appointment['duration'] * max( 1, $appointment['units'] ) >= DAY_IN_SECONDS && $appointment['start_time_info'] ) {
                 $appointments[ $key ]['extendedProps']['header_text'] = sprintf( '%s - %s', $appointment['start_time_info'], $appointment['end_time_info'] );
             }
         }

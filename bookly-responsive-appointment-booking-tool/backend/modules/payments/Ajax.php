@@ -26,44 +26,7 @@ class Ajax extends Lib\Base\Ajax
             'start' => self::parameter( 'start' ),
         );
 
-        $query = Lib\Entities\Payment::query( 'p' )
-            ->select( 'p.id, p.created_at, p.type, p.paid, p.total, p.status, p.details, c.full_name AS customer, st.full_name AS provider, s.title AS service, a.start_date' )
-            ->leftJoin( 'CustomerAppointment', 'ca', 'ca.payment_id = p.id' )
-            ->leftJoin( 'Customer', 'c', 'c.id = ca.customer_id' )
-            ->leftJoin( 'Appointment', 'a', 'a.id = ca.appointment_id' )
-            ->leftJoin( 'Service', 's', 's.id = COALESCE(ca.compound_service_id, ca.collaborative_service_id, a.service_id)' )
-            ->leftJoin( 'Staff', 'st', 'st.id = a.staff_id' )
-            ->groupBy( 'p.id' );
-
-        // Filters.
-        list ( $start, $end ) = explode( ' - ', $filter['created_at'], 2 );
-        $end = date( 'Y-m-d', strtotime( '+1 day', strtotime( $end ) ) );
-
-        $query->whereBetween( 'p.created_at', $start, $end );
-
-        if ( $filter['id'] != '' ) {
-            $query->where( 'p.id', $filter['id'] );
-        }
-
-        if ( $filter['type'] != '' ) {
-            $query->where( 'p.type', $filter['type'] );
-        }
-
-        if ( $filter['staff'] != '' ) {
-            $query->where( 'st.id', $filter['staff'] );
-        }
-
-        if ( $filter['service'] != '' ) {
-            $query->where( 's.id', $filter['service'] );
-        }
-
-        if ( $filter['status'] != '' ) {
-            $query->where( 'p.status', $filter['status'] );
-        }
-
-        if ( $filter['customer'] != '' ) {
-            $query->where( 'ca.customer_id', $filter['customer'] );
-        }
+        $query = self::getPaymentQuery( $filter );
 
         $clone = clone $query;
         $counts = $clone->fetchCol( 'COUNT(p.id)' );
@@ -121,6 +84,15 @@ class Ajax extends Lib\Base\Ajax
         ) );
     }
 
+    public static function getPaymentIds()
+    {
+        $filter = self::parameter( 'filter' );
+        $query = self::getPaymentQuery( $filter );
+        $ids = $query->fetchCol( 'p.id' );
+
+        wp_send_json_success( compact( 'ids' ) );
+    }
+
     /**
      * Delete payments.
      */
@@ -134,4 +106,47 @@ class Ajax extends Lib\Base\Ajax
         wp_send_json_success();
     }
 
+    private static function getPaymentQuery( $filter )
+    {
+        $query = Lib\Entities\Payment::query( 'p' )
+            ->select( 'p.id, p.created_at, p.type, p.paid, p.total, p.status, p.details, c.full_name AS customer, st.full_name AS provider, s.title AS service, a.start_date' )
+            ->leftJoin( 'CustomerAppointment', 'ca', 'ca.payment_id = p.id' )
+            ->leftJoin( 'Customer', 'c', 'c.id = ca.customer_id' )
+            ->leftJoin( 'Appointment', 'a', 'a.id = ca.appointment_id' )
+            ->leftJoin( 'Service', 's', 's.id = COALESCE(ca.compound_service_id, ca.collaborative_service_id, a.service_id)' )
+            ->leftJoin( 'Staff', 'st', 'st.id = a.staff_id' )
+            ->groupBy( 'p.id' );
+
+        // Filters.
+        list ( $start, $end ) = explode( ' - ', $filter['created_at'], 2 );
+        $end = date( 'Y-m-d', strtotime( '+1 day', strtotime( $end ) ) );
+
+        $query->whereBetween( 'p.created_at', $start, $end );
+
+        if ( $filter['id'] != '' ) {
+            $query->where( 'p.id', $filter['id'] );
+        }
+
+        if ( $filter['type'] != '' ) {
+            $query->where( 'p.type', $filter['type'] );
+        }
+
+        if ( $filter['staff'] != '' ) {
+            $query->where( 'st.id', $filter['staff'] );
+        }
+
+        if ( $filter['service'] != '' ) {
+            $query->where( 's.id', $filter['service'] );
+        }
+
+        if ( $filter['status'] != '' ) {
+            $query->where( 'p.status', $filter['status'] );
+        }
+
+        if ( $filter['customer'] != '' ) {
+            $query->where( 'ca.customer_id', $filter['customer'] );
+        }
+
+        return $query;
+    }
 }

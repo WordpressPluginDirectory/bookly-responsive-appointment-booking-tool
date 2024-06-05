@@ -34,7 +34,7 @@ class Ajax extends Lib\Base\Ajax
             ->whereNot( 'visibility', 'archive' )
             ->where( 'cloud_msc_token', null )
             ->fetchArray();
-        $api->mobile_staff_cabinet->revokeKeys( $keys )
+        $api->getProduct( Lib\Cloud\Account::PRODUCT_MOBILE_STAFF_CABINET )->revokeKeys( $keys )
             ? wp_send_json_success( compact( 'staff_members' ) )
             : wp_send_json_error( array( 'message' => current( $api->getErrors() ) ) );
     }
@@ -42,7 +42,7 @@ class Ajax extends Lib\Base\Ajax
     public static function cloudMobileStaffCabinetGetAccessTokens()
     {
         $api = Lib\Cloud\API::getInstance();
-        $keys_list = $api->mobile_staff_cabinet->getKeysList();
+        $keys_list = $api->getProduct( Lib\Cloud\Account::PRODUCT_MOBILE_STAFF_CABINET )->getKeysList();
         $fields = array( 'id', 'full_name', 'email', 'cloud_msc_token' );
         $data = array();
         if ( $keys_list ) {

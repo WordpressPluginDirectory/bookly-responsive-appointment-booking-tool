@@ -8,8 +8,8 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-09 10:51+0000\n"
-"PO-Revision-Date: 2024-04-09 14:07+0000\n"
+"POT-Creation-Date: 2024-05-20 10:11+0000\n"
+"PO-Revision-Date: 2024-05-20 11:11+0000\n"
 "Last-Translator: Wina H <chillhchill@gmail.com>\n"
 "Language-Team: Chinese (Taiwan)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -115,8 +115,14 @@ msgstr "發票"
 msgid "Settings saved."
 msgstr "設定已保存。"
 
+msgid "Download invoices"
+msgstr "下載發票"
+
 msgid "Download selected invoices"
 msgstr "下載選定發票"
+
+msgid "Download filtered invoices"
+msgstr "下載篩選後的發票"
 
 msgid "Show 'Download invoice' button"
 msgstr "顯示'下載發票'按鈕"
@@ -371,11 +377,12 @@ msgstr "預約標題的模板"
 
 msgid ""
 "Configure what information should be placed in the title of Outlook Calendar "
-"event. Available codes are {service_name}, {category_name}, {staff_name} and "
-"{client_names}."
-msgstr ""
-"應將配置信息放置在Outlook日曆活動標題中。可用代碼為{service_name}、{category_name}、{staff_name}"
-"以及{client_names}。"
+"event."
+msgstr "設定Outlook Calendar事件標題中應該涵蓋的資訊。"
+
+#, php-format
+msgid "Available codes are %s and %s."
+msgstr "可用代碼是%s和%s。"
 
 msgid "Template for event description"
 msgstr "事件描述樣板"
@@ -2210,6 +2217,17 @@ msgstr "沒有輸入電話號碼。"
 #, php-format
 msgid "%d min"
 msgstr "%d 分"
+
+msgid "Purchase code is not valid"
+msgstr "購買代碼無效"
+
+msgid "Purchase code is used on another account"
+msgstr "購買代碼已在其他賬戶上使用"
+
+msgid ""
+"Purchase code verification is temporarily unavailable. Please try again "
+"later."
+msgstr "購買代碼驗證暫時不可用。請稍後再試。"
 
 msgid "Bookly Cloud couldn't connect to your server."
 msgstr "Bookly雲端無法連接您的伺服器。"
@@ -4459,6 +4477,9 @@ msgid ""
 "need to sign up for a new subscription."
 msgstr "該產品將被立即禁用。要重新啟用該產品，您需要註冊新訂閱。"
 
+msgid "Get started"
+msgstr "立即開始"
+
 msgid "Congrats!"
 msgstr "恭喜！"
 
@@ -4467,6 +4488,9 @@ msgstr "最佳優惠"
 
 msgid "users choice"
 msgstr "用戶選項"
+
+msgid "Purchase code"
+msgstr "購買代碼"
 
 msgid "Next billing date"
 msgstr "下個收費日期"
@@ -4887,9 +4911,6 @@ msgstr "員工分類名稱"
 
 msgid "URL of staff photo (to use inside img tag)"
 msgstr "員工照片URL（在img標籤內使用）"
-
-msgid "Previous month"
-msgstr "上月"
 
 msgid "Your custom CSS was saved. Please refresh the page to see your changes."
 msgstr "您的自定義CSS已保存。 請刷新頁面以查看您的更改。"
@@ -7128,11 +7149,6 @@ msgstr ""
 msgid "%s is not a valid purchase code for %s."
 msgstr "%s 不是 %s 的有效購買代碼。"
 
-msgid ""
-"Purchase code verification is temporarily unavailable. Please try again "
-"later."
-msgstr "購買代碼驗證暫時不可用。請稍後再試。"
-
 #, php-format
 msgid "Your support period has expired on %s."
 msgstr "您的支援會在 %s 到期。"
@@ -7454,11 +7470,8 @@ msgstr "如果Google日曆中有很多事件，那麼當Bookly嘗試獲取所有
 
 msgid ""
 "Configure what information should be placed in the title of Google Calendar "
-"event. Available codes are {service_name}, {category_name}, {staff_name} and "
-"{client_names}."
-msgstr ""
-"應將配置信息放置在Google日曆活動標題中。可用代碼為{service_name}、{category_name}、{staff_name}"
-"以及{client_names}。"
+"event."
+msgstr "設定Google Calendar事件標題中應該涵蓋的資訊。"
 
 msgid "To set up Facebook integration, do the following:"
 msgstr "要連結Facebook，請執行以下操作："
@@ -8188,9 +8201,9 @@ msgstr "外觀表單名稱"
 
 #, php-format
 msgid ""
-"Check status of this option in Settings > Calendar > <a href=\"%s\" "
+"Check status of this option in Settings > Additional > <a href=\"%s\" "
 "target=\"_blank\"/>Display front-end calendar</a>"
-msgstr "在設定 > 日曆 > <a href=\"%s\" target=\"_blank\"/>顯示前端日曆</a>來查看該選項的狀態"
+msgstr "在設定 > 附加 > <a href=\"%s\" target=\"_blank\"/>顯示前端日曆</a>中檢查此選項的狀態"
 
 msgid "Titles"
 msgstr "標題"

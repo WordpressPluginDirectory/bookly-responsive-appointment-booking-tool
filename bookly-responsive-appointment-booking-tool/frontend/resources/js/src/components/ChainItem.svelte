@@ -135,7 +135,7 @@
             });
         } else {
             let categoryIds = [],
-                serviceIds  = [];
+                serviceIds = [];
             if (servicesPerLocation) {
                 jQuery.each(staff, stId => {
                     jQuery.each(staff[stId].services, srvId => {
@@ -391,14 +391,8 @@
                 dateMin = date_from_element.data('date_min');
             }
         }
-        if (date_from_element[0]) {
-            date_from_element.pickadate('picker').set('min', dateMin);
-            if (date_from_element.data('updated')) {
-                date_from_element.pickadate('picker').set('select', date_from_element.pickadate('picker').get('select'));
-            } else {
-                date_from_element.pickadate('picker').set('select', dateMin);
-            }
-        }
+
+        dispatch('changeMinDate', dateMin);
     }
 
     function onStaffChange(event) {

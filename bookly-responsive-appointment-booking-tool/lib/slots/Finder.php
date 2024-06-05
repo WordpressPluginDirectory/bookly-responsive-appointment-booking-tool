@@ -421,7 +421,7 @@ class Finder
         // Find start date.
         if ( Lib\Config::showSingleTimeSlot() ) {
             if ( $this->show_calendar ) {
-                $start_of_month = DatePoint::fromStrInClientTz( $this->selected_date )->modify( 'first day of this month midnight' );
+                $start_of_month = DatePoint::fromStrInClientTz( $this->selected_date )->modify( 'first day of this month midnight' )->modify( '-7 days' );
                 $this->client_start_dp = $start_of_month->lt( $min_start->toClientTz() ) ? $min_start->toClientTz() : $start_of_month;
             } else {
                 $this->client_start_dp = $min_start->toClientTz();
@@ -434,7 +434,7 @@ class Finder
             if ( $this->show_calendar && ( $this->selected_date > $this->userData->getDateFrom() ) ) {
                 // Example case:
                 // The client chose the 3rd day of the following month on time step.
-                $this->client_start_dp = DatePoint::fromStrInClientTz( $this->selected_date )->modify( 'first day of this month midnight' );
+                $this->client_start_dp = DatePoint::fromStrInClientTz( $this->selected_date )->modify( 'first day of this month midnight' )->modify( '-7 days' );
             } else {
                 $this->client_start_dp = DatePoint::fromStrInClientTz( $this->userData->getDateFrom() );
             }
@@ -447,7 +447,7 @@ class Finder
         // Find end date.
         $this->client_end_dp = $max_end->toClientTz();
         if ( $this->show_calendar ) {
-            $client_next_month = $this->client_start_dp->modify( 'first day of next month midnight' );
+            $client_next_month = $this->client_start_dp->modify( 'first day of next month midnight' )->modify( 'first day of next month midnight' )->modify( '+7 days' );
             if ( $this->client_end_dp->gt( $client_next_month ) ) {
                 $this->client_end_dp = $client_next_month;
             }
@@ -801,29 +801,34 @@ class Finder
     }
 
     /**
-     * Get disabled days in Pickadate format.
+     * Get disabled days for a month.
      *
      * @return array
      * @throws
      */
-    public function getDisabledDaysForPickadate()
+    public function getMonthDisabledDays()
     {
         $one_day = new \DateInterval( 'P1D' );
-        $result = array();
+        $holidays = array();
+        $first_available_date = null;
         $date = new \DateTime( $this->selected_date ?: $this->userData->getDateFrom() );
-        $date->modify( 'first day of this month' );
         $end_date = clone $date;
-        $end_date->modify( 'first day of next month' );
-        $Y = (int) $date->format( 'Y' );
-        $n = (int) $date->format( 'n' ) - 1;
+        $first_day_of_month = clone $date;
+        $last_day_of_month = clone $date;
+        $date->modify( 'first day of this month' )->modify( '-7 days' );
+        $end_date->modify( 'first day of next month' )->modify( '+7 days' );
+        $first_day_of_month->modify( 'first day of this month' );
+        $last_day_of_month->modify( 'first day of next month' );
         while ( $date < $end_date ) {
             if ( ! array_key_exists( $date->format( 'Y-m-d' ), $this->slots ) ) {
-                $result[] = array( $Y, $n, (int) $date->format( 'j' ) );
+                $holidays[] = $date->format( 'Y-m-d' );
+            } elseif ( $first_available_date === null && $date >= $first_day_of_month && $date < $last_day_of_month ) {
+                $first_available_date = $date->format( 'Y-m-d' );
             }
             $date->add( $one_day );
         }
 
-        return $result;
+        return compact( 'holidays', 'first_available_date' );
     }
 
     /**
@@ -863,7 +868,7 @@ class Finder
         return $this->selected_date;
     }
 
-    public function getSelectedDateForPickadate()
+    public function getSelectedDateForCalendar()
     {
         if ( $this->selected_date ) {
             foreach ( $this->slots as $group => $slots ) {

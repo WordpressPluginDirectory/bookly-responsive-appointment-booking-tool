@@ -134,6 +134,7 @@ class Ajax extends Lib\Base\Ajax
                 a.staff_any,
                 a.online_meeting_provider,
                 a.online_meeting_id,
+                a.online_meeting_data,
                 a.internal_note,
                 c.full_name  AS customer_full_name,
                 c.phone      AS customer_phone,
@@ -297,6 +298,16 @@ class Ajax extends Lib\Base\Ajax
                 $extras = array();
             }
 
+            if ( $row['online_meeting_provider'] === 'bbb' ) {
+                $appointment = new Lib\Entities\Appointment();
+                $appointment->setOnlineMeetingData( $row['online_meeting_data'] )
+                    ->setOnlineMeetingProvider( $row['online_meeting_provider'] )
+                    ->setOnlineMeetingId( $row['online_meeting_id'] );
+                $online_meeting_start_url = Lib\Proxy\Shared::buildOnlineMeetingStartUrl( '', $appointment );
+            } else {
+                $online_meeting_start_url = $row['online_meeting_id'];
+            }
+
             $data[] = array(
                 'id' => $row['id'],
                 'no' => Lib\Config::groupBookingActive() && $row['ca_id'] ? $row['id'] . '-' . $row['ca_id'] : $row['ca_id'],
@@ -339,7 +350,7 @@ class Ajax extends Lib\Base\Ajax
                 'payment_id' => $row['payment_id'],
                 'internal_note' => $row['internal_note'],
                 'online_meeting_provider' => $row['online_meeting_provider'],
-                'online_meeting_id' => $row['online_meeting_id'],
+                'online_meeting_start_url' => $online_meeting_start_url,
                 'created_date' => Lib\Utils\DateTime::formatDateTime( $row['created_date'] ),
             );
 

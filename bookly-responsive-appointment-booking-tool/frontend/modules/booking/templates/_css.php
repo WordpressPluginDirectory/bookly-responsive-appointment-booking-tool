@@ -8,24 +8,23 @@ $custom_css = trim( get_option( 'bookly_app_custom_styles' ) );
         :root {
             --bookly-main-color: <?php echo esc_attr( $color ) ?> !important;
         }
+
+        .bookly-form .fill-bookly {
+            fill: <?php echo esc_attr( $color ) ?>;
+        }
+
         /* Color */
         .bookly-form .bookly-form-group > label,
         .bookly-form .bookly-label-error,
         .bookly-form .bookly-progress-tracker > .active,
-        .bookly-form .picker__nav--next,
-        .bookly-form .pickadate__nav--prev,
-        .bookly-form .picker__day:hover,
-        .bookly-form .picker__day--selected:hover,
-        .bookly-form .picker--opened .picker__day--selected,
-        .bookly-form .picker__button--clear,
-        .bookly-form .picker__button--today,
-        .bookly-form .bookly-columnizer .bookly-hour span.bookly-waiting-list {
+        .bookly-form .bookly-columnizer .bookly-hour span.bookly-waiting-list,
+        .bookly-form .hover\:text-bookly:hover,
+        .bookly-form .text-bookly:not(:hover) {
             color: <?php echo esc_attr( $color ) ?> !important;
         }
 
         /* Background */
         .bookly-form .bookly-progress-tracker > .active .step,
-        .bookly-form .picker__frame,
         .bookly-form .bookly-columnizer .bookly-hour:active .bookly-hour-icon span,
         .bookly-form .bookly-btn,
         .bookly-form .bookly-btn:active,
@@ -34,7 +33,9 @@ $custom_css = trim( get_option( 'bookly_app_custom_styles' ) );
         .bookly-form .bookly-btn-submit,
         .bookly-form .bookly-round,
         .bookly-form .bookly-square,
-        .bookly-form .bookly-pagination > li.active {
+        .bookly-form .bookly-pagination > li.active,
+        .bookly-form .bg-bookly,
+        .bookly-form .hover\:bg-bookly:hover {
             background-color: <?php echo esc_attr( $color ) ?> !important;
         }
 
@@ -53,18 +54,6 @@ $custom_css = trim( get_option( 'bookly_app_custom_styles' ) );
         }
 
         /* Other */
-        .bookly-form .picker__header {
-            border-bottom: 1px solid <?php echo esc_attr( $color ) ?> !important;
-        }
-
-        .bookly-form .picker__nav--next:before {
-            border-left: 6px solid <?php echo esc_attr( $color ) ?> !important;
-        }
-
-        .bookly-form .picker__nav--prev:before {
-            border-right: 6px solid <?php echo esc_attr( $color ) ?> !important;
-        }
-
         .bookly-form .bookly-columnizer .bookly-day, .bookly-form .bookly-schedule-date {
             background: <?php echo esc_attr( $color ) ?> !important;
             border: 1px solid <?php echo esc_attr( $color ) ?> !important;

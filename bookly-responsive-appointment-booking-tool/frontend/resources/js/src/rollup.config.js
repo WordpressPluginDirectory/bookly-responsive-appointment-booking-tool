@@ -26,13 +26,9 @@ export default {
             // enable run-time checks when not in production
             compilerOptions: {
                 // enable run-time checks when not in production
-                dev: !production
+                dev: !production,
             },
-            // we'll extract any component CSS out into
-            // a separate file - better for performance
-            // css: css => {
-            // 	css.write('../../css/bookly.css');
-            // }
+            emitCss: false,
         }),
 
         // If you have external dependencies installed from
@@ -50,10 +46,10 @@ export default {
             extensions: ['.js', '.mjs', '.html', '.svelte'],
             babelHelpers: 'runtime',
             // babelHelpers: 'bundled',
-            exclude: ['node_modules/@babel/**', 'node_modules/core-js-pure/**'],
+            exclude: ['node_modules/@babel/**', 'node_modules/core-js-pure/**', '../../../../../../../assets/js/node_modules/@babel/**', '../../../../../../../assets/js/node_modules/core-js-pure/**'],
             presets: [
                 ['@babel/preset-env', {
-                    targets: '> 0.25%, not dead',
+                    targets: production ? '> 0.25%, not dead' : 'supports es6-module',
                     // modules: false,
                     // spec: true,
                     // forceAllTransforms: true,

@@ -400,9 +400,8 @@ class Scheduler
             if ( $this->finder->isServiceDurationInDays() ) {
                 $result['all_day_service_time'] = Lib\Entities\Service::find( $slot->serviceId() )->getStartTimeInfo() ?: '';
             }
-            if ( $this->for_backend ) {
-                $result['date'] = $client_res_dp->format( 'Y-m-d' );
-            } else {
+            $result['date'] = $client_res_dp->format( 'Y-m-d' );
+            if ( ! $this->for_backend ) {
                 $result['display_date'] = $client_res_dp->formatI18n( 'D, M d' );
                 $result['display_time'] = $client_res_dp->formatI18n( get_option( 'time_format' ) );
             }

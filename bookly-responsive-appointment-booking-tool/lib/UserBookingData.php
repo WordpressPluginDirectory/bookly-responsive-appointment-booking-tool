@@ -124,6 +124,7 @@ class UserBookingData
         'email_confirm',
         'phone',
         'birthday',
+        'full_address',
         'additional_address',
         'country',
         'state',

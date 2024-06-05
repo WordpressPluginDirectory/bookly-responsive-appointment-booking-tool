@@ -8,8 +8,8 @@ msgstr ""
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-09 10:51+0000\n"
-"PO-Revision-Date: 2024-04-09 19:08+0000\n"
+"POT-Creation-Date: 2024-05-20 10:10+0000\n"
+"PO-Revision-Date: 2024-05-21 07:27+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Dutch\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -120,8 +120,14 @@ msgstr "Facturen"
 msgid "Settings saved."
 msgstr "Instellingen opgeslagen."
 
+msgid "Download invoices"
+msgstr "Facturen downloaden"
+
 msgid "Download selected invoices"
 msgstr "Geselecteerde facturen downloaden"
+
+msgid "Download filtered invoices"
+msgstr "Gefilterde facturen downloaden"
 
 msgid "Show 'Download invoice' button"
 msgstr "Toon 'Factuur downloaden' knop"
@@ -423,12 +429,14 @@ msgstr "Sjabloon voor gebeurtenistitel"
 
 msgid ""
 "Configure what information should be placed in the title of Outlook Calendar "
-"event. Available codes are {service_name}, {category_name}, {staff_name} and "
-"{client_names}."
+"event."
 msgstr ""
-"Configureer welke informatie moet worden geplaatst in de titel van de "
-"Outlook Agenda gebeurtenis. Beschikbare codes zijn {service_name}, "
-"{category_name}, {staff_name} en {client_names}."
+"Configureer welke informatie in de titel van een Outlook Agenda-gebeurtenis "
+"moet worden geplaatst."
+
+#, php-format
+msgid "Available codes are %s and %s."
+msgstr "Beschikbare codes zijn %s en %s."
 
 msgid "Template for event description"
 msgstr "Sjabloon voor beschrijving van evenement"
@@ -2380,6 +2388,19 @@ msgstr "Telefoonnummer is leeg."
 #, php-format
 msgid "%d min"
 msgstr "%d min"
+
+msgid "Purchase code is not valid"
+msgstr "Aankoopcode is niet geldig"
+
+msgid "Purchase code is used on another account"
+msgstr "Aankoopcode wordt gebruikt in een andere account"
+
+msgid ""
+"Purchase code verification is temporarily unavailable. Please try again "
+"later."
+msgstr ""
+"Aankoop code verificatie is tijdelijk niet beschikbaar. Probeer het later "
+"opnieuw."
 
 msgid "Bookly Cloud couldn't connect to your server."
 msgstr "Bookly Cloud kon geen verbinding maken met uw server."
@@ -4796,6 +4817,9 @@ msgstr ""
 "Het product wordt onmiddellijk uitgeschakeld. Om het product weer in te "
 "schakelen, moet u zich aanmelden voor een nieuw abonnement."
 
+msgid "Get started"
+msgstr "Aan de slag"
+
 msgid "Congrats!"
 msgstr "Gefeliciteerd!"
 
@@ -4804,6 +4828,9 @@ msgstr "beste aanbieding"
 
 msgid "users choice"
 msgstr "gebruikerskeuze"
+
+msgid "Purchase code"
+msgstr "Aankoopcode"
 
 msgid "Next billing date"
 msgstr "Volgende facturatiedatum"
@@ -5277,9 +5304,6 @@ msgstr "Naam van de personeelscategorie"
 
 msgid "URL of staff photo (to use inside img tag)"
 msgstr "URL van personeelsfoto (te gebruiken in img tag)"
-
-msgid "Previous month"
-msgstr "Vorige maand"
 
 msgid "Your custom CSS was saved. Please refresh the page to see your changes."
 msgstr ""
@@ -7691,13 +7715,6 @@ msgstr ""
 msgid "%s is not a valid purchase code for %s."
 msgstr "%s is geen geldige aankoop code voor %s."
 
-msgid ""
-"Purchase code verification is temporarily unavailable. Please try again "
-"later."
-msgstr ""
-"Aankoop code verificatie is tijdelijk niet beschikbaar. Probeer het later "
-"opnieuw."
-
 #, php-format
 msgid "Your support period has expired on %s."
 msgstr "Uw ondersteuningsperiode is op %s verlopen."
@@ -8085,12 +8102,10 @@ msgstr ""
 
 msgid ""
 "Configure what information should be placed in the title of Google Calendar "
-"event. Available codes are {service_name}, {category_name}, {staff_name} and "
-"{client_names}."
+"event."
 msgstr ""
-"Configureer welke informatie moet worden geplaatst in de titel van het "
-"Google Agenda gebeurtenis. Beschikbare codes zijn {service_name}, "
-"{category_name}, {staff_name} en {client_names}."
+"Configureer welke informatie in de titel van een Google Agenda-gebeurtenis "
+"moet worden geplaatst."
 
 msgid "To set up Facebook integration, do the following:"
 msgstr "Om Facebook integratie in te stellen, doe het volgende:"
@@ -8914,11 +8929,11 @@ msgstr "Uiterlijk formulier naam"
 
 #, php-format
 msgid ""
-"Check status of this option in Settings > Calendar > <a href=\"%s\" "
+"Check status of this option in Settings > Additional > <a href=\"%s\" "
 "target=\"_blank\"/>Display front-end calendar</a>"
 msgstr ""
-"Controleer de status van deze optie in Instellingen > Kalender > <a "
-"href=\"%s\" target=\"_blank\"/>Toon front-end kalender</a>"
+"Controleer de status van deze optie in Instellingen > Extra > <a href=\"%s\" "
+"target=\"_blank\"/>Afbeelding front-end kalender</a>"
 
 msgid "Titles"
 msgstr "Titels"
