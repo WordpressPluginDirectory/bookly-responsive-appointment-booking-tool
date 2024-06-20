@@ -14,6 +14,7 @@ class AdvancedOptions extends Tool
     protected $excluded_options = array(
         'bookly_cloud_account_products',
         'bookly_cloud_promotions',
+        'bookly_setup_step',
         'bookly_pro_licensed_products'
     );
 
@@ -96,11 +97,6 @@ class AdvancedOptions extends Tool
             case 'bookly_gen_time_slot_length':
                 if ( ! ( $wp_value > 0 ) ) {
                     return false;
-                }
-                break;
-            case 'bookly_setup_step':
-                if ( $wp_value === '' ) {
-                    return true;
                 }
                 break;
             case 'bookly_paypal_enabled':

@@ -421,7 +421,7 @@ class Finder
         // Find start date.
         if ( Lib\Config::showSingleTimeSlot() ) {
             if ( $this->show_calendar ) {
-                $start_of_month = DatePoint::fromStrInClientTz( $this->selected_date )->modify( 'first day of this month midnight' )->modify( '-7 days' );
+                $start_of_month = DatePoint::fromStrInClientTz( $this->selected_date )->modify( 'first day of this month midnight' );
                 $this->client_start_dp = $start_of_month->lt( $min_start->toClientTz() ) ? $min_start->toClientTz() : $start_of_month;
             } else {
                 $this->client_start_dp = $min_start->toClientTz();
@@ -434,7 +434,7 @@ class Finder
             if ( $this->show_calendar && ( $this->selected_date > $this->userData->getDateFrom() ) ) {
                 // Example case:
                 // The client chose the 3rd day of the following month on time step.
-                $this->client_start_dp = DatePoint::fromStrInClientTz( $this->selected_date )->modify( 'first day of this month midnight' )->modify( '-7 days' );
+                $this->client_start_dp = DatePoint::fromStrInClientTz( $this->selected_date )->modify( 'first day of this month midnight' );
             } else {
                 $this->client_start_dp = DatePoint::fromStrInClientTz( $this->userData->getDateFrom() );
             }
@@ -447,7 +447,7 @@ class Finder
         // Find end date.
         $this->client_end_dp = $max_end->toClientTz();
         if ( $this->show_calendar ) {
-            $client_next_month = $this->client_start_dp->modify( 'first day of next month midnight' )->modify( 'first day of next month midnight' )->modify( '+7 days' );
+            $client_next_month = $this->client_start_dp->modify( 'first day of next month midnight' );
             if ( $this->client_end_dp->gt( $client_next_month ) ) {
                 $this->client_end_dp = $client_next_month;
             }
