@@ -29,8 +29,7 @@ class BooklyForm extends Lib\Base\Component
         self::enqueueScripts( array(
             'frontend' => get_option( 'bookly_cst_phone_default_country' ) === 'disabled'
                 ? array()
-                : array( 'js/intlTelInput.min.js' => array( 'jquery' ) )
-        ,
+                : array( 'js/intlTelInput.min.js' => array( 'jquery' ) ),
             'wp' => array( 'wp-color-picker' ),
             'module' => array(
                 'js/appearance.js' => array(),

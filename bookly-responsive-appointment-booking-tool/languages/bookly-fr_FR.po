@@ -8,9 +8,9 @@ msgstr ""
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 10:10+0000\n"
-"PO-Revision-Date: 2024-05-23 11:37+0000\n"
-"Last-Translator: Mathilde Massardier <mathilde.mass@icloud.com>\n"
+"POT-Creation-Date: 2024-07-01 12:39+0000\n"
+"PO-Revision-Date: 2024-07-03 11:07+0000\n"
+"Last-Translator: support@bookly.info\n"
 "Language-Team: French (France)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
 
@@ -3117,6 +3117,9 @@ msgstr "Agenda du jour"
 msgid "Notification to staff member about pending appointment"
 msgstr "Notification au prestataire pour le rendez-vous en attente"
 
+msgid "Unsupported action"
+msgstr "Action non prise en charge"
+
 msgid "Page Redirection"
 msgstr "Redirection de page"
 
@@ -4894,6 +4897,9 @@ msgstr "L'activation de Stripe n'est pas terminée"
 msgid "Diagnostics"
 msgstr "Diagnostics"
 
+msgid "Run tests automatically"
+msgstr "Lancer les tests automatiquement"
+
 msgid "Success"
 msgstr "Réussite"
 
@@ -5154,6 +5160,9 @@ msgstr "Afficher la progression"
 
 msgid "Align buttons to the left"
 msgstr "Aligner les boutons à droite"
+
+msgid "Invert datepicker colors"
+msgstr "Inverser les couleurs du sélecteur de date"
 
 msgid "Click on the underlined text to edit."
 msgstr "Cliquez sur le texte souligné pour modifier."
@@ -7656,6 +7665,9 @@ msgstr ""
 msgid "Customer birthday"
 msgstr "Anniversaire du client"
 
+msgid "Tags"
+msgstr "Balises"
+
 msgid "Balance"
 msgstr "Solde"
 
@@ -8305,96 +8317,16 @@ msgstr ""
 "Si vous ne fournissez pas un code d'achat valide d'ici {days}, votre accès "
 "aux réservations sera désactivé."
 
+#, php-format
+msgid ""
+"To set up Zoom integration, follow the instructions in <a href=\"%s\" "
+"target=\"_blank\">our documentation</a>"
+msgstr ""
+"Pour mettre en place l'intégration de Zoom, suivez les instructions dans <a "
+"href=\"%s\" target=\"_blank\">notre documentation</a>"
+
 msgid "Authentication"
 msgstr "Authentification"
-
-msgid "Instructions for creating an OAuth App"
-msgstr "Instructions pour la création d'une application OAuth"
-
-msgid "To find your Client ID and Client Secret, do the following:"
-msgstr ""
-"Pour trouver votre ID client et votre secret client, procédez comme suit :"
-
-msgid "Sign in to your Zoom account"
-msgstr "Connexion à votre compte Zoom"
-
-msgid ""
-"Visit the <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-msgstr ""
-"Visiter le <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-
-msgid ""
-"Click on the <b>Develop</b> option in the dropdown on the top-right corner "
-"and select <b>Build App</b>"
-msgstr ""
-"Cliquez sur l'option <b>Développer</b> dans la liste déroulante dans le coin "
-"en haut à droite et sélectionnez <b>Build App</b>"
-
-msgid ""
-"A page with various app types will be displayed. Select <b>OAuth</b> as the "
-"app type and click on <b>Create</b>"
-msgstr ""
-"Une page avec différents types d'apps s'affichera. Sélectionnez <b>OAuth</b> "
-"comme type d'application et cliquez sur <b>Créer</b>."
-
-msgid ""
-"Enter the name of your App. In <b>Choose app type</b> select <b>Account-"
-"level app</b> and click <b>Create</b>"
-msgstr ""
-"Saisissez le nom de votre application. Dans <b>Choisir le type "
-"d'application</b> sélectionnez <b>Application au niveau du compte</b> et "
-"cliquez sur <b>Créer</b>"
-
-msgid "After creating your app, fill out descriptive and contact information"
-msgstr ""
-"Après avoir créé votre application, renseignez la description et les "
-"informations de contact"
-
-msgid ""
-"Go to <b>App Credentials</b> tab and look for the <b>Client ID</b> and <b>"
-"Client Secret</b>. Use them in the form below on this page"
-msgstr ""
-"Allez dans l'onglet <b>Crédits de l'application</b> et recherchez l'<b>"
-"Identifiant du client</b> et le <b>Secret du client</b>. Utilisez-les dans "
-"le formulaire ci-dessous sur cette page."
-
-msgid ""
-"For <b>Redirect URL for OAuth</b> enter the <b>Redirect URL for OAuth</b> "
-"found below on this page"
-msgstr ""
-"Pour <b>Rediriger l'URL pour OAuth</b>, entrez le <b>Rediriger l'URL pour "
-"OAuth</b> présent ci-dessous sur cette page."
-
-msgid ""
-"For <b>Whitelist URL</b> add a new record with the value of <b>Redirect URL "
-"for OAuth</b> found below on this page. If you use both HTTP and HTTPS, make "
-"sure to add both records for <b>Whitelist URL</b>"
-msgstr ""
-"Pour <b>l'URL de la liste blanche</b>, ajoutez un nouvel enregistrement avec "
-"la valeur de <b>l'URL de redirection pour OAuth</b> trouvée ci-dessous sur "
-"cette page. Si vous utilisez à la fois HTTP et HTTPS, assurez-vous d'ajouter "
-"les deux enregistrements pour <b>l'URL de la liste blanche</b>"
-
-msgid ""
-"Add the scopes required for your app. At the very least, you should select "
-"meeting:write:admin"
-msgstr ""
-"Ajoutez les scopes nécessaires à votre application. Au minimum, vous devriez "
-"sélectionner meeting:write:admin"
-
-msgid "Once the app is created, <b>Save</b> the changes on this page"
-msgstr ""
-"Une fois l'application créée, <b>Sauvegarder</b> les modifications sur cette "
-"page"
-
-msgid ""
-"Click the <b>Connect OAuth</b> button below and complete the connection "
-"between Bookly and Zoom"
-msgstr ""
-"Cliquez sur le bouton <b>Connecter OAuth</b> ci-dessous et complétez la "
-"connexion entre Bookly et Zoom."
 
 msgid "The Client ID obtained from your OAuth app"
 msgstr "L'ID client obtenu de votre application OAuth"
@@ -8794,6 +8726,9 @@ msgstr "Afficher les dates selon le calendrier"
 msgid "Disable dates without available timeslots"
 msgstr "Désactiver les dates sans créneau de disponible"
 
+msgid "Show stepper"
+msgstr "Afficher les étapes"
+
 msgid "Add new form"
 msgstr "Ajouter un nouveau formulaire"
 
@@ -8856,6 +8791,24 @@ msgstr "Titre du service"
 
 msgid "Package title"
 msgstr "Titre du paquet"
+
+msgid "Start"
+msgstr "Commencer"
+
+msgid "Add extras"
+msgstr "Ajouter des suppléments"
+
+msgid "Select time slot"
+msgstr "Sélectionnez un créneau horaire"
+
+msgid "Check cart"
+msgstr "Vérifier le panier"
+
+msgid "Your information"
+msgstr "Vos coordonnées"
+
+msgid "Make purchase"
+msgstr "Effectuer un achat"
 
 msgid "Book now"
 msgstr "Réserver maintenant"

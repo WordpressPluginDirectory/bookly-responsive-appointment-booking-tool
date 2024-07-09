@@ -910,19 +910,23 @@ abstract class Config
      */
     public static function syncCalendars()
     {
-        $result = array(
-            0 => false, // sync
-            1 => false, // Google Calendar
-            2 => false, // Outlook Calendar
-        );
+        static $sync;
 
-        if ( self::proActive() ) {
-            $result[1] = (bool) ( get_option( 'bookly_gc_client_id' ) && get_option( 'bookly_gc_client_secret' ) );
-            $result[2] = (bool) ( self::outlookCalendarActive() && get_option( 'bookly_oc_app_id' ) && get_option( 'bookly_oc_app_secret' ) );
-            $result[0] = max( $result[1], $result[2] );
+        if ( $sync === null ) {
+            $sync = array(
+                0 => false, // sync
+                1 => false, // Google Calendar
+                2 => false, // Outlook Calendar
+            );
+
+            if ( self::proActive() ) {
+                $sync[1] = (bool) ( get_option( 'bookly_gc_client_id' ) && get_option( 'bookly_gc_client_secret' ) );
+                $sync[2] = (bool) ( self::outlookCalendarActive() && get_option( 'bookly_oc_app_id' ) && get_option( 'bookly_oc_app_secret' ) );
+                $sync[0] = max( $sync[1], $sync[2] );
+            }
         }
 
-        return $result;
+        return $sync;
     }
 
     /**

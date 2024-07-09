@@ -52,7 +52,7 @@ class Appointment
         $created_from
     )
     {
-        $response = array( 'success' => false );
+        $response = array( 'success' => false, 'alert_errors' => array() );
         if ( ! $service_id ) {
             // Custom service.
             $service_id = null;
@@ -222,10 +222,8 @@ class Appointment
                                 if ( $customer['payment_for'] === 'current' ) {
                                     $customer['payment_action'] = $customer['payment_for'] = null;
                                 }
-                                // Google Calendar.
-                                Lib\Proxy\Pro::syncGoogleCalendarEvent( $appointment );
-                                // Outlook Calendar.
-                                Lib\Proxy\OutlookCalendar::syncEvent( $appointment );
+
+                                Common::syncWithCalendars( $appointment );
 
                                 if ( $notification ) {
                                     // Waiting list.
@@ -344,19 +342,23 @@ class Appointment
                                 }
 
                                 self::_deleteSentReminders( $reschedule_appointment, $reschedule_modified );
+                                if ( $appointment->getStartDate() ) {
+                                    if ( $service_id ) {
+                                        $service = Service::find( $service_id );
+                                        $response['alert_errors'] = Lib\Proxy\Shared::syncOnlineMeeting( $response['alert_errors'], $appointment, $service );
+                                    }
+                                    Common::syncWithCalendars( $reschedule_appointment );
+                                }
                             }
                         }
                     }
-
-                    // Online meeting.
-                    if ( $service_id ) {
-                        $service = Service::find( $service_id );
-                        $response['alert_errors'] = Lib\Proxy\Shared::syncOnlineMeeting( array(), $appointment, $service );
+                    if ( $appointment->getStartDate() ) {
+                        if ( $service_id ) {
+                            $service = Service::find( $service_id );
+                            $response['alert_errors'] = Lib\Proxy\Shared::syncOnlineMeeting( $response['alert_errors'], $appointment, $service );
+                        }
+                        Common::syncWithCalendars( $appointment );
                     }
-                    // Google Calendar.
-                    Lib\Proxy\Pro::syncGoogleCalendarEvent( $appointment );
-                    // Outlook Calendar.
-                    Lib\Proxy\OutlookCalendar::syncEvent( $appointment );
 
                     // Send notifications.
                     if ( $notification ) {
@@ -404,7 +406,6 @@ class Appointment
 
         return $response;
     }
-
 
     /**
      * @param $appointment_id

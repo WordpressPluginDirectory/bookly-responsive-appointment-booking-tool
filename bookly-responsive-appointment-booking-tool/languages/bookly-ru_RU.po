@@ -9,8 +9,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 10:04+0000\n"
-"PO-Revision-Date: 2024-05-24 07:26+0000\n"
+"POT-Creation-Date: 2024-07-01 12:34+0000\n"
+"PO-Revision-Date: 2024-07-03 11:13+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Russian\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -3114,6 +3114,9 @@ msgstr "Рабочее расписание на день"
 msgid "Notification to staff member about pending appointment"
 msgstr "Уведомление для сотрудника о записи со статусом \"В ожидании\""
 
+msgid "Unsupported action"
+msgstr "Неподдерживаемое действие"
+
 msgid "Page Redirection"
 msgstr "Перенаправление на другую страницу"
 
@@ -4874,6 +4877,9 @@ msgstr "Активация Stripe не завершена"
 msgid "Diagnostics"
 msgstr "Диагностика"
 
+msgid "Run tests automatically"
+msgstr "Автоматический запуск тестов"
+
 msgid "Success"
 msgstr "Успех"
 
@@ -5133,6 +5139,9 @@ msgstr "Показывать индикатор прогресса"
 
 msgid "Align buttons to the left"
 msgstr "Выровнять кнопки по левому краю"
+
+msgid "Invert datepicker colors"
+msgstr "Инвертировать цвета календаря"
 
 msgid "Click on the underlined text to edit."
 msgstr "Кликните на подчёркнутый текст, чтобы изменить его."
@@ -7631,6 +7640,9 @@ msgstr ""
 msgid "Customer birthday"
 msgstr "День рождения клиента"
 
+msgid "Tags"
+msgstr "Теги"
+
 msgid "Balance"
 msgstr "Баланс"
 
@@ -8268,90 +8280,16 @@ msgstr ""
 "Если вы не предоставите действительный лицензионный ключ в течение {days}, "
 "доступ к вашим записям будет отключен."
 
+#, php-format
+msgid ""
+"To set up Zoom integration, follow the instructions in <a href=\"%s\" "
+"target=\"_blank\">our documentation</a>"
+msgstr ""
+"Чтобы настроить интеграцию с Zoom, следуйте инструкциям в <a href=\"%s\" "
+"target=\"_blank\">нашей документации</a>"
+
 msgid "Authentication"
 msgstr "Аутентификация"
-
-msgid "Instructions for creating an OAuth App"
-msgstr "Инструкции по созданию приложения OAuth"
-
-msgid "To find your Client ID and Client Secret, do the following:"
-msgstr "Чтобы узнать ваши Client ID и Client Secret, выполните следующее:"
-
-msgid "Sign in to your Zoom account"
-msgstr "Войдите в свою учётную запись Zoom"
-
-msgid ""
-"Visit the <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-msgstr ""
-"Перейдите в <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-
-msgid ""
-"Click on the <b>Develop</b> option in the dropdown on the top-right corner "
-"and select <b>Build App</b>"
-msgstr ""
-"Нажмите на <b>Develop</b> в выпадающем списке в правом верхнем углу и "
-"выберите <b>Build App</b>"
-
-msgid ""
-"A page with various app types will be displayed. Select <b>OAuth</b> as the "
-"app type and click on <b>Create</b>"
-msgstr ""
-"Откроется страница с различными типами приложений. Выберите <b>OAuth</b> в "
-"качестве типа приложения и нажмите <b>Create</b>"
-
-msgid ""
-"Enter the name of your App. In <b>Choose app type</b> select <b>Account-"
-"level app</b> and click <b>Create</b>"
-msgstr ""
-"Укажите имя вашего приложения. В поле <b>Choose app type</b> выберите <b>"
-"Account-level app</b> и нажмите <b>Create</b>"
-
-msgid "After creating your app, fill out descriptive and contact information"
-msgstr ""
-"После создания вашего приложения, заполните описание и контактную информацию"
-
-msgid ""
-"Go to <b>App Credentials</b> tab and look for the <b>Client ID</b> and <b>"
-"Client Secret</b>. Use them in the form below on this page"
-msgstr ""
-"Перейдите во вкладку <b>App Credentials</b> и найдите <b>Client ID</b> и <b>"
-"Client Secret</b>. Используйте их в форме ниже на этой странице"
-
-msgid ""
-"For <b>Redirect URL for OAuth</b> enter the <b>Redirect URL for OAuth</b> "
-"found below on this page"
-msgstr ""
-"В поле <b>Redirect URL for OAuth</b> введите <b>Redirect URL for OAuth</b>, "
-"указанный ниже на этой странице"
-
-msgid ""
-"For <b>Whitelist URL</b> add a new record with the value of <b>Redirect URL "
-"for OAuth</b> found below on this page. If you use both HTTP and HTTPS, make "
-"sure to add both records for <b>Whitelist URL</b>"
-msgstr ""
-"В поле <b>Whitelist URL</b> добавьте новую запись со значением of <b>"
-"Redirect URL for OAuth</b>, указанным ниже на этой странице. Если вы "
-"используете и HTTP, и HTTPS, убедитесь, что вы добавили обе записи в поле <b>"
-"Whitelist URL</b>"
-
-msgid ""
-"Add the scopes required for your app. At the very least, you should select "
-"meeting:write:admin"
-msgstr ""
-"Добавьте типы разрешений, требуемые для вашего приложения. Как минимум, вам "
-"необходимо выбрать meeting:write:admin"
-
-msgid "Once the app is created, <b>Save</b> the changes on this page"
-msgstr "После создания приложения <b>Сохраните</b> изменения на этой странице"
-
-msgid ""
-"Click the <b>Connect OAuth</b> button below and complete the connection "
-"between Bookly and Zoom"
-msgstr ""
-"Нажмите на кнопку <b>Подключить OAuth</b> ниже и завершите соединение между "
-"Bookly и Zoom"
 
 msgid "The Client ID obtained from your OAuth app"
 msgstr "Client ID полученный из вашего OAuth приложения"
@@ -8744,6 +8682,9 @@ msgstr "Отображать даты согласно расписанию"
 msgid "Disable dates without available timeslots"
 msgstr "Отключить даты без доступных временных интервалов"
 
+msgid "Show stepper"
+msgstr "Показывать шаги бронирования"
+
 msgid "Add new form"
 msgstr "Добавить новую форму"
 
@@ -8806,6 +8747,24 @@ msgstr "Название сервиса"
 
 msgid "Package title"
 msgstr "Название пакета услуг"
+
+msgid "Start"
+msgstr "Начало"
+
+msgid "Add extras"
+msgstr "Добавьте дополнения"
+
+msgid "Select time slot"
+msgstr "Выберите время"
+
+msgid "Check cart"
+msgstr "Проверьте корзину"
+
+msgid "Your information"
+msgstr "Ваши данные"
+
+msgid "Make purchase"
+msgstr "Оплатите бронирование"
 
 msgid "Book now"
 msgstr "Забронировать"

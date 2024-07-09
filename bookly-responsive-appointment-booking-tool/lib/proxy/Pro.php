@@ -19,6 +19,7 @@ use Bookly\Lib;
  * @method static int    getMinimumTimePriorCancel( int|null $service_id ) Get minimum time ( in seconds ) prior to cancel.
  * @method static array  getStaffCategoryName( int $category_id ) Get staff category name.
  * @method static array  getStaffDataForDropDown( array $exclude_visibility = null ) Get staff grouped by categories for drop-down list.
+ * @method static array  getTagsData() Get list of tags.
  * @method static array  getTimeZoneOffset( string $time_zone_value ) Get timezone offset from string.
  * @method static bool   graceExpired() Check whether grace period has expired or not.
  * @method static void   logEmail( string $to, string $subject, string $body, array $headers, array $attachments, int $type_id ) Log sent emails.

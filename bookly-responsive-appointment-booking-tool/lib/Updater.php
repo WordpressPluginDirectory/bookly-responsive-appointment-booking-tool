@@ -3,6 +3,17 @@ namespace Bookly\Lib;
 
 class Updater extends Base\Updater
 {
+    function update_23_7()
+    {
+        add_option( 'bookly_app_datepicker_inverted', '0' );
+
+        $this->alterTables( array(
+            'bookly_customers' => array(
+                'ALTER TABLE `%s` ADD COLUMN `tags` TEXT DEFAULT NULL AFTER `info_fields`',
+            ),
+        ) );
+    }
+
     function update_23_2()
     {
         $this->addL10nOptions( array(

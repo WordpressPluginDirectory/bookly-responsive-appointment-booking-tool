@@ -46,6 +46,8 @@ class Customer extends Lib\Base\Entity
     /** @var string */
     protected $info_fields = '[]';
     /** @var string */
+    protected $tags;
+    /** @var string */
     protected $stripe_account;
     /** @var string */
     protected $stripe_cloud_account;
@@ -79,6 +81,7 @@ class Customer extends Lib\Base\Entity
         'full_address' => array( 'format' => '%s' ),
         'notes' => array( 'format' => '%s' ),
         'info_fields' => array( 'format' => '%s' ),
+        'tags' => array( 'format' => '%s' ),
         'stripe_account' => array( 'format' => '%s' ),
         'stripe_cloud_account' => array( 'format' => '%s' ),
         'attachment_id' => array( 'format' => '%d' ),
@@ -164,7 +167,7 @@ class Customer extends Lib\Base\Entity
     {
         foreach ( $records as &$record ) {
             $record['start_date'] = Lib\Utils\DateTime::applyTimeZone( $record['start_date'], $record['time_zone'], $record['time_zone_offset'] );
-            $time_zone_offset = $record['time_zone_offset'] === null ? get_option( 'gmt_offset' ) * 60 : - $record['time_zone_offset'];
+            $time_zone_offset = $record['time_zone_offset'] === null ? get_option( 'gmt_offset' ) * 60 : -$record['time_zone_offset'];
             $record['time_zone'] = $record['time_zone'] ?: 'UTC' . ( $time_zone_offset >= 0 ? '+' : '' ) . ( $time_zone_offset / 60 );
         }
 
@@ -604,6 +607,29 @@ class Customer extends Lib\Base\Entity
     public function getInfoFields()
     {
         return $this->info_fields;
+    }
+
+    /**
+     * Gets tags
+     *
+     * @return string
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Sets tags
+     *
+     * @param string $tags
+     * @return $this
+     */
+    public function setTags( $tags )
+    {
+        $this->tags = $tags;
+
+        return $this;
     }
 
     /**

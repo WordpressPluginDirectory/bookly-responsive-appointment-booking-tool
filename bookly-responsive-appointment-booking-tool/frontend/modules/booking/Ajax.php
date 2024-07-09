@@ -197,15 +197,11 @@ class Ajax extends Lib\Base\Ajax
                     ->setChainFromCartItem( $cart_key );
             }
 
-            $find_first_free_slot = true;
             $progress_tracker = self::_prepareProgressTracker( Steps::TIME, $userData );
             $info_text = InfoText::prepare( Steps::TIME, Lib\Utils\Common::getTranslatedOption( 'bookly_l10n_info_time_step' ), $userData );
             $last_date = new Lib\Slots\DatePoint( date_create( 'today' ) );
             if ( Lib\Config::showCalendar() ) {
                 $last_date = $last_date->modify( Lib\Config::getMaximumAvailableDaysForBooking() . ' days' );
-                // If the customer has selected a date on the time step,
-                // there is no need to search the first date with a free slot
-                $find_first_free_slot = ! self::hasParameter( 'selected_date' );
             }
 
             $show_blocked_slots = Lib\Config::showBlockedTimeSlots();
@@ -240,7 +236,7 @@ class Ajax extends Lib\Base\Ajax
                         }
                     }
                 }
-                if ( Lib\Config::showCalendar() && $find_first_free_slot ) {
+                if ( Lib\Config::showCalendar() ) {
                     $select_next_month = empty( $slots_data ) || ( Lib\Config::showSingleTimeSlot() && ! $block_time_slots );
                     if ( ! $select_next_month && $show_blocked_slots ) {
                         foreach ( $slots_data as $group => $data ) {

@@ -8,9 +8,9 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 10:11+0000\n"
-"PO-Revision-Date: 2024-05-20 11:11+0000\n"
-"Last-Translator: Wina H <chillhchill@gmail.com>\n"
+"POT-Creation-Date: 2024-07-01 12:47+0000\n"
+"PO-Revision-Date: 2024-07-01 14:56+0000\n"
+"Last-Translator: support@bookly.info\n"
 "Language-Team: Chinese (Taiwan)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
 
@@ -2905,6 +2905,9 @@ msgstr "全日議程"
 msgid "Notification to staff member about pending appointment"
 msgstr "通知員工審核中的預約資料"
 
+msgid "Unsupported action"
+msgstr "不受支持的操作"
+
 msgid "Page Redirection"
 msgstr "網頁重定向"
 
@@ -4513,6 +4516,9 @@ msgstr "Stripe未能激活"
 msgid "Diagnostics"
 msgstr "診斷"
 
+msgid "Run tests automatically"
+msgstr "自動運行測試"
+
 msgid "Success"
 msgstr "成功"
 
@@ -4726,6 +4732,9 @@ msgstr "顯示表格進度狀態"
 
 msgid "Align buttons to the left"
 msgstr "將按鈕向左對齊"
+
+msgid "Invert datepicker colors"
+msgstr "反轉日期選擇器顏色"
 
 msgid "Click on the underlined text to edit."
 msgstr "點擊下畫綫編輯文本"
@@ -7045,6 +7054,9 @@ msgstr "如果您在{days}內未驗證許可，您的預約將被禁用。"
 msgid "Customer birthday"
 msgstr "客戶生日日期"
 
+msgid "Tags"
+msgstr "標記"
+
 msgid "Balance"
 msgstr "餘額"
 
@@ -7579,72 +7591,14 @@ msgid ""
 "bookings will be disabled."
 msgstr "如果您在{days}內沒有提供有效的購買代碼，您的預訂將被停用。"
 
+#, php-format
+msgid ""
+"To set up Zoom integration, follow the instructions in <a href=\"%s\" "
+"target=\"_blank\">our documentation</a>"
+msgstr "要設定Zoom集成，請按照<a href=\"%s\" target=\"_blank\">我們文檔</a>中的指引進行"
+
 msgid "Authentication"
 msgstr "身份驗證"
-
-msgid "Instructions for creating an OAuth App"
-msgstr "建立OAuth應用程式的指示"
-
-msgid "To find your Client ID and Client Secret, do the following:"
-msgstr "要找到你的客戶ID和客戶密鑰，請執行以下操作："
-
-msgid "Sign in to your Zoom account"
-msgstr "登入您的Zoom帳戶"
-
-msgid ""
-"Visit the <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-msgstr ""
-"瀏覽<a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom 應用程式市集</a>"
-
-msgid ""
-"Click on the <b>Develop</b> option in the dropdown on the top-right corner "
-"and select <b>Build App</b>"
-msgstr "點擊右上角的下拉菜單中的<b>開發</b>選項，然後選擇<b>開發應用程式</ b>"
-
-msgid ""
-"A page with various app types will be displayed. Select <b>OAuth</b> as the "
-"app type and click on <b>Create</b>"
-msgstr "將顯示一個包含各種應用程式類型的頁面。選擇<b>OAuth</b>作為應用程式類型，然後點擊<b>建立</b>"
-
-msgid ""
-"Enter the name of your App. In <b>Choose app type</b> select <b>Account-"
-"level app</b> and click <b>Create</b>"
-msgstr "輸入你的應用程式名稱。在<b>選擇你的應用程式類型</b>選擇<b>帳戶級別應用程式</b>然後點擊<b>建立</b>"
-
-msgid "After creating your app, fill out descriptive and contact information"
-msgstr "建立應用程式後，請填寫描述性信息和聯繫信息"
-
-msgid ""
-"Go to <b>App Credentials</b> tab and look for the <b>Client ID</b> and <b>"
-"Client Secret</b>. Use them in the form below on this page"
-msgstr "轉到<b>應用程式憑證</b>標籤，然後找<b>客戶ID</ b>和<b>客戶密鑰</b>。在此頁下面的表格中使用它們"
-
-msgid ""
-"For <b>Redirect URL for OAuth</b> enter the <b>Redirect URL for OAuth</b> "
-"found below on this page"
-msgstr "對於<b>OAuth轉向URL </b>，請輸入在此頁下方找到的<b>OAuth轉向URL</b>"
-
-msgid ""
-"For <b>Whitelist URL</b> add a new record with the value of <b>Redirect URL "
-"for OAuth</b> found below on this page. If you use both HTTP and HTTPS, make "
-"sure to add both records for <b>Whitelist URL</b>"
-msgstr ""
-"在<b>白名單URL</b>添加一個新的記錄，其值為<b>OAuth重定向URL</b>"
-"，可在本頁面下方找到。如您同時使用HTTP和HTTPS，請確保在<b>白名單URL</b>為它們添加記錄。"
-
-msgid ""
-"Add the scopes required for your app. At the very least, you should select "
-"meeting:write:admin"
-msgstr "添加你的應用程式所需的範圍。至少，你應該選擇meeting:write:admin"
-
-msgid "Once the app is created, <b>Save</b> the changes on this page"
-msgstr "當應用程式建立時，<b>保存</b>此頁面上的更改"
-
-msgid ""
-"Click the <b>Connect OAuth</b> button below and complete the connection "
-"between Bookly and Zoom"
-msgstr "點擊以下的<b>連接OAuth</b>按鈕，完成Bookly和Zoom之間的連接"
 
 msgid "The Client ID obtained from your OAuth app"
 msgstr "在你的OAuth應用程式找到的客戶ID"
@@ -7997,6 +7951,9 @@ msgstr "根據時間表顯示日期"
 msgid "Disable dates without available timeslots"
 msgstr "禁用無可用時段的日期"
 
+msgid "Show stepper"
+msgstr "显示步驟"
+
 msgid "Add new form"
 msgstr "添加新表單"
 
@@ -8054,6 +8011,24 @@ msgstr "服務標題"
 
 msgid "Package title"
 msgstr "包裹標題"
+
+msgid "Start"
+msgstr "開始"
+
+msgid "Add extras"
+msgstr "添加其他"
+
+msgid "Select time slot"
+msgstr "選擇時段"
+
+msgid "Check cart"
+msgstr "查看購物車"
+
+msgid "Your information"
+msgstr "您的資訊"
+
+msgid "Make purchase"
+msgstr "進行購買"
 
 msgid "Book now"
 msgstr "立刻預訂"

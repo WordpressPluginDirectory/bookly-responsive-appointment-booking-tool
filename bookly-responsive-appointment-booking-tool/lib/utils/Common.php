@@ -813,4 +813,17 @@ abstract class Common extends Lib\Base\Cache
         }
         exit;
     }
+
+    /**
+     * @param Lib\Entities\Appointment $appointment
+     * @return void
+     */
+    public static function syncWithCalendars( Lib\Entities\Appointment $appointment )
+    {
+        list( $sync, $gc, $oc ) = Lib\Config::syncCalendars();
+        if ( $sync && $appointment->getStartDate() ) {
+            $gc && Lib\Proxy\Pro::syncGoogleCalendarEvent( $appointment );
+            $oc && Lib\Proxy\OutlookCalendar::syncEvent( $appointment );
+        }
+    }
 }

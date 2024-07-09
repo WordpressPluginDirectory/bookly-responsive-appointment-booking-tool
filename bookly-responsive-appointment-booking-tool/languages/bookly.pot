@@ -2532,6 +2532,9 @@ msgstr ""
 msgid "Notification to staff member about pending appointment"
 msgstr ""
 
+msgid "Unsupported action"
+msgstr ""
+
 msgid "Page Redirection"
 msgstr ""
 
@@ -4118,6 +4121,9 @@ msgstr ""
 msgid "Diagnostics"
 msgstr ""
 
+msgid "Run tests automatically"
+msgstr ""
+
 msgid "Success"
 msgstr ""
 
@@ -4324,6 +4330,9 @@ msgid "Show form progress tracker"
 msgstr ""
 
 msgid "Align buttons to the left"
+msgstr ""
+
+msgid "Invert datepicker colors"
 msgstr ""
 
 msgid "Click on the underlined text to edit."
@@ -6472,6 +6481,9 @@ msgstr ""
 msgid "Customer birthday"
 msgstr ""
 
+msgid "Tags"
+msgstr ""
+
 msgid "Balance"
 msgstr ""
 
@@ -6986,68 +6998,13 @@ msgid ""
 "bookings will be disabled."
 msgstr ""
 
+#, php-format
+msgid ""
+"To set up Zoom integration, follow the instructions in <a href=\"%s\" target="
+"\"_blank\">our documentation</a>"
+msgstr ""
+
 msgid "Authentication"
-msgstr ""
-
-msgid "Instructions for creating an OAuth App"
-msgstr ""
-
-msgid "To find your Client ID and Client Secret, do the following:"
-msgstr ""
-
-msgid "Sign in to your Zoom account"
-msgstr ""
-
-msgid ""
-"Visit the <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-msgstr ""
-
-msgid ""
-"Click on the <b>Develop</b> option in the dropdown on the top-right corner "
-"and select <b>Build App</b>"
-msgstr ""
-
-msgid ""
-"A page with various app types will be displayed. Select <b>OAuth</b> as the "
-"app type and click on <b>Create</b>"
-msgstr ""
-
-msgid ""
-"Enter the name of your App. In <b>Choose app type</b> select <b>Account-"
-"level app</b> and click <b>Create</b>"
-msgstr ""
-
-msgid "After creating your app, fill out descriptive and contact information"
-msgstr ""
-
-msgid ""
-"Go to <b>App Credentials</b> tab and look for the <b>Client ID</b> and "
-"<b>Client Secret</b>. Use them in the form below on this page"
-msgstr ""
-
-msgid ""
-"For <b>Redirect URL for OAuth</b> enter the <b>Redirect URL for OAuth</b> "
-"found below on this page"
-msgstr ""
-
-msgid ""
-"For <b>Whitelist URL</b> add a new record with the value of <b>Redirect URL "
-"for OAuth</b> found below on this page. If you use both HTTP and HTTPS, make "
-"sure to add both records for <b>Whitelist URL</b>"
-msgstr ""
-
-msgid ""
-"Add the scopes required for your app. At the very least, you should select "
-"meeting:write:admin"
-msgstr ""
-
-msgid "Once the app is created, <b>Save</b> the changes on this page"
-msgstr ""
-
-msgid ""
-"Click the <b>Connect OAuth</b> button below and complete the connection "
-"between Bookly and Zoom"
 msgstr ""
 
 msgid "The Client ID obtained from your OAuth app"
@@ -7400,6 +7357,9 @@ msgstr ""
 msgid "Disable dates without available timeslots"
 msgstr ""
 
+msgid "Show stepper"
+msgstr ""
+
 msgid "Add new form"
 msgstr ""
 
@@ -7455,6 +7415,24 @@ msgid "Service title"
 msgstr ""
 
 msgid "Package title"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Add extras"
+msgstr ""
+
+msgid "Select time slot"
+msgstr ""
+
+msgid "Check cart"
+msgstr ""
+
+msgid "Your information"
+msgstr ""
+
+msgid "Make purchase"
 msgstr ""
 
 msgid "Book now"

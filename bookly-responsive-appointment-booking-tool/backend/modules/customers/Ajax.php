@@ -11,7 +11,7 @@ class Ajax extends Lib\Base\Ajax
     protected static function permissions()
     {
         return array(
-            '_default'         => 'supervisor',
+            '_default' => 'supervisor',
             'getCustomersList' => array( 'staff', 'supervisor' ),
         );
     }
@@ -24,8 +24,8 @@ class Ajax extends Lib\Base\Ajax
         global $wpdb;
 
         $columns = Lib\Utils\Tables::filterColumns( self::parameter( 'columns' ), Lib\Utils\Tables::CUSTOMERS );
-        $order   = self::parameter( 'order', array() );
-        $filter  = self::parameter( 'filter' );
+        $order = self::parameter( 'order', array() );
+        $filter = self::parameter( 'filter' );
 
         $query = Lib\Entities\Customer::query( 'c' );
 
@@ -60,10 +60,14 @@ class Ajax extends Lib\Base\Ajax
         $query = Proxy\CustomerGroups::prepareCustomerQuery( $query );
 
         if ( $filter != '' ) {
-            $search_value   = Lib\Query::escape( $filter );
+            $search_value = Lib\Query::escape( $filter );
             $search_columns = array( 'c.info_fields LIKE "%%%s%"' );
+            $_columns = array( 'first_name', 'last_name', 'full_name', 'phone', 'email', 'id' );
+            if ( Lib\Config::proActive() ) {
+                $_columns[] = 'tags';
+            }
             foreach ( $columns as $column ) {
-                if ( in_array( $column['data'], array( 'first_name', 'last_name', 'full_name', 'phone', 'email', 'id' ) ) ) {
+                if ( in_array( $column['data'], $_columns ) ) {
                     $search_columns[] = 'c.' . $column['data'] . ' LIKE "%%%s%"';
                 }
             }
@@ -124,6 +128,7 @@ class Ajax extends Lib\Base\Ajax
                 'total_appointments' => $row['total_appointments'],
                 'wp_user' => $row['wp_user'],
                 'wp_user_id' => $row['wp_user_id'],
+                'tags' => $row['tags'],
             );
 
             $customer_data = Proxy\CustomerGroups::prepareCustomerListData( $customer_data, $row );
@@ -135,10 +140,10 @@ class Ajax extends Lib\Base\Ajax
         Lib\Utils\Tables::updateSettings( Lib\Utils\Tables::CUSTOMERS, $columns, $order, $filter );
 
         wp_send_json( array(
-            'draw'            => ( int ) self::parameter( 'draw' ),
-            'recordsTotal'    => $total,
+            'draw' => ( int ) self::parameter( 'draw' ),
+            'recordsTotal' => $total,
             'recordsFiltered' => $records_filtered,
-            'data'            => $data,
+            'data' => $data,
         ) );
     }
 
@@ -150,9 +155,9 @@ class Ajax extends Lib\Base\Ajax
         global $wpdb;
 
         $max_results = self::parameter( 'max_results', 20 );
-        $filter      = self::parameter( 'filter' );
-        $page        = self::parameter( 'page' );
-        $query       = Lib\Entities\Customer::query( 'c' );
+        $filter = self::parameter( 'filter' );
+        $page = self::parameter( 'page' );
+        $query = Lib\Entities\Customer::query( 'c' );
 
         $query->select( 'SQL_CALC_FOUND_ROWS c.id, c.group_id, c.full_name AS text, c.email, c.phone' );
 
@@ -161,8 +166,7 @@ class Ajax extends Lib\Base\Ajax
             $query
                 ->whereLike( 'c.full_name', $search_value )
                 ->whereLike( 'c.phone', $search_value, 'OR' )
-                ->whereLike( 'c.email', $search_value, 'OR' )
-            ;
+                ->whereLike( 'c.email', $search_value, 'OR' );
         }
 
         $query->limit( $max_results )->offset( ( $page - 1 ) * $max_results );
@@ -184,7 +188,7 @@ class Ajax extends Lib\Base\Ajax
         }
 
         wp_send_json( array(
-            'results'    => $customers,
+            'results' => $customers,
             'pagination' => array(
                 'more' => $more,
             ),
@@ -197,7 +201,7 @@ class Ajax extends Lib\Base\Ajax
     public static function mergeCustomers()
     {
         $target_id = self::parameter( 'target_id' );
-        $ids       = self::parameter( 'ids', array() );
+        $ids = self::parameter( 'ids', array() );
 
         // Move appointments.
         Lib\Entities\CustomerAppointment::query()
@@ -267,6 +271,15 @@ class Ajax extends Lib\Base\Ajax
                 }
                 if ( $target_customer->getStripeAccount() == '' ) {
                     $target_customer->setStripeAccount( $customer->getStripeAccount() );
+                }
+                if ( Lib\Config::proActive() ) {
+                    $tags = $target_customer->getTags() ? json_decode( $target_customer->getTags(), false ) : array();
+                    if ( $customer->getTags() ) {
+                        $tags = array_unique( array_merge( $tags, json_decode( $customer->getTags(), false ) ) );
+                    }
+                    if ( ! empty( $tags ) ) {
+                        $target_customer->setTags( json_encode( $tags, 256 ) );
+                    }
                 }
                 // Delete merged customer.
                 $customer->delete();

@@ -13,6 +13,7 @@ jQuery(function ($) {
         $color_picker = $('.bookly-js-color-picker'),
         $editableElements = $('.bookly-js-editable'),
         $show_progress_tracker = $('#bookly-show-progress-tracker'),
+        $invert_datepicker_colors = $('#bookly-invert-datepicker-colors'),
         $align_buttons_left = $('#bookly-align-buttons-left'),
         $step_settings = $('#bookly-step-settings'),
         $bookly_show_step_extras = $('#bookly-show-step-extras'),
@@ -186,6 +187,12 @@ jQuery(function ($) {
         } else {
             $('.bookly-nav-steps > div.bookly-left').removeClass('bookly-left mr-2').addClass('bookly-right ml-2');
         }
+    });
+
+    // Invert datepicker colors.
+    $invert_datepicker_colors.on('change', function () {
+        $('.bookly-js-datepicker-calendar-mode[data-mode="' + (+this.checked) + '"]').show();
+        $('.bookly-js-datepicker-calendar-mode[data-mode="' + (+!this.checked) + '"]').hide();
     });
 
     $extras_show.on('change', function () {
@@ -924,6 +931,7 @@ jQuery(function ($) {
                 'bookly_app_show_birthday': Number($show_birthday_fields.prop('checked')),
                 'bookly_app_show_address': Number($show_address_fields.prop('checked')),
                 'bookly_app_show_progress_tracker': Number($show_progress_tracker.prop('checked')),
+                'bookly_app_datepicker_inverted': Number($invert_datepicker_colors.prop('checked')),
                 'bookly_app_align_buttons_left': Number($align_buttons_left.prop('checked')),
                 'bookly_app_staff_name_with_price': Number($staff_name_with_price.prop('checked')),
                 'bookly_app_service_duration_with_price': Number($service_duration_with_price.prop('checked')),

@@ -152,8 +152,6 @@ class Cart
         $order->setOrderId( $orders_entity->getId() );
         $this->userData->setOrderId( $orders_entity->getId() );
 
-        list( $sync, $gc, $oc ) = Config::syncCalendars();
-
         foreach ( $this->getItems() as $cart_item ) {
             switch ( $cart_item->getType() ) {
                 case CartItem::TYPE_APPOINTMENT:
@@ -320,13 +318,9 @@ class Cart
                                 ->save();
                         }
 
-                        // Online meeting.
-                        Proxy\Shared::syncOnlineMeeting( array(), $appointment, $service );
-                        if ( $sync ) {
-                            // Google Calendar.
-                            $gc && Proxy\Pro::syncGoogleCalendarEvent( $appointment );
-                            // Outlook Calendar.
-                            $oc && Proxy\OutlookCalendar::syncEvent( $appointment );
+                        if ( $appointment->getStartDate() ) {
+                            Proxy\Shared::syncOnlineMeeting( array(), $appointment, $service );
+                            Common::syncWithCalendars( $appointment );
                         }
 
                         // Add entities to result.

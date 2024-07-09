@@ -174,10 +174,10 @@ class Query
         $entity = ( $namespace ?: $this->namespace ) . '\\' . $entity;
 
         $this->joins[ $alias ] = array(
-            'table'  => call_user_func( array( $entity, 'getTableName' ) ),
+            'table' => call_user_func( array( $entity, 'getTableName' ) ),
             'schema' => call_user_func( array( $entity, 'getSchema' ) ),
-            'on'     => $on,
-            'type'   => 'LEFT',
+            'on' => $on,
+            'type' => 'LEFT',
         );
 
         return $this;
@@ -194,10 +194,10 @@ class Query
     public function tableJoin( $table, $alias, $on )
     {
         $this->joins[ $alias ] = array(
-            'table'  => $table,
+            'table' => $table,
             'schema' => null,
-            'on'     => $on,
-            'type'   => 'LEFT',
+            'on' => $on,
+            'type' => 'LEFT',
         );
 
         return $this;
@@ -242,8 +242,8 @@ class Query
     {
         $this->join_selects[ $alias ] = array(
             'query' => $query,
-            'on'    => $on,
-            'type'  => $join,
+            'on' => $on,
+            'type' => $join,
         );
 
         return $this;
@@ -263,10 +263,10 @@ class Query
         $entity = ( $namespace ?: $this->namespace ) . '\\' . $entity;
 
         $this->joins[ $alias ] = array(
-            'table'  => call_user_func( array( $entity, 'getTableName' ) ),
+            'table' => call_user_func( array( $entity, 'getTableName' ) ),
             'schema' => call_user_func( array( $entity, 'getSchema' ) ),
-            'on'     => $on,
-            'type'   => 'INNER',
+            'on' => $on,
+            'type' => 'INNER',
         );
 
         return $this;
@@ -275,7 +275,7 @@ class Query
     /**
      * Set the maximum number of results to return at once.
      *
-     * @param  integer $limit
+     * @param integer $limit
      * @return self
      */
     public function limit( $limit )
@@ -288,7 +288,7 @@ class Query
     /**
      * Set the offset to use when calculating results.
      *
-     * @param  integer $offset
+     * @param integer $offset
      * @return self
      */
     public function offset( $offset )
@@ -301,7 +301,7 @@ class Query
     /**
      * Set the column we should sort by.
      *
-     * @param  string $sort_by
+     * @param string $sort_by
      * @return self
      */
     public function sortBy( $sort_by )
@@ -314,7 +314,7 @@ class Query
     /**
      * Set the order we should sort by.
      *
-     * @param  string $order
+     * @param string $order
      * @return self
      */
     public function order( $order )
@@ -327,9 +327,9 @@ class Query
     /**
      * Add a `=` clause to the search query.
      *
-     * @param  string $column
-     * @param  string $value
-     * @param  string $glue
+     * @param string $column
+     * @param string $value
+     * @param string $glue
      * @return self
      */
     public function where( $column, $value, $glue = 'AND' )
@@ -342,9 +342,9 @@ class Query
     /**
      * Add a `!=` clause to the search query.
      *
-     * @param  string $column
-     * @param  string $value
-     * @param  string $glue
+     * @param string $column
+     * @param string $value
+     * @param string $glue
      * @return self
      */
     public function whereNot( $column, $value, $glue = 'AND' )
@@ -357,9 +357,9 @@ class Query
     /**
      * Add a `LIKE` clause to the search query.
      *
-     * @param  string $column
-     * @param  string $value
-     * @param  string $glue
+     * @param string $column
+     * @param string $value
+     * @param string $glue
      * @return self
      */
     public function whereLike( $column, $value, $glue = 'AND' )
@@ -372,9 +372,9 @@ class Query
     /**
      * Add a `NOT LIKE` clause to the search query.
      *
-     * @param  string $column
-     * @param  string $value
-     * @param  string $glue
+     * @param string $column
+     * @param string $value
+     * @param string $glue
      * @return self
      */
     public function whereNotLike( $column, $value, $glue = 'AND' )
@@ -387,9 +387,9 @@ class Query
     /**
      * Add a `<` clause to the search query.
      *
-     * @param  string $column
-     * @param  string $value
-     * @param  string $glue
+     * @param string $column
+     * @param string $value
+     * @param string $glue
      * @return self
      */
     public function whereLt( $column, $value, $glue = 'AND' )
@@ -402,9 +402,9 @@ class Query
     /**
      * Add a `<=` clause to the search query.
      *
-     * @param  string $column
-     * @param  string $value
-     * @param  string $glue
+     * @param string $column
+     * @param string $value
+     * @param string $glue
      * @return self
      */
     public function whereLte( $column, $value, $glue = 'AND' )
@@ -417,9 +417,9 @@ class Query
     /**
      * Add a `>` clause to the search query.
      *
-     * @param  string $column
-     * @param  string $value
-     * @param  string $glue
+     * @param string $column
+     * @param string $value
+     * @param string $glue
      * @return self
      */
     public function whereGt( $column, $value, $glue = 'AND' )
@@ -432,9 +432,9 @@ class Query
     /**
      * Add a `>=` clause to the search query.
      *
-     * @param  string $column
-     * @param  string $value
-     * @param  string $glue
+     * @param string $column
+     * @param string $value
+     * @param string $glue
      * @return self
      */
     public function whereGte( $column, $value, $glue = 'AND' )
@@ -447,9 +447,9 @@ class Query
     /**
      * Add an `IN` clause to the search query.
      *
-     * @param  string $column
-     * @param  array  $in
-     * @param  string $glue
+     * @param string $column
+     * @param array $in
+     * @param string $glue
      * @return self
      */
     public function whereIn( $column, array $in, $glue = 'AND' )
@@ -462,9 +462,9 @@ class Query
     /**
      * Add a `NOT IN` clause to the search query.
      *
-     * @param  string $column
-     * @param  array  $not_in
-     * @param  string $glue
+     * @param string $column
+     * @param array $not_in
+     * @param string $glue
      * @return self
      */
     public function whereNotIn( $column, array $not_in, $glue = 'AND' )
@@ -478,8 +478,8 @@ class Query
      * Add an OR statement to the where clause (e.g. (var = foo OR var = bar OR
      * var = baz)).
      *
-     * @param  array  $where
-     * @param  string $glue
+     * @param array $where
+     * @param string $glue
      * @return self
      */
     public function whereAny( array $where, $glue = 'AND' )
@@ -493,8 +493,8 @@ class Query
      * Add an AND statement to the where clause (e.g. (var1 = foo AND var2 = bar
      * AND var3 = baz)).
      *
-     * @param  array  $where
-     * @param  string $glue
+     * @param array $where
+     * @param string $glue
      * @return self
      */
     public function whereAll( array $where, $glue = 'AND' )
@@ -507,10 +507,10 @@ class Query
     /**
      * Add a BETWEEN statement to the where clause.
      *
-     * @param  string $column
-     * @param  string $start
-     * @param  string $end
-     * @param  string $glue
+     * @param string $column
+     * @param string $start
+     * @param string $end
+     * @param string $glue
      * @return $this
      */
     public function whereBetween( $column, $start, $end, $glue = 'AND' )
@@ -523,9 +523,9 @@ class Query
     /**
      * Add raw where statement.
      *
-     * @param  string $statement
-     * @param  array  $values
-     * @param  string $glue
+     * @param string $statement
+     * @param array $values
+     * @param string $glue
      * @return self
      */
     public function whereRaw( $statement, array $values, $glue = 'AND' )
@@ -538,7 +538,7 @@ class Query
     /**
      * Set the group by.
      *
-     * @param $column
+     * @param string $column
      * @return $this
      */
     public function groupBy( $column )
@@ -551,9 +551,9 @@ class Query
     /**
      * Add raw having statement.
      *
-     * @param  string $statement
-     * @param  array  $values
-     * @param  string $glue
+     * @param string $statement
+     * @param array $values
+     * @param string $glue
      * @return self
      */
     public function havingRaw( $statement, array $values, $glue = 'AND' )
@@ -639,7 +639,7 @@ class Query
      * Returns an array containing all the entries from array
      * that are not present in specified column
      *
-     * @param $column
+     * @param string $column
      * @param array $array
      * @return array
      */
@@ -679,7 +679,6 @@ class Query
             // DELETE or UPDATE.
             case self::HYDRATE_NONE:
                 return $wpdb->query( $query );
-
             // SELECT.
             case self::HYDRATE_ENTITY:
             case self::HYDRATE_ARRAY:
@@ -687,7 +686,7 @@ class Query
                 $results = $wpdb->get_results( $query, OBJECT );
                 if ( $results !== null ) {
                     $results2 = array();
-                    $entity   = $this->entity;
+                    $entity = $this->entity;
                     $index_by = $this->index_by;
                     foreach ( $results as $index => $object ) {
                         $i = $index_by !== null ? $object->{$index_by} : $index;
@@ -731,7 +730,7 @@ class Query
     /**
      * Execute query and hydrate result as entity.
      *
-     * @return array  Array of entities
+     * @return Base\Entity[]
      */
     public function find()
     {
@@ -741,7 +740,7 @@ class Query
     /**
      * Execute query and fetch one result.
      *
-     * @return object  Entity
+     * @return Base\Entity
      */
     public function findOne()
     {
@@ -761,7 +760,7 @@ class Query
     /**
      * Compose the actual SQL query from all of our filters and options.
      *
-     * @param  boolean $only_count Whether to only return the row count
+     * @param boolean $only_count Whether to only return the row count
      * @return string
      */
     public function composeQuery( $only_count = false )
@@ -1009,8 +1008,8 @@ class Query
     /**
      * Prepare query with $wpdb->prepare when there are arguments.
      *
-     * @param $query
-     * @param $args
+     * @param string $query
+     * @param array $args
      * @return false|null|string
      */
     private function _prepare( $query, $args )
@@ -1028,9 +1027,9 @@ class Query
      */
     private function _normalize( $column )
     {
-        $func   = null;
-        $alias  = null;
-        $field  = null;
+        $func = null;
+        $alias = null;
+        $field = null;
         $format = null;
 
         // Match the following cases: field, alias.field, FUNC(field), FUNC(alias.field).
@@ -1057,7 +1056,10 @@ class Query
             $format = $this->schema[ $field ]['format'];
         }
 
-        return array( $func != '' ? "$func(`$alias`.`$field`)" : "`$alias`.`$field`", $format );
+        return array(
+            $func != '' ? $func . '(`' . $alias . '`.`' . $field . '`)' : '`' . $alias . '`.`' . $field . '`',
+            $format
+        );
     }
 
 }

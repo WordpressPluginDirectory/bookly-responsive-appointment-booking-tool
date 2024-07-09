@@ -8,8 +8,8 @@ msgstr ""
 "Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 10:10+0000\n"
-"PO-Revision-Date: 2024-05-23 13:33+0000\n"
+"POT-Creation-Date: 2024-07-01 12:59+0000\n"
+"PO-Revision-Date: 2024-07-04 11:56+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Spanish (Spain)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -3131,6 +3131,9 @@ msgstr "Agenda de día completo"
 msgid "Notification to staff member about pending appointment"
 msgstr "Notificación a un miembro del personal acerca cita pendiente"
 
+msgid "Unsupported action"
+msgstr "Acción no admitida"
+
 msgid "Page Redirection"
 msgstr "Página de redirección"
 
@@ -4893,6 +4896,9 @@ msgstr "La activación de Stripe no se ha completado"
 msgid "Diagnostics"
 msgstr "Diagnóstico"
 
+msgid "Run tests automatically"
+msgstr "Ejecutar pruebas automáticamente"
+
 msgid "Success"
 msgstr "Éxito"
 
@@ -5153,6 +5159,9 @@ msgstr "Mostrar barra de progreso"
 
 msgid "Align buttons to the left"
 msgstr "Alinear botones a la izquierda"
+
+msgid "Invert datepicker colors"
+msgstr "Invertir colores del selector de fecha"
 
 msgid "Click on the underlined text to edit."
 msgstr "Haz clic en el texto subrayado para editarlo."
@@ -7667,6 +7676,9 @@ msgstr ""
 msgid "Customer birthday"
 msgstr "Cumpleaños del cliente"
 
+msgid "Tags"
+msgstr "Etiquetas"
+
 msgid "Balance"
 msgstr "Balance"
 
@@ -8315,95 +8327,16 @@ msgstr ""
 "Si no proporciona un código de compra válido dentro de {days} días, el "
 "acceso a sus reservas será deshabilitado."
 
+#, php-format
+msgid ""
+"To set up Zoom integration, follow the instructions in <a href=\"%s\" "
+"target=\"_blank\">our documentation</a>"
+msgstr ""
+"Para configurar la integración de Zoom, siga las instrucciones en <a "
+"href=\"%s\" target=\"_blank\">nuestra documentación</a>"
+
 msgid "Authentication"
 msgstr "Autentificación"
-
-msgid "Instructions for creating an OAuth App"
-msgstr "Instrucciones para crear una aplicación OAuth"
-
-msgid "To find your Client ID and Client Secret, do the following:"
-msgstr ""
-"Para encontrar su ID de cliente y su número secreto, haga lo siguiente:"
-
-msgid "Sign in to your Zoom account"
-msgstr "Inicie sesión en su cuenta de Zoom"
-
-msgid ""
-"Visit the <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-msgstr ""
-"Visite <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom App "
-"Marketplace</a>"
-
-msgid ""
-"Click on the <b>Develop</b> option in the dropdown on the top-right corner "
-"and select <b>Build App</b>"
-msgstr ""
-"Haga clic en la opción <b>Desarrollar</b> en el menú desplegable en la "
-"esquina superior derecha y seleccione<b>Crear aplicación</b>"
-
-msgid ""
-"A page with various app types will be displayed. Select <b>OAuth</b> as the "
-"app type and click on <b>Create</b>"
-msgstr ""
-"Se mostrará una página con varios tipos de aplicaciones. Seleccione <b>"
-"OAuth</b> como tipo de aplicación y haga clic en <b>Crear</b>"
-
-msgid ""
-"Enter the name of your App. In <b>Choose app type</b> select <b>Account-"
-"level app</b> and click <b>Create</b>"
-msgstr ""
-"Introduzca el nombre de su aplicación. En <b>Elegir tipo de aplicación</b>, "
-"seleccione <b>Aplicación a nivel de cuenta</b> y haga clic en <b>Crear</b>"
-
-msgid "After creating your app, fill out descriptive and contact information"
-msgstr ""
-"Después de crear su aplicación, complete la información descriptiva y de "
-"contacto"
-
-msgid ""
-"Go to <b>App Credentials</b> tab and look for the <b>Client ID</b> and <b>"
-"Client Secret</b>. Use them in the form below on this page"
-msgstr ""
-"Vaya a la pestaña <b>Credenciales de la Aplicación</b> y busque el <b>ID del "
-"cliente</b> y el <b>Número Secreto</b>. Úselos en el formulario siguiente de "
-"esta página"
-
-msgid ""
-"For <b>Redirect URL for OAuth</b> enter the <b>Redirect URL for OAuth</b> "
-"found below on this page"
-msgstr ""
-"Para <b>redireccionar la URL para OAuth</b> introduzca la <b>URL de "
-"redireccionamiento para OAuth</b> que se encuentra a continuación en esta "
-"página"
-
-msgid ""
-"For <b>Whitelist URL</b> add a new record with the value of <b>Redirect URL "
-"for OAuth</b> found below on this page. If you use both HTTP and HTTPS, make "
-"sure to add both records for <b>Whitelist URL</b>"
-msgstr ""
-"Para la <b>URL de Lista Blanca</b> añada un nuevo registro con el valor de "
-"la <b>URL de redireccionamiento para OAuth</b> que se encuentra a "
-"continuación en esta página. Si usa HTTP y HTTPS, asegúrese de añadir ambos "
-"registros para la <b>URL de Lista Blanca</b>"
-
-msgid ""
-"Add the scopes required for your app. At the very least, you should select "
-"meeting:write:admin"
-msgstr ""
-"Añada los ámbitos necesarios para su aplicación. Como mínimo, debe "
-"seleccionar meeting:write:admin"
-
-msgid "Once the app is created, <b>Save</b> the changes on this page"
-msgstr ""
-"Una vez creada la aplicación, <b>Guardar</b> los cambios en esta página."
-
-msgid ""
-"Click the <b>Connect OAuth</b> button below and complete the connection "
-"between Bookly and Zoom"
-msgstr ""
-"Haga clic en el botón <b>Conectar OAuth</b> y complete la conexión entre "
-"Bookly y Zoom."
 
 msgid "The Client ID obtained from your OAuth app"
 msgstr "ID de cliente obtenido de su aplicación OAuth"
@@ -8797,6 +8730,9 @@ msgstr "Mostrar fechas según programación"
 msgid "Disable dates without available timeslots"
 msgstr "Desactivar fechas sin franjas horarias disponibles"
 
+msgid "Show stepper"
+msgstr "Mostrar paso a paso"
+
 msgid "Add new form"
 msgstr "Añadir nuevo formulario"
 
@@ -8859,6 +8795,24 @@ msgstr "Título del servicio"
 
 msgid "Package title"
 msgstr "Título del paquete"
+
+msgid "Start"
+msgstr "Comenzar"
+
+msgid "Add extras"
+msgstr "Añadir extras"
+
+msgid "Select time slot"
+msgstr "Seleccionar franja horaria"
+
+msgid "Check cart"
+msgstr "Consultar carrito"
+
+msgid "Your information"
+msgstr "Si información"
+
+msgid "Make purchase"
+msgstr "Hacer una compra"
 
 msgid "Book now"
 msgstr "Reservar ahora"

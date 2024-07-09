@@ -19,7 +19,8 @@ $custom_css = trim( get_option( 'bookly_app_custom_styles' ) );
         .bookly-form .bookly-progress-tracker > .active,
         .bookly-form .bookly-columnizer .bookly-hour span.bookly-waiting-list,
         .bookly-form .hover\:text-bookly:hover,
-        .bookly-form .text-bookly:not(:hover) {
+        .bookly-form .text-bookly:not(:hover),
+        .bookly-form .hover\:text-bookly:hover {
             color: <?php echo esc_attr( $color ) ?> !important;
         }
 
@@ -35,7 +36,8 @@ $custom_css = trim( get_option( 'bookly_app_custom_styles' ) );
         .bookly-form .bookly-square,
         .bookly-form .bookly-pagination > li.active,
         .bookly-form .bg-bookly,
-        .bookly-form .hover\:bg-bookly:hover {
+        .bookly-form .hover\:bg-bookly:hover,
+        .bookly-form .bg-bookly-not-hover:not(:hover) {
             background-color: <?php echo esc_attr( $color ) ?> !important;
         }
 

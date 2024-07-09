@@ -8,9 +8,9 @@ msgstr ""
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 10:11+0000\n"
-"PO-Revision-Date: 2024-05-20 21:56+0000\n"
-"Last-Translator: Isabel Andrade <estgf_nemo@hotmail.com>\n"
+"POT-Creation-Date: 2024-07-01 12:44+0000\n"
+"PO-Revision-Date: 2024-07-02 21:41+0000\n"
+"Last-Translator: support@bookly.info\n"
 "Language-Team: Portuguese (Portugal)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
 
@@ -3134,6 +3134,9 @@ msgstr "Agenda do dia inteiro"
 msgid "Notification to staff member about pending appointment"
 msgstr "Notificação ao funcionário sobre a reserva pendente"
 
+msgid "Unsupported action"
+msgstr "Ação não suportada"
+
 msgid "Page Redirection"
 msgstr "Redirecionamento da página"
 
@@ -4953,6 +4956,9 @@ msgstr ""
 "Diagnósticos\n"
 "\n"
 
+msgid "Run tests automatically"
+msgstr "Executar testes automaticamente"
+
 msgid "Success"
 msgstr "Sucesso"
 
@@ -5236,6 +5242,9 @@ msgstr "Ver o formulário de monitorização do progresso"
 
 msgid "Align buttons to the left"
 msgstr "Alinhar os botões à esquerda"
+
+msgid "Invert datepicker colors"
+msgstr "Inverter cores do datepicker"
 
 msgid "Click on the underlined text to edit."
 msgstr "Clique no texto sublinhado para editar."
@@ -7830,6 +7839,9 @@ msgstr ""
 msgid "Customer birthday"
 msgstr "Aniversário do cliente"
 
+msgid "Tags"
+msgstr "Etiquetas"
+
 msgid "Balance"
 msgstr "Balanço"
 
@@ -8520,92 +8532,16 @@ msgstr ""
 "Se não fornecer um código de compra válido dentro de {days}, o acesso às "
 "suas reservas será desativado."
 
+#, php-format
+msgid ""
+"To set up Zoom integration, follow the instructions in <a href=\"%s\" "
+"target=\"_blank\">our documentation</a>"
+msgstr ""
+"Para configurar a integração do Zoom, siga as instruções em <a href=\"%s\" "
+"target=\"_blank\">nossa documentação</a>"
+
 msgid "Authentication"
 msgstr "Autenticação"
-
-msgid "Instructions for creating an OAuth App"
-msgstr "Instruções para criar uma App OAuth"
-
-msgid "To find your Client ID and Client Secret, do the following:"
-msgstr "Para encontrar o ID do seu Cliente e Cliente Secreto, faça o seguinte:"
-
-msgid "Sign in to your Zoom account"
-msgstr "Fazer login na sua conta Zoom"
-
-msgid ""
-"Visit the <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-msgstr ""
-"Visitar o <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">"
-"Marketplace Aplicação Zoom</a>"
-
-msgid ""
-"Click on the <b>Develop</b> option in the dropdown on the top-right corner "
-"and select <b>Build App</b>"
-msgstr ""
-"Clique na opção <b>Develop</b> na lista no canto em cima à direita da janela "
-"e selecione <b>Build App</b>"
-
-msgid ""
-"A page with various app types will be displayed. Select <b>OAuth</b> as the "
-"app type and click on <b>Create</b>"
-msgstr ""
-"A página com várias categorias de apps vai ser exibida. Selecione  <b>"
-"OAuth</b> como categoria de app e clique em  <b>Criar</b>"
-
-msgid ""
-"Enter the name of your App. In <b>Choose app type</b> select <b>Account-"
-"level app</b> and click <b>Create</b>"
-msgstr ""
-"Introduza o nome da sua App. Em <b>Escolha o tipo de app</b> selecione <b>"
-"Conta-nivel</b> e clique <b>Criar</b>"
-
-msgid "After creating your app, fill out descriptive and contact information"
-msgstr ""
-"Depois de criar a sua aplicação, preencha os campos descrição e informações "
-"de contacto"
-
-msgid ""
-"Go to <b>App Credentials</b> tab and look for the <b>Client ID</b> and <b>"
-"Client Secret</b>. Use them in the form below on this page"
-msgstr ""
-"Vá para as  <b>Credenciais da app</b> no layout e procure por  <b>ID do "
-"Cliente</b> e  <b>Cliente Secreto</b>. Utilize o formulário abaixo nesta "
-"página"
-
-msgid ""
-"For <b>Redirect URL for OAuth</b> enter the <b>Redirect URL for OAuth</b> "
-"found below on this page"
-msgstr ""
-"Para <b>Redirecionar a URL para o OAuth</b> introduza o <b>Redireciona o URL "
-"para o OAuth</b> encontrado abaixo nesta página "
-
-msgid ""
-"For <b>Whitelist URL</b> add a new record with the value of <b>Redirect URL "
-"for OAuth</b> found below on this page. If you use both HTTP and HTTPS, make "
-"sure to add both records for <b>Whitelist URL</b>"
-msgstr ""
-"Para <b>URL Lista de permissões </b> adicione um novo registo com o valor de "
-"<b> Redirecionar URL para OAuth</b> encontrado abaixo nesta página. Se usar "
-"ambos HTTP e HTTPS, assegure-se que adiciona ambos os registos <b>URL Lista "
-"de permissões </b>"
-
-msgid ""
-"Add the scopes required for your app. At the very least, you should select "
-"meeting:write:admin"
-msgstr ""
-"Adicione os escopos requeridos para a sua app. Pelo menos, deve selecionar "
-"meeting:write:admin"
-
-msgid "Once the app is created, <b>Save</b> the changes on this page"
-msgstr "Uma vez criada a app,  <b>Salvar</b> as alterações nesta página"
-
-msgid ""
-"Click the <b>Connect OAuth</b> button below and complete the connection "
-"between Bookly and Zoom"
-msgstr ""
-"Clique em <b>Connect OAuth</b> o botão abaixo e complete a ligação entre o "
-"Bookly e o Zoom"
 
 msgid "The Client ID obtained from your OAuth app"
 msgstr "O ID do Cliente obtido da sua app OAuth"
@@ -9010,6 +8946,9 @@ msgstr "Visualizar datas de acordo com o calendário"
 msgid "Disable dates without available timeslots"
 msgstr "Desativar datas sem horários disponíveis"
 
+msgid "Show stepper"
+msgstr "Mostrar o passo-a-passo"
+
 msgid "Add new form"
 msgstr "Adicionar novo formulário"
 
@@ -9072,6 +9011,24 @@ msgstr "Título do serviço"
 
 msgid "Package title"
 msgstr "Título do pacote"
+
+msgid "Start"
+msgstr "Iniciar"
+
+msgid "Add extras"
+msgstr "Adicionar extras"
+
+msgid "Select time slot"
+msgstr "Selecionar faixa horária"
+
+msgid "Check cart"
+msgstr "Verificar o carrinho"
+
+msgid "Your information"
+msgstr "A sua informação"
+
+msgid "Make purchase"
+msgstr "Efetuar a compra"
 
 msgid "Book now"
 msgstr "Reserve agora"

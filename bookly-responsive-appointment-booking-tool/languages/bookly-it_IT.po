@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bookly\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 10:04+0000\n"
-"PO-Revision-Date: 2024-05-20 13:39+0200\n"
+"POT-Creation-Date: 2024-07-01 12:44+0000\n"
+"PO-Revision-Date: 2024-07-01 22:46+0200\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -3170,6 +3170,9 @@ msgstr ""
 "Notifica all'incaricato dello staff di un appuntamento in attesa di "
 "approvazione"
 
+msgid "Unsupported action"
+msgstr "Azione non supportata"
+
 msgid "Page Redirection"
 msgstr "Pagina di reindirizzamento"
 
@@ -4938,6 +4941,9 @@ msgstr "L'attivazione di Stripe non è stata completata"
 msgid "Diagnostics"
 msgstr "Diagnosi"
 
+msgid "Run tests automatically"
+msgstr "Avvia i test automaticamente"
+
 msgid "Success"
 msgstr "Completato"
 
@@ -5195,6 +5201,9 @@ msgstr "Mostra la barra di avanzamento del modulo"
 
 msgid "Align buttons to the left"
 msgstr "Allinea i pulsanti a sinistra"
+
+msgid "Invert datepicker colors"
+msgstr "Inverti i colori del selezionatore di date"
 
 msgid "Click on the underlined text to edit."
 msgstr "Clicca sui testi sottolineati per modificarli."
@@ -7707,6 +7716,9 @@ msgstr ""
 msgid "Customer birthday"
 msgstr "Compleanno del cliente"
 
+msgid "Tags"
+msgstr "Tag"
+
 msgid "Balance"
 msgstr "Saldo"
 
@@ -8354,92 +8366,16 @@ msgstr ""
 "Se non fornisci un codice di acquisto valido entro {days}, l'accesso alle "
 "tue prenotazioni verrà disattivato."
 
+#, php-format
+msgid ""
+"To set up Zoom integration, follow the instructions in <a href=\"%s\" "
+"target=\"_blank\">our documentation</a>"
+msgstr ""
+"Per impostare l'integrazione con Zoom, segui le istruzioni nella <a "
+"href=\"%s\" target=\"_blank\">nostra documentazione</a>"
+
 msgid "Authentication"
 msgstr "Autenticazione"
-
-msgid "Instructions for creating an OAuth App"
-msgstr "Istruzioni per creare un'app OAuth"
-
-msgid "To find your Client ID and Client Secret, do the following:"
-msgstr "Per trovare i tuoi ID cliente e cliente Secret, fai così:"
-
-msgid "Sign in to your Zoom account"
-msgstr "Accedere al tuo account Zoom"
-
-msgid ""
-"Visit the <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-msgstr ""
-"Visitare il <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-
-msgid ""
-"Click on the <b>Develop</b> option in the dropdown on the top-right corner "
-"and select <b>Build App</b>"
-msgstr ""
-"Fare clic sull'opzione <b>Sviluppo</b> nel menu a discesa in alto a destra e "
-"selezionare <b>Crea App</b>"
-
-msgid ""
-"A page with various app types will be displayed. Select <b>OAuth</b> as the "
-"app type and click on <b>Create</b>"
-msgstr ""
-"A tale scopo, verrà visualizzata una pagina con vari tipi di app. "
-"Selezionare <b>OAuth</b> come tipo di applicazione e fare clic su <b>Crea</"
-"b>."
-
-msgid ""
-"Enter the name of your App. In <b>Choose app type</b> select <b>Account-"
-"level app</b> and click <b>Create</b>"
-msgstr ""
-"Inserisci il nome della tua app. In <b>Scegli il tipo di app</b> seleziona "
-"<b>App livello account</b> e fai clic su <b>Crea</b>"
-
-msgid "After creating your app, fill out descriptive and contact information"
-msgstr ""
-"Dopo aver creato la tua app, compila le informazioni descrittive e di "
-"contatto"
-
-msgid ""
-"Go to <b>App Credentials</b> tab and look for the <b>Client ID</b> and "
-"<b>Client Secret</b>. Use them in the form below on this page"
-msgstr ""
-"Vai nella scheda <b>Credenziali app</b> e cerca <b>ID cliente</b> e "
-"<b>Client Secret</b>. Utilizzali nel modulo sottostante di questa pagina"
-
-msgid ""
-"For <b>Redirect URL for OAuth</b> enter the <b>Redirect URL for OAuth</b> "
-"found below on this page"
-msgstr ""
-"Per l'<b>URL di reindirizzamento per OAuth</b> inserire l'<b>URL di "
-"reindirizzamento per OAuth</b> che si trova in questa pagina"
-
-msgid ""
-"For <b>Whitelist URL</b> add a new record with the value of <b>Redirect URL "
-"for OAuth</b> found below on this page. If you use both HTTP and HTTPS, make "
-"sure to add both records for <b>Whitelist URL</b>"
-msgstr ""
-"Per l'<b>URL whitelist</b> aggiungere un nuovo record con il valore di "
-"<b>URL di reindirizzamento per OAuth</b> che si trova più sotto in questa "
-"pagina. Se utilizzi sia HTTP che HTTPS, assicurati di creare entrambi i "
-"record per l'<b>URL whitelist</b>"
-
-msgid ""
-"Add the scopes required for your app. At the very least, you should select "
-"meeting:write:admin"
-msgstr ""
-"Aggiungere gli ambiti necessari per l'applicazione. Come minimo, si dovrebbe "
-"selezionare meeting:write:admin"
-
-msgid "Once the app is created, <b>Save</b> the changes on this page"
-msgstr "Una volta creata l'app, <b>Salva</b> le modifiche in questa pagina"
-
-msgid ""
-"Click the <b>Connect OAuth</b> button below and complete the connection "
-"between Bookly and Zoom"
-msgstr ""
-"Fai clic sul pulsante <b>Connessione OAuth</b> sotto e completa la "
-"connessione tra Bookly e Zoom"
 
 msgid "The Client ID obtained from your OAuth app"
 msgstr "L'ID cliente ottenuto dalla tua app OAuth"
@@ -8834,6 +8770,9 @@ msgstr "Visualizza le date in base al programma"
 msgid "Disable dates without available timeslots"
 msgstr "Disabilita le date che non hanno fasce orarie disponibili"
 
+msgid "Show stepper"
+msgstr "Mostra stepper"
+
 msgid "Add new form"
 msgstr "Aggiungi nuovo modulo"
 
@@ -8896,6 +8835,24 @@ msgstr "Titolo servizio"
 
 msgid "Package title"
 msgstr "Titolo del pacchetto"
+
+msgid "Start"
+msgstr "Avvia"
+
+msgid "Add extras"
+msgstr "Aggiungi extra"
+
+msgid "Select time slot"
+msgstr "Seleziona ua fascia oraria"
+
+msgid "Check cart"
+msgstr "Controlla il carrello"
+
+msgid "Your information"
+msgstr "Le tue informazioni"
+
+msgid "Make purchase"
+msgstr "Fai un acquisto"
 
 msgid "Book now"
 msgstr "Prenota ora"

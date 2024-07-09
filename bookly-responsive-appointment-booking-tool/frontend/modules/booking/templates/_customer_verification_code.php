@@ -7,7 +7,7 @@ use Bookly\Lib\Utils\Common;
         <div class="bookly-modal-content bookly-js-modal-content">
             <div class="bookly-modal-header">
                 <div><?php esc_html_e( 'Verification code', 'bookly' ) ?></div>
-                <button type="button" class="bookly-close bookly-js-close">×</button>
+                <button type="button" class="bookly-close bookly-js-close" style="margin-top: -25px; font-size: 21px; line-height: 1;">×</button>
             </div>
             <div class="bookly-modal-body bookly-js-modal-body">
                 <label for="bookly-verification-code" id="bookly-verification-code-text"></label>

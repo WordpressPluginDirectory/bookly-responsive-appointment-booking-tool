@@ -230,6 +230,7 @@ class ShortCode extends Lib\Base\ShortCode
             'form_attributes' => $form_attributes,
             'use_client_time_zone' => (int) Lib\Config::useClientTimeZone(),
             'defaults' => compact( 'service_id', 'staff_id', 'location_id', 'category_id' ),
+            'datepicker_mode' => get_option( 'bookly_app_datepicker_inverted' ) ? 'bg-accent' : 'text-accent',
         );
 
         $bookly_options = Proxy\Shared::booklyFormOptions( $bookly_options );

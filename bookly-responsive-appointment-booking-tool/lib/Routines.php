@@ -122,6 +122,7 @@ abstract class Routines
                 ->execute();
             $affected_appointments = Appointment::query( 'a' )
                 ->leftJoin( 'CustomerAppointment', 'ca', 'a.id = ca.appointment_id' )
+                ->whereNot( 'a.start_date', null )
                 ->whereIn( 'ca.payment_id', $payments )
                 ->fetchCol( 'a.id' );
             // Reject recurring appointments when customer pay only for first one.
@@ -138,25 +139,17 @@ abstract class Routines
                     ->execute();
                 $affected_appointments = array_merge( $affected_appointments, Appointment::query( 'a' )
                     ->leftJoin( 'CustomerAppointment', 'ca', 'a.id = ca.appointment_id' )
+                    ->whereNot( 'a.start_date', null )
                     ->whereIn( 'ca.series_id', $series )
                     ->fetchCol( 'a.id' ) );
             }
             Proxy\Shared::unpaidPayments( $payments );
 
-            // Sync affected appointments
-            list( $sync, $gc, $oc ) = Config::syncCalendars();
-
             /** @var Appointment $appointment */
             foreach ( array_unique( $affected_appointments ) as $appointment_id ) {
                 $appointment = Appointment::find( $appointment_id );
-                // Online meeting.
                 Proxy\Shared::syncOnlineMeeting( array(), $appointment, Entities\Service::find( $appointment->getServiceId() ) );
-                if ( $sync ) {
-                    // Google Calendar.
-                    $gc && Proxy\Pro::syncGoogleCalendarEvent( $appointment );
-                    // Outlook Calendar.
-                    $oc && Proxy\OutlookCalendar::syncEvent( $appointment );
-                }
+                Utils\Common::syncWithCalendars( $appointment );
             }
         }
     }

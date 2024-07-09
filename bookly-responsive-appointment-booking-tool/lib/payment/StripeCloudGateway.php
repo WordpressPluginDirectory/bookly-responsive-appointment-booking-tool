@@ -92,4 +92,16 @@ class StripeCloudGateway extends Lib\Base\Gateway
 
         return self::STATUS_FAILED;
     }
+
+    /**
+     * @inerhitDoc
+     */
+    protected function refundPayment()
+    {
+        $payment = $this->getPayment();
+        $cloud = Lib\Cloud\API::getInstance();
+        if ( ! $cloud->getProduct( Lib\Cloud\Account::PRODUCT_STRIPE )->refund( $payment->getRefId() ) ) {
+            throw new \Exception( current( $cloud->getErrors() ) );
+        }
+    }
 }

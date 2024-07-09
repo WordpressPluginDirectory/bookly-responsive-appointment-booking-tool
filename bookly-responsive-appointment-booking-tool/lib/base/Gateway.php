@@ -30,8 +30,9 @@ abstract class Gateway
     /** @var bool */
     protected $on_site = false;
 
-    public function __construct( Request $request )
+    public function __construct( Request $request = null )
     {
+        $request = $request ?: Request::getInstance();
         BooklyLib\Utils\Common::noCache();
         $this->request = $request;
     }
@@ -269,6 +270,34 @@ abstract class Gateway
     }
 
     /**
+     * @return $this
+     * @throws \Exception
+     */
+    public function refund()
+    {
+        $this->refundPayment();
+
+        $this->getPayment()
+            ->setStatus( Entities\Payment::STATUS_REFUNDED )
+            ->save();
+
+        list( $sync ) = Config::syncCalendars();
+        if ( $sync ) {
+            /** @var BooklyLib\Entities\Appointment[] $appointments */
+            $appointments = BooklyLib\Entities\Appointment::query( 'a' )
+                ->innerJoin( 'CustomerAppointment', 'ca', 'ca.appointment_id = a.id' )
+                ->whereNot( 'a.start_date', null )
+                ->where( 'ca.payment_id', $this->payment->getId() )
+                ->find();
+            foreach ( $appointments as $appointment ) {
+                BooklyLib\Utils\Common::syncWithCalendars( $appointment );
+            }
+        }
+
+        return $this;
+    }
+
+    /**
      * @return array
      * @throws \Exception
      */
@@ -284,6 +313,15 @@ abstract class Gateway
      * @return array
      */
     abstract protected function getInternalMetaData();
+
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    protected function refundPayment()
+    {
+        throw new \Exception( __( 'Unsupported action', 'bookly' ) );
+    }
 
     /**
      * Create a shared webhook endpoint for payment system events
@@ -318,7 +356,7 @@ abstract class Gateway
         } else {
             $data = array(
                 'action' => 'bookly_pro_checkout_response',
-                'modern_booking_form' => true
+                'modern_booking_form' => true,
             );
         }
         $data['bookly_event'] = $event;
@@ -353,7 +391,7 @@ abstract class Gateway
      */
     protected function validatePaymentData( $received, $currency_code )
     {
-        return abs( (float) $received - (float) $this->getPayment()->getPaid() ) <= 0.01 && ( BooklyLib\Config::getCurrency() == $currency_code );
+        return abs( (float) $received - (float) $this->getPayment()->getPaid() ) <= 0.01 && ( BooklyLib\Config::getCurrency() === $currency_code );
     }
 
     /**

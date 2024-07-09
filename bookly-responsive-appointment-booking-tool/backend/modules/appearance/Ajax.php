@@ -102,6 +102,7 @@ class Ajax extends Lib\Base\Ajax
             'bookly_app_show_login_button',
             'bookly_app_show_notes',
             'bookly_app_show_progress_tracker',
+            'bookly_app_datepicker_inverted',
             'bookly_app_show_service_info',
             'bookly_app_show_slots',
             'bookly_app_show_staff_info',

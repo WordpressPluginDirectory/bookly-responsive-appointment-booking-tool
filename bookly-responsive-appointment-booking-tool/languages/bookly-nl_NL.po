@@ -8,8 +8,8 @@ msgstr ""
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 10:10+0000\n"
-"PO-Revision-Date: 2024-05-21 07:27+0000\n"
+"POT-Creation-Date: 2024-07-01 12:55+0000\n"
+"PO-Revision-Date: 2024-07-01 14:45+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Dutch\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -3098,6 +3098,9 @@ msgstr "Volledige dag agenda"
 msgid "Notification to staff member about pending appointment"
 msgstr "Kennisgeving aan medewerker over lopende afspraak"
 
+msgid "Unsupported action"
+msgstr "Niet-ondersteunde actie"
+
 msgid "Page Redirection"
 msgstr "Pagina Omleiding"
 
@@ -4853,6 +4856,9 @@ msgstr "Stripe activatie is niet afgerond"
 msgid "Diagnostics"
 msgstr "Diagnoses"
 
+msgid "Run tests automatically"
+msgstr "Tests automatisch uitvoeren"
+
 msgid "Success"
 msgstr "Gelukt"
 
@@ -5111,6 +5117,9 @@ msgstr "Laat voortgang formulier zien"
 
 msgid "Align buttons to the left"
 msgstr "Lijn knoppen aan de linkerkant uit"
+
+msgid "Invert datepicker colors"
+msgstr "Kleuren gegevenskiezer omkeren"
 
 msgid "Click on the underlined text to edit."
 msgstr "Klik op de onderstreepte tekst om te wijzigen."
@@ -7592,6 +7601,9 @@ msgstr ""
 msgid "Customer birthday"
 msgstr "Verjaardag klant"
 
+msgid "Tags"
+msgstr "Tags"
+
 msgid "Balance"
 msgstr "Saldo"
 
@@ -8234,91 +8246,16 @@ msgstr ""
 "Als u niet geen geldige aankoop code verstrekt binnen {days}, zal de toegang "
 "tot uw boekingen worden uitgeschakeld."
 
+#, php-format
+msgid ""
+"To set up Zoom integration, follow the instructions in <a href=\"%s\" "
+"target=\"_blank\">our documentation</a>"
+msgstr ""
+"Volg de instructies in <a href=\"%s\" target=\"_blank\">onze documentatie</a>"
+" om de Zoom-integratie in te stellen."
+
 msgid "Authentication"
 msgstr "Authenticatie"
-
-msgid "Instructions for creating an OAuth App"
-msgstr "Instructies voor het maken van een OAuth App"
-
-msgid "To find your Client ID and Client Secret, do the following:"
-msgstr "Om uw Klant ID en Klant Geheim te vinden, doet u het volgende:"
-
-msgid "Sign in to your Zoom account"
-msgstr "Log in op je Zoom-account"
-
-msgid ""
-"Visit the <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marketplace</a>"
-msgstr ""
-"Bezoek de <a href=\"https://marketplace.zoom.us/\" target=\"_blank\">Zoom "
-"App Marktplaats</a>"
-
-msgid ""
-"Click on the <b>Develop</b> option in the dropdown on the top-right corner "
-"and select <b>Build App</b>"
-msgstr ""
-"Klik op de optie <b>Ontwikkelen</b> optie in de vervolgkeuzelijst in de "
-"rechterbovenhoek en selecteer <b>App Bouwen</b>"
-
-msgid ""
-"A page with various app types will be displayed. Select <b>OAuth</b> as the "
-"app type and click on <b>Create</b>"
-msgstr ""
-"Er verschijnt een pagina met verschillende app-types. Selecteer <b>OAuth</b> "
-"als het app type en klik op <b>Maken</b>"
-
-msgid ""
-"Enter the name of your App. In <b>Choose app type</b> select <b>Account-"
-"level app</b> and click <b>Create</b>"
-msgstr ""
-"Voer de naam van uw App in. In <b>Kies type app</b> selecteert u <b>Account-"
-"niveau app</b> en klikt u op <b>Maken</b>"
-
-msgid "After creating your app, fill out descriptive and contact information"
-msgstr ""
-"Nadat je je app hebt gemaakt, vul je beschrijvende en contactgegevens in"
-
-msgid ""
-"Go to <b>App Credentials</b> tab and look for the <b>Client ID</b> and <b>"
-"Client Secret</b>. Use them in the form below on this page"
-msgstr ""
-"Ga naar het tabblad <b>App Verificatiegegevens</b> en zoek naar de <b>Klant "
-"ID</b> en <b>Klant Geheim</b>. Gebruik ze in het formulier hieronder op deze "
-"pagina"
-
-msgid ""
-"For <b>Redirect URL for OAuth</b> enter the <b>Redirect URL for OAuth</b> "
-"found below on this page"
-msgstr ""
-"Voor <b>Doorstuur URL voor OAuth</b> voert u de <b>Doorstuur URL voor "
-"OAuth</b> in die u hieronder op deze pagina vindt"
-
-msgid ""
-"For <b>Whitelist URL</b> add a new record with the value of <b>Redirect URL "
-"for OAuth</b> found below on this page. If you use both HTTP and HTTPS, make "
-"sure to add both records for <b>Whitelist URL</b>"
-msgstr ""
-"Voeg voor <b>Whitelist URL</b> een nieuw record toe met de waarde <b>"
-"Doorstuur URL voor OAuth</b> die u hieronder op deze pagina vindt. Als u "
-"zowel HTTP als HTTPS gebruikt, zorg er dan voor dat u beide records toevoegt "
-"voor <b>Whitelist URL</b>"
-
-msgid ""
-"Add the scopes required for your app. At the very least, you should select "
-"meeting:write:admin"
-msgstr ""
-"Voeg de toepassingsgebieden toe die nodig zijn voor uw app. Op zijn minst "
-"moet u meeting:write:admin selecteren"
-
-msgid "Once the app is created, <b>Save</b> the changes on this page"
-msgstr "Zodra de app is gemaakt, <b>Bewaar</b> de wijzigingen op deze pagina"
-
-msgid ""
-"Click the <b>Connect OAuth</b> button below and complete the connection "
-"between Bookly and Zoom"
-msgstr ""
-"Klik op de knop <b>Verbind OAuth</b> hieronder en voltooi de verbinding "
-"tussen Bookly en Zoom"
 
 msgid "The Client ID obtained from your OAuth app"
 msgstr "De Klant ID verkregen van uw OAuth app"
@@ -8712,6 +8649,9 @@ msgstr "Data weergeven volgens schema"
 msgid "Disable dates without available timeslots"
 msgstr "Data zonder beschikbare timeslots uitschakelen"
 
+msgid "Show stepper"
+msgstr "Stepper tonen"
+
 msgid "Add new form"
 msgstr "Nieuw formulier toevoegen"
 
@@ -8775,6 +8715,24 @@ msgstr "Servicetitel"
 
 msgid "Package title"
 msgstr "Titel pakket"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "Add extras"
+msgstr "Extra's toevoegen"
+
+msgid "Select time slot"
+msgstr "Selecteer tijdslot"
+
+msgid "Check cart"
+msgstr "Winkelwagen controleren"
+
+msgid "Your information"
+msgstr "Uw informatie"
+
+msgid "Make purchase"
+msgstr "Kopen"
 
 msgid "Book now"
 msgstr "Nu boeken"

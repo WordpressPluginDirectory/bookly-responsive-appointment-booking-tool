@@ -1,8 +1,8 @@
 <?php
 namespace Bookly\Lib;
 
-use Bookly\Lib\Entities\Notification;
 use Bookly\Lib\DataHolders\Notification\Settings;
+use Bookly\Lib\Entities\Notification;
 
 class Installer extends Base\Installer
 {
@@ -269,6 +269,7 @@ class Installer extends Base\Installer
             'bookly_app_show_terms' => '0',
             'bookly_app_show_download_ics' => '0',
             'bookly_app_show_add_to_calendar' => '0',
+            'bookly_app_datepicker_inverted' => '0',
             'bookly_l10n_button_apply' => __( 'Apply', 'bookly' ),
             'bookly_l10n_button_back' => __( 'Back', 'bookly' ),
             'bookly_l10n_button_time_prev' => __( '&lt;', 'bookly' ),
@@ -756,6 +757,7 @@ class Installer extends Base\Installer
                 `full_address`       VARCHAR(255) DEFAULT NULL,
                 `notes`              TEXT NOT NULL,
                 `info_fields`        TEXT DEFAULT NULL,
+                `tags`               TEXT DEFAULT NULL,
                 `stripe_account`     VARCHAR(36) DEFAULT NULL,
                 `stripe_cloud_account` VARCHAR(36) DEFAULT NULL,
                 `attachment_id`      INT UNSIGNED DEFAULT NULL,
