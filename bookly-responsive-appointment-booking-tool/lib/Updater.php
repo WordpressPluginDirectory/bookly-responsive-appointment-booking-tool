@@ -3,6 +3,16 @@ namespace Bookly\Lib;
 
 class Updater extends Base\Updater
 {
+    function update_23_8()
+    {
+        $this->alterTables( array(
+            'bookly_payments' => array(
+                'ALTER TABLE `%s` ADD COLUMN `invoice_id` VARCHAR(32) DEFAULT NULL AFTER `details`',
+                'ALTER TABLE `%s` ADD INDEX `invoice_id_idx` (`invoice_id`)',
+            ),
+        ) );
+    }
+
     function update_23_7()
     {
         add_option( 'bookly_app_datepicker_inverted', '0' );

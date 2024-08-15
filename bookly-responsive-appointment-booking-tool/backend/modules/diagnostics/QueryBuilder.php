@@ -665,6 +665,7 @@ class QueryBuilder
             'bookly_payments.details' => array( 'type' => "text", 'is_nullabe' => 1, 'extra' => "", 'default' => null, 'key' => "" ),
             'bookly_payments.order_id' => array( 'type' => "int unsigned", 'is_nullabe' => 1, 'extra' => "", 'default' => null, 'key' => "MUL" ),
             'bookly_payments.ref_id' => array( 'type' => "varchar(255)", 'is_nullabe' => 1, 'extra' => "", 'default' => null, 'key' => "" ),
+            'bookly_payments.invoice_id' => array( 'type' => "varchar(32)", 'is_nullabe' => 1, 'extra' => "", 'default' => null, 'key' => "MUL" ),
             'bookly_payments.created_at' => array( 'type' => "datetime", 'is_nullabe' => 0, 'extra' => "", 'default' => null, 'key' => "" ),
             'bookly_payments.updated_at' => array( 'type' => "datetime", 'is_nullabe' => 0, 'extra' => "", 'default' => null, 'key' => "" ),
             'bookly_schedule_item_breaks.id' => array( 'type' => "int unsigned", 'is_nullabe' => 0, 'extra' => "auto_increment", 'default' => null, 'key' => "PRI" ),

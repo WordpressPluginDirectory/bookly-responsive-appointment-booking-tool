@@ -8,8 +8,8 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 12:47+0000\n"
-"PO-Revision-Date: 2024-07-01 14:56+0000\n"
+"POT-Creation-Date: 2024-08-08 07:30+0000\n"
+"PO-Revision-Date: 2024-08-08 08:51+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Chinese (Taiwan)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -96,6 +96,23 @@ msgid ""
 "example, if the file name prefix is \"myfile_\", your PDF file will be "
 "downloaded with the \"myfile_1.pdf\" name"
 msgstr "為將用於發票的文件名設置前綴。例如，如果文件名稱前綴為\"myfile_\"，則PDF文件將以\"myfile_1.pdf\"名稱下載"
+
+msgid "Sequential numbering"
+msgstr "按順序編號"
+
+msgid ""
+"If enabled, invoices will be numbered sequentially. If disabled, invoice "
+"numbers will match the corresponding payment numbers."
+msgstr "如果開啟，則發票將按照順序編號。如果禁用，則發票號碼將匹配相應的付款編號。"
+
+msgid "Initial invoice number"
+msgstr "初始發票編號"
+
+msgid ""
+"Enter the starting number for your invoices. For example, if you set it to "
+"1000, the first invoice will be numbered 1000, the second 1001, the third "
+"1002, and so on."
+msgstr "輸入發票的起始編號。例如，如果您將其設置為1000，則第一張發票的編號為1000，第二張為1001，第三張為1002，如此類推。"
 
 msgid "Show manual adjustments"
 msgstr "顯示手動調整"
@@ -2218,6 +2235,12 @@ msgstr "沒有輸入電話號碼。"
 msgid "%d min"
 msgstr "%d 分"
 
+msgid "Out of credit"
+msgstr "信用額度已全用"
+
+msgid "Country out of service"
+msgstr "國家暫停服務"
+
 msgid "Purchase code is not valid"
 msgstr "購買代碼無效"
 
@@ -2331,12 +2354,6 @@ msgstr "傳送SMS短訊失敗。"
 
 msgid "Queued"
 msgstr "排列"
-
-msgid "Out of credit"
-msgstr "信用額度已全用"
-
-msgid "Country out of service"
-msgstr "國家暫停服務"
 
 msgid "Blocked"
 msgstr "不可選"
@@ -2940,6 +2957,9 @@ msgstr "選擇時間沒有預約。"
 #, php-format
 msgid "+%d more"
 msgstr "+%d更多"
+
+msgid "Timeline"
+msgstr "時間軸"
 
 msgid "Education"
 msgstr "教育"
@@ -5642,6 +5662,9 @@ msgstr "禮品卡折扣"
 msgid "Manual adjustment"
 msgstr "手動調整"
 
+msgid "This invoice number is already in use"
+msgstr "此發票編號已在使用"
+
 msgid "Payment is not found."
 msgstr "找不到付款"
 
@@ -5768,6 +5791,10 @@ msgstr "已超過限制"
 
 msgid "This text can be inserted into notifications with {client_note} code"
 msgstr "該文本可通過{client_note}代碼插入通知中"
+
+#, php-format
+msgid "This WP user is already connected to another customer: %s"
+msgstr "此WP用戶已連接至另一客戶：%s"
 
 msgid "Delete customers"
 msgstr "删除客戶"
@@ -7953,6 +7980,15 @@ msgstr "禁用無可用時段的日期"
 
 msgid "Show stepper"
 msgstr "显示步驟"
+
+msgid "Cards with Any staff"
+msgstr "任何員工的卡"
+
+msgid "Don't show"
+msgstr "不顯示"
+
+msgid "Show only with Any staff"
+msgstr "僅顯示任何員工"
 
 msgid "Add new form"
 msgstr "添加新表單"

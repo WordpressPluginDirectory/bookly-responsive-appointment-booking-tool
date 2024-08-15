@@ -45,6 +45,7 @@ jQuery(function ($) {
     function onChangeFilter() {
         dt.ajax.reload();
     }
+
     $statusFilter.booklyDropdown({onChange: onChangeFilter});
 
     $('.bookly-js-select').val(null);
@@ -128,9 +129,9 @@ jQuery(function ($) {
                         data: 'customer.phone',
                         render: function (data, type, row, meta) {
                             if (isMobile) {
-                                return '<a href="tel:' + $.fn.dataTable.render.text().display(data) + '">' + $.fn.dataTable.render.text().display(data) + '</a>';
+                                return '<a href="tel:' + window.booklyIntlTelInput.utils.formatNumber($.fn.dataTable.render.text().display(data), null, window.booklyIntlTelInput.utils.numberFormat.INTERNATIONAL) + '">' + $.fn.dataTable.render.text().display(data) + '</a>';
                             } else {
-                                return $.fn.dataTable.render.text().display(data);
+                                return data ? '<span style="white-space: nowrap;">' + window.booklyIntlTelInput.utils.formatNumber($.fn.dataTable.render.text().display(data), null, window.booklyIntlTelInput.utils.numberFormat.INTERNATIONAL) + '</span>' : '';
                             }
                         }
                     });

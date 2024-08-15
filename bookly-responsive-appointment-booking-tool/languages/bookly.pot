@@ -69,6 +69,23 @@ msgid ""
 "downloaded with the \"myfile_1.pdf\" name"
 msgstr ""
 
+msgid "Sequential numbering"
+msgstr ""
+
+msgid ""
+"If enabled, invoices will be numbered sequentially. If disabled, invoice "
+"numbers will match the corresponding payment numbers."
+msgstr ""
+
+msgid "Initial invoice number"
+msgstr ""
+
+msgid ""
+"Enter the starting number for your invoices. For example, if you set it to "
+"1000, the first invoice will be numbered 1000, the second 1001, the third "
+"1002, and so on."
+msgstr ""
+
 msgid "Show manual adjustments"
 msgstr ""
 
@@ -1987,6 +2004,12 @@ msgstr ""
 msgid "%d min"
 msgstr ""
 
+msgid "Out of credit"
+msgstr ""
+
+msgid "Country out of service"
+msgstr ""
+
 msgid "Purchase code is not valid"
 msgstr ""
 
@@ -2097,12 +2120,6 @@ msgid "Failed to send SMS."
 msgstr ""
 
 msgid "Queued"
-msgstr ""
-
-msgid "Out of credit"
-msgstr ""
-
-msgid "Country out of service"
 msgstr ""
 
 msgid "Blocked"
@@ -2566,6 +2583,9 @@ msgstr ""
 
 #, php-format
 msgid "+%d more"
+msgstr ""
+
+msgid "Timeline"
 msgstr ""
 
 msgid "Education"
@@ -5233,6 +5253,9 @@ msgstr ""
 msgid "Manual adjustment"
 msgstr ""
 
+msgid "This invoice number is already in use"
+msgstr ""
+
 msgid "Payment is not found."
 msgstr ""
 
@@ -5357,6 +5380,10 @@ msgid "Limit exceeded"
 msgstr ""
 
 msgid "This text can be inserted into notifications with {client_note} code"
+msgstr ""
+
+#, php-format
+msgid "This WP user is already connected to another customer: %s"
 msgstr ""
 
 msgid "Delete customers"
@@ -7358,6 +7385,15 @@ msgid "Disable dates without available timeslots"
 msgstr ""
 
 msgid "Show stepper"
+msgstr ""
+
+msgid "Cards with Any staff"
+msgstr ""
+
+msgid "Don't show"
+msgstr ""
+
+msgid "Show only with Any staff"
 msgstr ""
 
 msgid "Add new form"

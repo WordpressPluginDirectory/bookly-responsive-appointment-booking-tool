@@ -853,8 +853,10 @@ class Installer extends Base\Installer
                 `details`      TEXT DEFAULT NULL,
                 `order_id`     INT UNSIGNED DEFAULT NULL,
                 `ref_id`       VARCHAR(255) DEFAULT NULL,
+                `invoice_id`   VARCHAR(32) DEFAULT NULL,
                 `created_at`   DATETIME NOT NULL,
                 `updated_at`   DATETIME NOT NULL,
+            INDEX `invoice_id_idx` (`invoice_id`),
             CONSTRAINT
                 FOREIGN KEY (order_id)
                 REFERENCES ' . Entities\Order::getTableName() . '(id)

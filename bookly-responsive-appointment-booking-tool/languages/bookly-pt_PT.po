@@ -8,8 +8,8 @@ msgstr ""
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 12:44+0000\n"
-"PO-Revision-Date: 2024-07-02 21:41+0000\n"
+"POT-Creation-Date: 2024-08-08 07:30+0000\n"
+"PO-Revision-Date: 2024-08-11 13:36+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Portuguese (Portugal)\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -102,6 +102,29 @@ msgstr ""
 "Defina um prefixo para o nome do ficheiro que será utilizado para as suas "
 "faturas. Por exemplo, se o prefixo do nome do ficheiro for \"myfile_\", o "
 "seu ficheiro PDF será descarregado com o nome \"myfile_1.pdf\"."
+
+msgid "Sequential numbering"
+msgstr "Numeração sequencial"
+
+msgid ""
+"If enabled, invoices will be numbered sequentially. If disabled, invoice "
+"numbers will match the corresponding payment numbers."
+msgstr ""
+"Se estiver ativado, as faturas serão numeradas sequencialmente. Se estiver "
+"desativado, os números das faturas corresponderão aos números de pagamento "
+"correspondentes."
+
+msgid "Initial invoice number"
+msgstr "Número inicial da fatura"
+
+msgid ""
+"Enter the starting number for your invoices. For example, if you set it to "
+"1000, the first invoice will be numbered 1000, the second 1001, the third "
+"1002, and so on."
+msgstr ""
+"Introduza o número inicial das suas faturas. Por exemplo, se o definir como "
+"1000, a primeira fatura terá o número 1000, a segunda 1001, a terceira 1002 "
+"e assim por diante."
 
 msgid "Show manual adjustments"
 msgstr "Mostrar ajustes manuais"
@@ -2410,6 +2433,12 @@ msgstr "Número de telefone está vazio."
 msgid "%d min"
 msgstr "%d min"
 
+msgid "Out of credit"
+msgstr "Sem crédito"
+
+msgid "Country out of service"
+msgstr "País fora de serviço"
+
 msgid "Purchase code is not valid"
 msgstr "O código de compra não é válido"
 
@@ -2541,12 +2570,6 @@ msgstr "Não foi possível enviar a SMS."
 
 msgid "Queued"
 msgstr "Na Fila"
-
-msgid "Out of credit"
-msgstr "Sem crédito"
-
-msgid "Country out of service"
-msgstr "País fora de serviço"
 
 msgid "Blocked"
 msgstr "Bloqueado"
@@ -3170,6 +3193,9 @@ msgstr "Sem reservas para o período selecionado."
 #, php-format
 msgid "+%d more"
 msgstr "+%d mais"
+
+msgid "Timeline"
+msgstr "Linha do tempo"
 
 msgid "Education"
 msgstr "Educação"
@@ -6287,6 +6313,9 @@ msgstr "Desconto por cartão oferta"
 msgid "Manual adjustment"
 msgstr "Ajuste manual"
 
+msgid "This invoice number is already in use"
+msgstr "Este número de fatura já está a ser utilizado"
+
 msgid "Payment is not found."
 msgstr "O pagamento não foi encontrado."
 
@@ -6427,6 +6456,10 @@ msgstr "Limite excedido"
 msgid "This text can be inserted into notifications with {client_note} code"
 msgstr ""
 "Este texto pode ser inserido nas notificações com o código {client_note}"
+
+#, php-format
+msgid "This WP user is already connected to another customer: %s"
+msgstr "Este utilizador WP já está ligado a outro cliente: %s"
 
 msgid "Delete customers"
 msgstr "Apagar clientes"
@@ -8948,6 +8981,15 @@ msgstr "Desativar datas sem horários disponíveis"
 
 msgid "Show stepper"
 msgstr "Mostrar o passo-a-passo"
+
+msgid "Cards with Any staff"
+msgstr "Cartas com Qualquer pessoal"
+
+msgid "Don't show"
+msgstr "Não mostrar"
+
+msgid "Show only with Any staff"
+msgstr "Mostrar apenas com Qualquer pessoal"
 
 msgid "Add new form"
 msgstr "Adicionar novo formulário"

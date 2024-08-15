@@ -32,7 +32,7 @@ abstract class Common extends Lib\Base\Cache
         }
 
         return array_map(
-            function ( $a ) { return $a->data->user_email; },
+            function( $a ) { return $a->data->user_email; },
             get_users( compact( 'meta_query' ) )
         );
     }
@@ -395,10 +395,10 @@ abstract class Common extends Lib\Base\Cache
      */
     public static function arrayMapRecursive( callable $func, array $arr )
     {
-        array_walk_recursive( $arr, function ( &$v ) use ( $func ) {
+        array_walk_recursive( $arr, function( &$v ) use ( $func ) {
             $v = $func( $v );
         } );
-        
+
         return $arr;
     }
 
@@ -625,6 +625,7 @@ abstract class Common extends Lib\Base\Cache
             'allDay' => __( 'All day', 'bookly' ),
             'noEvents' => __( 'No appointments for selected period.', 'bookly' ),
             'more' => __( '+%d more', 'bookly' ),
+            'timeline' => __( 'Timeline', 'bookly' ),
         );
     }
 

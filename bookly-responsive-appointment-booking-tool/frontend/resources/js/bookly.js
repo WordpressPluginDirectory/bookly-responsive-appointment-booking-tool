@@ -1,4 +1,4 @@
-const booklyJsVersion="23.7";
+const booklyJsVersion="23.8";
 /*!*/
 var bookly = (function ($$X) {
 	'use strict';
@@ -12096,7 +12096,7 @@ var bookly = (function ($$X) {
 	  };
 	}
 
-	// (252:16) <Button                         class="bookly-grow-0 bookly-border-none focus:bookly-border-none focus:bookly-outline-none bookly-leading-normal bookly-calendar-left-button-mark bookly-m-0 bookly-px-4 bookly-text-xl bookly-shadow-none {controlButtonClasses}"                         type="calendar"                         bordered={false}                         rounded={false}                         margins={false}                         disabled={loading || (limits && limits.hasOwnProperty('start') && month <= limits.start.getMonth() && year === limits.start.getFullYear())}                         on:click={onClickLeft}                         on:keypress={onClickLeft}                         container="div"                 >
+	// (252:16) <Button                          class="bookly-grow-0 bookly-border-none focus:bookly-border-none focus:bookly-outline-none bookly-leading-normal bookly-calendar-left-button-mark bookly-m-0 bookly-px-4 bookly-text-xl bookly-shadow-none {controlButtonClasses}"                          type="calendar"                          bordered={false}                          rounded={false}                          margins={false}                          disabled={loading || (limits && limits.hasOwnProperty('start') && month <= limits.start.getMonth() && year === limits.start.getFullYear())}                          on:click={onClickLeft}                          on:keypress={onClickLeft}                          container="div"                  >
 	function create_default_slot_5(ctx) {
 	  let i;
 	  return {
@@ -12125,7 +12125,7 @@ var bookly = (function ($$X) {
 	  };
 	}
 
-	// (265:16) <Button                         class="bookly-grow bookly-border-none focus:bookly-border-none focus:bookly-outline-none bookly-leading-normal bookly-calendar-middle-button-mark bookly-m-0 bookly-text-lg bookly-shadow-none {controlButtonClasses}"                         type="calendar"                         bordered={false}                         rounded={false}                         margins={false}                         on:click={changeView}                         on:keypress={changeView}                         container="div"                 >
+	// (265:16) <Button                          class="bookly-grow bookly-border-none focus:bookly-border-none focus:bookly-outline-none bookly-leading-normal bookly-calendar-middle-button-mark bookly-m-0 bookly-text-lg bookly-shadow-none {controlButtonClasses}"                          type="calendar"                          bordered={false}                          rounded={false}                          margins={false}                          on:click={changeView}                          on:keypress={changeView}                          container="div"                  >
 	function create_default_slot_4(ctx) {
 	  let t;
 	  return {
@@ -12146,7 +12146,7 @@ var bookly = (function ($$X) {
 	  };
 	}
 
-	// (277:16) <Button                         class="bookly-grow-0 bookly-border-none focus:bookly-border-none focus:bookly-outline-none bookly-leading-normal bookly-calendar-right-button-mark bookly-m-0 bookly-px-4 bookly-text-xl bookly-shadow-none {controlButtonClasses}"                         type="calendar"                         bordered={false}                         rounded={false}                         margins={false}                         disabled={loading || (limits && limits.hasOwnProperty('end') && month >= limits.end.getMonth() && year === limits.end.getFullYear())}                         on:click={onClickRight}                         on:keypress={onClickRight}                         container="div"                 >
+	// (277:16) <Button                          class="bookly-grow-0 bookly-border-none focus:bookly-border-none focus:bookly-outline-none bookly-leading-normal bookly-calendar-right-button-mark bookly-m-0 bookly-px-4 bookly-text-xl bookly-shadow-none {controlButtonClasses}"                          type="calendar"                          bordered={false}                          rounded={false}                          margins={false}                          disabled={loading || (limits && limits.hasOwnProperty('end') && month >= limits.end.getMonth() && year === limits.end.getFullYear())}                          on:click={onClickRight}                          on:keypress={onClickRight}                          container="div"                  >
 	function create_default_slot_3(ctx) {
 	  let i;
 	  return {
@@ -12502,7 +12502,7 @@ var bookly = (function ($$X) {
 	  };
 	}
 
-	// (354:28) <Button                                     type="calendar"                                     bordered={false}                                     rounded={false}                                     paddings={false}                                     margins={false}                                     class="bookly-border-none focus:bookly-border-none focus:bookly-outline-none bookly-leading-normal bookly-px-2 bookly-py-0 bookly-m-0 bookly-text-xl bookly-h-16 {_disabled ? disabledButtonClasses : ''} {buttonClasses}"                                     on:click={() => {year = __year; view='month'}}                                     on:keypress={() => {year = __year; view='month'}}                                     disabled={_disabled}                                     container="div"                                     size="custom"                             >
+	// (354:28) <Button                                      type="calendar"                                      bordered={false}                                      rounded={false}                                      paddings={false}                                      margins={false}                                      class="bookly-border-none focus:bookly-border-none focus:bookly-outline-none bookly-leading-normal bookly-px-2 bookly-py-0 bookly-m-0 bookly-text-xl bookly-h-16 {_disabled ? disabledButtonClasses : ''} {buttonClasses}"                                      on:click={() => {year = __year; view='month'}}                                      on:keypress={() => {year = __year; view='month'}}                                      disabled={_disabled}                                      container="div"                                      size="custom"                              >
 	function create_default_slot_2(ctx) {
 	  let t_value = /*__year*/ctx[57] + "";
 	  let t;
@@ -12601,7 +12601,7 @@ var bookly = (function ($$X) {
 	  };
 	}
 
-	// (329:28) <Button                                     type="calendar"                                     class="bookly-border-none focus:bookly-border-none focus:bookly-outline-none bookly-leading-normal bookly-px-2 bookly-py-0 bookly-m-0 bookly-text-xl bookly-h-16 {_disabled ? disabledButtonClasses : ''} {buttonClasses}"                                     bordered={false}                                     rounded={false}                                     margins={false}                                     paddings={false}                                     on:click={() => {month = _month; dispatch('month-change'); view='calendar'}}                                     on:keypress={() => {month = _month; dispatch('month-change'); view='calendar'}}                                     disabled={_disabled}                                     container="div"                                     size="custom"                             >
+	// (329:28) <Button                                      type="calendar"                                      class="bookly-border-none focus:bookly-border-none focus:bookly-outline-none bookly-leading-normal bookly-px-2 bookly-py-0 bookly-m-0 bookly-text-xl bookly-h-16 {_disabled ? disabledButtonClasses : ''} {buttonClasses}"                                      bordered={false}                                      rounded={false}                                      margins={false}                                      paddings={false}                                      on:click={() => {month = _month; dispatch('month-change'); view='calendar'}}                                      on:keypress={() => {month = _month; dispatch('month-change'); view='calendar'}}                                      disabled={_disabled}                                      container="div"                                      size="custom"                              >
 	function create_default_slot_1(ctx) {
 	  let t_value = /*datePicker*/ctx[4].monthNamesShort[/*_month*/ctx[56]] + "";
 	  let t;
@@ -12729,7 +12729,7 @@ var bookly = (function ($$X) {
 	  };
 	}
 
-	// (304:36) <Button                                             type='calendar'                                             class="bookly-text-sm bookly-h-10 bookly-leading-4 bookly-shadow-none bookly-flex-1 bookly-py-2 bookly-px-0 bookly-border-none focus:bookly-border-none focus:bookly-outline-none {_disabled ? disabledButtonClasses : ''} {_day.active ? activeButtonClasses : (_day.current ? buttonClasses : otherMonthButtonClasses)} {_day.current ? 'bookly-calendar-current-month-mark' : ''}"                                             bordered={false}                                             margins={false}                                             on:click={() => !_disabled && onClickDate(_day)}                                             on:keypress={() => !_disabled && onClickDate(_day)}                                             disabled={_disabled}                                             container="div"                                             size="custom"                                     >
+	// (304:36) <Button                                              type='calendar'                                              class="bookly-text-sm bookly-h-10 bookly-leading-4 bookly-shadow-none bookly-flex-1 bookly-py-2 bookly-px-0 bookly-border-none focus:bookly-border-none focus:bookly-outline-none {_disabled ? disabledButtonClasses : ''} {_day.active ? activeButtonClasses : (_day.current ? buttonClasses : otherMonthButtonClasses)} {_day.current ? 'bookly-calendar-current-month-mark' : ''}"                                              bordered={false}                                              margins={false}                                              on:click={() => !_disabled && onClickDate(_day)}                                              on:keypress={() => !_disabled && onClickDate(_day)}                                              disabled={_disabled}                                              container="div"                                              size="custom"                                      >
 	function create_default_slot(ctx) {
 	  let t_value = /*_day*/ctx[48].title + "";
 	  let t;
@@ -13062,7 +13062,7 @@ var bookly = (function ($$X) {
 	        } else {
 	          $$invalidate(2, month--, month);
 	        }
-	        dispatch('month-change');
+	        dispatch('month-change', 'prev');
 	        break;
 	      case 'month':
 	        $$invalidate(1, year--, year);
@@ -13081,7 +13081,7 @@ var bookly = (function ($$X) {
 	        } else {
 	          $$invalidate(2, month++, month);
 	        }
-	        dispatch('month-change');
+	        dispatch('month-change', 'next');
 	        break;
 	      case 'month':
 	        $$invalidate(1, year++, year);
@@ -13418,8 +13418,7 @@ var bookly = (function ($$X) {
 	    }
 	    $$X(document.body).trigger('bookly.render.step_detail', [$container]);
 	    // Init.
-	    let phone_number = '',
-	      $guest_info = $$X('.bookly-js-guest', $container),
+	    let $guest_info = $$X('.bookly-js-guest', $container),
 	      $phone_field = $$X('.bookly-js-user-phone-input', $container),
 	      $email_field = $$X('.bookly-js-user-email', $container),
 	      $email_confirm_field = $$X('.bookly-js-user-email-confirm', $container),
@@ -13484,7 +13483,8 @@ var bookly = (function ($$X) {
 	      if (response.data.phone) {
 	        $phone_field.removeClass('bookly-error');
 	        if (intlTelInput.enabled) {
-	          $phone_field.intlTelInput('setNumber', response.data.phone);
+	          let iti = window.booklyIntlTelInput.getInstance($phone_field.get(0));
+	          iti.setNumber(response.data.phone);
 	        } else {
 	          $phone_field.val(response.data.phone);
 	        }
@@ -13651,7 +13651,7 @@ var bookly = (function ($$X) {
 	      });
 	    });
 	    if (intlTelInput.enabled) {
-	      $phone_field.intlTelInput({
+	      window.booklyIntlTelInput($phone_field.get(0), {
 	        preferredCountries: [intlTelInput.country],
 	        initialCountry: intlTelInput.country,
 	        geoIpLookup: function (callback) {
@@ -13659,8 +13659,7 @@ var bookly = (function ($$X) {
 	            var countryCode = resp && resp.country ? resp.country : '';
 	            callback(countryCode);
 	          });
-	        },
-	        utilsScript: intlTelInput.utils
+	        }
 	      });
 	    }
 	    // Init modals.
@@ -13883,22 +13882,13 @@ var bookly = (function ($$X) {
 	            custom_fields: custom_fields_data
 	          };
 	        });
-	        try {
-	          phone_number = intlTelInput.enabled ? $phone_field.intlTelInput('getNumber') : $phone_field.val();
-	          if (phone_number == '') {
-	            phone_number = $phone_field.val();
-	          }
-	        } catch (error) {
-	          // In case when intlTelInput can't return phone number.
-	          phone_number = $phone_field.val();
-	        }
 	        var data = {
 	          action: 'bookly_session_save',
 	          form_id: params.form_id,
 	          full_name: $full_name_field.val(),
 	          first_name: $first_name_field.val(),
 	          last_name: $last_name_field.val(),
-	          phone: phone_number,
+	          phone: intlTelInput.enabled ? booklyGetPhoneNumber($phone_field.get(0)) : $phone_field.val(),
 	          email: _trimInstanceProperty(_context17 = $email_field.val()).call(_context17),
 	          email_confirm: $email_confirm_field.length === 1 ? _trimInstanceProperty(_context18 = $email_confirm_field.val()).call(_context18) : undefined,
 	          birthday: {
@@ -14684,7 +14674,6 @@ var bookly = (function ($$X) {
 	          });
 	        },
 	        isDateMatchesSelections: function (current_date) {
-	          //console.log(current_date.format('ddd').toLowerCase(), repeat.week_days);
 	          switch ($repeat_variant.val()) {
 	            case 'daily':
 	              if (($repeat_every_day.val() > 6 || $$X.inArray(current_date.format('ddd').toLowerCase(), repeat.week_days) != -1) && current_date.diff(repeat.date_from, 'days') % $repeat_every_day.val() == 0) {
@@ -15158,18 +15147,19 @@ var bookly = (function ($$X) {
 	          layout: opt[params.form_id].datepicker_mode
 	        }
 	      });
-	      function calendarMonthChange(date) {
+	      function calendarMonthChange(date, dir) {
 	        _cal.loading = true;
 	        requestRenderTime.cancel();
 	        stepTime({
 	          form_id: params.form_id,
-	          selected_date: date
+	          selected_date: date,
+	          dir: dir
 	        });
 	        showSpinner();
 	      }
 	      _cal.$on('change', function () {
 	        if (moment(_cal.date).month() !== moment(date).month()) {
-	          calendarMonthChange(_cal.date);
+	          calendarMonthChange(_cal.date, null);
 	        } else {
 	          $columnizer.html(slots[_cal.date]).css('left', '0');
 	          columns = 0;
@@ -15180,8 +15170,8 @@ var bookly = (function ($$X) {
 	          $time_next_button.toggle($screens.length != 1);
 	        }
 	      });
-	      _cal.$on('month-change', function () {
-	        calendarMonthChange(_cal.year + '-' + (_cal.month < 9 ? '0' + (_cal.month + 1) : _cal.month + 1) + '-01');
+	      _cal.$on('month-change', function (e) {
+	        calendarMonthChange(_cal.year + '-' + (_cal.month < 9 ? '0' + (_cal.month + 1) : _cal.month + 1) + '-01', e.detail);
 	      });
 	      $columnizer.html(slots[date]);
 	    } else {

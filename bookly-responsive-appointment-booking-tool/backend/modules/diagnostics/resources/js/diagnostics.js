@@ -1,6 +1,7 @@
 jQuery(function ($) {
     'use strict';
 
+    let reloadTestButtons = [];
     // Common
     let url_params = {};
     try {
@@ -29,6 +30,21 @@ jQuery(function ($) {
     }
 
     // All tests
+    function runAllTests() {
+        reloadTestButtons = [];
+        $('.bookly-js-tests .bookly-js-reload-test').each(function() {
+            reloadTestButtons.push($(this));
+        });
+        runNextTest();
+    }
+
+    function runNextTest() {
+        if (reloadTestButtons.length > 0) {
+            reloadTestButtons[0].trigger('click');
+            reloadTestButtons.shift();
+        }
+    }
+
     $('.bookly-js-reload-test').on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -70,6 +86,7 @@ jQuery(function ($) {
                         $errors.html(response.data.errors.join('<br/>')).show();
                     }
                 }
+                runNextTest();
             } else {
                 // Sessions test ajax calls
                 $.ajax({
@@ -101,23 +118,19 @@ jQuery(function ($) {
                                 $failed.show();
                                 $errors.html(response.data.errors.join('<br/>')).show();
                             }
+                            runNextTest();
                         });
                     } else {
                         $loading.hide();
                         $reload.show();
                         $failed.show();
                         $errors.html(response.data.errors.join('<br/>')).show();
+                        runNextTest();
                     }
                 })
             }
-        });
+        })
     });
-
-    function runAllTests() {
-        $('.bookly-js-tests .bookly-js-reload-test').each(function() {
-            $(this).trigger('click');
-        });
-    }
 
     let $autorun_tests = $('.bookly-js-autorun-all-tests'),
         autorun = getCookie('bookly_diagnostic_autorun_tests');

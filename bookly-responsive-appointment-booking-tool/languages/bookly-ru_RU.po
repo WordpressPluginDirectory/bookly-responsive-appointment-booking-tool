@@ -9,8 +9,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 12:34+0000\n"
-"PO-Revision-Date: 2024-07-03 11:13+0000\n"
+"POT-Creation-Date: 2024-08-08 07:08+0000\n"
+"PO-Revision-Date: 2024-08-08 09:26+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Russian\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -101,6 +101,29 @@ msgstr ""
 "Установите префикс для имени файла, который будет использоваться для ваших "
 "счетов. Например, если префикс имени файла \"myfile_\", ваш PDF-файл будет "
 "загружен с именем \"myfile_1.pdf\"."
+
+msgid "Sequential numbering"
+msgstr "Последовательная нумерация"
+
+msgid ""
+"If enabled, invoices will be numbered sequentially. If disabled, invoice "
+"numbers will match the corresponding payment numbers."
+msgstr ""
+"Если этот параметр включен, счета будут нумероваться последовательно. Если "
+"этот параметр отключен, номера счетов будут совпадать с соответствующими "
+"номерами платежей."
+
+msgid "Initial invoice number"
+msgstr "Первоначальный номер счёта"
+
+msgid ""
+"Enter the starting number for your invoices. For example, if you set it to "
+"1000, the first invoice will be numbered 1000, the second 1001, the third "
+"1002, and so on."
+msgstr ""
+"Введите начальный номер для ваших счетов. Например, если вы установите "
+"значение 1000, первый счёт будет иметь номер 1000, второй – 1001, третий – "
+"1002 и так далее."
 
 msgid "Show manual adjustments"
 msgstr "Отображать ручную коррекцию"
@@ -2400,6 +2423,12 @@ msgstr "Номер телефона пустой."
 msgid "%d min"
 msgstr "%d мин"
 
+msgid "Out of credit"
+msgstr "Недостаточно средств"
+
+msgid "Country out of service"
+msgstr "Страна не обслуживается"
+
 msgid "Purchase code is not valid"
 msgstr "Лицензионный ключ недействителен"
 
@@ -2526,12 +2555,6 @@ msgstr "Отправка SMS не удалась."
 
 msgid "Queued"
 msgstr "В очереди"
-
-msgid "Out of credit"
-msgstr "Недостаточно средств"
-
-msgid "Country out of service"
-msgstr "Страна не обслуживается"
 
 msgid "Blocked"
 msgstr "Заблокировано"
@@ -3151,6 +3174,9 @@ msgstr "Нет записей за выбранный период."
 #, php-format
 msgid "+%d more"
 msgstr "+ ещё %d"
+
+msgid "Timeline"
+msgstr "Таймлайн"
 
 msgid "Education"
 msgstr "Образование"
@@ -6119,6 +6145,9 @@ msgstr "Скидка по карте"
 msgid "Manual adjustment"
 msgstr "Ручная коррекция"
 
+msgid "This invoice number is already in use"
+msgstr "Этот номер счёта уже используется"
+
 msgid "Payment is not found."
 msgstr "Платёж не найден"
 
@@ -6254,6 +6283,10 @@ msgstr "Превышен лимит"
 
 msgid "This text can be inserted into notifications with {client_note} code"
 msgstr "Этот текст может быть использован в уведомлениях с кодом {client_note}"
+
+#, php-format
+msgid "This WP user is already connected to another customer: %s"
+msgstr "Этот пользователь WP уже связан с другим клиентом: %s"
 
 msgid "Delete customers"
 msgstr "Удаление клиентов"
@@ -8684,6 +8717,15 @@ msgstr "Отключить даты без доступных временных
 
 msgid "Show stepper"
 msgstr "Показывать шаги бронирования"
+
+msgid "Cards with Any staff"
+msgstr "Карточки с автоматическим выбором исполнителя"
+
+msgid "Don't show"
+msgstr "Не показывать"
+
+msgid "Show only with Any staff"
+msgstr "Показывать только с автоматическим выбором исполнителя"
 
 msgid "Add new form"
 msgstr "Добавить новую форму"

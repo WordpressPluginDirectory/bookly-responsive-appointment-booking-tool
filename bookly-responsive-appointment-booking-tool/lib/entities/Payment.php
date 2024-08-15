@@ -61,6 +61,8 @@ class Payment extends Lib\Base\Entity
     /** @var string */
     protected $ref_id;
     /** @var string */
+    protected $invoice_id;
+    /** @var string */
     protected $created_at;
     /** @var string */
     protected $updated_at;
@@ -87,6 +89,7 @@ class Payment extends Lib\Base\Entity
         'details' => array( 'format' => '%s' ),
         'order_id' => array( 'format' => '%d', 'reference' => array( 'entity' => 'Order' ) ),
         'ref_id' => array( 'format' => '%s' ),
+        'invoice_id' => array( 'format' => '%s' ),
         'created_at' => array( 'format' => '%s' ),
         'updated_at' => array( 'format' => '%s' ),
     );
@@ -231,6 +234,16 @@ class Payment extends Lib\Base\Entity
     }
 
     /**
+     * Get invoice number, if not set - payment ID
+     *
+     * @return int
+     */
+    public function getInvoiceNumber()
+    {
+        return $this->invoice_id === null ? $this->id : $this->invoice_id;
+    }
+
+    /**
      * @param DataHolders\Order $order
      * @param Lib\CartInfo $cart_info
      * @param array $extra
@@ -305,6 +318,7 @@ class Payment extends Lib\Base\Entity
                 'from_backend' => (bool) ( isset( $data['from_backend'] ) ? $data['from_backend'] : false ),
                 'extras_multiply_nop' => (bool) ( isset ( $data['extras_multiply_nop'] ) ? $data['extras_multiply_nop'] : true ),
                 'tips' => (float) ( isset ( $data['tips'] ) ? $data['tips'] : 0 ),
+                'invoice_number' => $this->invoice_id === null ? $this->id : $this->invoice_id,
             ),
             'adjustments' => $details->getValue( 'adjustments', array() )
         );
@@ -585,6 +599,25 @@ class Payment extends Lib\Base\Entity
     }
 
     /**
+     * @return string
+     */
+    public function getInvoiceId()
+    {
+        return $this->invoice_id;
+    }
+
+    /**
+     * @param string $invoice_id
+     * @return Payment
+     */
+    public function setInvoiceId( $invoice_id )
+    {
+        $this->invoice_id = $invoice_id;
+
+        return $this;
+    }
+
+    /**
      * Gets ref_id
      *
      * @return string
@@ -696,6 +729,15 @@ class Payment extends Lib\Base\Entity
             $this
                 ->setCreatedAt( current_time( 'mysql' ) )
                 ->setUpdatedAt( current_time( 'mysql' ) );
+            if ( Lib\Config::invoicesActive() && get_option( 'bookly_invoices_id_fill_gaps', 0 ) === '1' ) {
+                $invoice_ids = self::query()->whereNot( 'invoice_id', null )->fetchCol( 'invoice_id' );
+                $invoice_ids = array_fill_keys( $invoice_ids, null );
+                $invoice_id = (int) get_option( 'bookly_invoices_id_start_number', 1 );
+                while ( array_key_exists( $invoice_id, $invoice_ids ) ) {
+                    $invoice_id++;
+                }
+                $this->setInvoiceId( $invoice_id );
+            }
         } elseif ( $this->getModified() ) {
             $this->setUpdatedAt( current_time( 'mysql' ) );
         }

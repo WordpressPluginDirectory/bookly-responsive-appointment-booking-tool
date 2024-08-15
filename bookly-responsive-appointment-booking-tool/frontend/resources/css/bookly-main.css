@@ -1,5 +1,5 @@
 :root {
-    --bookly-css-version: "23.7";
+    --bookly-css-version: "23.8";
 }
 
 .bookly-list-none {
@@ -128,7 +128,16 @@
 .bookly-form input[type="number"],
 .bookly-form input[type="password"],
 .bookly-form textarea {
-    padding: 6px 7px 5px !important;
+    padding-top: 6px !important;
+    padding-bottom: 5px !important;
+    padding-right: 7px !important;
+}
+
+.bookly-form input[type="text"]:not(.iti__tel-input),
+.bookly-form input[type="number"],
+.bookly-form input[type="password"],
+.bookly-form textarea {
+    padding-left: 7px !important;
 }
 
 .bookly-form select {
@@ -1113,10 +1122,6 @@ label.bookly-square {
 
 .bookly-details-step .bookly-form-group .iti {
     display: block;
-}
-
-.bookly-details-step .bookly-form-group .iti input {
-    padding-left: 45px !important;
 }
 
 .bookly-details-step .bookly-table,

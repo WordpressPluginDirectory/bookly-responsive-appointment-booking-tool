@@ -55,6 +55,13 @@ jQuery(function ($) {
                         }
                     });
                     break;
+                case 'phone':
+                    columns.push({
+                        data: column, render: function (data, type, row, meta) {
+                            return data ? '<span style="white-space: nowrap;">' + window.booklyIntlTelInput.utils.formatNumber($.fn.dataTable.render.text().display(data), null, window.booklyIntlTelInput.utils.numberFormat.INTERNATIONAL) + '</span>' : '';
+                        }
+                    });
+                    break;
                 default:
                     columns.push({data: column, render: $.fn.dataTable.render.text()});
                     break;
@@ -111,7 +118,11 @@ jQuery(function ($) {
             url: ajaxurl,
             type: 'POST',
             data: function (d) {
-                let data = $.extend({action: 'bookly_get_staff_list', csrf_token: BooklyL10nGlobal.csrf_token, filter: {}}, d);
+                let data = $.extend({
+                    action: 'bookly_get_staff_list',
+                    csrf_token: BooklyL10nGlobal.csrf_token,
+                    filter: {}
+                }, d);
 
                 Object.keys(filters).map(function (filter) {
                     if (filter == 'archived') {
@@ -191,36 +202,37 @@ jQuery(function ($) {
     });
 
     $('.bookly-js-select')
-    .booklySelect2({
-        width: '100%',
-        theme: 'bootstrap4',
-        dropdownParent: '#bookly-tbs',
-        allowClear: true,
-        placeholder: '',
-        language: {
-            noResults: function () {
-                return BooklyL10n.noResultFound;
+        .booklySelect2({
+            width: '100%',
+            theme: 'bootstrap4',
+            dropdownParent: '#bookly-tbs',
+            allowClear: true,
+            placeholder: '',
+            language: {
+                noResults: function () {
+                    return BooklyL10n.noResultFound;
+                }
             }
-        }
-    });
+        });
 
     /**
      * On filters change.
      */
     filters.search
-    .on('keyup', function () {
-        dt.search(this.value).draw();
-    })
-    .on('keydown', function (e) {
-        if (e.keyCode == 13) {
-            e.preventDefault();
-            return false;
-        }
-    });
+        .on('keyup', function () {
+            dt.search(this.value).draw();
+        })
+        .on('keydown', function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
 
     function onChangeFilter() {
         dt.ajax.reload();
     }
+
     filters.visibility.on('change', onChangeFilter);
     filters.archived.on('change', onChangeFilter);
     filters.category.on('change', onChangeFilter);

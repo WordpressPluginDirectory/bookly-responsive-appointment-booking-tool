@@ -623,7 +623,7 @@ jQuery(function ($) {
 
     // Init phone field.
     if (BooklyL10n.intlTelInput.enabled) {
-        $('.bookly-user-phone').intlTelInput({
+        window.booklyIntlTelInput($('.bookly-user-phone').get(0), {
             preferredCountries: [BooklyL10n.intlTelInput.country],
             initialCountry: BooklyL10n.intlTelInput.country,
             geoIpLookup: function (callback) {
@@ -632,8 +632,7 @@ jQuery(function ($) {
                     var countryCode = (resp && resp.country) ? resp.country : '';
                     callback(countryCode);
                 });
-            },
-            utilsScript: BooklyL10n.intlTelInput.utils
+            }
         });
     }
 

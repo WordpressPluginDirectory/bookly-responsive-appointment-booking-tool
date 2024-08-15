@@ -8,8 +8,8 @@ msgstr ""
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 12:55+0000\n"
-"PO-Revision-Date: 2024-07-01 14:45+0000\n"
+"POT-Creation-Date: 2024-08-08 07:25+0000\n"
+"PO-Revision-Date: 2024-08-08 10:10+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Dutch\n"
 "X-Loco-Version: 2.3.1; wp-6.3.1"
@@ -101,6 +101,29 @@ msgstr ""
 "Stel een voorvoegsel in voor de bestandsnaam die zal worden gebruikt voor uw "
 "facturen. Als het voorvoegsel voor de bestandsnaam bijvoorbeeld \"myfile_\" "
 "is, wordt uw PDF-bestand gedownload met de naam \"myfile_1.pdf\"."
+
+msgid "Sequential numbering"
+msgstr "Opeenvolgende nummering"
+
+msgid ""
+"If enabled, invoices will be numbered sequentially. If disabled, invoice "
+"numbers will match the corresponding payment numbers."
+msgstr ""
+"Als deze optie is ingeschakeld, worden facturen opeenvolgend genummerd. Als "
+"dit uitgeschakeld is, komen de factuurnummers overeen met de overeenkomstige "
+"betalingsnummers."
+
+msgid "Initial invoice number"
+msgstr "Eerste factuurnummer"
+
+msgid ""
+"Enter the starting number for your invoices. For example, if you set it to "
+"1000, the first invoice will be numbered 1000, the second 1001, the third "
+"1002, and so on."
+msgstr ""
+"Voer het startnummer voor je facturen in. Als u dit bijvoorbeeld instelt op "
+"1000, krijgt de eerste factuur het nummer 1000, de tweede 1001, de derde "
+"1002, enzovoort."
 
 msgid "Show manual adjustments"
 msgstr "Handmatige aanpassingen tonen"
@@ -2389,6 +2412,12 @@ msgstr "Telefoonnummer is leeg."
 msgid "%d min"
 msgstr "%d min"
 
+msgid "Out of credit"
+msgstr "Geen krediet"
+
+msgid "Country out of service"
+msgstr "Land buiten dienst"
+
 msgid "Purchase code is not valid"
 msgstr "Aankoopcode is niet geldig"
 
@@ -2515,12 +2544,6 @@ msgstr "Kon SMS niet versturen."
 
 msgid "Queued"
 msgstr "In de wachtrij"
-
-msgid "Out of credit"
-msgstr "Geen krediet"
-
-msgid "Country out of service"
-msgstr "Land buiten dienst"
 
 msgid "Blocked"
 msgstr "Geblokkeerd"
@@ -3135,6 +3158,9 @@ msgstr "Geen afspraken in de geselecteerde periode."
 #, php-format
 msgid "+%d more"
 msgstr "+%d meer"
+
+msgid "Timeline"
+msgstr "Tijdlijn"
 
 msgid "Education"
 msgstr "Onderwijs"
@@ -6091,6 +6117,9 @@ msgstr "Cadeaubon korting"
 msgid "Manual adjustment"
 msgstr "Handmatige aanpassing"
 
+msgid "This invoice number is already in use"
+msgstr "Dit factuurnummer is al in gebruik"
+
 msgid "Payment is not found."
 msgstr "Betaling niet gevonden."
 
@@ -6229,6 +6258,10 @@ msgstr "Limiet overschreden"
 
 msgid "This text can be inserted into notifications with {client_note} code"
 msgstr "Deze tekst kan worden ingevoegd in meldingen met {client_note} code"
+
+#, php-format
+msgid "This WP user is already connected to another customer: %s"
+msgstr "Deze WP-gebruiker is al gekoppeld aan een andere klant: %s"
 
 msgid "Delete customers"
 msgstr "Verwijder klanten"
@@ -8651,6 +8684,15 @@ msgstr "Data zonder beschikbare timeslots uitschakelen"
 
 msgid "Show stepper"
 msgstr "Stepper tonen"
+
+msgid "Cards with Any staff"
+msgstr "Kaarten met Alle medewerkers"
+
+msgid "Don't show"
+msgstr "Niet tonen"
+
+msgid "Show only with Any staff"
+msgstr "Toon alleen met Alle medewerkers"
 
 msgid "Add new form"
 msgstr "Nieuw formulier toevoegen"

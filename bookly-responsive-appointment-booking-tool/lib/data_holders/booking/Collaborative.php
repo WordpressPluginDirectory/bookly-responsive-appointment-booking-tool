@@ -200,7 +200,7 @@ class Collaborative extends Item
                 $item_end = $item->getTotalEnd();
                 if ( $this->total_end === null ) {
                     $this->total_end = $item_end;
-                } else if ( $item_end->gt( $this->total_end ) ) {
+                } elseif ( $item_end->gt( $this->total_end ) ) {
                     $this->total_end = $item_end;
                 }
             }

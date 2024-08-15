@@ -55,7 +55,6 @@ class Page extends Lib\Base\Component
             'sizes' => $sizes,
             'intlTelInput' => array(
                 'enabled' => $tel_input_enabled,
-                'utils' => plugins_url( 'intlTelInput.utils.js', Lib\Plugin::getDirectory() . '/frontend/resources/js/intlTelInput.utils.js' ),
                 'country' => get_option( 'bookly_cst_phone_default_country' ),
             ),
             'finish_url' => add_query_arg( array( 'page' => CalendarPage::pageSlug() ), admin_url( 'admin.php' ) ),

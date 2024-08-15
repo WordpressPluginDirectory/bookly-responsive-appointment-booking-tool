@@ -167,7 +167,7 @@ class Request extends Lib\Base\Component
                                 }, array_keys( $custom_fields ), $custom_fields );
 
                                 $cart_item
-                                    ->setStaffIds( array( $staff_id ) )
+                                    ->setStaffIds( is_array( $staff_id ) ? $staff_id : array( $staff_id ) )
                                     ->setServiceId( $service_id )
                                     ->setNumberOfPersons( $nop )
                                     ->setLocationId( $location_id )

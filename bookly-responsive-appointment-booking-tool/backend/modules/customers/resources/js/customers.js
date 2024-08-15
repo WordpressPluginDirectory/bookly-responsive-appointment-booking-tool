@@ -54,6 +54,13 @@ jQuery(function ($) {
                         }
                     });
                     break;
+                case 'phone':
+                    columns.push({
+                        data: column, render: function (data, type, row, meta) {
+                            return data ? '<span style="white-space: nowrap;">' + window.booklyIntlTelInput.utils.formatNumber($.fn.dataTable.render.text().display(data), null, window.booklyIntlTelInput.utils.numberFormat.INTERNATIONAL) + '</span>' : '';
+                        }
+                    });
+                    break;
                 case 'tags':
                     columns.push({
                         data: 'tags',

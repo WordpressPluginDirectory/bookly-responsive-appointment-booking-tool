@@ -54,7 +54,6 @@ class Page extends Lib\Base\Component
                     'current_tab' => $current_tab,
                     'intlTelInput' => array(
                         'country' => get_option( 'bookly_cst_phone_default_country' ),
-                        'utils' => plugins_url( 'intlTelInput.utils.js', Lib\Plugin::getDirectory() . '/frontend/resources/js/intlTelInput.utils.js' ),
                         'enabled' => get_option( 'bookly_cst_phone_default_country' ) != 'disabled',
                     ),
                     'datePicker' => Lib\Utils\DateTime::datePickerOptions(),
@@ -115,7 +114,7 @@ class Page extends Lib\Base\Component
             '<span id="bookly-js-sms-menu-redirect">' . $title . '</span><script>document.getElementById("bookly-js-sms-menu-redirect").parentNode.href+="=' . $page . '";</script>',
             Lib\Utils\Common::getRequiredCapability(),
             '',
-            function () { Page::render(); }
+            function() { Page::render(); }
         );
     }
 
@@ -137,7 +136,7 @@ class Page extends Lib\Base\Component
             $title,
             Lib\Utils\Common::getRequiredCapability(),
             self::pageSlug(),
-            function () { Page::render(); }
+            function() { Page::render(); }
         );
     }
 }
