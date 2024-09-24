@@ -160,7 +160,7 @@ abstract class Routines
     public static function handleDailyInfo()
     {
         $date = Entities\News::query( 'n' )
-            ->select( 'MAX(updated_at) as max_date' )
+            ->select( 'MAX(updated_at) AS max_date' )
             ->fetchRow();
 
         $data = API::getInfo( $date['max_date'] );

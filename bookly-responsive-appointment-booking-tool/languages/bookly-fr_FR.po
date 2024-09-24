@@ -8,11 +8,11 @@ msgstr ""
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 07:30+0000\n"
-"PO-Revision-Date: 2024-08-08 15:27+0000\n"
+"POT-Creation-Date: 2024-09-12 07:11+0000\n"
+"PO-Revision-Date: 2024-09-16 08:06+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: French (France)\n"
-"X-Loco-Version: 2.3.1; wp-6.3.1"
+"X-Loco-Version: 2.3.1; wp-6.6.2"
 
 msgid "Invoice #{invoice_number} for your appointment"
 msgstr "Facture n° {invoice_number} de votre rendez-vous"
@@ -206,6 +206,9 @@ msgstr "Sous-total"
 
 msgid "Coupon discount"
 msgstr "Bon de remise"
+
+msgid "Gift card discount"
+msgstr "Remise sur les cartes cadeaux"
 
 msgid "Tips"
 msgstr "Pourboires"
@@ -1764,6 +1767,9 @@ msgstr "Ajouter Planning Équipe"
 msgid "Add Staff Days Off"
 msgstr "Ajouter Jours de Congé Équipe"
 
+msgid "Add Staff Appointments"
+msgstr "Ajouter les rendez-vous du personnel"
+
 msgid ""
 "Hide this field if you want to hide the list of WP users from your staff "
 "members."
@@ -1782,6 +1788,9 @@ msgstr "Désactiver modification des services"
 
 msgid "Disable price update"
 msgstr "Désactiver modifications des prix"
+
+msgid "Hide create appointment button"
+msgstr "Masquer le bouton de création de rendez-vous"
 
 msgid "Insert"
 msgstr "Insérer"
@@ -1826,6 +1835,12 @@ msgstr "Jours de congé"
 msgid "A custom block for displaying staff days off"
 msgstr "Bloc personnalisé pour l'affichage des jours de congé de l'équipe"
 
+msgid "Appointments"
+msgstr "Rendez-vous"
+
+msgid "A custom block for displaying staff appointments"
+msgstr "Un bloc personnalisé pour afficher les rendez-vous du personnel"
+
 msgid "Capacity"
 msgstr "Capacité"
 
@@ -1837,6 +1852,42 @@ msgstr "Heures spéciales"
 
 msgid "Fields"
 msgstr "Champs"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Created at any time"
+msgstr "Créé pour toutes dates"
+
+msgid "Customer"
+msgstr "Client"
+
+msgid "All statuses"
+msgstr "Tous les statuts"
+
+msgid "No status selected"
+msgstr "Aucun statut sélectionné"
+
+msgid "New appointment"
+msgstr "Nouveau rendez-vous"
+
+msgid "Any time"
+msgstr "Toutes les dates"
+
+msgid "No appointments for selected period."
+msgstr "Pas de rendez-vous pour la période choisie."
+
+msgid "Processing..."
+msgstr "En cours..."
+
+msgid "No result found"
+msgstr "Aucun résultat trouvé"
+
+msgid "Searching"
+msgstr "Recherche en cours"
+
+msgid "Attachments"
+msgstr "Attachements"
 
 msgid "Repeat every year"
 msgstr "Répéter chaque année"
@@ -1982,9 +2033,6 @@ msgstr "ID de connexion de l'API"
 msgid "API Transaction Key"
 msgstr "Clé de Transaction de l'API"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Title"
 msgstr "Titre"
 
@@ -2021,9 +2069,6 @@ msgstr "Modifier taxe"
 
 msgid "No taxes found."
 msgstr "Aucune taxe trouvée"
-
-msgid "Processing..."
-msgstr "En cours..."
 
 msgid "Service tax amount"
 msgstr "Montant de la taxe sur les services"
@@ -2328,14 +2373,8 @@ msgstr "Fuseau horaire"
 msgid "Employee"
 msgstr "Employé"
 
-msgid "Appointments"
-msgstr "Rendez-vous"
-
 msgid "Profile"
 msgstr "Profil"
-
-msgid "Any time"
-msgstr "Toutes les dates"
 
 msgid "WP user"
 msgstr "Utilisateur WP"
@@ -3171,9 +3210,6 @@ msgstr "Liste"
 msgid "All day"
 msgstr "Toute la journée"
 
-msgid "No appointments for selected period."
-msgstr "Pas de rendez-vous pour la période choisie."
-
 #, php-format
 msgid "+%d more"
 msgstr "+%d plus"
@@ -3496,9 +3532,6 @@ msgstr "État"
 msgid "Subject"
 msgstr "Sujet"
 
-msgid "Customer"
-msgstr "Client"
-
 msgid "Start at"
 msgstr "Démarre à"
 
@@ -3776,27 +3809,6 @@ msgstr "Facturation "
 msgid "Get Bookly Pro"
 msgstr "Installer Bookly Pro"
 
-msgid "New appointment"
-msgstr "Nouveau rendez-vous"
-
-msgid "Created at any time"
-msgstr "Créé pour toutes dates"
-
-msgid "All statuses"
-msgstr "Tous les statuts"
-
-msgid "No status selected"
-msgstr "Aucun statut sélectionné"
-
-msgid "No result found"
-msgstr "Aucun résultat trouvé"
-
-msgid "Searching"
-msgstr "Recherche en cours"
-
-msgid "Attachments"
-msgstr "Attachements"
-
 msgid "Archived"
 msgstr "Archivé"
 
@@ -3824,39 +3836,6 @@ msgstr ""
 msgid "No records."
 msgstr "Pas d'enregistrements."
 
-msgid "1 - 9 employees"
-msgstr "1 à 9 employés"
-
-msgid "10 - 19 employees"
-msgstr "10 à 19 employés"
-
-msgid "20 - 49 employees"
-msgstr "20 à 49 employés"
-
-msgid "50 - 249 employees"
-msgstr "50 -à 249 employés"
-
-msgid "250 or more employees"
-msgstr "250 employés ou plus"
-
-msgid "Company name"
-msgstr "Nom de la société"
-
-msgid "Industry"
-msgstr "Industrie"
-
-msgid "Select industry"
-msgstr "Sélectionnez l'industrie"
-
-msgid "Company size"
-msgstr "Taille de la société"
-
-msgid "Select company size"
-msgstr "Sélectionnez la taille de l'entreprise"
-
-msgid "Company owner email"
-msgstr "Mail du propriétaire de la société"
-
 msgid "Add service"
 msgstr "Ajouter service"
 
@@ -3869,47 +3848,194 @@ msgstr "Terminer"
 msgid "Skip"
 msgstr "Passer"
 
-msgid "Company"
-msgstr "Société"
-
-msgid "Congratulations, the initial setup is complete!"
-msgstr "Félicitations, la configuration initiale est terminée!"
-
-#, php-format
-msgid "Shortcode of your form is %s"
-msgstr "Le shortcode de votre formulaire est %s"
+msgid "Welcome to Bookly!"
+msgstr "Bienvenue sur Bookly !"
 
 msgid ""
-"Open the page you want to add the booking form to in edit mode and paste "
-"this shortcode into a free block."
+"As the ultimate appointment booking plugin for online scheduling, Bookly is "
+"designed to help you effortlessly manage your booking calendar, services, "
+"and client base."
 msgstr ""
-"Ouvrez la page que vous souhaitez ajouter au formulaire de réservation en "
-"mode édition, puis coller ce shortcode dans un bloque libre."
+"En tant que plugin ultime de prise de rendez-vous en ligne, Bookly est conçu "
+"pour vous aider à gérer sans effort votre calendrier de réservation, vos "
+"services et votre base de clients."
+
+msgid ""
+"This introduction will guide you through the essential configuration steps "
+"to get you started quickly. "
+msgstr ""
+"Cette introduction vous guidera à travers les étapes essentielles de la "
+"configuration pour vous permettre de démarrer rapidement. "
 
 #, php-format
 msgid ""
-"You can find more detailed instructions for publishing Bookly form in our %s"
+"You can optionally skip this wizard and refer to %s or watch our %s to learn "
+"the basics and get the most out of Bookly."
 msgstr ""
-"Vous pouvez trouver des instructions plus détaillées pour la publication du "
-"formulaire Bookly dans notre %s"
+"Vous pouvez éventuellement ignorer cet assistant et vous référer à %s ou "
+"regarder notre %s pour apprendre les bases et tirer le meilleur parti de "
+"Bookly."
+
+msgid "Bookly Help Center"
+msgstr "Centre d'assistance de Bookly"
+
+msgid "Video Tutorials"
+msgstr "Tutoriels vidéo"
+
+msgid ""
+"Set your company business hours. This schedule will serve as a template for "
+"all new staff members."
+msgstr ""
+"Définissez les heures d'ouverture de votre entreprise. Cet horaire servira "
+"de modèle à tous les nouveaux membres du personnel."
+
+msgid ""
+"Select a time interval to be used as a step when creating all time slots in "
+"the system."
+msgstr ""
+"Sélectionnez un intervalle de temps à utiliser comme étape lors de la "
+"création de toutes les plages horaires dans le système."
+
+msgid "Select the currency for the prices of your services."
+msgstr "Sélectionnez la devise pour les prix de vos services."
+
+msgid ""
+"In Bookly, 'staff' refers to any employee or resource that provides services "
+"to your clients, such as a consultant, therapist, or any other service "
+"provider. Adding staff members allows you to manage their schedules, assign "
+"services to them, and track their appointments."
+msgstr ""
+"Dans Bookly, le terme « personnel » désigne tout employé ou ressource qui "
+"fournit des services à vos clients, comme un consultant, un thérapeute ou "
+"tout autre prestataire de services. L'ajout de membres du personnel vous "
+"permet de gérer leur emploi du temps, de leur attribuer des services et de "
+"suivre leurs rendez-vous."
+
+msgid ""
+"In Bookly, a 'service' refers to the various offerings or activities your "
+"business provides to clients, such as consultations, treatments, classes, or "
+"other services. By adding services, you can manage their duration, cost, and "
+"assign them to specific employees."
+msgstr ""
+"Dans Bookly, un « service » désigne les différentes offres ou activités que "
+"votre entreprise propose à ses clients, telles que des consultations, des "
+"traitements, des cours ou d'autres services. En ajoutant des services, vous "
+"pouvez gérer leur durée et leur coût, et les assigner à des employés "
+"spécifiques."
+
+msgid ""
+"Bookly Cloud is an integral part of the Bookly booking system, offering a "
+"range of additional products and features for efficient appointment "
+"management and automation."
+msgstr ""
+"Bookly Cloud fait partie intégrante du système de réservation Bookly, "
+"offrant une gamme de produits et de fonctionnalités supplémentaires pour une "
+"gestion efficace des rendez-vous et de l'automatisation."
+
+msgid ""
+"Features like SMS Notifications, Zapier integration, Stripe and Square "
+"Payments, Gift Cards, Voice and WhatsApp Notifications are designed to "
+"enhance your operations and boost your online business."
+msgstr ""
+"Des fonctionnalités telles que les notifications par SMS, l'intégration de "
+"Zapier, les paiements Stripe et Square, les cartes cadeaux, les "
+"notifications vocales et WhatsApp sont conçues pour améliorer vos opérations "
+"et stimuler votre activité en ligne."
+
+#, php-format
+msgid ""
+"Discover the full range of <a href=\"%s\" target=\"_blank\">powerful tools "
+"here</a>."
+msgstr ""
+"Découvrez la gamme complète d'<a href=\"%s\" target=\"_blank\">outils "
+"puissants ici</a>."
+
+msgid "Sign up today and enjoy a welcome bonus! "
+msgstr "Inscrivez-vous dès aujourd'hui et profitez d'un bonus de bienvenue ! "
+
+msgid "Create an account"
+msgstr "Créer un compte"
+
+msgid "Already registered"
+msgstr "Déjà inscrit"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+#, php-format
+msgid ""
+"I accept <a href=\"%1$s\" target=\"_blank\">Service Terms</a> and <a "
+"href=\"%2$s\" target=\"_blank\">Privacy Policy</a>"
+msgstr ""
+"I accept <a href=\"%1$s\" target=\"_blank\">Termes et Conditions</a> and <a "
+"href=\"%2$s\" target=\"_blank\">Politique de Confidentialité</a>"
+
+msgid "Forgot password"
+msgstr "Mot de passe oublié"
+
+msgid "Send recovery code"
+msgstr "Envoyer le code de récupération"
+
+msgid "Verify recovery code"
+msgstr "Vérifier le code de récupération"
+
+msgid "Set new password"
+msgstr "Définir un nouveau mot de passe"
+
+msgid "Recovery code"
+msgstr "Code de récupération"
+
+msgid "You are currently logged into Bookly Cloud with the account"
+msgstr "Vous êtes actuellement connecté à Bookly Cloud avec le compte"
+
+msgid "Greetings"
+msgstr "Salutations"
+
+msgid "Cloud"
+msgstr "Cloud"
+
+msgid ""
+"The initial setup is complete, and you can now continue using Bookly in the "
+"admin panel."
+msgstr ""
+"La configuration initiale est terminée et vous pouvez maintenant continuer à "
+"utiliser Bookly dans le panneau d'administration."
+
+msgid ""
+"You can create staff members and services, add appointments to the calendar, "
+"and manage them directly from the backend."
+msgstr ""
+"Vous pouvez créer des membres du personnel et des services, ajouter des "
+"rendez-vous au calendrier et les gérer directement depuis le backend."
+
+msgid ""
+"To start receiving appointments via the front-end booking form, follow these "
+"steps:"
+msgstr ""
+"Pour commencer à recevoir des rendez-vous via le formulaire de réservation, "
+"suivez les étapes suivantes :"
+
+msgid "Create a new page in WordPress."
+msgstr "Créer une nouvelle page dans WordPress."
+
+#, php-format
+msgid "Insert the following shortcode: %s"
+msgstr "Insérez le shortcode suivant : %s"
+
+msgid "Save the page and visit it to see your booking form in action."
+msgstr ""
+"Enregistrez la page et visitez-la pour découvrir votre formulaire de "
+"réservation en action."
+
+#, php-format
+msgid "Have questions? Visit our %s or reach out to our %s."
+msgstr "Vous avez des questions ? Visitez notre %s ou contactez notre %s."
 
 msgid "Help center"
 msgstr "Centre d'assistance"
 
-#, php-format
-msgid ""
-"Bookly can boost your sales and scale together with your business. Get more "
-"features and remove the limits by upgrading to the paid version with the %s, "
-"which allows you to use a vast number of additional features and settings "
-"for online scheduling, install other add-ons for Bookly, and includes six "
-"months of customer support."
-msgstr ""
-"Bookly peut booster vos ventes et évoluer avec votre entreprise. Obtenez "
-"davantage de fonctionnalités et supprimez les limites en passant à la "
-"version payante avec  %s, qui vous permet d'utiliser un grand nombre de "
-"fonctionnalités et de paramètres supplémentaires pour la planification en "
-"ligne, d'installer d'autres modules complémentaires pour Bookly, et inclut "
-"six mois d'assistance client."
+msgid "Support Team"
+msgstr "Équipe de soutien"
 
 msgid "Staff members order"
 msgstr "Ordre des membres de l'équipe"
@@ -3932,11 +4058,41 @@ msgstr "le jour suivant"
 msgid "Reorder"
 msgstr "Réorganiser"
 
+msgid "1 - 9 employees"
+msgstr "1 à 9 employés"
+
+msgid "10 - 19 employees"
+msgstr "10 à 19 employés"
+
+msgid "20 - 49 employees"
+msgstr "20 à 49 employés"
+
+msgid "50 - 249 employees"
+msgstr "50 -à 249 employés"
+
+msgid "250 or more employees"
+msgstr "250 employés ou plus"
+
+msgid "Select company size"
+msgstr "Sélectionnez la taille de l'entreprise"
+
 msgid "Image"
 msgstr "Image"
 
+msgid "Company name"
+msgstr "Nom de la société"
+
 msgid "Website"
 msgstr "Site Web"
+
+msgid "Industry"
+msgstr "Industrie"
+
+msgid "Select industry"
+msgstr "Sélectionnez l'industrie"
+
+msgid "Company size"
+msgstr "Taille de la société"
 
 msgid "Bookly data upon deleting Bookly items"
 msgstr "Données Bookly lors de la suppression d'éléments Bookly"
@@ -4093,9 +4249,6 @@ msgstr "Port"
 msgid "Username"
 msgstr "Utilisateur"
 
-msgid "Password"
-msgstr "Mot de passe"
-
 msgid "Secure"
 msgstr "Sécurisé"
 
@@ -4107,6 +4260,9 @@ msgstr "Service payé localement"
 
 msgid "URL Settings"
 msgstr "Réglages d'URL"
+
+msgid "Company"
+msgstr "Société"
 
 msgid "Google Calendar"
 msgstr "Google Calendar"
@@ -5749,19 +5905,8 @@ msgstr "Connexion"
 msgid "Registration"
 msgstr "Inscription"
 
-msgid "Forgot password"
-msgstr "Mot de passe oublié"
-
 msgid "Repeat password"
 msgstr "Répéter le mot de passe"
-
-#, php-format
-msgid ""
-"I accept <a href=\"%1$s\" target=\"_blank\">Service Terms</a> and <a "
-"href=\"%2$s\" target=\"_blank\">Privacy Policy</a>"
-msgstr ""
-"I accept <a href=\"%1$s\" target=\"_blank\">Termes et Conditions</a> and <a "
-"href=\"%2$s\" target=\"_blank\">Politique de Confidentialité</a>"
 
 msgid "Enter code from email"
 msgstr "Entrer le code de l'e-mail"
@@ -6163,9 +6308,6 @@ msgstr "Lier le paiement"
 
 msgid "Complete payment"
 msgstr "Paiement complet"
-
-msgid "Gift card discount"
-msgstr "Remise sur les cartes cadeaux"
 
 msgid "Manual adjustment"
 msgstr "Ajustement manuel"
@@ -8771,6 +8913,12 @@ msgstr "Ne pas afficher"
 msgid "Show only with Any staff"
 msgstr "Afficher uniquement avec tout personnel"
 
+msgid "Show staff member rating before employee name"
+msgstr "Montrer l'évaluation de membre de l'équipe avant le nom de l'employé."
+
+msgid "Skip step"
+msgstr "Sauter l'étape"
+
 msgid "Add new form"
 msgstr "Ajouter un nouveau formulaire"
 
@@ -10613,9 +10761,6 @@ msgid "Set the URL of a page with a rating and comment form."
 msgstr ""
 "Définissez l'URL de la page avec un formulaire d'évaluation et de "
 "commentaires"
-
-msgid "Show staff member rating before employee name"
-msgstr "Montrer l'évaluation de membre de l'équipe avant le nom de l'employé."
 
 msgid "URL of the page for staff rating"
 msgstr "URL de la page pour l'évaluation de l'équipe"

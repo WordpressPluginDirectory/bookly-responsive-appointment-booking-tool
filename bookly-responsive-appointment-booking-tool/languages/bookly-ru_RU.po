@@ -9,11 +9,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 07:08+0000\n"
-"PO-Revision-Date: 2024-08-08 09:26+0000\n"
+"POT-Creation-Date: 2024-09-12 07:03+0000\n"
+"PO-Revision-Date: 2024-09-16 08:50+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Russian\n"
-"X-Loco-Version: 2.3.1; wp-6.3.1"
+"X-Loco-Version: 2.3.1; wp-6.6.2"
 
 msgid "Invoice #{invoice_number} for your appointment"
 msgstr "Счёт №{invoice_number} за вашу запись"
@@ -202,6 +202,9 @@ msgstr "Промежуточный итог"
 
 msgid "Coupon discount"
 msgstr "Скидка по купону"
+
+msgid "Gift card discount"
+msgstr "Скидка по карте"
 
 msgid "Tips"
 msgstr "Чаевые"
@@ -1767,6 +1770,9 @@ msgstr "Добавить график сотрудника"
 msgid "Add Staff Days Off"
 msgstr "Добавить выходные дни сотрудника"
 
+msgid "Add Staff Appointments"
+msgstr "Добавить записи сотрудника"
+
 msgid ""
 "Hide this field if you want to hide the list of WP users from your staff "
 "members."
@@ -1785,6 +1791,9 @@ msgstr "Отключить изменение сервисов"
 
 msgid "Disable price update"
 msgstr "Отключить изменение цены"
+
+msgid "Hide create appointment button"
+msgstr "Скрыть кнопку создания записи"
 
 msgid "Insert"
 msgstr "Вставить"
@@ -1828,6 +1837,12 @@ msgstr "Нерабочие дни"
 msgid "A custom block for displaying staff days off"
 msgstr "Пользовательский блок для отображения выходных дней сотрудника"
 
+msgid "Appointments"
+msgstr "Записи"
+
+msgid "A custom block for displaying staff appointments"
+msgstr "Пользовательский блок для отображения записей сотрудника"
+
 msgid "Capacity"
 msgstr "Вместимость"
 
@@ -1839,6 +1854,42 @@ msgstr "Особые часы работы"
 
 msgid "Fields"
 msgstr "Поля"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Created at any time"
+msgstr "Создана в любое время"
+
+msgid "Customer"
+msgstr "Клиент"
+
+msgid "All statuses"
+msgstr "Все статусы"
+
+msgid "No status selected"
+msgstr "Статус не выбран"
+
+msgid "New appointment"
+msgstr "Новая запись"
+
+msgid "Any time"
+msgstr "Любое время"
+
+msgid "No appointments for selected period."
+msgstr "Нет записей за выбранный период."
+
+msgid "Processing..."
+msgstr "Обработка..."
+
+msgid "No result found"
+msgstr "Результатов не найдено"
+
+msgid "Searching"
+msgstr "Поиск"
+
+msgid "Attachments"
+msgstr "Файлы"
 
 msgid "Repeat every year"
 msgstr "Повторять каждый год"
@@ -1982,9 +2033,6 @@ msgstr "API Login ID"
 msgid "API Transaction Key"
 msgstr "API Transaction Key"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Title"
 msgstr "Название"
 
@@ -2022,9 +2070,6 @@ msgstr "Редактировать налог"
 
 msgid "No taxes found."
 msgstr "Налоги не найдены."
-
-msgid "Processing..."
-msgstr "Обработка..."
 
 msgid "Service tax amount"
 msgstr "Сумма налога на сервис"
@@ -2326,14 +2371,8 @@ msgstr "Часовой пояс"
 msgid "Employee"
 msgstr "Работник"
 
-msgid "Appointments"
-msgstr "Записи"
-
 msgid "Profile"
 msgstr "Профиль"
-
-msgid "Any time"
-msgstr "Любое время"
 
 msgid "WP user"
 msgstr "Пользователь WP"
@@ -3168,9 +3207,6 @@ msgstr "Список"
 msgid "All day"
 msgstr "Весь день"
 
-msgid "No appointments for selected period."
-msgstr "Нет записей за выбранный период."
-
 #, php-format
 msgid "+%d more"
 msgstr "+ ещё %d"
@@ -3496,9 +3532,6 @@ msgstr "Состояние"
 msgid "Subject"
 msgstr "Тема"
 
-msgid "Customer"
-msgstr "Клиент"
-
 msgid "Start at"
 msgstr "Начать в"
 
@@ -3774,27 +3807,6 @@ msgstr "Оплата услуг"
 msgid "Get Bookly Pro"
 msgstr "Купить Bookly Pro"
 
-msgid "New appointment"
-msgstr "Новая запись"
-
-msgid "Created at any time"
-msgstr "Создана в любое время"
-
-msgid "All statuses"
-msgstr "Все статусы"
-
-msgid "No status selected"
-msgstr "Статус не выбран"
-
-msgid "No result found"
-msgstr "Результатов не найдено"
-
-msgid "Searching"
-msgstr "Поиск"
-
-msgid "Attachments"
-msgstr "Файлы"
-
 msgid "Archived"
 msgstr "В архиве"
 
@@ -3822,39 +3834,6 @@ msgstr ""
 msgid "No records."
 msgstr "Нет записей."
 
-msgid "1 - 9 employees"
-msgstr "1 - 9 сотрудников"
-
-msgid "10 - 19 employees"
-msgstr "10 - 19 сотрудников"
-
-msgid "20 - 49 employees"
-msgstr "20 - 49 сотрудников"
-
-msgid "50 - 249 employees"
-msgstr "50 - 249 сотрудников"
-
-msgid "250 or more employees"
-msgstr "250 и больше сотрудников"
-
-msgid "Company name"
-msgstr "Имя компании"
-
-msgid "Industry"
-msgstr "Индустрия"
-
-msgid "Select industry"
-msgstr "Укажите индустрию"
-
-msgid "Company size"
-msgstr "Размер компании"
-
-msgid "Select company size"
-msgstr "Укажите размер компании"
-
-msgid "Company owner email"
-msgstr "Адрес эл. почты владельца"
-
 msgid "Add service"
 msgstr "Добавить сервис"
 
@@ -3867,47 +3846,191 @@ msgstr "Завершить"
 msgid "Skip"
 msgstr "Пропустить"
 
-msgid "Company"
-msgstr "Компания"
-
-msgid "Congratulations, the initial setup is complete!"
-msgstr "Поздравляем, первоначальная настройка завершена!"
-
-#, php-format
-msgid "Shortcode of your form is %s"
-msgstr "Шорткод вашей формы %s"
+msgid "Welcome to Bookly!"
+msgstr "Добро пожаловать в Bookly!"
 
 msgid ""
-"Open the page you want to add the booking form to in edit mode and paste "
-"this shortcode into a free block."
+"As the ultimate appointment booking plugin for online scheduling, Bookly is "
+"designed to help you effortlessly manage your booking calendar, services, "
+"and client base."
 msgstr ""
-"Откройте страницу, на которую вы хотите добавить форму бронирования, в "
-"режиме редактирования и вставьте этот шорткод в свободный блок."
+"Bookly – лучший плагин для онлайн-бронирования встреч, который помогает вам "
+"легко управлять календарем бронирования, услугами и клиентской базой."
+
+msgid ""
+"This introduction will guide you through the essential configuration steps "
+"to get you started quickly. "
+msgstr ""
+"Это руководство проведет вас через основные этапы настройки, которые помогут "
+"вам быстро приступить к работе."
 
 #, php-format
 msgid ""
-"You can find more detailed instructions for publishing Bookly form in our %s"
+"You can optionally skip this wizard and refer to %s or watch our %s to learn "
+"the basics and get the most out of Bookly."
 msgstr ""
-"Более подробную инструкцию о том, как опубликовать форму Bookly, можно найти "
-"у нас в %s"
+"Вы можете пропустить первоначальную настройку и посетить %s или наши %s, "
+"чтобы изучить основы и максимально эффективно использовать Bookly."
+
+msgid "Bookly Help Center"
+msgstr "Справочный центр Bookly"
+
+msgid "Video Tutorials"
+msgstr "Видеоуроки"
+
+msgid ""
+"Set your company business hours. This schedule will serve as a template for "
+"all new staff members."
+msgstr ""
+"Установите часы работы вашей компании. Это расписание будет служить шаблоном "
+"для всех новых сотрудников."
+
+msgid ""
+"Select a time interval to be used as a step when creating all time slots in "
+"the system."
+msgstr ""
+"Выберите временной интервал, который будет использоваться в качестве шага "
+"при создании всех временных интервалов в системе."
+
+msgid "Select the currency for the prices of your services."
+msgstr "Выберите валюту цен на свои услуги."
+
+msgid ""
+"In Bookly, 'staff' refers to any employee or resource that provides services "
+"to your clients, such as a consultant, therapist, or any other service "
+"provider. Adding staff members allows you to manage their schedules, assign "
+"services to them, and track their appointments."
+msgstr ""
+"В Bookly «сотрудник» относится к любому сотруднику или ресурсу, который "
+"предоставляет услуги вашим клиентам, например, консультанту, терапевту или "
+"любому другому поставщику услуг. Добавление сотрудников позволяет вам "
+"управлять их графиками, назначать им услуги и отслеживать их записи."
+
+msgid ""
+"In Bookly, a 'service' refers to the various offerings or activities your "
+"business provides to clients, such as consultations, treatments, classes, or "
+"other services. By adding services, you can manage their duration, cost, and "
+"assign them to specific employees."
+msgstr ""
+"В Bookly «сервис» относится к различным предложениям или действиям, которые "
+"ваш бизнес предоставляет клиентам, таким как консультации, процедуры, "
+"занятия или другие услуги. Добавляя сервисы, вы можете управлять их "
+"продолжительностью, стоимостью и назначать их определенным сотрудникам."
+
+msgid ""
+"Bookly Cloud is an integral part of the Bookly booking system, offering a "
+"range of additional products and features for efficient appointment "
+"management and automation."
+msgstr ""
+"Bookly Cloud является неотъемлемой частью системы бронирования Bookly, "
+"предлагающей ряд дополнительных продуктов и функций для эффективного "
+"управления записями и автоматизации."
+
+msgid ""
+"Features like SMS Notifications, Zapier integration, Stripe and Square "
+"Payments, Gift Cards, Voice and WhatsApp Notifications are designed to "
+"enhance your operations and boost your online business."
+msgstr ""
+"Такие функции, как SMS-уведомления, интеграция с Zapier, платежи Stripe и "
+"Square, подарочные карты, голосовые и WhatsApp-уведомления, предназначены "
+"для повышения эффективности вашей деятельности и развития вашего онлайн-"
+"бизнеса."
+
+#, php-format
+msgid ""
+"Discover the full range of <a href=\"%s\" target=\"_blank\">powerful tools "
+"here</a>."
+msgstr ""
+"Ознакомьтесь с полным набором <a href=\"%s\" target=\"_blank\">эффективных "
+"инструментов здесь</a>."
+
+msgid "Sign up today and enjoy a welcome bonus! "
+msgstr "Зарегистрируйтесь сегодня и получите приветственный бонус!"
+
+msgid "Create an account"
+msgstr "Создать аккаунт"
+
+msgid "Already registered"
+msgstr "Уже зарегистрирован(а)"
+
+msgid "Password"
+msgstr "Пароль"
+
+#, php-format
+msgid ""
+"I accept <a href=\"%1$s\" target=\"_blank\">Service Terms</a> and <a "
+"href=\"%2$s\" target=\"_blank\">Privacy Policy</a>"
+msgstr ""
+"Я принимаю <a href=\"%1$s\" target=\"_blank\">Условия предоставления "
+"услуги</a> и <a href=\"%2$s\" target=\"_blank\">Политику "
+"конфиденциальности</a>"
+
+msgid "Forgot password"
+msgstr "Восстановление пароля"
+
+msgid "Send recovery code"
+msgstr "Отправить код восстановления"
+
+msgid "Verify recovery code"
+msgstr "Подтвердить код восстановления"
+
+msgid "Set new password"
+msgstr "Установить новый пароль"
+
+msgid "Recovery code"
+msgstr "Код восстановления"
+
+msgid "You are currently logged into Bookly Cloud with the account"
+msgstr "В настоящее время вы вошли в Bookly Cloud с учётной записью"
+
+msgid "Greetings"
+msgstr "Приветствие"
+
+msgid "Cloud"
+msgstr "Cloud"
+
+msgid ""
+"The initial setup is complete, and you can now continue using Bookly in the "
+"admin panel."
+msgstr ""
+"Первоначальная настройка завершена и теперь вы можете продолжить "
+"использовать Bookly в административной панели."
+
+msgid ""
+"You can create staff members and services, add appointments to the calendar, "
+"and manage them directly from the backend."
+msgstr ""
+"Вы можете создавать сотрудников и сервисы, добавлять встречи в календарь и "
+"управлять ими из административной панели."
+
+msgid ""
+"To start receiving appointments via the front-end booking form, follow these "
+"steps:"
+msgstr ""
+"Чтобы начать получать записи на приём через форму бронирования, выполните "
+"следующие действия:"
+
+msgid "Create a new page in WordPress."
+msgstr "Создайте новую страницу в WordPress."
+
+#, php-format
+msgid "Insert the following shortcode: %s"
+msgstr "Вставьте следующий шорткод: %s"
+
+msgid "Save the page and visit it to see your booking form in action."
+msgstr ""
+"Сохраните страницу и посетите ее, чтобы увидеть вашу форму бронирования в "
+"действии."
+
+#, php-format
+msgid "Have questions? Visit our %s or reach out to our %s."
+msgstr "Остались вопросы? Посетите наш %s или свяжитесь с нами %s."
 
 msgid "Help center"
 msgstr "Справочный центр"
 
-#, php-format
-msgid ""
-"Bookly can boost your sales and scale together with your business. Get more "
-"features and remove the limits by upgrading to the paid version with the %s, "
-"which allows you to use a vast number of additional features and settings "
-"for online scheduling, install other add-ons for Bookly, and includes six "
-"months of customer support."
-msgstr ""
-"Bookly поможет увеличить ваши продажи онлайн. Гибкость плагина позволяет "
-"расширить функционал вместе с ростом вашего бизнеса. Получите больше "
-"возможностей и снимите ограничения, установив платную версию %s, которая "
-"позволяет использовать расширенные функции и настройки для бронирования "
-"сервисов, устанавливать другие дополнения к Bookly, и включает 6 месяцев "
-"клиентской поддержки."
+msgid "Support Team"
+msgstr "Служба Поддержки"
 
 msgid "Staff members order"
 msgstr "Порядок сотрудников"
@@ -3930,11 +4053,41 @@ msgstr "следующий день"
 msgid "Reorder"
 msgstr "Переместить"
 
+msgid "1 - 9 employees"
+msgstr "1 - 9 сотрудников"
+
+msgid "10 - 19 employees"
+msgstr "10 - 19 сотрудников"
+
+msgid "20 - 49 employees"
+msgstr "20 - 49 сотрудников"
+
+msgid "50 - 249 employees"
+msgstr "50 - 249 сотрудников"
+
+msgid "250 or more employees"
+msgstr "250 и больше сотрудников"
+
+msgid "Select company size"
+msgstr "Укажите размер компании"
+
 msgid "Image"
 msgstr "Изображение"
 
+msgid "Company name"
+msgstr "Имя компании"
+
 msgid "Website"
 msgstr "Веб-сайт"
+
+msgid "Industry"
+msgstr "Индустрия"
+
+msgid "Select industry"
+msgstr "Укажите индустрию"
+
+msgid "Company size"
+msgstr "Размер компании"
 
 msgid "Bookly data upon deleting Bookly items"
 msgstr "Данные Bookly при удалении плагинов Bookly"
@@ -4088,9 +4241,6 @@ msgstr "Порт"
 msgid "Username"
 msgstr "Имя пользователя"
 
-msgid "Password"
-msgstr "Пароль"
-
 msgid "Secure"
 msgstr "Шифрование"
 
@@ -4102,6 +4252,9 @@ msgstr "Оплата сервиса наличными"
 
 msgid "URL Settings"
 msgstr "Настройки URL"
+
+msgid "Company"
+msgstr "Компания"
 
 msgid "Google Calendar"
 msgstr "Google Календарь"
@@ -5730,20 +5883,8 @@ msgstr "Войти"
 msgid "Registration"
 msgstr "Регистрация"
 
-msgid "Forgot password"
-msgstr "Восстановление пароля"
-
 msgid "Repeat password"
 msgstr "Повторите пароль"
-
-#, php-format
-msgid ""
-"I accept <a href=\"%1$s\" target=\"_blank\">Service Terms</a> and <a "
-"href=\"%2$s\" target=\"_blank\">Privacy Policy</a>"
-msgstr ""
-"Я принимаю <a href=\"%1$s\" target=\"_blank\">Условия предоставления "
-"услуги</a> и <a href=\"%2$s\" target=\"_blank\">Политику "
-"конфиденциальности</a>"
 
 msgid "Enter code from email"
 msgstr "Введите код из письма."
@@ -6138,9 +6279,6 @@ msgstr "Привязать платёж"
 
 msgid "Complete payment"
 msgstr "Завершить платёж"
-
-msgid "Gift card discount"
-msgstr "Скидка по карте"
 
 msgid "Manual adjustment"
 msgstr "Ручная коррекция"
@@ -8651,7 +8789,7 @@ msgid "Button"
 msgstr "Кнопка"
 
 msgid "Display services"
-msgstr "Отображать услуги"
+msgstr "Отображать сервисы"
 
 msgid "Display gift cards"
 msgstr "Отображать подарочные карты"
@@ -8698,7 +8836,7 @@ msgid "Verify email"
 msgstr "Верифицировать адрес эл. почты"
 
 msgid "Hidden services"
-msgstr "Скрытые услуги"
+msgstr "Скрытые сервисы"
 
 msgid "Hidden gift cards"
 msgstr "Скрытые подарочные карты"
@@ -8726,6 +8864,12 @@ msgstr "Не показывать"
 
 msgid "Show only with Any staff"
 msgstr "Показывать только с автоматическим выбором исполнителя"
+
+msgid "Show staff member rating before employee name"
+msgstr "Показывать рейтинг перед именем сотрудника"
+
+msgid "Skip step"
+msgstr "Пропустить шаг"
 
 msgid "Add new form"
 msgstr "Добавить новую форму"
@@ -10549,9 +10693,6 @@ msgstr "URL страницы оценки услуг"
 
 msgid "Set the URL of a page with a rating and comment form."
 msgstr "Укажите URL страницы с формой для оценки и комментария."
-
-msgid "Show staff member rating before employee name"
-msgstr "Показывать рейтинг перед именем сотрудника"
 
 msgid "URL of the page for staff rating"
 msgstr "URL страницы для оценки сотрудника"

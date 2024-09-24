@@ -115,7 +115,7 @@ class Request extends Lib\Base\Component
                     $this->userData
                         ->setCouponCode( $coupon )
                         ->setGiftCode( $gift_card )
-                        ->setModernFormCustomer( $customer );
+                        ->setModernFormCustomer( $customer, $this->getSettings() );
 
                     $client_fields = array();
                     if ( in_array( 'address', $this->getSettings()->get( 'details_fields_show' ) ) ) {
@@ -138,6 +138,8 @@ class Request extends Lib\Base\Component
                         $this->userData->setDepositFull( ! self::parameter( 'deposit' ) );
                     }
 
+                    $bookly_recurring_appointments_payment = get_option( 'bookly_recurring_appointments_payment' ) === 'first';
+                    $processed_series = array( 0 );
                     $slots = array();
                     foreach ( self::parameter( 'cart' ) as $item ) {
                         $service_id = $item['service_id'];
@@ -160,6 +162,12 @@ class Request extends Lib\Base\Component
                                     ? $item['slot']['slot']
                                     : array( array( $service_id, $staff_id, null, $location_id ?: null ) );
                                 $slots[] = $slot;
+                                $series_id = isset( $item['seriesId'] ) ? $item['seriesId'] : 0;
+                                $first_in_series = false;
+                                if ( $bookly_recurring_appointments_payment && isset( $item['seriesId'] ) && ! in_array( $series_id, $processed_series ) ) {
+                                    $processed_series[] = $series_id;
+                                    $first_in_series = true;
+                                }
 
                                 $custom_fields = isset( $item['custom_fields'] ) ? $item['custom_fields'] : array();
                                 $custom_fields = array_map( function( $id, $value ) {
@@ -174,8 +182,9 @@ class Request extends Lib\Base\Component
                                     ->setUnits( $units )
                                     ->setExtras( $extras )
                                     ->setCustomFields( $custom_fields )
-                                    ->setSeriesUniqueId( isset( $item['seriesId'] ) ? $item['seriesId'] : 0 )
-                                    ->setSlots( $slot );
+                                    ->setSeriesUniqueId( $series_id )
+                                    ->setSlots( $slot )
+                                    ->setFirstInSeries( $first_in_series );
                                 break;
                             default:
                                 $cart_item->setCartTypeId( $item['gift_card_type'] );

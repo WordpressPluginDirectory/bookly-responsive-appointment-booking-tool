@@ -451,6 +451,14 @@ abstract class Config
     }
 
     /**
+     * @return array
+     */
+    public static function getTimeSlotLengthOptions()
+    {
+        return array( 2, 4, 5, 10, 12, 15, 20, 30, 45, 60, 90, 120, 180, 240, 360 );
+    }
+
+    /**
      * Get time slot length in seconds.
      *
      * @return integer

@@ -164,6 +164,9 @@ msgstr ""
 msgid "Coupon discount"
 msgstr ""
 
+msgid "Gift card discount"
+msgstr ""
+
 msgid "Tips"
 msgstr ""
 
@@ -1401,6 +1404,9 @@ msgstr ""
 msgid "Add Staff Days Off"
 msgstr ""
 
+msgid "Add Staff Appointments"
+msgstr ""
+
 msgid ""
 "Hide this field if you want to hide the list of WP users from your staff "
 "members."
@@ -1416,6 +1422,9 @@ msgid "Disable services update"
 msgstr ""
 
 msgid "Disable price update"
+msgstr ""
+
+msgid "Hide create appointment button"
 msgstr ""
 
 msgid "Insert"
@@ -1460,6 +1469,12 @@ msgstr ""
 msgid "A custom block for displaying staff days off"
 msgstr ""
 
+msgid "Appointments"
+msgstr ""
+
+msgid "A custom block for displaying staff appointments"
+msgstr ""
+
 msgid "Capacity"
 msgstr ""
 
@@ -1470,6 +1485,42 @@ msgid "Special hours"
 msgstr ""
 
 msgid "Fields"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "Created at any time"
+msgstr ""
+
+msgid "Customer"
+msgstr ""
+
+msgid "All statuses"
+msgstr ""
+
+msgid "No status selected"
+msgstr ""
+
+msgid "New appointment"
+msgstr ""
+
+msgid "Any time"
+msgstr ""
+
+msgid "No appointments for selected period."
+msgstr ""
+
+msgid "Processing..."
+msgstr ""
+
+msgid "No result found"
+msgstr ""
+
+msgid "Searching"
+msgstr ""
+
+msgid "Attachments"
 msgstr ""
 
 msgid "Repeat every year"
@@ -1605,9 +1656,6 @@ msgstr ""
 msgid "API Transaction Key"
 msgstr ""
 
-msgid "ID"
-msgstr ""
-
 msgid "Title"
 msgstr ""
 
@@ -1641,9 +1689,6 @@ msgid "Edit tax"
 msgstr ""
 
 msgid "No taxes found."
-msgstr ""
-
-msgid "Processing..."
 msgstr ""
 
 msgid "Service tax amount"
@@ -1915,13 +1960,7 @@ msgstr ""
 msgid "Employee"
 msgstr ""
 
-msgid "Appointments"
-msgstr ""
-
 msgid "Profile"
-msgstr ""
-
-msgid "Any time"
 msgstr ""
 
 msgid "WP user"
@@ -2578,9 +2617,6 @@ msgstr ""
 msgid "All day"
 msgstr ""
 
-msgid "No appointments for selected period."
-msgstr ""
-
 #, php-format
 msgid "+%d more"
 msgstr ""
@@ -2902,9 +2938,6 @@ msgstr ""
 msgid "Subject"
 msgstr ""
 
-msgid "Customer"
-msgstr ""
-
 msgid "Start at"
 msgstr ""
 
@@ -3152,27 +3185,6 @@ msgstr ""
 msgid "Get Bookly Pro"
 msgstr ""
 
-msgid "New appointment"
-msgstr ""
-
-msgid "Created at any time"
-msgstr ""
-
-msgid "All statuses"
-msgstr ""
-
-msgid "No status selected"
-msgstr ""
-
-msgid "No result found"
-msgstr ""
-
-msgid "Searching"
-msgstr ""
-
-msgid "Attachments"
-msgstr ""
-
 msgid "Archived"
 msgstr ""
 
@@ -3197,39 +3209,6 @@ msgstr ""
 msgid "No records."
 msgstr ""
 
-msgid "1 - 9 employees"
-msgstr ""
-
-msgid "10 - 19 employees"
-msgstr ""
-
-msgid "20 - 49 employees"
-msgstr ""
-
-msgid "50 - 249 employees"
-msgstr ""
-
-msgid "250 or more employees"
-msgstr ""
-
-msgid "Company name"
-msgstr ""
-
-msgid "Industry"
-msgstr ""
-
-msgid "Select industry"
-msgstr ""
-
-msgid "Company size"
-msgstr ""
-
-msgid "Select company size"
-msgstr ""
-
-msgid "Company owner email"
-msgstr ""
-
 msgid "Add service"
 msgstr ""
 
@@ -3242,36 +3221,152 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-msgid "Company"
-msgstr ""
-
-msgid "Congratulations, the initial setup is complete!"
-msgstr ""
-
-#, php-format
-msgid "Shortcode of your form is %s"
+msgid "Welcome to Bookly!"
 msgstr ""
 
 msgid ""
-"Open the page you want to add the booking form to in edit mode and paste "
-"this shortcode into a free block."
+"As the ultimate appointment booking plugin for online scheduling, Bookly is "
+"designed to help you effortlessly manage your booking calendar, services, "
+"and client base."
+msgstr ""
+
+msgid ""
+"This introduction will guide you through the essential configuration steps "
+"to get you started quickly. "
 msgstr ""
 
 #, php-format
 msgid ""
-"You can find more detailed instructions for publishing Bookly form in our %s"
+"You can optionally skip this wizard and refer to %s or watch our %s to learn "
+"the basics and get the most out of Bookly."
+msgstr ""
+
+msgid "Bookly Help Center"
+msgstr ""
+
+msgid "Video Tutorials"
+msgstr ""
+
+msgid ""
+"Set your company business hours. This schedule will serve as a template for "
+"all new staff members."
+msgstr ""
+
+msgid ""
+"Select a time interval to be used as a step when creating all time slots in "
+"the system."
+msgstr ""
+
+msgid "Select the currency for the prices of your services."
+msgstr ""
+
+msgid ""
+"In Bookly, 'staff' refers to any employee or resource that provides services "
+"to your clients, such as a consultant, therapist, or any other service "
+"provider. Adding staff members allows you to manage their schedules, assign "
+"services to them, and track their appointments."
+msgstr ""
+
+msgid ""
+"In Bookly, a 'service' refers to the various offerings or activities your "
+"business provides to clients, such as consultations, treatments, classes, or "
+"other services. By adding services, you can manage their duration, cost, and "
+"assign them to specific employees."
+msgstr ""
+
+msgid ""
+"Bookly Cloud is an integral part of the Bookly booking system, offering a "
+"range of additional products and features for efficient appointment "
+"management and automation."
+msgstr ""
+
+msgid ""
+"Features like SMS Notifications, Zapier integration, Stripe and Square "
+"Payments, Gift Cards, Voice and WhatsApp Notifications are designed to "
+"enhance your operations and boost your online business."
+msgstr ""
+
+#, php-format
+msgid ""
+"Discover the full range of <a href=\"%s\" target=\"_blank\">powerful tools "
+"here</a>."
+msgstr ""
+
+msgid "Sign up today and enjoy a welcome bonus! "
+msgstr ""
+
+msgid "Create an account"
+msgstr ""
+
+msgid "Already registered"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+#, php-format
+msgid ""
+"I accept <a href=\"%1$s\" target=\"_blank\">Service Terms</a> and <a href="
+"\"%2$s\" target=\"_blank\">Privacy Policy</a>"
+msgstr ""
+
+msgid "Forgot password"
+msgstr ""
+
+msgid "Send recovery code"
+msgstr ""
+
+msgid "Verify recovery code"
+msgstr ""
+
+msgid "Set new password"
+msgstr ""
+
+msgid "Recovery code"
+msgstr ""
+
+msgid "You are currently logged into Bookly Cloud with the account"
+msgstr ""
+
+msgid "Greetings"
+msgstr ""
+
+msgid "Cloud"
+msgstr ""
+
+msgid ""
+"The initial setup is complete, and you can now continue using Bookly in the "
+"admin panel."
+msgstr ""
+
+msgid ""
+"You can create staff members and services, add appointments to the calendar, "
+"and manage them directly from the backend."
+msgstr ""
+
+msgid ""
+"To start receiving appointments via the front-end booking form, follow these "
+"steps:"
+msgstr ""
+
+msgid "Create a new page in WordPress."
+msgstr ""
+
+#, php-format
+msgid "Insert the following shortcode: %s"
+msgstr ""
+
+msgid "Save the page and visit it to see your booking form in action."
+msgstr ""
+
+#, php-format
+msgid "Have questions? Visit our %s or reach out to our %s."
 msgstr ""
 
 msgid "Help center"
 msgstr ""
 
-#, php-format
-msgid ""
-"Bookly can boost your sales and scale together with your business. Get more "
-"features and remove the limits by upgrading to the paid version with the %s, "
-"which allows you to use a vast number of additional features and settings "
-"for online scheduling, install other add-ons for Bookly, and includes six "
-"months of customer support."
+msgid "Support Team"
 msgstr ""
 
 msgid "Staff members order"
@@ -3295,10 +3390,40 @@ msgstr ""
 msgid "Reorder"
 msgstr ""
 
+msgid "1 - 9 employees"
+msgstr ""
+
+msgid "10 - 19 employees"
+msgstr ""
+
+msgid "20 - 49 employees"
+msgstr ""
+
+msgid "50 - 249 employees"
+msgstr ""
+
+msgid "250 or more employees"
+msgstr ""
+
+msgid "Select company size"
+msgstr ""
+
 msgid "Image"
 msgstr ""
 
+msgid "Company name"
+msgstr ""
+
 msgid "Website"
+msgstr ""
+
+msgid "Industry"
+msgstr ""
+
+msgid "Select industry"
+msgstr ""
+
+msgid "Company size"
 msgstr ""
 
 msgid "Bookly data upon deleting Bookly items"
@@ -3426,9 +3551,6 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-msgid "Password"
-msgstr ""
-
 msgid "Secure"
 msgstr ""
 
@@ -3439,6 +3561,9 @@ msgid "Service paid locally"
 msgstr ""
 
 msgid "URL Settings"
+msgstr ""
+
+msgid "Company"
 msgstr ""
 
 msgid "Google Calendar"
@@ -4870,16 +4995,7 @@ msgstr ""
 msgid "Registration"
 msgstr ""
 
-msgid "Forgot password"
-msgstr ""
-
 msgid "Repeat password"
-msgstr ""
-
-#, php-format
-msgid ""
-"I accept <a href=\"%1$s\" target=\"_blank\">Service Terms</a> and <a href="
-"\"%2$s\" target=\"_blank\">Privacy Policy</a>"
 msgstr ""
 
 msgid "Enter code from email"
@@ -5245,9 +5361,6 @@ msgid "Bind payment"
 msgstr ""
 
 msgid "Complete payment"
-msgstr ""
-
-msgid "Gift card discount"
 msgstr ""
 
 msgid "Manual adjustment"
@@ -7396,6 +7509,12 @@ msgstr ""
 msgid "Show only with Any staff"
 msgstr ""
 
+msgid "Show staff member rating before employee name"
+msgstr ""
+
+msgid "Skip step"
+msgstr ""
+
 msgid "Add new form"
 msgstr ""
 
@@ -8953,9 +9072,6 @@ msgid "Rating page URL"
 msgstr ""
 
 msgid "Set the URL of a page with a rating and comment form."
-msgstr ""
-
-msgid "Show staff member rating before employee name"
 msgstr ""
 
 msgid "URL of the page for staff rating"

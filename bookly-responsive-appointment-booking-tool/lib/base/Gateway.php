@@ -176,6 +176,7 @@ abstract class Gateway
             $this->request->getUserData()->setPaymentStatus( $status )
                 ->sessionSave();
         }
+
         return $status;
     }
 
@@ -215,24 +216,25 @@ abstract class Gateway
             $order = BooklyLib\DataHolders\Booking\Order::createFromOrderId( $order_id );
 
             if ( $order ) {
-                $type = current( $order->getItems() )->getType();
-                if ( $type !== BooklyLib\DataHolders\Booking\Item::TYPE_PACKAGE ) {
-                    current( $order->getItems() )->getCA()->setJustCreated( true );
-                    BooklyLib\Notifications\Cart\Sender::send( $order );
-                }
                 list( $sync, $gc, $oc ) = Config::syncCalendars();
-                foreach ( $order->getFlatItems() as $item ) {
-                    if ( $item->getType() === BooklyLib\DataHolders\Booking\Item::TYPE_PACKAGE ) {
-                        Payment\Proxy\Shared::complete( $item );
-                    } elseif ( $sync ) {
-                        if ( $gc && $item->getAppointment()->getGoogleEventId() !== null ) {
-                            BooklyLib\Proxy\Pro::syncGoogleCalendarEvent( $item->getAppointment() );
-                        }
-                        if ( $oc && $item->getAppointment()->getOutlookEventId() !== null ) {
-                            BooklyLib\Proxy\OutlookCalendar::syncEvent( $item->getAppointment() );
+                foreach ( $order->getItems() as $item ) {
+                    if ( $item->getCA() ) {
+                        /** @todo Compound check */
+                        $item->getCA()->setJustCreated( true );
+                        $items = $item->getItems() ? $item->getItems() : array( $item );
+                        if ( $sync ) {
+                            foreach ( $items as $sub_item ) {
+                                if ( $gc && $sub_item->getAppointment()->getGoogleEventId() !== null ) {
+                                    BooklyLib\Proxy\Pro::syncGoogleCalendarEvent( $sub_item->getAppointment() );
+                                }
+                                if ( $oc && $sub_item->getAppointment()->getOutlookEventId() !== null ) {
+                                    BooklyLib\Proxy\OutlookCalendar::syncEvent( $sub_item->getAppointment() );
+                                }
+                            }
                         }
                     }
                 }
+                BooklyLib\Notifications\Cart\Sender::send( $order );
             }
         }
 
@@ -248,7 +250,16 @@ abstract class Gateway
      */
     public function fail()
     {
-        $this->getPayment() && $this->removeCascade( $this->getPayment() );
+        if ( $this->getPayment() ) {
+            $path = explode( '\\', get_class( $this ) );
+            if ( $this->getPayment()->getStatus() === Entities\Payment::STATUS_COMPLETED ) {
+                BooklyLib\Utils\Log::put( BooklyLib\Utils\Log::ACTION_DEBUG, array_pop( $path ), null, json_encode( $_REQUEST, JSON_PRETTY_PRINT ), $_SERVER['REMOTE_ADDR'], 'call fail for completed payment' );
+                return;
+            }
+            BooklyLib\Utils\Log::put( BooklyLib\Utils\Log::ACTION_DEBUG, array_pop( $path ), null, json_encode( $_REQUEST, JSON_PRETTY_PRINT ), $_SERVER['REMOTE_ADDR'], 'call fail' );
+            $this->removeCascade( $this->getPayment() );
+        }
+
         if ( $this->request->isBookingForm() ) {
             foreach ( $this->request->getUserData()->cart->getItems() as $cart_item ) {
                 // Appointment was deleted
@@ -419,7 +430,7 @@ abstract class Gateway
     private function removeCascade( Entities\Payment $payment )
     {
         if ( $payment->getId() ) {
-            foreach ( Entities\CustomerAppointment::query()->where( 'payment_id', $payment->getId() )->find() as $ca ) {
+            foreach ( Entities\CustomerAppointment::query()->where( 'payment_id', $payment->getId() )->where( 'order_id', $payment->getOrderId(), 'OR' )->find() as $ca ) {
                 $ca->deleteCascade();
             }
             Payment\Proxy\Packages::deleteCascade( $payment );

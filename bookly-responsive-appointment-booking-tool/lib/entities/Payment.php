@@ -293,6 +293,29 @@ class Payment extends Lib\Base\Entity
             }
         }
 
+        // Item discounts
+        foreach ( $data['items'] as &$item ) {
+            $discounts = array();
+            if ( isset( $item['discounts'] ) ) {
+                foreach ( $item['discounts'] as $discount ) {
+                    if ( $discount['discount'] > 0 || $discount['deduction'] > 0 ) {
+                        $discounts[] = $discount;
+                    }
+                }
+            }
+            $item['discounts'] = $discounts;
+        }
+
+        // Order discounts
+        $discounts = array();
+        if ( isset( $data['discounts'] ) ) {
+            foreach ( $data['discounts'] as $discount ) {
+                if ( $discount['discount'] > 0 || $discount['deduction'] > 0 ) {
+                    $discounts[] = $discount;
+                }
+            }
+        }
+
         return array(
             'payment' => array(
                 'id' => (int) $this->id,
@@ -304,7 +327,7 @@ class Payment extends Lib\Base\Entity
                 'items' => $data['items'],
                 'subtotal' => $data['subtotal'],
                 'group_discount' => isset ( $data['customer_group']['discount_format'] ) ? $data['customer_group']['discount_format'] : false,
-                'discounts' => isset ( $data['discounts'] ) ? $data['discounts'] : array(),
+                'discounts' => $discounts,
                 'coupon' => $data['coupon'],
                 'gift_card' => isset( $data['gift_card'] ) ? $data['gift_card'] : null,
                 'price_correction' => $this->gateway_price_correction,

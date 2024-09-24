@@ -190,18 +190,26 @@ class Order
      */
     public static function createFromOrderId( $order_id )
     {
+        $order = null;
         if ( $order_id ) {
             $ca_list = CustomerAppointment::query()->where( 'order_id', $order_id )->find();
             if ( $ca_list ) {
-                return self::createOrderByCaList( $ca_list );
+                $order = self::createOrderByCaList( $ca_list );
             }
             $pkg_list = Lib\Proxy\Packages::getOrderPackages( $order_id );
             if ( $pkg_list ) {
-                return self::createOrderByPkgList( $pkg_list );
+                $pkg_order = self::createOrderByPkgList( $pkg_list );
+                if ( $order ) {
+                    foreach ( $pkg_order->getItems() as $position => $item ) {
+                        $order->addItem( 'pkg_' . $position, $item );
+                    }
+                } else {
+                    $order = $pkg_order;
+                }
             }
         }
 
-        return null;
+        return $order;
     }
 
     /**
@@ -211,13 +219,7 @@ class Order
     private static function createOrderByCaList( $ca_list )
     {
         if ( $ca_list ) {
-            $series_id = $ca_list[0]->getSeriesId();
             $payment_id = $ca_list[0]->getPaymentId();
-            if ( $series_id ) {
-                // Make a list of customer appointments from series.
-                // Possibly customer paid only for first appointment in series of recurring appointments.
-                $ca_list = CustomerAppointment::query()->where( 'series_id', $series_id )->find();
-            }
 
             $item_key = 0;
             $customer = Lib\Entities\Customer::find( $ca_list[0]->getCustomerId() );
@@ -305,18 +307,7 @@ class Order
         $order->setOrderId( $pkg_list[0]->getOrderId() );
         $item_key = 0;
         foreach ( $pkg_list as $package ) {
-            $package_id = $package->getId();
-            $customer_id = $package->getCustomerId();
-            $service_id = $package->getServiceId();
-            $staff_id = $package->getStaffId();
-            $location_id = $package->getLocationId();
-            $created_from = 'frontend';
-            $item = Package::create( new CustomerAppointment( compact( 'package_id', 'payment_id', 'customer_id', 'created_from' ) ) )
-                ->setService( Lib\Entities\Service::find( $service_id ) )
-                ->setAppointment( new Appointment( compact( 'service_id', 'staff_id', 'location_id' ) ) );
-
-            $item->setPackage( $package );
-            $order->addItem( $item_key++, $item );
+            $order->addItem( $item_key++, new Package( $package ) );
         }
 
         return $order;

@@ -8,11 +8,11 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 07:30+0000\n"
-"PO-Revision-Date: 2024-08-08 08:51+0000\n"
+"POT-Creation-Date: 2024-09-12 07:12+0000\n"
+"PO-Revision-Date: 2024-09-12 09:44+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Chinese (Taiwan)\n"
-"X-Loco-Version: 2.3.1; wp-6.3.1"
+"X-Loco-Version: 2.3.1; wp-6.6.2"
 
 msgid "Invoice #{invoice_number} for your appointment"
 msgstr "您預約的發票＃{invoice_number}"
@@ -191,6 +191,9 @@ msgstr "小計"
 
 msgid "Coupon discount"
 msgstr "優惠券折扣"
+
+msgid "Gift card discount"
+msgstr "禮品卡折扣"
 
 msgid "Tips"
 msgstr "小費"
@@ -1622,6 +1625,9 @@ msgstr "添加員工日程"
 msgid "Add Staff Days Off"
 msgstr "添加員工休息日"
 
+msgid "Add Staff Appointments"
+msgstr "新增員工預約"
+
 msgid ""
 "Hide this field if you want to hide the list of WP users from your staff "
 "members."
@@ -1638,6 +1644,9 @@ msgstr "禁用更新服務"
 
 msgid "Disable price update"
 msgstr "禁用更新價錢"
+
+msgid "Hide create appointment button"
+msgstr "隱藏創建預約按鈕"
 
 msgid "Insert"
 msgstr "插入"
@@ -1681,6 +1690,12 @@ msgstr "休息日"
 msgid "A custom block for displaying staff days off"
 msgstr "用於顯示員工休息的自定義塊"
 
+msgid "Appointments"
+msgstr "預約"
+
+msgid "A custom block for displaying staff appointments"
+msgstr "用於顯示員工預約的自定義塊"
+
 msgid "Capacity"
 msgstr "容量"
 
@@ -1692,6 +1707,42 @@ msgstr "特別時間"
 
 msgid "Fields"
 msgstr "欄目"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Created at any time"
+msgstr "在任何時間建立"
+
+msgid "Customer"
+msgstr "客戶"
+
+msgid "All statuses"
+msgstr "所有狀態"
+
+msgid "No status selected"
+msgstr "無選定狀態"
+
+msgid "New appointment"
+msgstr "建立預約"
+
+msgid "Any time"
+msgstr "任何時間"
+
+msgid "No appointments for selected period."
+msgstr "選擇時間沒有預約。"
+
+msgid "Processing..."
+msgstr "處理..."
+
+msgid "No result found"
+msgstr "找不到結果"
+
+msgid "Searching"
+msgstr "搜索"
+
+msgid "Attachments"
+msgstr "附件"
 
 msgid "Repeat every year"
 msgstr "每年重複"
@@ -1826,9 +1877,6 @@ msgstr "API登入碼"
 msgid "API Transaction Key"
 msgstr "API交易金鑰"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Title"
 msgstr "標題"
 
@@ -1863,9 +1911,6 @@ msgstr "編輯稅"
 
 msgid "No taxes found."
 msgstr "找不到稅收。"
-
-msgid "Processing..."
-msgstr "處理..."
 
 msgid "Service tax amount"
 msgstr "服務稅額"
@@ -2146,14 +2191,8 @@ msgstr "時區"
 msgid "Employee"
 msgstr "員工"
 
-msgid "Appointments"
-msgstr "預約"
-
 msgid "Profile"
 msgstr "簡介"
-
-msgid "Any time"
-msgstr "任何時間"
 
 msgid "WP user"
 msgstr "WP 用戶"
@@ -2951,9 +2990,6 @@ msgstr "列表"
 msgid "All day"
 msgstr "全天"
 
-msgid "No appointments for selected period."
-msgstr "選擇時間沒有預約。"
-
 #, php-format
 msgid "+%d more"
 msgstr "+%d更多"
@@ -3275,9 +3311,6 @@ msgstr "州"
 msgid "Subject"
 msgstr "主題"
 
-msgid "Customer"
-msgstr "客戶"
-
 msgid "Start at"
 msgstr "開始於"
 
@@ -3528,27 +3561,6 @@ msgstr "收費"
 msgid "Get Bookly Pro"
 msgstr "獲得Bookly Pro"
 
-msgid "New appointment"
-msgstr "建立預約"
-
-msgid "Created at any time"
-msgstr "在任何時間建立"
-
-msgid "All statuses"
-msgstr "所有狀態"
-
-msgid "No status selected"
-msgstr "無選定狀態"
-
-msgid "No result found"
-msgstr "找不到結果"
-
-msgid "Searching"
-msgstr "搜索"
-
-msgid "Attachments"
-msgstr "附件"
-
 msgid "Archived"
 msgstr "已存檔"
 
@@ -3573,39 +3585,6 @@ msgstr "您將刪除訪問令牌。請注意，令牌將被自動撤銷，因此
 msgid "No records."
 msgstr "沒有記錄。"
 
-msgid "1 - 9 employees"
-msgstr "1 - 9 名員工"
-
-msgid "10 - 19 employees"
-msgstr "10 - 19 名員工"
-
-msgid "20 - 49 employees"
-msgstr "20 - 49 名員工"
-
-msgid "50 - 249 employees"
-msgstr "50 - 249 名員工"
-
-msgid "250 or more employees"
-msgstr "250 名或以上員工"
-
-msgid "Company name"
-msgstr "公司名稱"
-
-msgid "Industry"
-msgstr "行業"
-
-msgid "Select industry"
-msgstr "選擇行業"
-
-msgid "Company size"
-msgstr "公司規模"
-
-msgid "Select company size"
-msgstr "選擇公司規模"
-
-msgid "Company owner email"
-msgstr "公司所有者電子郵箱"
-
 msgid "Add service"
 msgstr "添加服務"
 
@@ -3618,38 +3597,157 @@ msgstr "完成"
 msgid "Skip"
 msgstr "跳過"
 
-msgid "Company"
-msgstr "公司"
-
-msgid "Congratulations, the initial setup is complete!"
-msgstr "恭喜您，初始設定已經完成！"
-
-#, php-format
-msgid "Shortcode of your form is %s"
-msgstr "您表單的短代碼是%s"
+msgid "Welcome to Bookly!"
+msgstr "歡迎來到Bookly！"
 
 msgid ""
-"Open the page you want to add the booking form to in edit mode and paste "
-"this shortcode into a free block."
-msgstr "以編輯模式打開要添加預訂表單的頁面，並將此短代碼粘貼到空區塊中。"
+"As the ultimate appointment booking plugin for online scheduling, Bookly is "
+"designed to help you effortlessly manage your booking calendar, services, "
+"and client base."
+msgstr "作為線上日程安排的最終預約插件，Bookly旨在幫助您輕鬆管理您的預訂日曆、服務和客戶群。"
+
+msgid ""
+"This introduction will guide you through the essential configuration steps "
+"to get you started quickly. "
+msgstr "本介紹將引導您完成基本的配置步驟，以便快速入門。"
 
 #, php-format
 msgid ""
-"You can find more detailed instructions for publishing Bookly form in our %s"
-msgstr "您可以在我們的%s中找到關於發佈Bookly表單的更多詳細說明"
+"You can optionally skip this wizard and refer to %s or watch our %s to learn "
+"the basics and get the most out of Bookly."
+msgstr "您可以選擇跳過此引導並參考%s或觀看我們的%s，以學習基礎知識並充分利用Bookly。"
+
+msgid "Bookly Help Center"
+msgstr "Bookly幫助中心"
+
+msgid "Video Tutorials"
+msgstr "教學影片"
+
+msgid ""
+"Set your company business hours. This schedule will serve as a template for "
+"all new staff members."
+msgstr "設定您公司的營業時間。該日程將作為所有新員工的模板。"
+
+msgid ""
+"Select a time interval to be used as a step when creating all time slots in "
+"the system."
+msgstr "在系統創建所有時段時，請選擇一個時間間隔作為步長。"
+
+msgid "Select the currency for the prices of your services."
+msgstr "為您的服務價格選擇貨幣。"
+
+msgid ""
+"In Bookly, 'staff' refers to any employee or resource that provides services "
+"to your clients, such as a consultant, therapist, or any other service "
+"provider. Adding staff members allows you to manage their schedules, assign "
+"services to them, and track their appointments."
+msgstr ""
+"在Bookly中，“員工”指的是為您的客戶提供服務的任何員工或資源，比如諮詢師、治療師或任何其他服務提供者。添加員工允許您管理他們的日程安排，為他們分配服務，並跟蹤他們的預約。"
+
+msgid ""
+"In Bookly, a 'service' refers to the various offerings or activities your "
+"business provides to clients, such as consultations, treatments, classes, or "
+"other services. By adding services, you can manage their duration, cost, and "
+"assign them to specific employees."
+msgstr ""
+"在Bookly中，“服務”指的是您的公司為客戶提供的各種產品或活動，如諮詢、治療、課程或其他服務。通過添加服務，您可以管理服務的持續時間、費用，並將其分配給特定的員工。"
+
+msgid ""
+"Bookly Cloud is an integral part of the Bookly booking system, offering a "
+"range of additional products and features for efficient appointment "
+"management and automation."
+msgstr "Bookly Cloud是Bookly預訂系統的必要部分，為高效預約管理和自動化提供一系列額外產品和功能。"
+
+msgid ""
+"Features like SMS Notifications, Zapier integration, Stripe and Square "
+"Payments, Gift Cards, Voice and WhatsApp Notifications are designed to "
+"enhance your operations and boost your online business."
+msgstr "SMS通知、Zapier集成、Stripe和Square支付、禮品卡、語音和WhatsApp通知等功能旨在提升您的運營並促進您的線上業務。"
+
+#, php-format
+msgid ""
+"Discover the full range of <a href=\"%s\" target=\"_blank\">powerful tools "
+"here</a>."
+msgstr "探索所有<a href=\"%s\" target=\"_blank\">強大工具</a>。"
+
+msgid "Sign up today and enjoy a welcome bonus! "
+msgstr "立即註冊，享受迎新獎金！"
+
+msgid "Create an account"
+msgstr "創建一個賬戶"
+
+msgid "Already registered"
+msgstr "已註冊"
+
+msgid "Password"
+msgstr "密碼"
+
+#, php-format
+msgid ""
+"I accept <a href=\"%1$s\" target=\"_blank\">Service Terms</a> and <a "
+"href=\"%2$s\" target=\"_blank\">Privacy Policy</a>"
+msgstr ""
+"我接受<a href=\"%1$s\" target=\"_blank\">服務條款</a>和<a href=\"%2$s\" "
+"target=\"_blank\">隱私政策</a>"
+
+msgid "Forgot password"
+msgstr "忘記密碼"
+
+msgid "Send recovery code"
+msgstr "發送恢復代碼"
+
+msgid "Verify recovery code"
+msgstr "驗證恢復代碼"
+
+msgid "Set new password"
+msgstr "設定新密碼"
+
+msgid "Recovery code"
+msgstr "恢復代碼"
+
+msgid "You are currently logged into Bookly Cloud with the account"
+msgstr "您目前已使用該賬戶登入Bookly Cloud"
+
+msgid "Greetings"
+msgstr "你好"
+
+msgid "Cloud"
+msgstr "雲端"
+
+msgid ""
+"The initial setup is complete, and you can now continue using Bookly in the "
+"admin panel."
+msgstr "初始設定已完成，現在您可以在管理面板中繼續使用Bookly。"
+
+msgid ""
+"You can create staff members and services, add appointments to the calendar, "
+"and manage them directly from the backend."
+msgstr "您可以創建員工和服務，向日曆添加預約，並直接從後端管理它們。"
+
+msgid ""
+"To start receiving appointments via the front-end booking form, follow these "
+"steps:"
+msgstr "透过前端預訂表格開始接受预约，请按如下步骤进行："
+
+msgid "Create a new page in WordPress."
+msgstr "在WordPress中創建一個新頁面。"
+
+#, php-format
+msgid "Insert the following shortcode: %s"
+msgstr "插入如下短代码：%s"
+
+msgid "Save the page and visit it to see your booking form in action."
+msgstr "保存該頁面並訪問它，以查看您的預訂表格。"
+
+#, php-format
+msgid "Have questions? Visit our %s or reach out to our %s."
+msgstr "有問題嗎？請訪問我們的%s或聯繫我們的%s。"
 
 msgid "Help center"
 msgstr "幫助中心"
 
-#, php-format
-msgid ""
-"Bookly can boost your sales and scale together with your business. Get more "
-"features and remove the limits by upgrading to the paid version with the %s, "
-"which allows you to use a vast number of additional features and settings "
-"for online scheduling, install other add-ons for Bookly, and includes six "
-"months of customer support."
-msgstr ""
-"Bookly可以促進您的業務銷售量和擴大業務規模。通過升級到帶%s的付費版本獲得更多功能並移除限制，這可允許您使用大量額外功能和在線預訂設置，為Bookly安裝其他附加組件，並包含6個月客戶支持。"
+msgid "Support Team"
+msgstr "支援團隊"
 
 msgid "Staff members order"
 msgstr "員工次序"
@@ -3672,11 +3770,41 @@ msgstr "第二天"
 msgid "Reorder"
 msgstr "重新排序"
 
+msgid "1 - 9 employees"
+msgstr "1 - 9 名員工"
+
+msgid "10 - 19 employees"
+msgstr "10 - 19 名員工"
+
+msgid "20 - 49 employees"
+msgstr "20 - 49 名員工"
+
+msgid "50 - 249 employees"
+msgstr "50 - 249 名員工"
+
+msgid "250 or more employees"
+msgstr "250 名或以上員工"
+
+msgid "Select company size"
+msgstr "選擇公司規模"
+
 msgid "Image"
 msgstr "圖片"
 
+msgid "Company name"
+msgstr "公司名稱"
+
 msgid "Website"
 msgstr "網站"
+
+msgid "Industry"
+msgstr "行業"
+
+msgid "Select industry"
+msgstr "選擇行業"
+
+msgid "Company size"
+msgstr "公司規模"
 
 msgid "Bookly data upon deleting Bookly items"
 msgstr "刪除Bookly項目時的數據"
@@ -3807,9 +3935,6 @@ msgstr "端口"
 msgid "Username"
 msgstr "使用者名稱"
 
-msgid "Password"
-msgstr "密碼"
-
 msgid "Secure"
 msgstr "安全"
 
@@ -3821,6 +3946,9 @@ msgstr "即場支付"
 
 msgid "URL Settings"
 msgstr "URL 設定"
+
+msgid "Company"
+msgstr "公司"
 
 msgid "Google Calendar"
 msgstr "Google日曆"
@@ -5276,19 +5404,8 @@ msgstr "登入"
 msgid "Registration"
 msgstr "注册"
 
-msgid "Forgot password"
-msgstr "忘記密碼"
-
 msgid "Repeat password"
 msgstr "重覆密碼"
-
-#, php-format
-msgid ""
-"I accept <a href=\"%1$s\" target=\"_blank\">Service Terms</a> and <a "
-"href=\"%2$s\" target=\"_blank\">Privacy Policy</a>"
-msgstr ""
-"我接受<a href=\"%1$s\" target=\"_blank\">服務條款</a>和<a href=\"%2$s\" "
-"target=\"_blank\">隱私政策</a>"
 
 msgid "Enter code from email"
 msgstr "從電郵輸入代碼"
@@ -5655,9 +5772,6 @@ msgstr "綁定付款"
 
 msgid "Complete payment"
 msgstr "完成付款"
-
-msgid "Gift card discount"
-msgstr "禮品卡折扣"
 
 msgid "Manual adjustment"
 msgstr "手動調整"
@@ -7990,6 +8104,12 @@ msgstr "不顯示"
 msgid "Show only with Any staff"
 msgstr "僅顯示任何員工"
 
+msgid "Show staff member rating before employee name"
+msgstr "在員工姓名前顯示員工評級"
+
+msgid "Skip step"
+msgstr "跳過步驟"
+
 msgid "Add new form"
 msgstr "添加新表單"
 
@@ -9645,9 +9765,6 @@ msgstr "評分頁面網址"
 
 msgid "Set the URL of a page with a rating and comment form."
 msgstr "設置評分和評論表單頁面的URL。"
-
-msgid "Show staff member rating before employee name"
-msgstr "在員工姓名前顯示員工評級"
 
 msgid "URL of the page for staff rating"
 msgstr "員工評級頁面的URL"
