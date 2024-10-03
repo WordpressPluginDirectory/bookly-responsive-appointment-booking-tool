@@ -430,7 +430,13 @@ abstract class Gateway
     private function removeCascade( Entities\Payment $payment )
     {
         if ( $payment->getId() ) {
-            foreach ( Entities\CustomerAppointment::query()->where( 'payment_id', $payment->getId() )->where( 'order_id', $payment->getOrderId(), 'OR' )->find() as $ca ) {
+            $query = Entities\CustomerAppointment::query()->where( 'payment_id', $payment->getId() );
+            // The payment can not have an order_id (is null)
+            if ( $payment->getOrderId() ) {
+                $query->where( 'order_id', $payment->getOrderId(), 'OR' );
+            }
+
+            foreach ( $query->find() as $ca ) {
                 $ca->deleteCascade();
             }
             Payment\Proxy\Packages::deleteCascade( $payment );
