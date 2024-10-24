@@ -219,9 +219,8 @@ abstract class Gateway
                 list( $sync, $gc, $oc ) = Config::syncCalendars();
                 foreach ( $order->getItems() as $item ) {
                     if ( $item->getCA() ) {
-                        /** @todo Compound check */
                         $item->getCA()->setJustCreated( true );
-                        $items = $item->getItems() ? $item->getItems() : array( $item );
+                        $items = $item->getItems() ?: array( $item );
                         if ( $sync ) {
                             foreach ( $items as $sub_item ) {
                                 if ( $gc && $sub_item->getAppointment()->getGoogleEventId() !== null ) {
@@ -238,7 +237,7 @@ abstract class Gateway
             }
         }
 
-        if ( $this->request->isBookingForm() ) {
+        if ( $this->request->isBookingForm() && $this->getType() !== Entities\Payment::TYPE_WOOCOMMERCE ) {
             $this->request->getUserData()->setPaymentStatus( self::STATUS_COMPLETED )->sessionSave();
         }
     }
@@ -250,14 +249,18 @@ abstract class Gateway
      */
     public function fail()
     {
-        if ( $this->getPayment() ) {
+        $payment = $this->getPayment();
+        if ( $payment ) {
             $path = explode( '\\', get_class( $this ) );
-            if ( $this->getPayment()->getStatus() === Entities\Payment::STATUS_COMPLETED ) {
+            if ( $payment->getStatus() === Entities\Payment::STATUS_COMPLETED ) {
                 BooklyLib\Utils\Log::put( BooklyLib\Utils\Log::ACTION_DEBUG, array_pop( $path ), null, json_encode( $_REQUEST, JSON_PRETTY_PRINT ), $_SERVER['REMOTE_ADDR'], 'call fail for completed payment' );
                 return;
             }
+
+            Payment\Proxy\Shared::rollbackPayment( $payment );
+
             BooklyLib\Utils\Log::put( BooklyLib\Utils\Log::ACTION_DEBUG, array_pop( $path ), null, json_encode( $_REQUEST, JSON_PRETTY_PRINT ), $_SERVER['REMOTE_ADDR'], 'call fail' );
-            $this->removeCascade( $this->getPayment() );
+            $this->removeCascade( $payment );
         }
 
         if ( $this->request->isBookingForm() ) {

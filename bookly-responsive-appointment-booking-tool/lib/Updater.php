@@ -3,6 +3,15 @@ namespace Bookly\Lib;
 
 class Updater extends Base\Updater
 {
+    function update_24_2()
+    {
+        $this->alterTables( array(
+            'bookly_services' => array(
+                'ALTER TABLE `%s` ADD COLUMN `package_life_time_type` ENUM("first_booking","creation_date") NOT NULL DEFAULT "first_booking" AFTER `package_life_time`',
+            ),
+        ) );
+    }
+
     function update_23_8()
     {
         $this->alterTables( array(

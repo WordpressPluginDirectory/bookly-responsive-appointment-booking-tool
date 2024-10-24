@@ -1,4 +1,4 @@
-const booklyJsVersion="23.9";
+const booklyJsVersion="24.2";
 /*!*/
 var bookly = (function ($$O) {
 	'use strict';
@@ -8784,22 +8784,6 @@ var bookly = (function ($$O) {
 	}
 
 	/**
-	 * @param {Node} target
-	 * @param {string} style_sheet_id
-	 * @param {string} styles
-	 * @returns {void}
-	 */
-	function append_styles(target, style_sheet_id, styles) {
-	  const append_styles_to = get_root_for_style(target);
-	  if (!append_styles_to.getElementById(style_sheet_id)) {
-	    const style = element('style');
-	    style.id = style_sheet_id;
-	    style.textContent = styles;
-	    append_stylesheet(append_styles_to, style);
-	  }
-	}
-
-	/**
 	 * @param {Node} node
 	 * @returns {ShadowRoot | Document}
 	 */
@@ -10989,9 +10973,6 @@ var bookly = (function ($$O) {
 	  }
 	}
 
-	function add_css(target) {
-	  append_styles(target, "svelte-trnmqx", ".bookly-calendar-overlay.svelte-trnmqx{position:absolute;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(255, 255, 255, 0.9);z-index:2;cursor:wait}");
-	}
 	function get_each_context_4(ctx, list, i) {
 	  const child_ctx = _sliceInstanceProperty(ctx).call(ctx);
 	  child_ctx[45] = list[i];
@@ -12476,7 +12457,7 @@ var bookly = (function ($$O) {
 	      loading: 3,
 	      show: 5,
 	      border: 6
-	    }, add_css, [-1, -1]);
+	    }, null, [-1, -1]);
 	  }
 	  get layout() {
 	    return this.$$.ctx[29];

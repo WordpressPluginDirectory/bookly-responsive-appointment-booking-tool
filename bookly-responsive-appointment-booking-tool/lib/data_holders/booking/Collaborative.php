@@ -220,6 +220,14 @@ class Collaborative extends Item
     }
 
     /**
+     * @inerhitDoc
+     */
+    public function getLocationId()
+    {
+        return $this->getAppointment()->getLocationId();
+    }
+
+    /**
      * Create new item.
      *
      * @param Lib\Entities\Service $collaborative_service

@@ -230,6 +230,14 @@ class Compound extends Item
     }
 
     /**
+     * @inerhitDoc
+     */
+    public function getLocationId()
+    {
+        return $this->getAppointment()->getLocationId();
+    }
+
+    /**
      * Create new item.
      *
      * @param Lib\Entities\Service $compound_service

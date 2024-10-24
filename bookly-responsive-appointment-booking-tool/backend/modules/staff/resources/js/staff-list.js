@@ -9,8 +9,7 @@ jQuery(function ($) {
             archived: $('#bookly-filter-archived'),
             category: $('#bookly-filter-category'),
             search: $('#bookly-filter-search')
-        },
-        urlParts = document.URL.split('#')
+        }
     ;
 
     $('.bookly-js-select').val(null);
@@ -93,30 +92,13 @@ jQuery(function ($) {
 
     columns[0].responsivePriority = 0;
 
-    let order = [];
-    $.each(BooklyL10n.datatables.staff_members.settings.order, function (key, value) {
-        const index = columns.findIndex(function (c) { return c.data === value.column; });
-        if (index !== -1) {
-            order.push([index, value.order]);
-        }
-    });
-
     /**
      * Init DataTables.
      */
-    var dt = $staffList.DataTable({
-        order: order,
-        info: false,
-        searching: false,
-        lengthChange: false,
-        processing: true,
-        responsive: true,
-        pageLength: 25,
-        pagingType: 'numbers',
-        serverSide: true,
+    var dt = booklyDataTables.init($staffList,BooklyL10n.datatables.staff_members.settings, {
         ajax: {
             url: ajaxurl,
-            type: 'POST',
+            method: 'POST',
             data: function (d) {
                 let data = $.extend({
                     action: 'bookly_get_staff_list',
@@ -144,11 +126,6 @@ jQuery(function ($) {
             if (data.visibility == 'archive') {
                 $(row).addClass('text-muted');
             }
-        },
-        dom: "<'row'<'col-sm-12'tr>><'row float-left mt-3'<'col-sm-12'p>>",
-        language: {
-            zeroRecords: BooklyL10n.zeroRecords,
-            processing: BooklyL10n.processing
         }
     });
 

@@ -605,6 +605,7 @@ class Installer extends Base\Installer
                 `units_min`                    INT UNSIGNED NOT NULL DEFAULT 1,
                 `units_max`                    INT UNSIGNED NOT NULL DEFAULT 1,
                 `package_life_time`            INT DEFAULT NULL,
+                `package_life_time_type`       ENUM("first_booking","creation_date") NOT NULL DEFAULT "first_booking",
                 `package_size`                 INT DEFAULT NULL,
                 `package_unassigned`           TINYINT(1) NOT NULL DEFAULT 0,
                 `appointments_limit`           INT DEFAULT NULL,

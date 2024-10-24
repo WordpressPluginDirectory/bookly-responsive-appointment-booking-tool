@@ -109,6 +109,7 @@ abstract class Routines
         // Mark unpaid appointments as rejected.
         $payments = \Bookly\Lib\Payment\Proxy\Shared::prepareOutdatedUnpaidPayments( $payments );
         if ( ! empty( $payments ) ) {
+            Proxy\Shared::unpaidPayments( $payments );
             Payment::query()
                 ->update()
                 ->set( 'status', Payment::STATUS_REJECTED )
@@ -143,7 +144,6 @@ abstract class Routines
                     ->whereIn( 'ca.series_id', $series )
                     ->fetchCol( 'a.id' ) );
             }
-            Proxy\Shared::unpaidPayments( $payments );
 
             /** @var Appointment $appointment */
             foreach ( array_unique( $affected_appointments ) as $appointment_id ) {

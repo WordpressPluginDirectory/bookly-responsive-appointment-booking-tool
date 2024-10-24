@@ -735,6 +735,7 @@ class QueryBuilder
             'bookly_services.units_min' => array( 'type' => "int unsigned", 'is_nullabe' => 0, 'extra' => "", 'default' => "1", 'key' => "" ),
             'bookly_services.units_max' => array( 'type' => "int unsigned", 'is_nullabe' => 0, 'extra' => "", 'default' => "1", 'key' => "" ),
             'bookly_services.package_life_time' => array( 'type' => "int", 'is_nullabe' => 1, 'extra' => "", 'default' => null, 'key' => "" ),
+            'bookly_services.package_life_time_type' => array( 'type' => "enum('first_booking','creation_date')", 'is_nullabe' => 0, 'extra' => "", 'default' => "first_booking", 'key' => "" ),
             'bookly_services.package_size' => array( 'type' => "int", 'is_nullabe' => 1, 'extra' => "", 'default' => null, 'key' => "" ),
             'bookly_services.package_unassigned' => array( 'type' => "tinyint(1)", 'is_nullabe' => 0, 'extra' => "", 'default' => "0", 'key' => "" ),
             'bookly_services.appointments_limit' => array( 'type' => "int", 'is_nullabe' => 1, 'extra' => "", 'default' => null, 'key' => "" ),

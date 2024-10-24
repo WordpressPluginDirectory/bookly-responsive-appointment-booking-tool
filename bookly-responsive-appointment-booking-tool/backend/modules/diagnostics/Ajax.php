@@ -353,7 +353,9 @@ class Ajax extends Lib\Base\Ajax
         // Filters.
         list ( $start, $end ) = explode( ' - ', $filter['created_at'], 2 );
         if ( $start !== 'any' ) {
-            $end = date( 'Y-m-d', strtotime( '+1 day', strtotime( $end ) ) );
+            if ( strlen( $end ) === 10 ) {
+                $end = date( 'Y-m-d', strtotime( '+1 day', strtotime( $end ) ) );
+            }
             $query->whereBetween( 'created_at', $start, $end );
         }
         if ( isset( $filter['search'] ) && $filter['search'] !== '' ) {

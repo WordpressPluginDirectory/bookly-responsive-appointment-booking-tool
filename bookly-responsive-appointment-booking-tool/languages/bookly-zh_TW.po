@@ -8,8 +8,8 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 07:12+0000\n"
-"PO-Revision-Date: 2024-09-12 09:44+0000\n"
+"POT-Creation-Date: 2024-10-18 06:42+0000\n"
+"PO-Revision-Date: 2024-10-18 06:42+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Chinese (Taiwan)\n"
 "X-Loco-Version: 2.3.1; wp-6.6.2"
@@ -228,98 +228,11 @@ msgstr "電話號碼"
 msgid "Instructions"
 msgstr "使用說明"
 
-msgid ""
-"Important: Your website must use <b>HTTPS</b>. The Outlook Calendar API will "
-"not work with your website if there is no valid SSL certificate installed on "
-"your web server."
-msgstr ""
-"重要提示：您的網站必須使用<b>HTTPS</b>。如果您的網路服務器上沒有安裝有效的SSL證書，則Outlook日曆API將不適用於您的網站。"
-
-msgid "To find your Application ID and Application Secret, do the following:"
-msgstr "要查找您的Application ID和Application Secret，請執行以下操作："
-
 #, php-format
 msgid ""
-"Sign in to the <a href=\"%s\" target=\"_blank\">Azure portal</a> using "
-"either a work or school account or a personal Microsoft account."
+"To setup %s integration, follow the instruction in <a href=\"%s\" "
+"target=\"_blank\">our documentation</a>"
 msgstr ""
-"使用工作或學校帳戶或個人Microsoft帳戶登錄<a href=\"%s\" target=\"_blank\"> Azure平台</a>。"
-
-msgid ""
-"If your account gives you access to more than one tenant, select your "
-"account in the top right corner, and set your portal session to the Azure AD "
-"tenant that you want."
-msgstr "如果您的帳戶允許您訪問多個租戶，請在右上角選擇您的帳戶，然後將平台設為所需的Azure AD租戶。"
-
-msgid ""
-"In the left-hand navigation panel, select <b>Microsoft Entra ID</b>. Then "
-"select <b>Add > App registration</b>."
-msgstr "在左側的導航面板中選擇<b>Microsoft Entra ID</b>。然後選擇<b>新增 > 應用程式註冊</b>。"
-
-msgid ""
-"When the <b>Register an application</b> page appears, enter your "
-"application's <b>Name</b> and <b>Redirect URI</b> found below on this page."
-msgstr "在<b>註冊一個應用程式</b>頁面出現時，輸入您的應用程式<b>名稱</b>并在本頁面下方找到<b>重新導向 URI</b>。"
-
-msgid ""
-"Under the <b>Redirect URI</b>, in <b>Select a platform</b> field, choose <b>"
-"Web</b>."
-msgstr "在<b>重新導向URI</b>下，在<b>選擇一個平台</b>欄目中，選擇<b>Web</b>。"
-
-msgid ""
-"Make sure that the <b>Supported account types</b> is set to <b>Accounts in "
-"any organizational directory (Any Microsoft Entra ID tenant - Multitenant) "
-"and personal Microsoft accounts (e.g. Skype, Xbox)</b>."
-msgstr ""
-"確保<b>支持的帳戶類型</b>設置為<b>任何組織目錄中的帳戶（任何Microsoft Entra "
-"ID租使用者——多租使用者）和個人Microsoft帳戶（如Skype、Xbox）</b>。"
-
-msgid "When finished, select <b>Register</b>."
-msgstr "在完成后，選擇<b>註冊</b>。"
-
-msgid ""
-"Azure AD assigns a unique application (client) ID to your app, and you're "
-"taken to the Home page. Find your application in <b>App registrations > All "
-"applications</b>, and select it."
-msgstr ""
-"Azure AD為您的應用程式分配一個唯一應用（用戶端）ID，然後您將被帶到主頁。在<b>應用程式註冊 > 所有應用程式</b>中找到您的應用，並選擇。"
-
-msgid ""
-"Copy the <b>Application (client) ID</b> and insert it into the form below on "
-"this page."
-msgstr "複製<b>應用程式（客戶）ID </b>，並將其插入此頁面下方的表格中。"
-
-msgid ""
-"Under <b>Certificates & secrets</b>, choose <b>New client secret</b>, set <b>"
-"Expires</b> to <b>24 months</b>, add description and click <b>Add</b>."
-msgstr ""
-"在<b>Certificates & secrets</b>下，選擇<b>新增客戶端密碼</b>，設置<b>到期</b>為<b>24個月</b>"
-"，新增描述並點擊<b>新增</b>。"
-
-msgid ""
-"Copy the app secret value from the <b>Client secrets</b> list before leaving "
-"the page."
-msgstr "在離開頁面之前，從<b>客戶秘密</b>列表中複製應用機密值。"
-
-msgid "Insert the secret into the form below on this page."
-msgstr "在本頁面下方的表單中插入該祕密"
-
-msgid ""
-"Under <b>API permissions</b>, choose <b>Add a permission</b>, and select <b>"
-"Microsoft Graph &gt; Delegated permissions</b>. In <b>Select permissions</b> "
-"find <b>Calendars.ReadWrite</b>, select it and click <b>Add permissions</b> "
-"button."
-msgstr ""
-"在<b> API權限</b>下，選擇<b>添加權限</b>，然後選擇<b> Microsoft Graph &gt; 委派的權限</b>。在<b>"
-"選擇權限</b>中找出和選擇<b> Calendars.ReadWrite </b>，然後單擊<b>添加權限</b>按鈕。"
-
-msgid "<b>Save</b> your changes."
-msgstr "儲存您的改變。"
-
-msgid ""
-"Go to Staff Members, select a staff member. On the <b>Advanced</b> tab, "
-"click <b>Sign in with Microsoft</b>."
-msgstr "前往\"員工\"，選擇一名員工。在<b>高級</b>選項卡中，點擊<b>使用Microsoft登入</b>。"
 
 msgid "Application ID"
 msgstr "應用程式號"
@@ -2337,8 +2250,8 @@ msgstr "郵件信箱或密碼錯誤"
 msgid "Invalid email."
 msgstr "無效的郵件地址。"
 
-msgid "Low balance."
-msgstr "低餘額。"
+msgid "Recharge your account with one of the standard amounts"
+msgstr ""
 
 msgid "Pending sender ID already exists."
 msgstr "待發件人ID已經存在。"
@@ -4390,6 +4303,12 @@ msgstr "發件人ID發送請求。"
 msgid "Sender ID is reset to default."
 msgstr "發件人ID被重置為默認值。"
 
+msgid "No matching records found"
+msgstr ""
+
+msgid "No data available in table"
+msgstr ""
+
 msgid "enable"
 msgstr "啟用"
 
@@ -6077,6 +5996,9 @@ msgstr "桌面設定"
 msgid "Column"
 msgstr "欄"
 
+msgid "Entries per page"
+msgstr ""
+
 msgid "Attach ICS file"
 msgstr "附加ICS文件"
 
@@ -6790,6 +6712,15 @@ msgstr "啟用此設置，客戶在未指定特定供應商的情況下，顯示
 msgid "Life Time"
 msgstr "終生"
 
+msgid "Days from the first booking"
+msgstr ""
+
+msgid "Days from the creation"
+msgstr ""
+
+msgid "Number of days"
+msgstr ""
+
 msgid "The period in days when the customer can use a package of services."
 msgstr "客戶可以使用服務包的天數。"
 
@@ -7285,6 +7216,9 @@ msgstr "用於顯示服務表單的自定義塊"
 msgid "A custom block for displaying staff form"
 msgstr "用於顯示員工表單的自定義塊"
 
+msgid "The calendar list is not available"
+msgstr ""
+
 msgid "no limit"
 msgstr "無限制"
 
@@ -7529,70 +7463,6 @@ msgid ""
 "that you want to display and set the order of fields here. Uncheck the box "
 "to hide the column."
 msgstr "如果在通知中使用{cart_info}代碼，則可以選擇要顯示的列，並在此處設置字段順序。取消選中該框可隱藏該列。"
-
-msgid "To find your client ID and client secret, do the following:"
-msgstr "要查找您的client ID和client secret，請執行以下操作："
-
-msgid ""
-"Go to the <a href=\"https://console.developers.google.com/\" "
-"target=\"_blank\">Google Cloud Platform</a>."
-msgstr ""
-"前往<a href=\"https://console.developers.google.com/\" target=\"_blank\">"
-"Google Cloud平台</a>。"
-
-msgid "Select a project or create a new one."
-msgstr "選擇一個項目或創建一個新項目。"
-
-#, php-format
-msgid ""
-"In the sidebar on the left, select <b>Library</b>. In the list of APIs look "
-"for <b>Calendar API</b> or click <a href=\"%s\" target=\"_blank\">this "
-"link</a> to go directly to Calendar API and make sure it is enabled."
-msgstr ""
-"在左側的工具欄中，選擇<b>庫</b>。在API列表中尋找<b>日曆API</b>或點擊<a href=\"%s\" target=\"_blank\">"
-"此鏈接</a>直接前往日曆API，並確保其已開啟。"
-
-msgid ""
-"Click <b>OAuth consent screen</b> tab, select user type and provide the "
-"necessary information (App name, User support email and Developer contact "
-"information). Then click <b>Save and continue</b>. You can leave the "
-"following settings unchanged."
-msgstr ""
-"點擊<b>OAuth同意屏幕</b>標籤，選擇用戶類型並提供必要的信息（應用名稱、用戶支持郵箱和開發者聯繫方式）。然後單擊<b>保存並繼續</b>"
-"。接下來的設置可保持不變。"
-
-msgid ""
-"We recommend to change the publishing status of your app to <b>In "
-"production</b> by clicking <b>Publish app</b> button."
-msgstr "我們建議您通過點擊<b>發佈應用</b>按鈕，將您的應用發佈狀態更改為<b>製作中</b> 。"
-
-#, php-format
-msgid ""
-"In the sidebar on the left, select <a href=\"%s\" target=\"_blank\">"
-"Credentials</a>, and in <b>Create credentials</b> drop-down menu select <b>"
-"OAuth client ID</b>."
-msgstr ""
-"在左側的工具欄中，選擇<a href=\"%s\" target=\"_blank\">憑證</a>，並在<b>創建憑證</b>下拉菜單選擇<b>"
-"OAuth客戶ID</b>。"
-
-msgid ""
-"Select <b>Web application</b> and create your project's <b>OAuth 2.0 "
-"credentials</b> by providing the necessary information. For <b>Authorized "
-"redirect URIs</b> enter the <b>Redirect URI</b> found below on this page. "
-"Click <b>Create</b>."
-msgstr ""
-"選擇<b>Web應用</b>並通過提供必要的信息來創建您的項目<b>OAuth 2.0憑證</b>。對於<b>已授權的重定向URIs</b>"
-"，可在本頁面下方進入<b>重定向URI</b>。點擊<b>創建</b>。"
-
-msgid ""
-"In the popup window look for the <b>Client ID</b> and <b>Client secret</b>. "
-"Use them in the form below on this page."
-msgstr "在彈出的網頁查找<b>Client ID</b>和<b>Client secret</b> 。把它們放在這個頁面以下的表格。"
-
-msgid ""
-"Go to <b>Staff Members</b>, select a staff member and enable the connection "
-"with Google Calendar on the <b>Advanced</b> tab."
-msgstr "前往<b>員工</b>，選擇一名員工並在<b>高級</b>標籤上開啟與Google Calendar的連接。"
 
 msgid "The client ID obtained from the Google Cloud Platform"
 msgstr "從Google Cloud平台獲取的客戶ID"

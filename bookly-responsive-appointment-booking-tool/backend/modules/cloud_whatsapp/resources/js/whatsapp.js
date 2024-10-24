@@ -127,6 +127,10 @@ jQuery(function ($) {
                 language: {
                     zeroRecords: BooklyL10n.zeroRecords,
                     processing: BooklyL10n.processing
+                },
+                layout: {
+                    bottomStart: 'paging',
+                    bottomEnd: null
                 }
             });
 

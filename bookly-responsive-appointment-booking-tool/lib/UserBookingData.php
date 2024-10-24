@@ -15,6 +15,8 @@ class UserBookingData
     protected $time_zone;
     /** @var int */
     protected $time_zone_offset;
+    /** @var int */
+    protected $wp_user_id;
 
     // Step service
     /** @var string Y-m-d */
@@ -166,11 +168,10 @@ class UserBookingData
     public $chain;
 
     /**
-     * Constructor.
-     *
-     * @param $form_id
+     * @param string $form_id
+     * @param int|null $current_user_id
      */
-    public function __construct( $form_id )
+    public function __construct( $form_id, $current_user_id = null )
     {
         $this->form_id = $form_id;
         $this->cart = new Cart( $this );
@@ -181,10 +182,14 @@ class UserBookingData
         }
 
         // If logged in then set name, email and if existing customer then also phone.
-        $current_user = wp_get_current_user();
+        $current_user = $current_user_id === null
+            ? wp_get_current_user()
+            : get_userdata( $current_user_id );
+        $this->wp_user_id = 0;
         if ( $current_user && $current_user->ID ) {
+            $this->wp_user_id = $current_user->ID;
             $customer = new Entities\Customer();
-            if ( $customer->loadBy( array( 'wp_user_id' => $current_user->ID ) ) ) {
+            if ( $customer->loadBy( array( 'wp_user_id' => $this->wp_user_id ) ) ) {
                 if ( $customer->getBirthday() ) {
                     $date = explode( '-', $customer->getBirthday() );
                     $this->setBirthday( array(
@@ -725,10 +730,9 @@ class UserBookingData
         if ( $this->customer === null ) {
             // Find or create customer.
             $this->customer = new Entities\Customer();
-            $user_id = get_current_user_id();
-            if ( $user_id > 0 ) {
+            if ( $this->wp_user_id > 0 ) {
                 // Try to find customer by WP user ID.
-                $this->customer->loadBy( array( 'wp_user_id' => $user_id ) );
+                $this->customer->loadBy( array( 'wp_user_id' => $this->wp_user_id ) );
             }
             if ( ! $this->customer->isLoaded() ) {
                 $customer = BookingProxy\Pro::getCustomerByFacebookId( $this->getFacebookId() );
@@ -788,16 +792,26 @@ class UserBookingData
             // Find or create customer.
             $this->customer = new Entities\Customer();
             $customer_data['phone'] = isset( $customer_data['phone_formatted'] ) ? $customer_data['phone_formatted'] : $customer_data['phone'];
-            $customer_fields = array( 'first_name', 'last_name', 'email', 'phone' );
-            $search_criteria = array(
-                array(
-                    'wp_user_id' => get_current_user_id(),
-                ),
-                array(
-                    'phone' => $customer_data['phone'],
-                    'email' => $customer_data['email'],
-                    'wp_user_id' => null,
-                ),
+            $customer_fields = array( 'email', 'phone' );
+            $show = $appearance->get( 'details_fields_show' );
+            foreach ( array( 'first_name', 'last_name', 'full_name' ) as $field ) {
+                if ( in_array( $field, $show ) ) {
+                    $customer_fields[] = $field;
+                }
+            }
+            $search_criteria = array();
+            if ( get_current_user_id() > 0 ) {
+                $search_criteria = array(
+                    array(
+                        'wp_user_id' => get_current_user_id(),
+                    ),
+                );
+            }
+
+            $search_criteria[] = array(
+                'phone' => $customer_data['phone'],
+                'email' => $customer_data['email'],
+                'wp_user_id' => null,
             );
 
             $verify_credentials = $appearance->get( 'verify_credentials' );

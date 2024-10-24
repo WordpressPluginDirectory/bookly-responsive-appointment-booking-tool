@@ -315,6 +315,7 @@ abstract class Tables
                     'columns' => $meta['columns'],
                     'filter' => isset ( $meta['filter'] ) ? $meta['filter'] : array(),
                     'order' => isset ( $meta['order'] ) ? $meta['order'] : array(),
+                    'page_length' => isset ( $meta['page_length'] ) ? $meta['page_length'] : 25,
                 ),
                 'titles' => $columns,
                 'exist' => $exist,
@@ -460,5 +461,26 @@ abstract class Tables
         }
 
         return Lib\Proxy\Shared::prepareTableDefaultSettings( $columns, $table );
+    }
+
+    /**
+     * @param string $table
+     * @return bool
+     */
+    public static function supportPagination( $table )
+    {
+        switch ( $table ) {
+            case self::APPOINTMENTS:
+            case self::CUSTOMERS:
+            case self::EMAIL_LOGS:
+            case self::PAYMENTS:
+            case self::SERVICES:
+            case self::SMS_DETAILS:
+            case self::STAFF_MEMBERS:
+
+                return true;
+        }
+
+        return false;
     }
 }

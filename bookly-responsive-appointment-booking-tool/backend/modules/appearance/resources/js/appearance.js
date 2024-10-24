@@ -116,6 +116,7 @@ jQuery(function ($) {
     var applyColor = function () {
         var color = $color_picker.wpColorPicker('color'),
             color_important = color + '!important;';
+        document.querySelector(':root').style.setProperty('--bookly-main-color', color);
         $('.bookly-progress-tracker').find('.active').css('color', color).find('.step').css('background', color);
         $('.bookly-js-mobile-step-1 label').css('color', color);
         $('.bookly-label-error').css('color', color);

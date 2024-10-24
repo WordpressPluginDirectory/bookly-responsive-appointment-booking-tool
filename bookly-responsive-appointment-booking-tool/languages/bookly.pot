@@ -200,88 +200,10 @@ msgstr ""
 msgid "Instructions"
 msgstr ""
 
-msgid ""
-"Important: Your website must use <b>HTTPS</b>. The Outlook Calendar API will "
-"not work with your website if there is no valid SSL certificate installed on "
-"your web server."
-msgstr ""
-
-msgid "To find your Application ID and Application Secret, do the following:"
-msgstr ""
-
 #, php-format
 msgid ""
-"Sign in to the <a href=\"%s\" target=\"_blank\">Azure portal</a> using "
-"either a work or school account or a personal Microsoft account."
-msgstr ""
-
-msgid ""
-"If your account gives you access to more than one tenant, select your "
-"account in the top right corner, and set your portal session to the Azure AD "
-"tenant that you want."
-msgstr ""
-
-msgid ""
-"In the left-hand navigation panel, select <b>Microsoft Entra ID</b>. Then "
-"select <b>Add > App registration</b>."
-msgstr ""
-
-msgid ""
-"When the <b>Register an application</b> page appears, enter your "
-"application's <b>Name</b> and <b>Redirect URI</b> found below on this page."
-msgstr ""
-
-msgid ""
-"Under the <b>Redirect URI</b>, in <b>Select a platform</b> field, choose "
-"<b>Web</b>."
-msgstr ""
-
-msgid ""
-"Make sure that the <b>Supported account types</b> is set to <b>Accounts in "
-"any organizational directory (Any Microsoft Entra ID tenant - Multitenant) "
-"and personal Microsoft accounts (e.g. Skype, Xbox)</b>."
-msgstr ""
-
-msgid "When finished, select <b>Register</b>."
-msgstr ""
-
-msgid ""
-"Azure AD assigns a unique application (client) ID to your app, and you're "
-"taken to the Home page. Find your application in <b>App registrations > All "
-"applications</b>, and select it."
-msgstr ""
-
-msgid ""
-"Copy the <b>Application (client) ID</b> and insert it into the form below on "
-"this page."
-msgstr ""
-
-msgid ""
-"Under <b>Certificates & secrets</b>, choose <b>New client secret</b>, set "
-"<b>Expires</b> to <b>24 months</b>, add description and click <b>Add</b>."
-msgstr ""
-
-msgid ""
-"Copy the app secret value from the <b>Client secrets</b> list before leaving "
-"the page."
-msgstr ""
-
-msgid "Insert the secret into the form below on this page."
-msgstr ""
-
-msgid ""
-"Under <b>API permissions</b>, choose <b>Add a permission</b>, and select "
-"<b>Microsoft Graph &gt; Delegated permissions</b>. In <b>Select permissions</"
-"b> find <b>Calendars.ReadWrite</b>, select it and click <b>Add permissions</"
-"b> button."
-msgstr ""
-
-msgid "<b>Save</b> your changes."
-msgstr ""
-
-msgid ""
-"Go to Staff Members, select a staff member. On the <b>Advanced</b> tab, "
-"click <b>Sign in with Microsoft</b>."
+"To setup %s integration, follow the instruction in <a href=\"%s\" target="
+"\"_blank\">our documentation</a>"
 msgstr ""
 
 msgid "Application ID"
@@ -2106,7 +2028,7 @@ msgstr ""
 msgid "Invalid email."
 msgstr ""
 
-msgid "Low balance."
+msgid "Recharge your account with one of the standard amounts"
 msgstr ""
 
 msgid "Pending sender ID already exists."
@@ -3995,6 +3917,12 @@ msgstr ""
 msgid "Sender ID is reset to default."
 msgstr ""
 
+msgid "No matching records found"
+msgstr ""
+
+msgid "No data available in table"
+msgstr ""
+
 msgid "enable"
 msgstr ""
 
@@ -5666,6 +5594,9 @@ msgstr ""
 msgid "Column"
 msgstr ""
 
+msgid "Entries per page"
+msgstr ""
+
 msgid "Attach ICS file"
 msgstr ""
 
@@ -6301,6 +6232,15 @@ msgstr ""
 msgid "Life Time"
 msgstr ""
 
+msgid "Days from the first booking"
+msgstr ""
+
+msgid "Days from the creation"
+msgstr ""
+
+msgid "Number of days"
+msgstr ""
+
 msgid "The period in days when the customer can use a package of services."
 msgstr ""
 
@@ -6711,6 +6651,9 @@ msgstr ""
 msgid "A custom block for displaying staff form"
 msgstr ""
 
+msgid "The calendar list is not available"
+msgstr ""
+
 msgid "no limit"
 msgstr ""
 
@@ -6949,60 +6892,6 @@ msgid ""
 "If you use {cart_info} code in notifications, you can select the columns "
 "that you want to display and set the order of fields here. Uncheck the box "
 "to hide the column."
-msgstr ""
-
-msgid "To find your client ID and client secret, do the following:"
-msgstr ""
-
-msgid ""
-"Go to the <a href=\"https://console.developers.google.com/\" target=\"_blank"
-"\">Google Cloud Platform</a>."
-msgstr ""
-
-msgid "Select a project or create a new one."
-msgstr ""
-
-#, php-format
-msgid ""
-"In the sidebar on the left, select <b>Library</b>. In the list of APIs look "
-"for <b>Calendar API</b> or click <a href=\"%s\" target=\"_blank\">this link</"
-"a> to go directly to Calendar API and make sure it is enabled."
-msgstr ""
-
-msgid ""
-"Click <b>OAuth consent screen</b> tab, select user type and provide the "
-"necessary information (App name, User support email and Developer contact "
-"information). Then click <b>Save and continue</b>. You can leave the "
-"following settings unchanged."
-msgstr ""
-
-msgid ""
-"We recommend to change the publishing status of your app to <b>In "
-"production</b> by clicking <b>Publish app</b> button."
-msgstr ""
-
-#, php-format
-msgid ""
-"In the sidebar on the left, select <a href=\"%s\" target=\"_blank"
-"\">Credentials</a>, and in <b>Create credentials</b> drop-down menu select "
-"<b>OAuth client ID</b>."
-msgstr ""
-
-msgid ""
-"Select <b>Web application</b> and create your project's <b>OAuth 2.0 "
-"credentials</b> by providing the necessary information. For <b>Authorized "
-"redirect URIs</b> enter the <b>Redirect URI</b> found below on this page. "
-"Click <b>Create</b>."
-msgstr ""
-
-msgid ""
-"In the popup window look for the <b>Client ID</b> and <b>Client secret</b>. "
-"Use them in the form below on this page."
-msgstr ""
-
-msgid ""
-"Go to <b>Staff Members</b>, select a staff member and enable the connection "
-"with Google Calendar on the <b>Advanced</b> tab."
 msgstr ""
 
 msgid "The client ID obtained from the Google Cloud Platform"

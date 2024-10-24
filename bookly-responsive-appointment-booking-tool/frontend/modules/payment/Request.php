@@ -224,11 +224,13 @@ class Request extends Lib\Base\Component
                     if ( $payment ) {
                         $this->gateway = $this->getGatewayByName( $payment->getType() );
                         $this->gateway->setPayment( $payment );
-                    } else {
+                    } elseif ( Entities\Order::query()->where( 'token', $this->get( 'bookly_order' ) )->fetchVar( 'id' ) !== null ) {
                         $this->gateway = new Lib\Payment\ZeroGateway( $this );
                         if ( $this->getCartInfo()->getPayNow() > 0 ) {
                             throw new \Exception( __( 'Incorrect payment data', 'bookly' ) );
                         }
+                    } else {
+                        throw new \Exception( 'There is no order, the payment may have been canceled by webhook' );
                     }
                 } else {
                     $this->gateway = $this->getGatewayByName( $gateway );

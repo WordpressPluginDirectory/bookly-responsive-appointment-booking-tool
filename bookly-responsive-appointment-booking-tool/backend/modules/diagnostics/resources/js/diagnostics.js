@@ -20,7 +20,7 @@ jQuery(function ($) {
 
     function setCookie(name, value) {
         let expires = new Date();
-        expires.setTime(expires.getTime() + 86400000000); // 1000 days
+        expires.setFullYear(expires.getFullYear() + 3);
         document.cookie = name + '=' + (value || '') + ';expires=' + expires.toUTCString() + ';path=/';
     }
 
@@ -450,7 +450,7 @@ jQuery(function ($) {
                 dataType: 'json',
                 success: function () {
                     ladda.stop();
-                    dt.ajax.reload(null, false);
+                    dt_logs.ajax.reload(null, false);
                 }
             });
         }
@@ -473,6 +473,7 @@ jQuery(function ($) {
     picker_ranges[BooklyL10nGlobal.dateRange.lastMonth] = [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')];
 
     $logsDateFilter.daterangepicker({
+            timePicker: true,
             parentEl: $('.bookly-js-tests'),
             startDate: pickers.creationDate.startDate,
             endDate: pickers.creationDate.endDate,
@@ -480,99 +481,102 @@ jQuery(function ($) {
             showDropdowns: true,
             linkedCalendars: false,
             autoUpdateInput: false,
+            timePicker24Hour: true,
+            timePickerSeconds: true,
         },
         function (start, end, label) {
             switch (label) {
                 case BooklyL10nGlobal.dateRange.anyTime:
+                    dt_logs.page.len(booklyDataTables.getPageLength());
                     $logsDateFilter
                         .data('date', 'any')
                         .find('span')
                         .html(BooklyL10nGlobal.dateRange.anyTime);
                     break;
+                case 'Custom Range':
+                    dt_logs.page.len(1000);
+                    $logsDateFilter
+                        .data('date', start.format('YYYY-MM-DD HH:mm:ss') + ' - ' + end.format('YYYY-MM-DD HH:mm:ss'))
+                        .find('span')
+                        .html(start.format(BooklyL10nGlobal.dateRange.format + ' HH:mm:ss') + ' - ' + end.format(BooklyL10nGlobal.dateRange.format + ' HH:mm:ss'));
+                    break;
                 default:
+                    dt_logs.page.len(booklyDataTables.getPageLength());
                     $logsDateFilter
                         .data('date', start.format(pickers.dateFormat) + ' - ' + end.format(pickers.dateFormat))
                         .find('span')
                         .html(start.format(BooklyL10nGlobal.dateRange.format) + ' - ' + end.format(BooklyL10nGlobal.dateRange.format));
             }
-
         }
     );
 
-    let dt = $logsTable.DataTable({
-        order: [[0, 'desc']],
-        info: false,
-        paging: true,
-        searching: false,
-        lengthChange: false,
-        processing: true,
-        responsive: true,
-        pageLength: 25,
-        pagingType: 'numbers',
-        serverSide: true,
-        ajax: {
-            url: ajaxurl,
-            type: 'POST',
-            data: function (d) {
-                return $.extend({action: 'bookly_get_logs', csrf_token: BooklyL10nGlobal.csrf_token}, {
-                    filter: {
-                        created_at: $logsDateFilter.data('date'),
-                        search: $logsSearch.val(),
-                        action: $logsAction.booklyDropdown('getSelected'),
-                        target: $logsTarget.val()
-                    }
-                }, d);
-            }
-        },
-        columns: [
-            {data: 'id', width: 40, responsivePriority: 0},
-            {data: 'created_at', responsivePriority: 0},
-            {
-                data: 'action', responsivePriority: 0,
-                render: function (data, type, row, meta) {
-                    return data === 'error' && row.target.indexOf('bookly-') !== -1
-                        ? '<span class="text-danger">ERROR</span>'
-                        : data;
-                },
-            },
-            {
-                data: 'target', responsivePriority: 2,
-                render: function (data, type, row, meta) {
-                    const isBooklyError = data && (data.indexOf('bookly-') !== -1);
-                    return $('<div>', {
-                        dir: 'rtl',
-                        class: 'text-truncate',
-                        text: isBooklyError ? data.slice(data.indexOf('bookly-')) : data
-                    }).prop('outerHTML');
-                },
-            },
-            {data: 'target_id', responsivePriority: 1},
-            {data: 'author', responsivePriority: 1},
-            {
-                data: 'details',
-                render: function (data, type, row, meta) {
-                    try {
-                        return JSON.stringify(JSON.parse(data), null, 2).replace(/\n/g, '<br/>');
-                    } catch (e) {
-                        return data;
-                    }
-                },
-                className: 'none',
-                responsivePriority: 2
-            },
-            {data: 'comment', responsivePriority: 2},
-            {
-                data: 'ref', className: 'none', responsivePriority: 1,
-                render: function (data, type, row, meta) {
-                    return data && data.replace(/\n/g, "<br>");
+    let dt_logs;
+    $('[href=#logs]').one('click', function() {
+        dt_logs = booklyDataTables.init($logsTable, {order: [{column: 'id', order: 'desc'}]},
+        {
+            ajax: {
+                url: ajaxurl,
+                method: 'POST',
+                data: function (d) {
+                    return $.extend({action: 'bookly_get_logs', csrf_token: BooklyL10nGlobal.csrf_token}, {
+                        filter: {
+                            created_at: $logsDateFilter.data('date'),
+                            search: $logsSearch.val(),
+                            action: $logsAction.booklyDropdown('getSelected'),
+                            target: $logsTarget.val()
+                        }
+                    }, d);
                 }
             },
-        ],
-        dom: "<'row'<'col-sm-12'tr>><'row float-left mt-3'<'col-sm-12'p>>"
+            columns: [
+                {data: 'id', width: 80, responsivePriority: 0},
+                {data: 'created_at', responsivePriority: 0},
+                {
+                    data: 'action', responsivePriority: 0,
+                    render: function (data, type, row, meta) {
+                        return data === 'error' && row.target.indexOf('bookly-') !== -1
+                            ? '<span class="text-danger">ERROR</span>'
+                            : data;
+                    },
+                },
+                {
+                    data: 'target', responsivePriority: 2,
+                    render: function (data, type, row, meta) {
+                        const isBooklyError = data && (data.indexOf('bookly-') !== -1);
+                        return $('<div>', {
+                            dir: 'rtl',
+                            class: 'text-truncate',
+                            text: isBooklyError ? data.slice(data.indexOf('bookly-')) : data
+                        }).prop('outerHTML');
+                    },
+                },
+                {data: 'target_id', responsivePriority: 1},
+                {data: 'author', responsivePriority: 1},
+                {
+                    data: 'details',
+                    render: function (data, type, row, meta) {
+                        try {
+                            return JSON.stringify(JSON.parse(data), null, 2).replace(/\n/g, '<br/>');
+                        } catch (e) {
+                            return data;
+                        }
+                    },
+                    className: 'none',
+                    responsivePriority: 2
+                },
+                {data: 'comment', responsivePriority: 2},
+                {
+                    data: 'ref', className: 'none', responsivePriority: 1,
+                    render: function (data, type, row, meta) {
+                        return data && data.replace(/\n/g, '<br>');
+                    }
+                },
+            ],
+        });
     });
 
     function onChangeFilter() {
-        dt.ajax.reload();
+        dt_logs.ajax.reload();
     }
 
     $logsDateFilter.on('apply.daterangepicker', onChangeFilter);
@@ -595,7 +599,7 @@ jQuery(function ($) {
         ladda.start();
         $.ajax({
             url: ajaxurl,
-            type: 'POST',
+            method: 'POST',
             data: {
                 action: 'bookly_diagnostics_ajax',
                 tool: $button.data('tool'),

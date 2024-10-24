@@ -134,6 +134,73 @@ function requiredBooklyPro() {
 }
 
 (function ($) {
+    window.booklyDataTables = {
+        settings: {},
+        init: function($container, settings, initial_settings) {
+            this.settings = settings;
+            const default_settings = {
+                order: this.getOrder(initial_settings.columns),
+                pageLength: this.getPageLength(),
+                language: this.getLocalization(initial_settings),
+                layout: {
+                    bottomStart: {
+                        paging: {
+                            type: 'numbers'
+                        }
+                    },
+                    bottomEnd: null,
+                    topEnd: null,
+                    topStart: null,
+                },
+                searching: false,
+                info: false,
+                processing: true,
+                responsive: true,
+                paging: true,
+                serverSide: true,
+            };
+
+            return $container.DataTable($.extend({}, default_settings, initial_settings));
+        },
+        getOrder: function(columns) {
+            let order = [];
+            $.each(this.settings.order, function(_, value) {
+                const index = columns.findIndex(function(c) {
+                    return c.data === value.column;
+                });
+                if (index !== -1) {
+                    order.push([index, value.order]);
+                }
+            });
+
+            return order;
+        },
+        getPageLength: function() {
+            return this.settings.hasOwnProperty('page_length') ? this.settings.page_length : 25;
+        },
+        getLocalization: function(initial_settings) {
+            let language = initial_settings.hasOwnProperty('language')
+                ? initial_settings.language
+                : {};
+            if (window.BooklyL10n !== undefined) {
+                ['zeroRecords', 'processing', 'emptyTable'].forEach(function(value) {
+                    if (!language.hasOwnProperty(value)) {
+                        language[value] = BooklyL10n[value];
+                    }
+                });
+            }
+
+            return language;
+        },
+        getRowData: function(element, dt) {
+            const $el = $(element).closest('td');
+            const dataTable = dt || $(element).closest('table').DataTable();
+            return $el.hasClass('child')
+                ? dataTable.row($el.closest('tr').prev()).data()
+                : dataTable.row($el).data();
+        }
+    };
+
     window.booklySerialize = {
         form: function($form) {
             let data = {},

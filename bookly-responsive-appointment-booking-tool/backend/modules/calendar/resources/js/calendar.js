@@ -297,7 +297,7 @@ jQuery(function ($) {
      */
     function setCookie(key, value) {
         var expires = new Date();
-        expires.setTime(expires.getTime() + 86400000000); // 1000 days
+        expires.setFullYear(expires.getFullYear() + 3);
         document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
     }
 
