@@ -57,9 +57,9 @@ abstract class Gateway
     public function getMetaData()
     {
         $meta = $this->getInternalMetaData();
-        foreach ( $meta as $value ) {
+        foreach ( $meta as $key => $value ) {
             if ( is_string( $value ) && preg_match( '/{[^}]*}/', $value ) ) {
-                return $this->applyCodes( $meta );
+                $meta[ $key ] = $this->applyCode( $value );
             }
         }
 
@@ -448,21 +448,18 @@ abstract class Gateway
     }
 
     /**
-     * @param array $data
-     * @return array
+     * @param string $text
+     * @return string
      */
-    private function applyCodes( array $data )
+    private function applyCode( $text )
     {
-        if ( $data ) {
+        if ( $text ) {
             $codes = $this->getCodes();
-            foreach ( $data as $key => $text ) {
-                $data[ $key ] = is_array( $text )
-                    ? $this->applyCodes( $text )
-                    : Codes::replace( $text, $codes, false );
-            }
+
+            return Codes::replace( $text, $codes, false );
         }
 
-        return $data;
+        return $text;
     }
 
     /**
