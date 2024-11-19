@@ -11,6 +11,7 @@ use Bookly\Lib\Entities\MailingListRecipient;
 use Bookly\Lib\Entities\MailingQueue;
 use Bookly\Lib\Entities\NotificationQueue;
 use Bookly\Lib\Entities\Payment;
+use Bookly\Lib\Entities\SmsLog;
 
 abstract class Routines
 {
@@ -75,6 +76,7 @@ abstract class Routines
             // Calculate goal by number of customer appointments achieved
             self::calculateGoalOfCA();
             self::clearNotificationQueue();
+            self::clearSmsLog();
             // Let add-ons do their daily routines.
             Proxy\Shared::doDailyRoutine();
         }
@@ -267,6 +269,13 @@ abstract class Routines
     {
         NotificationQueue::query()->delete()
             ->whereRaw( 'created_at < DATE(NOW() - INTERVAL 2 DAY)', array() )
+            ->execute();
+    }
+
+    protected static function clearSmsLog()
+    {
+        SmsLog::query()->delete()
+            ->whereRaw( 'created_at < DATE(NOW() - INTERVAL 1 MONTH)', array() )
             ->execute();
     }
 

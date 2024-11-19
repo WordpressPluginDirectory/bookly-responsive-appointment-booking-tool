@@ -82,6 +82,7 @@ class Page extends Lib\Base\Component
                         'completed' => __( 'Completed', 'bookly' ),
                         'canceled' => __( 'Canceled', 'bookly' ),
                     ),
+                    'resend' => __( 'Resend', 'bookly' ),
                     'gateway' => 'sms',
                     'default' => __( 'Default', 'bookly' ),
                     'datatables' => $datatables,

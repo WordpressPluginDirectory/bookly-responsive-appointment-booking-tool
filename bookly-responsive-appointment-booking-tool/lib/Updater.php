@@ -3,6 +3,13 @@ namespace Bookly\Lib;
 
 class Updater extends Base\Updater
 {
+    function update_24_4()
+    {
+        $this->createTables( array(
+            'bookly_sms_log' => 'CREATE TABLE IF NOT EXISTS `%s` ( `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, `phone` VARCHAR(20) NOT NULL, `message` VARCHAR(3072) NOT NULL, `impersonal_message` VARCHAR(3072) NOT NULL, `ref_id` VARCHAR(6) NULL, `type_id` INT UNSIGNED NOT NULL, `created_at` DATETIME NOT NULL ) ENGINE = INNODB',
+        ) );
+    }
+
     function update_24_2()
     {
         $this->alterTables( array(

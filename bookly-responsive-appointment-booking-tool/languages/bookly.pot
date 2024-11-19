@@ -1688,6 +1688,9 @@ msgstr ""
 msgid "Number of persons"
 msgstr ""
 
+msgid "Group Booking"
+msgstr ""
+
 msgid "Group bookings information format"
 msgstr ""
 
@@ -1699,9 +1702,6 @@ msgid "[Booked/Max capacity]"
 msgstr ""
 
 msgid "[Available left]"
-msgstr ""
-
-msgid "Group Booking"
 msgstr ""
 
 msgid "Number of persons already in the list"
@@ -1787,15 +1787,15 @@ msgstr ""
 msgid "Google maps address"
 msgstr ""
 
+msgid "Collaborative services"
+msgstr ""
+
 msgid "Do not allow to select a specific staff member"
 msgstr ""
 
 msgid ""
 "If this option is enabled then customers won't be able to select a staff "
 "member for collaborative services in the first step of the booking form"
-msgstr ""
-
-msgid "Collaborative services"
 msgstr ""
 
 msgid "Collaborative"
@@ -2873,6 +2873,9 @@ msgid "Sender ID"
 msgstr ""
 
 msgid "Cost"
+msgstr ""
+
+msgid "Resend"
 msgstr ""
 
 msgid "Template"
@@ -4209,7 +4212,10 @@ msgstr ""
 msgid "All actions"
 msgstr ""
 
-msgid "Clear logs"
+msgid "Clear all logs"
+msgstr ""
+
+msgid "Restore records"
 msgstr ""
 
 msgid "Keep logs"
@@ -7027,12 +7033,6 @@ msgid ""
 "bookings will be disabled."
 msgstr ""
 
-#, php-format
-msgid ""
-"To set up Zoom integration, follow the instructions in <a href=\"%s\" target="
-"\"_blank\">our documentation</a>"
-msgstr ""
-
 msgid "Authentication"
 msgstr ""
 
@@ -7580,6 +7580,9 @@ msgid "Select file"
 msgstr ""
 
 msgid "Date of birth"
+msgstr ""
+
+msgid "Skip first row of CSV file"
 msgstr ""
 
 msgid "Analytics"
@@ -8568,6 +8571,9 @@ msgstr ""
 msgid "Set appointment"
 msgstr ""
 
+msgid "Waiting List"
+msgstr ""
+
 msgid "Add customers to the waiting list despite the capacity value"
 msgstr ""
 
@@ -8595,9 +8601,6 @@ msgstr ""
 msgid ""
 "Set the URL of a page that is shown to clients when the setting of "
 "appointment from waiting list is not available anymore."
-msgstr ""
-
-msgid "Waiting List"
 msgstr ""
 
 msgid "Show waiting list slots"
@@ -9083,10 +9086,10 @@ msgstr ""
 msgid "Edit discount"
 msgstr ""
 
-msgid "Set maximum value for Quantity field."
+msgid "Multiply Appointments"
 msgstr ""
 
-msgid "Multiply Appointments"
+msgid "Set maximum value for Quantity field."
 msgstr ""
 
 msgid "Google Calendar event"

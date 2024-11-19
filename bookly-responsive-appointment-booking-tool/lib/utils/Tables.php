@@ -165,6 +165,7 @@ abstract class Tables
                     'charge' => esc_html__( 'Cost', 'bookly' ),
                     'status' => esc_html__( 'Status', 'bookly' ),
                     'info' => esc_html__( 'Info', 'bookly' ),
+                    'resend' => esc_html__( 'Resend', 'bookly' ),
                 );
                 break;
             case self::VOICE_DETAILS:

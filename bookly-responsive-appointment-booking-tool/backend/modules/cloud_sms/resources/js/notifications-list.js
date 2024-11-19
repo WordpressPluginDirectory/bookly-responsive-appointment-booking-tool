@@ -48,17 +48,6 @@ jQuery(function ($) {
                 return ' <button type="button" class="btn btn-default ladda-button" data-action="edit" data-spinner-size="40" data-style="zoom-in" data-spinner-color="#666666"><span class="ladda-label"><i class="far fa-fw fa-edit mr-lg-1"></i><span class="d-none d-lg-inline">' + BooklyL10n.edit + '…</span></span></button>';
             }
         });
-        columns.push({
-            data: null,
-            orderable: false,
-            responsivePriority: 1,
-            render: function (data, type, row, meta) {
-                return '<div class="custom-control custom-checkbox">' +
-                    '<input value="' + row.id + '" id="bookly-dt-' + row.id + '" type="checkbox" class="custom-control-input">' +
-                    '<label for="bookly-dt-' + row.id + '" class="custom-control-label"></label>' +
-                    '</div>';
-            }
-        });
 
         columns[0].responsivePriority = 0;
 
@@ -102,7 +91,8 @@ jQuery(function ($) {
             columns: columns,
             language: {
                 zeroRecords: BooklyL10n.zeroRecordsAlt
-            }
+            },
+            row_with_checkbox: true
         }).on('click', '[data-action=toggle-active]', function (e) {
             e.preventDefault();
             let $tr = $(this).closest('tr');

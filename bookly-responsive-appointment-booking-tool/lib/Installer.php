@@ -899,29 +899,29 @@ class Installer extends Base\Installer
                 `updated_at`               DATETIME NOT NULL,
             CONSTRAINT
                 FOREIGN KEY (customer_id)
-                REFERENCES  ' . Entities\Customer::getTableName() . '(id)
-                ON DELETE   CASCADE
-                ON UPDATE   CASCADE,
+                REFERENCES ' . Entities\Customer::getTableName() . '(id)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE,
             CONSTRAINT
                 FOREIGN KEY (appointment_id)
-                REFERENCES  ' . Entities\Appointment::getTableName() . '(id)
-                ON DELETE   CASCADE
-                ON UPDATE   CASCADE,
+                REFERENCES ' . Entities\Appointment::getTableName() . '(id)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE,
             CONSTRAINT
                 FOREIGN KEY (series_id)
-                REFERENCES  ' . Entities\Series::getTableName() . '(id)
+                REFERENCES ' . Entities\Series::getTableName() . '(id)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE,
             CONSTRAINT
                 FOREIGN KEY (payment_id)
                 REFERENCES ' . Entities\Payment::getTableName() . '(id)
-                ON DELETE   SET NULL
-                ON UPDATE   CASCADE,
+                ON DELETE SET NULL
+                ON UPDATE CASCADE,
             CONSTRAINT
                 FOREIGN KEY (order_id)
                 REFERENCES ' . Entities\Order::getTableName() . '(id)
-                ON DELETE   SET NULL
-                ON UPDATE   CASCADE
+                ON DELETE SET NULL
+                ON UPDATE CASCADE
             ) ENGINE = INNODB
             ' . $charset_collate
         );
@@ -935,9 +935,9 @@ class Installer extends Base\Installer
             INDEX `ref_id_idx` (`ref_id`),
             CONSTRAINT
                 FOREIGN KEY (notification_id) 
-                REFERENCES  ' . Entities\Notification::getTableName() . ' (`id`) 
-                ON DELETE   CASCADE 
-                ON UPDATE   CASCADE
+                REFERENCES ' . Entities\Notification::getTableName() . ' (`id`) 
+                ON DELETE CASCADE 
+                ON UPDATE CASCADE
             ) ENGINE = INNODB
             ' . $charset_collate
         );
@@ -1088,6 +1088,18 @@ class Installer extends Base\Installer
             ' . $charset_collate
         );
 
+        $wpdb->query(
+            'CREATE TABLE IF NOT EXISTS `' . Entities\SmsLog::getTableName() . '` (
+                `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                `phone` VARCHAR(20) NOT NULL,
+                `message` VARCHAR(3072) NOT NULL,
+                `impersonal_message` VARCHAR(3072) NOT NULL,
+                `ref_id` VARCHAR(6) NULL,
+                `type_id` INT UNSIGNED NOT NULL,
+                `created_at` DATETIME NOT NULL
+             ) ENGINE = INNODB
+             ' . $charset_collate
+        );
     }
 
     /**

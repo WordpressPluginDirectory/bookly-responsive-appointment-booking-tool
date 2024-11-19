@@ -147,17 +147,6 @@ jQuery(function ($) {
                 return buttons + '<button type="button" class="btn btn-default bookly-js-campaign-edit"><i class="far fa-fw fa-edit mr-lg-1"></i><span class="d-none d-lg-inline">' + BooklyL10n.edit + '…</span></button></div>';
             }
         });
-        columns.push({
-            data: null,
-            responsivePriority: 1,
-            orderable: false,
-            render: function (data, type, row, meta) {
-                return '<div class="custom-control custom-checkbox">' +
-                    '<input value="' + row.id + '" id="bookly-dtcam-' + row.id + '" type="checkbox" class="custom-control-input">' +
-                    '<label for="bookly-dtcam-' + row.id + '" class="custom-control-label"></label>' +
-                    '</div>';
-            }
-        });
 
         dt_campaigns = booklyDataTables.init($list, BooklyL10n.datatables.sms_mailing_campaigns.settings, {
             ajax: {
@@ -170,7 +159,8 @@ jQuery(function ($) {
                     }, {filter: {search: $filter.val()}}, d);
                 },
             },
-            columns: columns
+            columns: columns,
+            row_with_checkbox: true
         });
 
         $add_campaign
@@ -336,17 +326,6 @@ jQuery(function ($) {
                 return '<button type="button" class="btn btn-default"><i class="far fa-fw fa-edit mr-lg-1"></i><span class="d-none d-lg-inline">' + BooklyL10n.edit + '…</span></button>';
             }
         });
-        ml.columns.push({
-            data: null,
-            responsivePriority: 1,
-            orderable: false,
-            render: function (data, type, row, meta) {
-                return '<div class="custom-control custom-checkbox">' +
-                    '<input value="' + row.id + '" id="bookly-dtml-' + row.id + '" type="checkbox" class="custom-control-input">' +
-                    '<label for="bookly-dtml-' + row.id + '" class="custom-control-label"></label>' +
-                    '</div>';
-            }
-        });
 
         /**
          * Init DataTables for mailing lists.
@@ -362,7 +341,8 @@ jQuery(function ($) {
                     }, {filter: {search: ml.$filter.val()}}, d)
                 }
             },
-            columns: ml.columns
+            columns: ml.columns,
+            row_with_checkbox: true
         });
 
         /**
@@ -427,18 +407,6 @@ jQuery(function ($) {
         $.each(BooklyL10n.datatables.sms_mailing_recipients_list.settings.columns, function (column, show) {
             if (show) {
                 mr.columns.push({data: column, render: $.fn.dataTable.render.text()});
-            }
-        });
-
-        mr.columns.push({
-            data: null,
-            responsivePriority: 1,
-            orderable: false,
-            render: function (data, type, row, meta) {
-                return '<div class="custom-control custom-checkbox">' +
-                    '<input value="' + row.id + '" id="bookly-dtmr-' + row.id + '" type="checkbox" class="custom-control-input">' +
-                    '<label for="bookly-dtmr-' + row.id + '" class="custom-control-label"></label>' +
-                    '</div>';
             }
         });
 
@@ -534,7 +502,8 @@ jQuery(function ($) {
                         columns: mr.columns,
                         language: {
                             zeroRecords: BooklyL10n.noResults,
-                        }
+                        },
+                        row_with_checkbox: true
                     });
                 } else {
                     mr.dt.ajax.reload(null, false);
@@ -587,15 +556,29 @@ jQuery(function ($) {
 
         $.each(BooklyL10n.datatables.sms_details.settings.columns, function (column, show) {
             if (show) {
-                if (column === 'message') {
-                    columns.push({
-                        data: column,
-                        render: function (data, type, row, meta) {
-                            return $.fn.dataTable.render.text().display(data).replaceAll('&lt;br /&gt;', '<br/>');
-                        }
-                    })
-                } else {
-                    columns.push({data: column, render: $.fn.dataTable.render.text()});
+                switch (column) {
+                    case 'message':
+                        columns.push({
+                            data: column,
+                            render: function(data, type, row, meta) {
+                                return $.fn.dataTable.render.text().display(data).replaceAll('&lt;br /&gt;', '<br/>');
+                            }
+                        })
+                        break;
+                    case 'resend':
+                        columns.push({
+                            data: column,
+                            className: 'text-right',
+                            render: function(data, type, row, meta) {
+                                if (data) {
+                                    return '<button data-action="resend" title="' + BooklyL10n.resend + '" class="btn ladda-button btn-default" data-spinner-size="30" data-style="zoom-in" data-spinner-color="#666666"><span class="ladda-label"><i class="fas fa-share"></i></span></button>';
+                                }
+                                return '';
+                            }
+                        });
+                        break;
+                    default:
+                        columns.push({data: column, render: $.fn.dataTable.render.text()});
                 }
             }
         });
@@ -625,6 +608,31 @@ jQuery(function ($) {
             $date_range.on('apply.daterangepicker', onChangeFilter);
             $(this).on('click', function () {
                 dt_details.ajax.reload(null, false);
+            });
+
+            $('#bookly-sms').on('click', '[data-action=resend]', function(e) {
+                e.preventDefault();
+                let ladda = Ladda.create(this),
+                    data = booklyDataTables.getRowData($(this), dt_details);
+                ladda.start();
+                $.ajax({
+                    url: ajaxurl,
+                    data: {
+                        action: 'bookly_resend_sms',
+                        csrf_token: BooklyL10nGlobal.csrf_token,
+                        id: data.id,
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success) {
+                            booklyAlert({success: [response.message]});
+                        } else {
+                            booklyAlert({error: [response.message]});
+                        }
+                        ladda.stop();
+                        dt_details.ajax.reload(null, false);
+                    }
+                });
             });
         }
     });

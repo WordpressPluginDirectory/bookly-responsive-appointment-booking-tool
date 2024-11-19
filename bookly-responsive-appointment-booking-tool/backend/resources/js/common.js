@@ -137,6 +137,21 @@ function requiredBooklyPro() {
     window.booklyDataTables = {
         settings: {},
         init: function($container, settings, initial_settings) {
+            if (initial_settings.hasOwnProperty('row_with_checkbox') && initial_settings.row_with_checkbox) {
+                initial_settings.columns.push({
+                    data: null,
+                    responsivePriority: 1,
+                    orderable: false,
+                    render: function(data, type, row, meta) {
+                        let prefix = meta.settings.sInstance + '-';
+                        return '<div class="custom-control custom-checkbox mt-1">' +
+                            '<input value="' + row.id + '" id="' + prefix + row.id + '" type="checkbox" class="custom-control-input">' +
+                            '<label for="' + prefix + row.id + '" class="custom-control-label"></label>' +
+                            '</div>'
+                    }
+                });
+                delete (initial_settings.row_with_checkbox);
+            }
             this.settings = settings;
             const default_settings = {
                 order: this.getOrder(initial_settings.columns),
@@ -198,7 +213,7 @@ function requiredBooklyPro() {
             return $el.hasClass('child')
                 ? dataTable.row($el.closest('tr').prev()).data()
                 : dataTable.row($el).data();
-        }
+        },
     };
 
     window.booklySerialize = {

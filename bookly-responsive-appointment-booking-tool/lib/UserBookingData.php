@@ -1578,6 +1578,8 @@ class UserBookingData
         $date = '';
         if ( is_array( $this->birthday ) ) {
             $date = sprintf( '%04d-%02d-%02d', $this->birthday['year'], $this->birthday['month'], $this->birthday['day'] );
+        } else if ( is_string( $this->birthday ) ) {
+            $date = $this->birthday;
         }
 
         return Utils\DateTime::validateDate( $date ) ? $date : '';

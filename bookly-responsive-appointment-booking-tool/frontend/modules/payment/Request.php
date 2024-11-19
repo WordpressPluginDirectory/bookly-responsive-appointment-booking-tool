@@ -127,6 +127,9 @@ class Request extends Lib\Base\Component
                     if ( in_array( 'notes', $this->getSettings()->get( 'details_fields_show' ) ) ) {
                         $client_fields[] = 'notes';
                     }
+                    if ( in_array( 'birthday', $this->getSettings()->get( 'details_fields_show' ) ) ) {
+                        $client_fields[] = 'birthday';
+                    }
                     foreach ( $client_fields as $field ) {
                         if ( array_key_exists( $field, $customer ) ) {
                             $this->userData->fillData( array( $field => $customer[ $field ] ) );
