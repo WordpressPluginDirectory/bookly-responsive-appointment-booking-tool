@@ -179,6 +179,9 @@ jQuery(function ($) {
                 case 'service_duration':
                     columns.push({data: 'service.duration'});
                     break;
+                case 'service_price':
+                    columns.push({data: 'service.price'});
+                    break;
                 case 'attachments':
                     columns.push({
                         data: 'attachment',

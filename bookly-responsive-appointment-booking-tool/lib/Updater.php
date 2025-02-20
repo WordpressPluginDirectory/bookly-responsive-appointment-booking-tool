@@ -3,6 +3,14 @@ namespace Bookly\Lib;
 
 class Updater extends Base\Updater
 {
+    function update_24_7()
+    {
+        add_option( 'bookly_advanced_time_slot_length_minutes', '' );
+        if ( ! get_option( 'bookly_advanced_slot_date_format' ) ) {
+            add_option( 'bookly_advanced_slot_date_format', 'D, M d' );
+        }
+    }
+
     function update_24_4()
     {
         $this->createTables( array(

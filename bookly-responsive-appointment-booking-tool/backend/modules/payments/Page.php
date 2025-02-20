@@ -25,6 +25,8 @@ class Page extends Lib\Base\Component
             'dateRange' => Lib\Utils\DateTime::dateRangeOptions( array( 'lastMonth' => __( 'Last month', 'bookly' ), ) ),
             'zeroRecords' => __( 'No payments for selected period and criteria.', 'bookly' ),
             'processing' => __( 'Processing...', 'bookly' ),
+            'emptyTable' => __( 'No data available in table', 'bookly' ),
+            'loadingRecords' => __( 'Loading...', 'bookly' ),
             'details' => __( 'Details', 'bookly' ),
             'areYouSure' => __( 'Are you sure?', 'bookly' ),
             'noResultFound' => __( 'No result found', 'bookly' ),

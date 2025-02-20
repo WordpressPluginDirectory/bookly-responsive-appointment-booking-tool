@@ -8,11 +8,11 @@ msgstr ""
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-18 06:42+0000\n"
-"PO-Revision-Date: 2024-10-21 06:25+0000\n"
+"POT-Creation-Date: 2025-02-03 07:25+0000\n"
+"PO-Revision-Date: 2025-02-10 07:27+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Dutch\n"
-"X-Loco-Version: 2.3.1; wp-6.6.2"
+"X-Loco-Version: 2.3.1; wp-6.7"
 
 msgid "Invoice #{invoice_number} for your appointment"
 msgstr "Factuur #{invoice_number} voor uw afspraak"
@@ -1760,6 +1760,12 @@ msgstr "Geen afspraken in de geselecteerde periode."
 msgid "Processing..."
 msgstr "Verwerken..."
 
+msgid "No data available in table"
+msgstr "Geen gegevens beschikbaar in tabel"
+
+msgid "Loading..."
+msgstr "Laden..."
+
 msgid "No result found"
 msgstr "Geen resultaten gevonden"
 
@@ -2033,6 +2039,9 @@ msgstr "Personen"
 msgid "Number of persons"
 msgstr "Aantal personen"
 
+msgid "Group Booking"
+msgstr "Groepsboeking"
+
 msgid "Group bookings information format"
 msgstr "Groepsboeking informatie formaat"
 
@@ -2047,9 +2056,6 @@ msgstr "[Geboekt/Max capaciteit]"
 
 msgid "[Available left]"
 msgstr "[Beschikbaar over]"
-
-msgid "Group Booking"
-msgstr "Groepsboeking"
 
 msgid "Number of persons already in the list"
 msgstr "Aantal personen reeds in de lijst"
@@ -2151,6 +2157,9 @@ msgstr "Toon google maps informatie"
 msgid "Google maps address"
 msgstr "Adres op Google Maps"
 
+msgid "Collaborative services"
+msgstr "Samenwerkingdiensten"
+
 msgid "Do not allow to select a specific staff member"
 msgstr "Sta niet toe om een specifiek personeelslid te selecteren"
 
@@ -2160,9 +2169,6 @@ msgid ""
 msgstr ""
 "Als deze optie is ingeschakeld, kunnen klanten geen personeelslid selecteren "
 "voor samenwerkingsdiensten in de eerste stap van het boekingsformulier"
-
-msgid "Collaborative services"
-msgstr "Samenwerkingdiensten"
 
 msgid "Collaborative"
 msgstr "Samenwerkend"
@@ -2410,7 +2416,7 @@ msgid "Invalid email."
 msgstr "Ongeldig e-mailadres."
 
 msgid "Recharge your account with one of the standard amounts"
-msgstr ""
+msgstr "Laad uw account op met een van de standaardbedragen"
 
 msgid "Pending sender ID already exists."
 msgstr "In afwachting van de afzender ID bestaat al."
@@ -3416,6 +3422,9 @@ msgstr "Afzender ID"
 msgid "Cost"
 msgstr "Kosten"
 
+msgid "Resend"
+msgstr "Opnieuw verzenden"
+
 msgid "Template"
 msgstr "Sjabloon"
 
@@ -3699,8 +3708,8 @@ msgstr ""
 "ingetrokken, dus gebruikers die zijn gekoppeld aan verwijderde token(s) "
 "hebben geen toegang meer."
 
-msgid "No records."
-msgstr "Geen records."
+msgid "No matching records found"
+msgstr "Geen overeenkomende records gevonden"
 
 msgid "Add service"
 msgstr "Voeg dienst toe"
@@ -4624,11 +4633,8 @@ msgstr "Afzender ID verzoek is verzonden."
 msgid "Sender ID is reset to default."
 msgstr "Afzender ID is teruggezet naar de standaardinstelling."
 
-msgid "No matching records found"
-msgstr ""
-
-msgid "No data available in table"
-msgstr ""
+msgid "No records."
+msgstr "Geen records."
 
 msgid "enable"
 msgstr "inschakelen"
@@ -4938,14 +4944,210 @@ msgstr "Gelukt"
 msgid "Warning"
 msgstr "Waarschuwing"
 
+msgid "Import file"
+msgstr "Importeer bestand"
+
+msgid "Skip first row"
+msgstr "Eerste rij overslaan"
+
+msgid "Service name"
+msgstr "Naam service"
+
+msgid "Start date"
+msgstr "Startdatum"
+
+msgid "End date / Duration"
+msgstr "Einddatum / Duur"
+
+msgid "Staff name"
+msgstr "Naam personeel"
+
+msgid "Client name"
+msgstr "Naam van de klant"
+
+msgid "Client email"
+msgstr "E-mail van klant"
+
+msgid "Client phone"
+msgstr "Telefoonnummer van de klant"
+
+msgid "Import"
+msgstr "Importeren"
+
+msgid "minutes"
+msgstr "minuten"
+
+msgid "Empty value"
+msgstr "Lege waarde"
+
+msgid ""
+"By proceeding with the import process, the following actions will be "
+"performed:"
+msgstr ""
+"Door verder te gaan met het importproces worden de volgende acties "
+"uitgevoerd:"
+
+msgid ""
+"New staff members, services, customers, appointments and payments will be "
+"created based on the data in your CSV file."
+msgstr ""
+"Nieuwe medewerkers, services, klanten, afspraken en betalingen worden "
+"aangemaakt op basis van de gegevens in uw CSV-bestand."
+
+msgid ""
+"Services will be linked to staff members, and customers will be linked to "
+"their appointments."
+msgstr ""
+"Servic esworden gekoppeld aan medewerkers en klanten worden gekoppeld aan "
+"hun afspraken."
+
+msgid ""
+"If exact service duration data is unavailable, durations will be calculated "
+"based on the start and end times of appointments."
+msgstr ""
+"Als er geen exacte gegevens beschikbaar zijn over de duur van de service, "
+"wordt de duur berekend op basis van de begin- en eindtijd van afspraken."
+
+msgid ""
+"If a service, staff member, or customer already exists, the existing records "
+"will be used to avoid duplication."
+msgstr ""
+"Als een service, medewerker of klant al bestaat, worden de bestaande records "
+"gebruikt om duplicatie te voorkomen."
+
+msgid ""
+"Instant notifications will not be sent, but all types of reminders will be "
+"sent."
+msgstr ""
+"Directe meldingen worden niet verzonden, maar alle soorten herinneringen "
+"worden wel verzonden."
+
+msgid "Please note:"
+msgstr "Let op:"
+
+msgid "Imported appointments will not be synced with external calendars."
+msgstr ""
+"Geïmporteerde afspraken worden niet gesynchroniseerd met externe agenda's."
+
+msgid "You must fully understand the data you are importing and its impact."
+msgstr ""
+"U moet de gegevens die u importeert en de impact ervan volledig begrijpen."
+
+msgid ""
+"It is strongly recommended to back up your database before proceeding, as "
+"there will be no straightforward way to undo the changes made during the "
+"import."
+msgstr ""
+"Het wordt sterk aangeraden om een back-up te maken van uw database voordat u "
+"verder gaat, omdat er geen eenvoudige manier is om de wijzigingen ongedaan "
+"te maken die tijdens het importeren zijn gemaakt."
+
+msgid ""
+"If you're importing a large CSV file, make sure to check your server limits, "
+"as exceeding them may disrupt the import."
+msgstr ""
+"Als u een groot CSV-bestand importeert, controleer dan de limieten van uw "
+"server."
+
+msgid ""
+"If you still need to import a large file, you can split it into several "
+"parts and upload them one by one."
+msgstr ""
+"Als u nog steeds een groot bestand moet importeren, kunt u het in meerdere "
+"delen splitsen en ze een voor een uploaden."
+
+msgid "Choose CSV file to import"
+msgstr "Kies CSV-bestand om te importeren"
+
+#, php-format
+msgid ""
+"You can find full import guide in <a href=\"%s\" target=_blank>our "
+"documentation</a>."
+msgstr ""
+"U kunt de volledige handleiding over importeren vinden in <a href=\"%s\" "
+"target=_blank>onze documentatie</a>."
+
+msgid "I understand that I am proceeding with the import at my own risk."
+msgstr "Ik begrijp dat ik de import op eigen risico uitvoer."
+
+msgid "Proceed"
+msgstr "Doorgaan"
+
+msgid ""
+"When importing data from a CSV file, map the columns in your file to the "
+"corresponding fields in Bookly."
+msgstr ""
+"Wanneer u gegevens importeert vanuit een CSV-bestand, koppel dan de kolommen "
+"in uw bestand aan de corresponderende velden in Bookly."
+
+msgid ""
+" Use the dropdown menus and input fields to specify which data from your CSV "
+"should be imported to each field."
+msgstr ""
+" Gebruik de vervolgkeuzemenu's en invoervelden om aan te geven welke "
+"gegevens uit uw CSV in elk veld geïmporteerd moeten worden."
+
+msgid "Set the corresponding duration in minutes."
+msgstr "Stel de bijbehorende duur in minuten in."
+
+msgid "Set the corresponding price in your currency."
+msgstr "Stel de bijbehorende prijs in uw valuta in."
+
+msgid ""
+"If the imported file does not contain a column for the status value, select "
+"Custom and set a default status for appointments."
+msgstr ""
+"Als het geïmporteerde bestand geen kolom voor de statuswaarde bevat, "
+"selecteer dan Aangepast en stel een standaard status in voor afspraken."
+
+msgid "required"
+msgstr "verplicht"
+
+msgid "Something went wrong"
+msgstr "Er is iets fout gegaan"
+
+msgid "You have a previously imported file detected."
+msgstr "U hebt een eerder geïmporteerd bestand gedetecteerd."
+
+msgid ""
+"If you encountered any issues during the import, you can roll back the "
+"import of this file."
+msgstr ""
+"Als u problemen hebt ondervonden tijdens het importeren, kunt u het "
+"importeren van dit bestand terugdraaien."
+
+msgid "Rollback"
+msgstr "Terugzetten"
+
+msgid "Import successful"
+msgstr "Importeren gelukt"
+
+msgid "Import results"
+msgstr "Importeer resultaten"
+
+msgid "Staff members imported"
+msgstr "Medewerkers geïmporteerd"
+
+msgid "Services imported"
+msgstr "Services geïmporteerd"
+
+msgid "Clients imported"
+msgstr "Klanten geïmporteerd"
+
+msgid "Appointments imported"
+msgstr "Afspraken geïmporteerd"
+
 msgid "End points"
 msgstr "Eindpunten"
 
 msgid "All actions"
 msgstr "Alle acties"
 
-msgid "Clear logs"
-msgstr "Logboeken wissen"
+msgid "Clear all logs"
+msgstr "Wis alle logboeken"
+
+msgid "Restore records"
+msgstr "Records herstellen"
 
 msgid "Keep logs"
 msgstr "Logboeken bijhouden"
@@ -6029,9 +6231,6 @@ msgstr ""
 "Kies of een melding zou moeten worden verstuurd voor specifieke diensten of "
 "niet."
 
-msgid "days"
-msgstr "dagen"
-
 msgid "before"
 msgstr "voor"
 
@@ -6483,7 +6682,7 @@ msgid "Column"
 msgstr "Kolom"
 
 msgid "Entries per page"
-msgstr ""
+msgstr "Invoer per pagina"
 
 msgid "Attach ICS file"
 msgstr "ICS bestand bijvoegen"
@@ -6871,9 +7070,6 @@ msgstr "Onthoud mij"
 msgid "Lost your password?"
 msgstr "Wachtwoord vergeten?"
 
-msgid "Loading..."
-msgstr "Laden..."
-
 msgid "Powered by"
 msgstr "Aangedreven door"
 
@@ -7256,13 +7452,13 @@ msgid "Life Time"
 msgstr "Levenslang"
 
 msgid "Days from the first booking"
-msgstr ""
+msgstr "Dagen vanaf de eerste boeking"
 
 msgid "Days from the creation"
-msgstr ""
+msgstr "Dagen vanaf de creatie"
 
 msgid "Number of days"
-msgstr ""
+msgstr "Aantal dagen"
 
 msgid "The period in days when the customer can use a package of services."
 msgstr ""
@@ -7786,7 +7982,7 @@ msgid "A custom block for displaying staff form"
 msgstr "Een aangepast blok voor de weergave van het personeelsformulier"
 
 msgid "The calendar list is not available"
-msgstr ""
+msgstr "De agendalijst is niet beschikbaar"
 
 msgid "no limit"
 msgstr "geen limiet"
@@ -8248,14 +8444,6 @@ msgid ""
 msgstr ""
 "Als u niet geen geldige aankoop code verstrekt binnen {days}, zal de toegang "
 "tot uw boekingen worden uitgeschakeld."
-
-#, php-format
-msgid ""
-"To set up Zoom integration, follow the instructions in <a href=\"%s\" "
-"target=\"_blank\">our documentation</a>"
-msgstr ""
-"Volg de instructies in <a href=\"%s\" target=\"_blank\">onze documentatie</a>"
-" om de Zoom-integratie in te stellen."
 
 msgid "Authentication"
 msgstr "Authenticatie"
@@ -8839,9 +9027,6 @@ msgstr "Deze afspraak bestaat niet."
 msgid "Cancellation of this appointment is not allowed."
 msgstr "Annulering van deze afspraak is niet toegestaan."
 
-msgid "Import"
-msgstr "Importeren"
-
 msgid "Note"
 msgstr "Belangrijk"
 
@@ -8859,6 +9044,9 @@ msgstr "Selecteer bestand"
 
 msgid "Date of birth"
 msgstr "Geboortedatum"
+
+msgid "Skip first row of CSV file"
+msgstr "Eerste rij van het CSV-bestand overslaan"
 
 msgid "Analytics"
 msgstr "Analytics"
@@ -9413,9 +9601,6 @@ msgstr ""
 
 msgid "Thank you for choosing Bookly Pro as your booking solution."
 msgstr "Bedankt voor het kiezen voor Bookly Pro als uw boekingsoplossing."
-
-msgid "Proceed"
-msgstr "Doorgaan"
 
 msgid ""
 "Please contact your website administrator to verify your license by "
@@ -10056,6 +10241,9 @@ msgstr ""
 msgid "Set appointment"
 msgstr "Stel afspraak in"
 
+msgid "Waiting List"
+msgstr "Wachtlijst"
+
 msgid "Add customers to the waiting list despite the capacity value"
 msgstr "Voeg klanten toe aan de wachtlijst ondanks de capaciteitswaarde"
 
@@ -10092,9 +10280,6 @@ msgid ""
 msgstr ""
 "Stel de URL in van een pagina die aan klanten wordt getoond wanneer het "
 "maken van een afspraak uit de wachtlijst niet meer mogelijk is."
-
-msgid "Waiting List"
-msgstr "Wachtlijst"
 
 msgid "Show waiting list slots"
 msgstr "Toon wachtlijst sloten"
@@ -10637,11 +10822,11 @@ msgstr "Nieuwe korting"
 msgid "Edit discount"
 msgstr "Korting bewerken"
 
-msgid "Set maximum value for Quantity field."
-msgstr "Stel de maximale waarde in voor het veld Aantal."
-
 msgid "Multiply Appointments"
 msgstr "Meerdere Afspraken"
+
+msgid "Set maximum value for Quantity field."
+msgstr "Stel de maximale waarde in voor het veld Aantal."
 
 msgid "Google Calendar event"
 msgstr "Google Kalender evenement"

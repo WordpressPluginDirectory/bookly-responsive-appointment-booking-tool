@@ -470,6 +470,8 @@ class Installer extends Base\Installer
             'bookly_smtp_secure' => 'none',
             // Appointments.
             'bookly_appointment_end_date_method' => 'default',
+            'bookly_advanced_time_slot_length_minutes' => '',
+            'bookly_advanced_slot_date_format' => 'D, M d'
         );
     }
 

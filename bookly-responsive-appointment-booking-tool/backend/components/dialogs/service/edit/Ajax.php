@@ -19,7 +19,6 @@ class Ajax extends Lib\Base\Ajax
         if ( $required_sub_services ) {
             $simple_services = Lib\Entities\Service::query()
                 ->select( 'id, title, duration, color, type' )
-                ->where( 'units_max', 1 )
                 ->where( 'type', Lib\Entities\Service::TYPE_SIMPLE )
                 ->indexBy( 'id' )
                 ->sortBy( 'position' )

@@ -1436,6 +1436,12 @@ msgstr ""
 msgid "Processing..."
 msgstr ""
 
+msgid "No data available in table"
+msgstr ""
+
+msgid "Loading..."
+msgstr ""
+
 msgid "No result found"
 msgstr ""
 
@@ -3131,7 +3137,7 @@ msgid ""
 "access"
 msgstr ""
 
-msgid "No records."
+msgid "No matching records found"
 msgstr ""
 
 msgid "Add service"
@@ -3920,10 +3926,7 @@ msgstr ""
 msgid "Sender ID is reset to default."
 msgstr ""
 
-msgid "No matching records found"
-msgstr ""
-
-msgid "No data available in table"
+msgid "No records."
 msgstr ""
 
 msgid "enable"
@@ -4204,6 +4207,168 @@ msgid "Success"
 msgstr ""
 
 msgid "Warning"
+msgstr ""
+
+msgid "Import file"
+msgstr ""
+
+msgid "Skip first row"
+msgstr ""
+
+msgid "Service name"
+msgstr ""
+
+msgid "Start date"
+msgstr ""
+
+msgid "End date / Duration"
+msgstr ""
+
+msgid "Staff name"
+msgstr ""
+
+msgid "Client name"
+msgstr ""
+
+msgid "Client email"
+msgstr ""
+
+msgid "Client phone"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "minutes"
+msgstr ""
+
+msgid "Empty value"
+msgstr ""
+
+msgid ""
+"By proceeding with the import process, the following actions will be "
+"performed:"
+msgstr ""
+
+msgid ""
+"New staff members, services, customers, appointments and payments will be "
+"created based on the data in your CSV file."
+msgstr ""
+
+msgid ""
+"Services will be linked to staff members, and customers will be linked to "
+"their appointments."
+msgstr ""
+
+msgid ""
+"If exact service duration data is unavailable, durations will be calculated "
+"based on the start and end times of appointments."
+msgstr ""
+
+msgid ""
+"If a service, staff member, or customer already exists, the existing records "
+"will be used to avoid duplication."
+msgstr ""
+
+msgid ""
+"Instant notifications will not be sent, but all types of reminders will be "
+"sent."
+msgstr ""
+
+msgid "Please note:"
+msgstr ""
+
+msgid "Imported appointments will not be synced with external calendars."
+msgstr ""
+
+msgid "You must fully understand the data you are importing and its impact."
+msgstr ""
+
+msgid ""
+"It is strongly recommended to back up your database before proceeding, as "
+"there will be no straightforward way to undo the changes made during the "
+"import."
+msgstr ""
+
+msgid ""
+"If you're importing a large CSV file, make sure to check your server limits, "
+"as exceeding them may disrupt the import."
+msgstr ""
+
+msgid ""
+"If you still need to import a large file, you can split it into several "
+"parts and upload them one by one."
+msgstr ""
+
+msgid "Choose CSV file to import"
+msgstr ""
+
+#, php-format
+msgid ""
+"You can find full import guide in <a href=\"%s\" target=_blank>our "
+"documentation</a>."
+msgstr ""
+
+msgid "I understand that I am proceeding with the import at my own risk."
+msgstr ""
+
+msgid "Proceed"
+msgstr ""
+
+msgid ""
+"When importing data from a CSV file, map the columns in your file to the "
+"corresponding fields in Bookly."
+msgstr ""
+
+msgid ""
+"Use the dropdown menus and input fields to specify which data from your CSV "
+"should be imported to each field."
+msgstr ""
+
+msgid "Set the corresponding duration in minutes."
+msgstr ""
+
+msgid "Set the corresponding price in your currency."
+msgstr ""
+
+msgid ""
+"If the imported file does not contain a column for the status value, select "
+"Custom and set a default status for appointments."
+msgstr ""
+
+msgid "required"
+msgstr ""
+
+msgid "Something went wrong"
+msgstr ""
+
+msgid "You have a previously imported file detected."
+msgstr ""
+
+msgid ""
+"If you encountered any issues during the import, you can roll back the "
+"import of this file."
+msgstr ""
+
+msgid "Rollback"
+msgstr ""
+
+msgid "Import successful"
+msgstr ""
+
+msgid "Import results"
+msgstr ""
+
+msgid "Staff members imported"
+msgstr ""
+
+msgid "Services imported"
+msgstr ""
+
+msgid "Clients imported"
+msgstr ""
+
+msgid "Appointments imported"
 msgstr ""
 
 msgid "End points"
@@ -5188,9 +5353,6 @@ msgid ""
 "Choose whether notification should be sent for specific services only or not."
 msgstr ""
 
-msgid "days"
-msgstr ""
-
 msgid "before"
 msgstr ""
 
@@ -5936,9 +6098,6 @@ msgid "Remember Me"
 msgstr ""
 
 msgid "Lost your password?"
-msgstr ""
-
-msgid "Loading..."
 msgstr ""
 
 msgid "Powered by"
@@ -7564,9 +7723,6 @@ msgstr ""
 msgid "Cancellation of this appointment is not allowed."
 msgstr ""
 
-msgid "Import"
-msgstr ""
-
 msgid "Note"
 msgstr ""
 
@@ -8057,9 +8213,6 @@ msgid ""
 msgstr ""
 
 msgid "Thank you for choosing Bookly Pro as your booking solution."
-msgstr ""
-
-msgid "Proceed"
 msgstr ""
 
 msgid ""
