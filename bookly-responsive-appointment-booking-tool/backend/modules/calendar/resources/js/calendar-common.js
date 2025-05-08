@@ -18,7 +18,8 @@
                     : obj.options.l10n.datePicker.meridiem[isLower ? 'pm' : 'PM'];
             },
         });
-        let existsAppointmentForm = typeof BooklyAppointmentDialog !== 'undefined'
+
+        let allowEditAppointment = typeof BooklyAppointmentDialog !== 'undefined' && (!options.hasOwnProperty('disable_editor') || !options.disable_editor);
 
         let viewTypes = {
             dayGridMonth: 'resourceTimelineMonth',
@@ -170,7 +171,7 @@
                             $arrow = $('<div class="arrow" style="left:8px;"></div><div class="bookly-arrow-background"></div>');
                         }
                         let $body = $('<div class="popover-body">');
-                        let $buttons = existsAppointmentForm ? popoverButtons(arg) : '';
+                        let $buttons = allowEditAppointment ? popoverButtons(arg) : '';
                         $body.append(arg.event.extendedProps.tooltip).append($buttons).css({minWidth: '200px'});
                         $popover.append($arrow).append($body);
                         $event.append($popover);
@@ -241,7 +242,7 @@
                         break;
                 }
 
-                if (arg.view.type === 'listWeek' && existsAppointmentForm) {
+                if (arg.view.type === 'listWeek' && allowEditAppointment) {
                     $title.append(popoverButtons(arg));
                 }
 
@@ -252,7 +253,7 @@
                     return;
                 }
                 arg.jsEvent.stopPropagation();
-                if (existsAppointmentForm) {
+                if (allowEditAppointment) {
                     let visible_staff_id;
                     if (arg.view.type === 'resourceTimeGridDay') {
                         visible_staff_id = 0;
@@ -309,7 +310,7 @@
                     return;
                 }
                 if (isLoading) {
-                    if (existsAppointmentForm) {
+                    if (allowEditAppointment) {
                         BooklyL10nAppDialog.refreshed = true;
                     }
                     if (dateSetFromDatePicker) {
@@ -409,7 +410,7 @@
         }
 
         function addAppointmentDialog(date, staffId, visibleStaffId) {
-            if (existsAppointmentForm) {
+            if (allowEditAppointment) {
                 BooklyAppointmentDialog.showDialog(
                     null,
                     parseInt(staffId),

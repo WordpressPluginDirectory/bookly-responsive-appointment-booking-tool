@@ -2,6 +2,7 @@
 namespace Bookly\Backend\Modules\Payments;
 
 use Bookly\Lib;
+use Bookly\Backend\Modules\Appointments\Proxy;
 
 class Page extends Lib\Base\Component
 {
@@ -22,7 +23,7 @@ class Page extends Lib\Base\Component
 
         wp_localize_script( 'bookly-payments.js', 'BooklyL10n', array(
             'datePicker' => Lib\Utils\DateTime::datePickerOptions(),
-            'dateRange' => Lib\Utils\DateTime::dateRangeOptions( array( 'lastMonth' => __( 'Last month', 'bookly' ), ) ),
+            'dateRange' => Lib\Utils\DateTime::dateRangeOptions( array( 'lastMonth' => __( 'Last month', 'bookly' ), 'appAtAnyTime' => __( 'Any time', 'bookly' ), ) ),
             'zeroRecords' => __( 'No payments for selected period and criteria.', 'bookly' ),
             'processing' => __( 'Processing...', 'bookly' ),
             'emptyTable' => __( 'No data available in table', 'bookly' ),
@@ -36,6 +37,10 @@ class Page extends Lib\Base\Component
             'invoice' => array(
                 'enabled' => (int) Lib\Config::invoicesActive(),
                 'button'  => __( 'Invoice', 'bookly' ),
+            ),
+            'tasks' => array(
+                'enabled' => Lib\Config::tasksActive(),
+                'title' => Proxy\Tasks::getFilterText(),
             ),
         ) );
 

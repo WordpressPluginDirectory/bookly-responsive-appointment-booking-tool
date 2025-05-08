@@ -4,6 +4,7 @@ namespace Bookly\Backend\Components\Dialogs\Service\Edit;
 use Bookly\Lib;
 use Bookly\Backend\Modules\Services\Proxy as ServicesProxy;
 use Bookly\Backend\Modules\Services\Page as ServicesPage;
+use Bookly\Lib\Utils\Advertisement;
 
 class Ajax extends Lib\Base\Ajax
 {
@@ -28,7 +29,7 @@ class Ajax extends Lib\Base\Ajax
                 ->where( 'service_id', $service['id'] )
                 ->sortBy( 'position' )
                 ->fetchArray();
-            $sub_services_count = array_sum( array_map( function ( $sub_service ) {
+            $sub_services_count = array_sum( array_map( function( $sub_service ) {
                 return (int) ( $sub_service['type'] == Lib\Entities\SubService::TYPE_SERVICE );
             }, $service['sub_services'] ) );
         } else {
@@ -42,7 +43,7 @@ class Ajax extends Lib\Base\Ajax
         $result = array(
             'html' => array(
                 'general' => self::renderTemplate( 'general', compact( 'service', 'service_types', 'simple_services', 'staff_dropdown_data', 'categories_collection', 'staff_ids' ), false ),
-                'advanced' => Proxy\Pro::getAdvancedHtml( $service ),
+                'advanced' => Lib\Config::proActive() ? Proxy\Pro::getAdvancedHtml( $service ) : Advertisement::render( 'services-modal-advanced-tab', ! Lib\Config::proActive(), false ),
                 'time' => self::renderTemplate( 'time', compact( 'service' ), false ),
                 'extras' => Proxy\ServiceExtras::getTabHtml( $service_id ),
                 'schedule' => Proxy\ServiceSchedule::getTabHtml( $service_id ),

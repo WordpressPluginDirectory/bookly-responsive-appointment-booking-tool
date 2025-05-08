@@ -4,18 +4,21 @@ use Bookly\Lib\Utils\Common;
 use Bookly\Lib\Utils\DateTime;
 use Bookly\Lib\Entities\Service;
 use Bookly\Backend\Components\Dialogs\Service\Edit\Proxy;
+use Bookly\Lib\Utils\Advertisement;
+
 /**
  * @var array $service
  */
 ?>
 <div class="bookly-js-service-time-container">
+    <?php Advertisement::render( 'services-modal-time-tab', ! Config::proActive() ) ?>
     <div class="form-group bookly-js-service bookly-js-service-simple">
         <label for="bookly-service-duration">
             <?php esc_html_e( 'Duration', 'bookly' ) ?>
         </label>
         <?php
-            $options = Common::getDurationSelectOptions( $service['duration'] );
-            $options = Proxy\CustomDuration::prepareServiceDurationOptions( $options, $service );
+        $options = Common::getDurationSelectOptions( $service['duration'] );
+        $options = Proxy\CustomDuration::prepareServiceDurationOptions( $options, $service );
         ?>
         <select id="bookly-service-duration" class="bookly-js-duration form-control custom-select" name="duration">
             <?php foreach ( $options as $option ): ?>

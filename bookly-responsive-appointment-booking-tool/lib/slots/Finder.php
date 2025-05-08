@@ -600,7 +600,7 @@ class Finder
             ->whereIn( 'h.staff_id', array_keys( $this->staff ) )
             ->whereRaw( 'h.repeat_event = 1 OR h.date >= %s', array( $this->start_dp->format( 'Y-m-d' ) ) )
             ->fetchArray();
-        
+
         foreach ( $holidays as $holiday ) {
             $this->staff[ $holiday['staff_id'] ]->addHoliday( $holiday['date'] );
         }
@@ -670,6 +670,7 @@ class Finder
                     $padding_left,
                     $this->start_dp->modify( sprintf( '-%d days', $staff_preference_period_before ) )->format( 'Y-m-d' ),
                 ) )
+            ->whereLt( 'a.start_date', date_create()->modify( ( Lib\Config::getMaximumAvailableDaysForBooking() + 7 ) . ' days' )->format( 'Y-m-d' ) )
             ->groupBy( 'a.id' )
             ->fetchArray();
         foreach ( $bookings as $booking ) {

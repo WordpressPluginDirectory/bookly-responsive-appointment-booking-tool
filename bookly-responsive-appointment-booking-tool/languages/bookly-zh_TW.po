@@ -8,8 +8,8 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-03 07:26+0000\n"
-"PO-Revision-Date: 2025-02-03 15:47+0000\n"
+"POT-Creation-Date: 2025-04-29 06:51+0000\n"
+"PO-Revision-Date: 2025-04-29 16:43+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Chinese (Taiwan)\n"
 "X-Loco-Version: 2.3.1; wp-6.7"
@@ -1558,9 +1558,6 @@ msgstr "禁用更新服務"
 msgid "Disable price update"
 msgstr "禁用更新價錢"
 
-msgid "Hide create appointment button"
-msgstr "隱藏創建預約按鈕"
-
 msgid "Insert"
 msgstr "插入"
 
@@ -2109,6 +2106,9 @@ msgstr "時區"
 
 msgid "Employee"
 msgstr "員工"
+
+msgid "WordPress password"
+msgstr "WordPress密碼"
 
 msgid "Profile"
 msgstr "簡介"
@@ -3185,6 +3185,17 @@ msgstr "無法將預約存進系統"
 msgid "%s has reached the limit of bookings for this service"
 msgstr "%s 已達到此服務的限制數量"
 
+#, php-format
+msgid ""
+"To get access to more <a href=\"%s\" target=\"_blank\">features</a>, "
+"lifetime free updates and 24/7 support, upgrade to the Pro version of Bookly."
+msgstr ""
+"要獲取更多<a href=\"%s\" target=\"_blank\">功能</a>，終身免費更新和24小時客服支援，請升級至Bookly "
+"Pro版本。"
+
+msgid "Upgrade"
+msgstr "升級"
+
 msgid "No."
 msgstr "號"
 
@@ -4028,6 +4039,15 @@ msgid ""
 "appointments"
 msgstr "如果啟用，將在“日曆”周圍看到新創建預約的標誌"
 
+msgid "Scrollable calendar"
+msgstr "可滾動日曆"
+
+msgid ""
+"If enabled, the backend calendar will occupy part of the screen and remain "
+"scrollable. If disabled, it will take up more space and scroll along with "
+"the entire page."
+msgstr "如啟用，則後端日曆將佔用熒幕的一部分並保持可滾動狀態。如禁用，則後端日曆將佔用更多空間並隨整個頁面滾動。"
+
 msgid "Month view style"
 msgstr "月視圖樣式"
 
@@ -4601,9 +4621,6 @@ msgstr "警告"
 msgid "Import file"
 msgstr "導入文件"
 
-msgid "Skip first row"
-msgstr "跳過第一行"
-
 msgid "Service name"
 msgstr "服務名稱"
 
@@ -4710,9 +4727,9 @@ msgid ""
 msgstr "從CSV文件導入資料時，將您文件中的列映射到Bookly中的相應字段。"
 
 msgid ""
-" Use the dropdown menus and input fields to specify which data from your CSV "
+"Use the dropdown menus and input fields to specify which data from your CSV "
 "should be imported to each field."
-msgstr "使用下拉列表和輸入字段來指定應該將CSV中的哪些資料導入到每個字段中。"
+msgstr "使用下拉列表和輸入字段來指定應該將CSV中的哪些數據導入到每個字段中。"
 
 msgid "Set the corresponding duration in minutes."
 msgstr "設定相應時長（分鐘）。"
@@ -4949,6 +4966,9 @@ msgstr "新聞"
 
 msgid "More news"
 msgstr "更多新聞"
+
+msgid "Appointment at any time"
+msgstr "任何時間預約"
 
 msgid "No payments for selected period and criteria."
 msgstr "所選期間和條件下沒有付款。"
@@ -5250,6 +5270,12 @@ msgstr "立即獲得！"
 msgid ""
 "See the number of appointments and total revenue for the selected period"
 msgstr "查看選定期間的預約次數和總收入"
+
+msgid "Based on appointment date"
+msgstr "根據預約日期"
+
+msgid "Based on date of creation"
+msgstr "根據創建日期"
 
 msgid "End date of appointment"
 msgstr "預約完結日期"
@@ -5695,6 +5721,12 @@ msgstr "增加"
 
 msgid "Reset"
 msgstr "重置"
+
+msgid "Clone"
+msgstr "克隆"
+
+msgid "Add break"
+msgstr "添加休息"
 
 msgid "Notification settings"
 msgstr "通知設定"
@@ -6304,9 +6336,6 @@ msgstr "Google日曆整合"
 
 msgid "Advanced service and staff management"
 msgstr "高級服務和員工管理"
-
-msgid "Upgrade"
-msgstr "升級"
 
 #, php-format
 msgid ""
@@ -7381,6 +7410,9 @@ msgstr "用於顯示服務表單的自定義塊"
 msgid "A custom block for displaying staff form"
 msgstr "用於顯示員工表單的自定義塊"
 
+msgid "A custom block for displaying tags form"
+msgstr "用於顯示標籤表單的自定義塊"
+
 msgid "The calendar list is not available"
 msgstr "日曆列表不可用"
 
@@ -7964,6 +7996,14 @@ msgid ""
 "right service."
 msgstr "現代、快速、流暢的表單能讓您的客戶輕鬆找到正確的服務。"
 
+msgid "Tags form"
+msgstr "標簽表單"
+
+msgid ""
+"This form allows you to organize the structure and navigation based on tags "
+"assigned to services."
+msgstr "此表單允許您根據分配給服務的標籤來整理結構和導航。"
+
 msgid ""
 "Catalog view allows you to organize and display the services conveniently "
 "for your customers."
@@ -8012,6 +8052,9 @@ msgstr "處理後標題"
 msgid "Main color"
 msgstr "主要顏色"
 
+msgid "Hide form borders"
+msgstr "隱藏表單邊框"
+
 msgid "Show 'Book more' button"
 msgstr "顯示\"預定更多\"按鈕"
 
@@ -8044,6 +8087,9 @@ msgstr "隱藏分類步驟"
 
 msgid "Hide services step"
 msgstr "隱藏服務步驟"
+
+msgid "Hide tags step"
+msgstr "隱藏標籤步驟"
 
 msgid "Staff list"
 msgstr "員工列表"
@@ -8138,6 +8184,27 @@ msgstr "在員工姓名前顯示員工評級"
 
 msgid "Skip step"
 msgstr "跳過步驟"
+
+msgid "Initial view"
+msgstr "初始視圖"
+
+msgid "Form"
+msgstr "表單"
+
+msgid "Button title"
+msgstr "按鍵名稱"
+
+msgid "Add subsection"
+msgstr "添加子分區"
+
+msgid "Section title"
+msgstr "分區名稱"
+
+msgid "Allow skip"
+msgstr "允許跳過"
+
+msgid "Skip button title"
+msgstr "跳過按鍵名稱"
 
 msgid "Add new form"
 msgstr "添加新表單"

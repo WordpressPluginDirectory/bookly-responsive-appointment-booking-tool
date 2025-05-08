@@ -52,6 +52,8 @@ class Staff extends Lib\Base\Entity
 
     protected static $table = 'bookly_staff';
 
+    protected $loggable = true;
+
     protected static $schema = array(
         'id' => array( 'format' => '%d' ),
         'wp_user_id' => array( 'format' => '%d' ),
@@ -833,6 +835,12 @@ class Staff extends Lib\Base\Entity
         if ( $this->getMobileStaffCabinetToken() ) {
             $cloud = Lib\Cloud\API::getInstance();
             $cloud->getProduct( Lib\Cloud\Account::PRODUCT_MOBILE_STAFF_CABINET )->revokeKeys( array( $this->getMobileStaffCabinetToken() ) );
+        }
+
+        /** @var Appointment[] $app_list */
+        $app_list = Appointment::query()->where( 'staff_id', $this->getId() )->find();
+        foreach ( $app_list as $app ) {
+            $app->delete();
         }
 
         parent::delete();

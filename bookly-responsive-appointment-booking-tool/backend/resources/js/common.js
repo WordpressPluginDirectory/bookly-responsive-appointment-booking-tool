@@ -148,7 +148,7 @@ function requiredBooklyPro() {
                 booklyModal('', $content, response.data.close, response.data.upgrade)
                     .on('bs.click.main.button', function (event, modal, mainButton) {
                         Ladda.create(mainButton).start();
-                        window.location.href = 'https://codecanyon.net/item/bookly-booking-plugin-responsive-appointment-booking-and-scheduling/7226091?ref=ladela&utm_campaign=admin_menu&utm_medium=pro_not_active&utm_source=bookly_admin';
+                        window.location.href = 'https://www.booking-wp-plugin.com/pricing';
                         modal.booklyModal('hide');
                     })
                     .on('show.bs.modal', function () {

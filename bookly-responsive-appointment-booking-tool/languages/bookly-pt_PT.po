@@ -8,8 +8,8 @@ msgstr ""
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-03 14:40+0000\n"
-"PO-Revision-Date: 2025-02-03 14:41+0000\n"
+"POT-Creation-Date: 2025-04-29 06:51+0000\n"
+"PO-Revision-Date: 2025-04-30 06:26+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Portuguese (Portugal)\n"
 "X-Loco-Version: 2.3.1; wp-6.7"
@@ -1682,9 +1682,6 @@ msgstr "Desativar atualização de serviços"
 msgid "Disable price update"
 msgstr "Desativar atualização de preço"
 
-msgid "Hide create appointment button"
-msgstr "Oculte o botão criar compromisso"
-
 msgid "Insert"
 msgstr "Inserir"
 
@@ -2272,6 +2269,9 @@ msgstr "Fuso horário"
 
 msgid "Employee"
 msgstr "Empregado"
+
+msgid "WordPress password"
+msgstr "Palavra-passe do WordPress"
 
 msgid "Profile"
 msgstr "Perfil"
@@ -3415,6 +3415,18 @@ msgstr "Não foi possível guardar a reserva no banco de dados."
 msgid "%s has reached the limit of bookings for this service"
 msgstr "%s alcançou o limite de reservas para este serviço"
 
+#, php-format
+msgid ""
+"To get access to more <a href=\"%s\" target=\"_blank\">features</a>, "
+"lifetime free updates and 24/7 support, upgrade to the Pro version of Bookly."
+msgstr ""
+"Para ter acesso a mais <a href=\"%s\" target=\"_blank\">caraterísticas</a>, "
+"atualizações gratuitas vitalícias e suporte 24 horas por dia, 7 dias por "
+"semana, atualize para a versão Pro do Bookly."
+
+msgid "Upgrade"
+msgstr "Atualização"
+
 msgid "No."
 msgstr "Núm."
 
@@ -4391,6 +4403,18 @@ msgstr ""
 "Se estiver ativado, verá um indicador perto de 'Calendário' para nomeações "
 "recém-criadas"
 
+msgid "Scrollable calendar"
+msgstr "Calendário com deslocação"
+
+msgid ""
+"If enabled, the backend calendar will occupy part of the screen and remain "
+"scrollable. If disabled, it will take up more space and scroll along with "
+"the entire page."
+msgstr ""
+"Se estiver ativada, o calendário backend ocupará parte do ecrã e permanecerá "
+"deslocável. Se estiver desativado, ocupará mais espaço e deslocar-se-á "
+"juntamente com toda a página."
+
 msgid "Month view style"
 msgstr ""
 "Estilo de vista do mês\n"
@@ -5042,9 +5066,6 @@ msgstr "Aviso"
 msgid "Import file"
 msgstr "Importar ficheiro"
 
-msgid "Skip first row"
-msgstr "Salte a primeira linha"
-
 msgid "Service name"
 msgstr "Nome do serviço"
 
@@ -5178,10 +5199,10 @@ msgstr ""
 "os campos correspondentes no Bookly."
 
 msgid ""
-" Use the dropdown menus and input fields to specify which data from your CSV "
+"Use the dropdown menus and input fields to specify which data from your CSV "
 "should be imported to each field."
 msgstr ""
-"Utilize os menus pendentes e os campos de entrada para especificar quais os "
+"Utilize os menus dropdown e os campos de entrada para especificar quais os "
 "dados do seu CSV que devem ser importados para cada campo."
 
 msgid "Set the corresponding duration in minutes."
@@ -5493,6 +5514,9 @@ msgstr "Novidades"
 
 msgid "More news"
 msgstr "Mais novidades"
+
+msgid "Appointment at any time"
+msgstr "A marcação em qualquer altura"
 
 msgid "No payments for selected period and criteria."
 msgstr "Nenhum pagamento para o período e/ou critério escolhido."
@@ -5835,6 +5859,12 @@ msgid ""
 "See the number of appointments and total revenue for the selected period"
 msgstr ""
 "Consulte o número de reserva e a receita total para o período selecionado"
+
+msgid "Based on appointment date"
+msgstr "Com base na data de marcação"
+
+msgid "Based on date of creation"
+msgstr "Com base na data de criação"
 
 msgid "End date of appointment"
 msgstr ""
@@ -6357,6 +6387,12 @@ msgstr "Adicionar"
 
 msgid "Reset"
 msgstr "Recuperar"
+
+msgid "Clone"
+msgstr "Clone"
+
+msgid "Add break"
+msgstr "Adicionar pausa"
 
 msgid "Notification settings"
 msgstr "Definições de notificações"
@@ -7061,9 +7097,6 @@ msgstr "Integração com o Calendário Google "
 
 msgid "Advanced service and staff management"
 msgstr "Serviço avançado e gestão do pessoal"
-
-msgid "Upgrade"
-msgstr "Atualização"
 
 #, php-format
 msgid ""
@@ -8220,6 +8253,9 @@ msgstr ""
 msgid "A custom block for displaying staff form"
 msgstr "Um bloco personalizado para exibir o formulário do pessoal"
 
+msgid "A custom block for displaying tags form"
+msgstr "Um bloco personalizado para apresentar o formulário de etiquetas"
+
 msgid "The calendar list is not available"
 msgstr "A lista de calendários não está disponível"
 
@@ -8956,6 +8992,16 @@ msgstr ""
 "Forma moderna, rápida e suave que permite aos seus clientes encontrar "
 "facilmente o serviço certo."
 
+msgid "Tags form"
+msgstr "Formulário de etiquetas"
+
+msgid ""
+"This form allows you to organize the structure and navigation based on tags "
+"assigned to services."
+msgstr ""
+"Este formulário permite-lhe organizar a estrutura e a navegação com base nas "
+"etiquetas atribuídas aos serviços."
+
 msgid ""
 "Catalog view allows you to organize and display the services conveniently "
 "for your customers."
@@ -9011,6 +9057,9 @@ msgstr "Indicação"
 msgid "Main color"
 msgstr "Cor principal"
 
+msgid "Hide form borders"
+msgstr "Ocultar os limites do formulário"
+
 msgid "Show 'Book more' button"
 msgstr "Mostrar botão 'Reservar mais'."
 
@@ -9043,6 +9092,9 @@ msgstr "Esconder etapa de categorias"
 
 msgid "Hide services step"
 msgstr "Esconder etapa de serviços"
+
+msgid "Hide tags step"
+msgstr "Ocultar etiquetas passo"
 
 msgid "Staff list"
 msgstr "Lista de staff"
@@ -9142,6 +9194,27 @@ msgstr "Exibir a nota do funcionário antes do nome"
 
 msgid "Skip step"
 msgstr "Saltar passo"
+
+msgid "Initial view"
+msgstr "Vista inicial"
+
+msgid "Form"
+msgstr "Formulário"
+
+msgid "Button title"
+msgstr "Título do botão"
+
+msgid "Add subsection"
+msgstr "Adicionar subsecção"
+
+msgid "Section title"
+msgstr "Título da secção"
+
+msgid "Allow skip"
+msgstr "Permitir saltar"
+
+msgid "Skip button title"
+msgstr "Título do botão Saltar"
 
 msgid "Add new form"
 msgstr "Adicionar novo formulário"

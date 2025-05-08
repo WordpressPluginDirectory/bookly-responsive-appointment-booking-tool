@@ -8,8 +8,8 @@ msgstr ""
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-03 07:25+0000\n"
-"PO-Revision-Date: 2025-02-06 15:12+0000\n"
+"POT-Creation-Date: 2025-04-29 06:50+0000\n"
+"PO-Revision-Date: 2025-05-01 15:02+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: French (France)\n"
 "X-Loco-Version: 2.3.1; wp-6.7"
@@ -1673,9 +1673,6 @@ msgstr "Désactiver modification des services"
 msgid "Disable price update"
 msgstr "Désactiver modifications des prix"
 
-msgid "Hide create appointment button"
-msgstr "Masquer le bouton de création de rendez-vous"
-
 msgid "Insert"
 msgstr "Insérer"
 
@@ -2262,6 +2259,9 @@ msgstr "Fuseau horaire"
 
 msgid "Employee"
 msgstr "Employé"
+
+msgid "WordPress password"
+msgstr "Mot de passe WordPress"
 
 msgid "Profile"
 msgstr "Profil"
@@ -3377,6 +3377,18 @@ msgstr "Impossible d'enregistrer le rendez-vous dans la base."
 msgid "%s has reached the limit of bookings for this service"
 msgstr "%s a atteint la limite de réservation pour ce service"
 
+#, php-format
+msgid ""
+"To get access to more <a href=\"%s\" target=\"_blank\">features</a>, "
+"lifetime free updates and 24/7 support, upgrade to the Pro version of Bookly."
+msgstr ""
+"Pour accéder à davantage de <a href=\"%s\" target=\"_blank\">"
+"fonctionnalités</a>, à des mises à jour gratuites à vie et à une assistance "
+"24 h/24, 7 j/7, passez à la version Pro de Bookly."
+
+msgid "Upgrade"
+msgstr "Mise à niveau"
+
 msgid "No."
 msgstr "Non."
 
@@ -4349,6 +4361,18 @@ msgstr ""
 "Si cette option est activée, vous trouverez un indicateur près de "
 "\"Calendrier\" pour les rendez-vous nouvellement créés."
 
+msgid "Scrollable calendar"
+msgstr "Calendrier défilable"
+
+msgid ""
+"If enabled, the backend calendar will occupy part of the screen and remain "
+"scrollable. If disabled, it will take up more space and scroll along with "
+"the entire page."
+msgstr ""
+"Si cette option est activée, le calendrier backend occupera une partie de "
+"l'écran et restera défilable. Si elle est désactivée, il occupera plus "
+"d'espace et défilera avec l'ensemble de la page."
+
 msgid "Month view style"
 msgstr "Style de la vue mensuelle"
 
@@ -4987,9 +5011,6 @@ msgstr "Avertissement"
 msgid "Import file"
 msgstr "Importer un fichier"
 
-msgid "Skip first row"
-msgstr "Sauter la première ligne"
-
 msgid "Service name"
 msgstr "Nom du service"
 
@@ -5124,11 +5145,11 @@ msgstr ""
 "colonnes de votre fichier aux champs correspondants dans Bookly."
 
 msgid ""
-" Use the dropdown menus and input fields to specify which data from your CSV "
+"Use the dropdown menus and input fields to specify which data from your CSV "
 "should be imported to each field."
 msgstr ""
-" Utilisez les menus déroulants et les champs de saisie pour spécifier les "
-"données de votre CSV à importer dans chaque champ."
+"Utilisez les menus déroulants et les champs de saisie pour spécifier quelles "
+"données de votre fichier CSV doivent être importées dans chaque champ."
 
 msgid "Set the corresponding duration in minutes."
 msgstr "Régler la durée correspondante en minutes."
@@ -5417,6 +5438,9 @@ msgstr "Actualités"
 
 msgid "More news"
 msgstr "Plus d'actualités"
+
+msgid "Appointment at any time"
+msgstr "Rendez-vous à tout moment"
 
 msgid "No payments for selected period and criteria."
 msgstr "Pas de paiement pour la période et les critères."
@@ -5733,6 +5757,12 @@ msgid ""
 "See the number of appointments and total revenue for the selected period"
 msgstr ""
 "Voir le nombre de rendez-vous et le revenu total pour la période sélectionnée"
+
+msgid "Based on appointment date"
+msgstr "En fonction de la date de rendez-vous"
+
+msgid "Based on date of creation"
+msgstr "En fonction de la date de création"
 
 msgid "End date of appointment"
 msgstr "Date de fin du rendez-vous"
@@ -6218,6 +6248,12 @@ msgstr "Ajouter"
 
 msgid "Reset"
 msgstr "Réinitialiser"
+
+msgid "Clone"
+msgstr "Cloner"
+
+msgid "Add break"
+msgstr "Ajouter une rupture"
 
 msgid "Notification settings"
 msgstr "Paramètres notifications"
@@ -6901,9 +6937,6 @@ msgstr "Intégration Google Calendar"
 
 msgid "Advanced service and staff management"
 msgstr "Gestion avancée du service et du personnel"
-
-msgid "Upgrade"
-msgstr "Mise à niveau"
 
 #, php-format
 msgid ""
@@ -8049,6 +8082,9 @@ msgstr "Un bloc personnalisé pour afficher le formulaire des services"
 msgid "A custom block for displaying staff form"
 msgstr "Un bloc personnalisé pour afficher le formulaire du personnel"
 
+msgid "A custom block for displaying tags form"
+msgstr "Un bloc personnalisé pour afficher le formulaire de balises"
+
 msgid "The calendar list is not available"
 msgstr "La liste des calendriers n'est pas disponible"
 
@@ -8749,6 +8785,16 @@ msgstr ""
 "Un formulaire moderne, rapide et fluide qui permet à vos clients de trouver "
 "facilement le bon service."
 
+msgid "Tags form"
+msgstr "Formulaire de balises"
+
+msgid ""
+"This form allows you to organize the structure and navigation based on tags "
+"assigned to services."
+msgstr ""
+"Ce formulaire vous permet d'organiser la structure et la navigation en "
+"fonction des balises attribuées aux services."
+
 msgid ""
 "Catalog view allows you to organize and display the services conveniently "
 "for your customers."
@@ -8805,6 +8851,9 @@ msgstr "Slug"
 msgid "Main color"
 msgstr "Couleur principale"
 
+msgid "Hide form borders"
+msgstr "Masquer les bordures du formulaire"
+
 msgid "Show 'Book more' button"
 msgstr "Afficher le bouton \"Réserver plus\"."
 
@@ -8837,6 +8886,9 @@ msgstr "Cacher l'étape des catégories"
 
 msgid "Hide services step"
 msgstr "Cacher l'étape des services"
+
+msgid "Hide tags step"
+msgstr "Masquer l'étape de balises"
 
 msgid "Staff list"
 msgstr "Liste du personnel"
@@ -8936,6 +8988,27 @@ msgstr "Montrer l'évaluation de membre de l'équipe avant le nom de l'employé.
 
 msgid "Skip step"
 msgstr "Sauter l'étape"
+
+msgid "Initial view"
+msgstr "Vue initiale"
+
+msgid "Form"
+msgstr "Formulaire"
+
+msgid "Button title"
+msgstr "Titre du bouton"
+
+msgid "Add subsection"
+msgstr "Ajouter une sous-section"
+
+msgid "Section title"
+msgstr "Titre de la section"
+
+msgid "Allow skip"
+msgstr "Autoriser le saut"
+
+msgid "Skip button title"
+msgstr "Sauter le titre du bouton"
 
 msgid "Add new form"
 msgstr "Ajouter un nouveau formulaire"

@@ -70,7 +70,6 @@ class Page extends Lib\Base\Component
             'l10n' => array(
                 'file_label' => __( 'Import file', 'bookly' ),
                 'delimiter' => __( 'Delimiter', 'bookly' ),
-                'skip_first_row' => __( 'Skip first row', 'bookly' ),
                 'service_name_column' => __( 'Service name', 'bookly' ),
                 'start_date_column' => __( 'Start date', 'bookly' ),
                 'end_date_column' => __( 'End date / Duration', 'bookly' ),

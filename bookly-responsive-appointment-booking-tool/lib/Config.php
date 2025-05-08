@@ -115,6 +115,7 @@ abstract class Config
                 'recurrence_enabled' => (int) $row['recurrence_enabled'],
                 'recurrence_frequencies' => $row['recurrence_frequencies'],
                 'min_time_prior_booking' => array( (int) $min_time_prior_booking->format( 'Y' ), (int) $min_time_prior_booking->format( 'n' ) - 1, (int) $min_time_prior_booking->format( 'j' ), ),
+                'tags' => $row['tags'] ? json_decode( $row['tags'] ) : array(),
             );
 
             $result = Proxy\Shared::prepareCategoryService( $result, $row );
