@@ -49,6 +49,8 @@ class Dialog extends Lib\Base\Component
                 'date' => __( 'Date', 'bookly' ),
                 'deposit' => __( 'Deposit', 'bookly' ),
                 'discount' => __( 'Discount', 'bookly' ),
+                'child_payment' => __( 'Additional payment', 'bookly' ),
+                'checkout_url' => __( 'Copy checkout URL', 'bookly' ),
                 'due' => __( 'Due', 'bookly' ),
                 'group_discount' => __( 'Group discount', 'bookly' ),
                 'manual_adjustment' => __( 'Manual adjustment', 'bookly' ),

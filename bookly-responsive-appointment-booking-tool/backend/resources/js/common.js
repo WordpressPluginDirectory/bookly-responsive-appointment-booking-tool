@@ -163,22 +163,11 @@ function requiredBooklyPro() {
     window.booklyDataTables = {
         settings: {},
         init: function ($container, settings, initial_settings) {
-            if (initial_settings.hasOwnProperty('row_with_checkbox') && initial_settings.row_with_checkbox) {
-                initial_settings.columns.push({
-                    data: null,
-                    responsivePriority: 1,
-                    orderable: false,
-                    render: function (data, type, row, meta) {
-                        let prefix = meta.settings.sInstance + '-';
-                        return '<div class="custom-control custom-checkbox mt-1">' +
-                            '<input value="' + row.id + '" id="' + prefix + row.id + '" type="checkbox" class="custom-control-input">' +
-                            '<label for="' + prefix + row.id + '" class="custom-control-label"></label>' +
-                            '</div>'
-                    }
-                });
-                delete (initial_settings.row_with_checkbox);
-            }
             this.settings = settings;
+            if (initial_settings.hasOwnProperty('add_checkbox_column') && initial_settings.add_checkbox_column) {
+                this._addCheckboxColumn($container, initial_settings);
+                delete initial_settings.add_checkbox_column;
+            }
             const default_settings = {
                 order: this.getOrder(initial_settings.columns),
                 pageLength: this.getPageLength(),
@@ -235,10 +224,50 @@ function requiredBooklyPro() {
         },
         getRowData: function (element, dt) {
             const $el = $(element).closest('td');
-            const dataTable = dt || $(element).closest('table').DataTable();
+            const dataTable = dt || $el.closest('table').DataTable();
             return $el.hasClass('child')
                 ? dataTable.row($el.closest('tr').prev()).data()
                 : dataTable.row($el).data();
+        },
+
+        _addCheckboxColumn: function($container, initial_settings) {
+            const self = this;
+            const tableId = $container.prop('id');
+            const $deleteButton = $('#' + tableId + '-delete-button');
+
+            const $checkAll = $('<input>', {type: 'checkbox', id: 'bookly-check-all', class: 'custom-control-input'});
+            const $label = $('<label>', {class: 'custom-control-label', for: 'bookly-check-all'});
+            const $th = $('<th width="16px">').append($('<div>', { class: 'custom-control custom-checkbox' }).append($checkAll, $label));
+            $('thead tr', $container).append($th);
+
+            initial_settings.columns.push({
+                data: null,
+                responsivePriority: 1,
+                orderable: false,
+                render: function (data, type, row, meta) {
+                    const prefix = meta.settings.sInstance + '-';
+                    return `
+                    <div class="custom-control custom-checkbox mt-1">
+                        <input value="${row.id}" id="${prefix}${row.id}" type="checkbox" class="custom-control-input">
+                        <label for="${prefix}${row.id}" class="custom-control-label"></label>
+                    </div>`;
+                }
+            });
+
+            $checkAll.on('change', function() {
+                $container.find('tbody input:checkbox').prop('checked', this.checked);
+                self._updateDeleteButtonState($deleteButton, $container);
+            });
+
+            $container.on('change', 'tbody input:checkbox', function() {
+                $checkAll.prop('checked', $container.find('tbody input:not(:checked)').length === 0);
+                self._updateDeleteButtonState($deleteButton, $container);
+            });
+
+            this._updateDeleteButtonState($deleteButton, $container);
+        },
+        _updateDeleteButtonState: function($deleteButton, $container) {
+            $deleteButton.prop('disabled', $container.find('input:checked').length === 0);
         },
     };
 

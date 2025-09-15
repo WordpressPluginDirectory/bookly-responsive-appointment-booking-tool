@@ -20,6 +20,7 @@ abstract class Sender extends Booking\BaseSender
     {
         if ( Config::proActive() ) {
             Proxy\Pro::sendCombinedToClient( $order );
+            BooklyProxy\Events::sendNotifications( $order );
         }
 
         $codes = new Codes( $order );
@@ -37,7 +38,7 @@ abstract class Sender extends Booking\BaseSender
             } elseif ( $item->isPackage() ) {
                 /** @var Package $item */
                 BooklyProxy\Packages::sendNotifications( $item );
-            } elseif ( $item->isGiftCard() ) {
+            } elseif ( $item->isGiftCard() || $item->isEventAttendee() ) {
                 // ok
             } else {
                 // Notify client.

@@ -1054,38 +1054,31 @@ class Ajax extends Lib\Base\Ajax
             if ( $calendar === 'ics' ) {
                 self::renderIcs( $order );
             } else {
-                $format = 'Ymd\THis\Z';
-                switch ( $calendar ) {
-                    case 'outlook':
-                        $link = 'https://outlook.live.com/calendar/action/compose?rru=addevent&startdt=%s&enddt=%s&subject=%s&location=%s&body=%s&authRedirect=true&state=0';
-                        $format = 'Y-m-d\TH:i:s\Z';
-                        break;
-                    case 'yahoo':
-                        $link = 'https://calendar.yahoo.com/?v=60&st=%s&et=%s&title=%s&in_loc=%s&desc=%s';
-                        break;
-                    case 'google':
-                    default:
-                        $link = 'https://calendar.google.com/calendar/u/0/r/eventedit?dates=%s/%s&text=%s&location=%s&details=%s';
-                        break;
-                }
-                $list = $order->getCaItems();
+                list( $link, $format ) = self::getCalendarSettings( $calendar );
+                $list = $order->getItems();
                 if ( count( $list ) > 1 ) {
                     self::renderIcs( $order );
                 } elseif ( count( $list ) === 1 ) {
-                    $staff = Lib\Entities\Staff::find( $list[0]['item']->getAppointment()->getStaffId() );
-                    $location_id = $list[0]['item']->getAppointment()->getLocationId();
-                    $location = $location_id
-                        ? Lib\Proxy\Locations::findById( $location_id )
-                        : null;
-                    $start = date_create( Lib\Utils\DateTime::convertTimeZone( $list[0]['item']->getAppointment()->getStartDate(), Lib\Config::getWPTimeZone(), 'UTC' ) );
-                    $end = date_create( Lib\Utils\DateTime::convertTimeZone( $list[0]['item']->getAppointment()->getEndDate(), Lib\Config::getWPTimeZone(), 'UTC' ) );
+                    if ( $list[0]['type'] === 'event' ) {
+                        list( $start, $end, $title, $location, $description ) = Proxy\Events::getCalendarData( $list[0] );
+                    } else {
+                        $staff = Lib\Entities\Staff::find( $list[0]['item']->getAppointment()->getStaffId() );
+                        $location_id = $list[0]['item']->getAppointment()->getLocationId();
+                        $location = $location_id
+                            ? Lib\Proxy\Locations::findById( $location_id )
+                            : null;
+                        $start = date_create( Lib\Utils\DateTime::convertTimeZone( $list[0]['item']->getAppointment()->getStartDate(), Lib\Config::getWPTimeZone(), 'UTC' ) );
+                        $end = date_create( Lib\Utils\DateTime::convertTimeZone( $list[0]['item']->getAppointment()->getEndDate(), Lib\Config::getWPTimeZone(), 'UTC' ) );
+                        $description = urlencode( sprintf( "%s<br>%s", $list[0]['title'], $staff ? $staff->getTranslatedName() : '' ) );
+                        $title = urlencode( $list[0]['title'] );
+                    }
                     $redirect_url = sprintf(
                         $link,
                         $start->format( $format ),
                         $end->format( $format ),
-                        urlencode( $list[0]['title'] ),
+                        $title,
                         $location ? $location->getTranslatedName() : '',
-                        urlencode( sprintf( "%s<br>%s", $list[0]['title'], $staff ? $staff->getTranslatedName() : '' ) )
+                        $description
                     );
                     Lib\Utils\Common::redirect( $redirect_url );
                 }
@@ -1093,6 +1086,26 @@ class Ajax extends Lib\Base\Ajax
         }
 
         exit();
+    }
+
+    public static function getCalendarSettings( $calendar )
+    {
+        $format = 'Ymd\THis\Z';
+        switch ( $calendar ) {
+            case 'outlook':
+                $link = 'https://outlook.live.com/calendar/action/compose?rru=addevent&startdt=%s&enddt=%s&subject=%s&location=%s&body=%s&authRedirect=true&state=0';
+                $format = 'Y-m-d\TH:i:s\Z';
+                break;
+            case 'yahoo':
+                $link = 'https://calendar.yahoo.com/?v=60&st=%s&et=%s&title=%s&in_loc=%s&desc=%s';
+                break;
+            case 'google':
+            default:
+                $link = 'https://calendar.google.com/calendar/u/0/r/eventedit?dates=%s/%s&text=%s&location=%s&details=%s';
+                break;
+        }
+
+        return array( $link, $format );
     }
 
     /**

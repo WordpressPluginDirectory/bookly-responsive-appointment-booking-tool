@@ -57,9 +57,6 @@ use Bookly\Lib\Utils\Log;
                         <th><?php echo esc_html( $datatables['logs']['titles'][ $column ] ) ?></th>
                     <?php endif ?>
                 <?php endforeach ?>
-                <?php if ( $debug ) : ?>
-                    <th width="16"><?php Controls\Inputs::renderCheckBox( null, null, null, array( 'id' => 'bookly-check-all' ) ) ?></th>
-                <?php endif ?>
             </tr>
             </thead>
         </table>

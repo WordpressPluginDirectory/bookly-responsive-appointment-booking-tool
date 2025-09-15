@@ -27,7 +27,6 @@ use Bookly\Backend\Components\Controls\Buttons;
                 <?php endif ?>
             <?php endforeach ?>
             <th width='75'></th>
-            <th width='16'><?php Inputs::renderCheckBox( null, null, null, array( 'id' => 'bookly-cam-check-all' ) ) ?></th>
         </tr>
         </thead>
     </table>

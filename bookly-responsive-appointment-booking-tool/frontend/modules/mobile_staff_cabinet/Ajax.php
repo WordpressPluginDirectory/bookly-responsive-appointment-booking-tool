@@ -7,6 +7,10 @@ class Ajax extends Lib\Base\Ajax
 {
     /** @var Lib\Entities\Staff */
     protected static $staff;
+    /** @var \WP_User */
+    protected static $wp_user;
+    /** @var string|null */
+    protected static $role;
 
     /**
      * @inheritDoc
@@ -24,9 +28,14 @@ class Ajax extends Lib\Base\Ajax
         $json = file_get_contents( 'php://input' );
         $data = json_decode( $json, true ) ?: array();
         $params = isset( $data['params'] ) ? $data['params'] : array();
-        $response = new Response10( self::$staff, $params );
+        $response = new Response10( self::$role, $params );
         $action = array_key_exists( 'action', $data ) ? $data['action'] : null;
-        if ( self::$staff ) {
+        if ( self::$role ) {
+            if ( self::$role === Response10::ROLE_SUPERVISOR ) {
+                $response->setWpUser( self::$wp_user );
+            } elseif ( self::$role === Response10::ROLE_STAFF ) {
+                $response->setStaff( self::$staff );
+            }
             try {
                 switch ( $data['resource'] ) {
                     case 'init':
@@ -46,6 +55,8 @@ class Ajax extends Lib\Base\Ajax
                     case 'appointment':
                         if ( $action == 'save' ) {
                             $response->saveAppointment();
+                        } elseif ( $action == 'delete' ) {
+                            $response->deleteAppointment();
                         } else {
                             $response->appointment();
                         }
@@ -58,6 +69,9 @@ class Ajax extends Lib\Base\Ajax
                         break;
                     case 'services':
                         $response->services();
+                        break;
+                    case 'staff-list':
+                        $response->staffList();
                         break;
                     case 'notifications':
                         $response->sendNotifications();
@@ -73,8 +87,10 @@ class Ajax extends Lib\Base\Ajax
                 }
             } catch ( ParameterException $e ) {
                 $response->setError( '400', 'INVALID_PARAMETER', 400, array( $e->getParameter() => $e->getValue() ) );
+            } catch ( BooklyException $e ) {
+                $response->setError( '400', $e->getMessage(), 400 );
             } catch ( \Exception $e ) {
-                $response->setError( '400', 'ERROR' );
+                $response->setError( '400', 'ERROR', 400 );
             }
         } else {
             $response->setError( '401', 'UNAUTHORIZED_REQUEST', 401 );
@@ -90,7 +106,30 @@ class Ajax extends Lib\Base\Ajax
     {
         $access_key = self::parameter( 'access_key' );
         if ( $access_key ) {
-            self::$staff = Lib\Entities\Staff::query()->where( 'cloud_msc_token', $access_key )->findOne();
+            /** @var Lib\Entities\Auth $auth */
+            $auth = Lib\Entities\Auth::query()->where( 'token', $access_key )->findOne();
+            if ( $auth ) {
+                if ( $auth->getStaffId() ) {
+                    // If staff ID is set, load the staff entity.
+                    self::$staff = Lib\Entities\Staff::find( $auth->getStaffId() );
+                    if ( self::$staff ) {
+                        self::$role = 'staff';
+                    }
+                } elseif ( $auth->getWpUserId() ) {
+                    self::$wp_user = get_user_by( 'id', $auth->getWpUserId() );
+                    if ( user_can( $auth->getWpUserId(), 'manage_bookly' ) || user_can( $auth->getWpUserId(), 'manage_options' ) ) {
+                        // is Bookly admin
+                        self::$role = 'supervisor';
+                    } elseif ( user_can( $auth->getWpUserId(), 'manage_bookly_appointments' ) ) {
+                        self::$role = 'supervisor';
+                    }
+                }
+            }
+            if ( self::$role === null ) {
+                $response = new Response10( self::$role, array() );
+                $response->setError( '401', 'UNAUTHORIZED_REQUEST', 401 );
+                $response->render();
+            }
         }
 
         return true;

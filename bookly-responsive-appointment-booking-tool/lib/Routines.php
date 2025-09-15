@@ -87,11 +87,11 @@ abstract class Routines
      */
     public static function handleUnpaidPayments()
     {
-        $payments = array();
+        $payment_ids = array();
         $timeout = (int) get_option( 'bookly_cloud_stripe_timeout' );
         if ( $timeout ) {
             // Get list of outdated unpaid Cloud Stripe payments
-            $payments = Payment::query()
+            $payment_ids = Payment::query()
                 ->where( 'type', Payment::TYPE_CLOUD_STRIPE )
                 ->where( 'status', Payment::STATUS_PENDING )
                 ->whereLt( 'created_at', date_create( current_time( 'mysql' ) )->modify( sprintf( '- %s seconds', $timeout ) )->format( 'Y-m-d H:i:s' ) )
@@ -101,7 +101,7 @@ abstract class Routines
         $timeout = (int) get_option( 'bookly_cloud_square_timeout' );
         if ( $timeout ) {
             // Get list of outdated unpaid Cloud Square payments
-            $payments = array_merge( $payments, Payment::query()
+            $payment_ids = array_merge( $payment_ids, Payment::query()
                 ->where( 'type', Payment::TYPE_CLOUD_SQUARE )
                 ->where( 'status', Payment::STATUS_PENDING )
                 ->whereLt( 'created_at', date_create( current_time( 'mysql' ) )->modify( sprintf( '- %s seconds', $timeout ) )->format( 'Y-m-d H:i:s' ) )
@@ -109,28 +109,28 @@ abstract class Routines
         }
 
         // Mark unpaid appointments as rejected.
-        $payments = \Bookly\Lib\Payment\Proxy\Shared::prepareOutdatedUnpaidPayments( $payments );
-        if ( ! empty( $payments ) ) {
-            Proxy\Shared::unpaidPayments( $payments );
+        $payment_ids = \Bookly\Lib\Payment\Proxy\Shared::prepareOutdatedUnpaidPayments( $payment_ids );
+        if ( ! empty( $payment_ids ) ) {
+            Proxy\Shared::unpaidPayments( $payment_ids );
             Payment::query()
                 ->update()
                 ->set( 'status', Payment::STATUS_REJECTED )
-                ->whereIn( 'id', $payments )
+                ->whereIn( 'id', $payment_ids )
                 ->execute();
             CustomerAppointment::query()
                 ->update()
                 ->set( 'status', CustomerAppointment::STATUS_REJECTED )
                 ->set( 'status_changed_at', current_time( 'mysql' ) )
-                ->whereIn( 'payment_id', $payments )
+                ->whereIn( 'payment_id', $payment_ids )
                 ->execute();
             $affected_appointments = Appointment::query( 'a' )
                 ->leftJoin( 'CustomerAppointment', 'ca', 'a.id = ca.appointment_id' )
                 ->whereNot( 'a.start_date', null )
-                ->whereIn( 'ca.payment_id', $payments )
+                ->whereIn( 'ca.payment_id', $payment_ids )
                 ->fetchCol( 'a.id' );
             // Reject recurring appointments when customer pay only for first one.
             $series = CustomerAppointment::query()
-                ->whereIn( 'payment_id', $payments )
+                ->whereIn( 'payment_id', $payment_ids )
                 ->whereNot( 'series_id', null )
                 ->fetchCol( 'series_id' );
             if ( ! empty( $series ) ) {
@@ -176,7 +176,6 @@ abstract class Routines
                         $shop->loadBy( array( 'plugin_id' => $plugin['id'] ) );
                         $shop
                             ->setPluginId( $plugin['id'] )
-                            ->setType( $plugin['type'] ? 'bundle' : 'plugin' )
                             ->setHighlighted( $plugin['highlighted'] ?: 0 )
                             ->setPriority( $plugin['priority'] ?: 0 )
                             ->setDemoUrl( $plugin['demoUrl'] )

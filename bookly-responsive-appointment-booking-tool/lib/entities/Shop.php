@@ -7,8 +7,6 @@ class Shop extends Lib\Base\Entity
 {
     /** @var  int */
     protected $plugin_id;
-    /** @var  string */
-    protected $type;
     /** @var  int */
     protected $highlighted;
     /** @var  int */
@@ -47,7 +45,6 @@ class Shop extends Lib\Base\Entity
     protected static $schema = array(
         'id' => array( 'format' => '%d' ),
         'plugin_id' => array( 'format' => '%d' ),
-        'type' => array( 'format' => '%s' ),
         'highlighted' => array( 'format' => '%d' ),
         'priority' => array( 'format' => '%d' ),
         'demo_url' => array( 'format' => '%s' ),
@@ -158,29 +155,6 @@ class Shop extends Lib\Base\Entity
     public function setDemoUrl( $demo_url )
     {
         $this->demo_url = $demo_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type
-     * @return $this
-     */
-    public function setType( $type )
-    {
-        $this->type = $type;
 
         return $this;
     }

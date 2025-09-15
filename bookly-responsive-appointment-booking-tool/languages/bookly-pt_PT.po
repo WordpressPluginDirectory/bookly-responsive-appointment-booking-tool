@@ -8,11 +8,11 @@ msgstr ""
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 06:51+0000\n"
-"PO-Revision-Date: 2025-04-30 06:26+0000\n"
+"POT-Creation-Date: 2025-08-28 14:30+0000\n"
+"PO-Revision-Date: 2025-09-03 06:01+0000\n"
 "Last-Translator: support@bookly.info\n"
 "Language-Team: Portuguese (Portugal)\n"
-"X-Loco-Version: 2.3.1; wp-6.7"
+"X-Loco-Version: 2.3.1; wp-6.8.2"
 
 msgid "Invoice #{invoice_number} for your appointment"
 msgstr "Fatura #{invoice_number} da sua marcação"
@@ -224,6 +224,9 @@ msgstr "Total"
 
 msgid "Paid"
 msgstr "Pago"
+
+msgid "Child payment"
+msgstr "Pagamento por criança"
 
 msgid "Due"
 msgstr "Vencido"
@@ -1639,6 +1642,490 @@ msgstr ""
 "na primeira etapa do formulário de reserva então apenas este staff será "
 "utilizado para pesquisar horários disponíveis para todos os sub serviços."
 
+msgid "Dear {client_name}"
+msgstr "Caro {client_name}"
+
+msgid "Notification to staff member about new event"
+msgstr "Notificação ao funcionário sobre um novo evento"
+
+msgid "Event {event_title} on {event_start_date} at {event_start_time}"
+msgstr "Evento {event_title} em {event_start_date} às {event_start_time}"
+
+msgid ""
+"Hello,\n"
+"Let's organize {event_title} on {event_start_date} at {event_start_time}."
+msgstr ""
+"Olá,\n"
+"Vamos organizar {event_title} em {event_start_date} às {event_start_time}."
+
+msgid ""
+"Notification to customer about pending payment for reserved event ticket(s)"
+msgstr ""
+"Notificação ao cliente sobre o pagamento pendente de notas de eventos "
+"reservados"
+
+msgid "Pending payment for your order #{order_id}"
+msgstr "Pagamento pendente pelo seu pedido #{order_id}"
+
+msgid ""
+"Thank you for booking with us! Your order #{order_id} has been successfully "
+"reserved. We're currently awaiting payment to confirm your tickets."
+msgstr ""
+"Agradecemos por reservar conosco. O seu pedido #{order_id} foi reservado com "
+"sucesso. Estamos aguardando o pagamento para confirmar as suas notas."
+
+msgid "Notification to customer about new event ticket(s)"
+msgstr "Notificação ao cliente sobre novas notas de evento"
+
+msgid "Order confirmation"
+msgstr "Confirmação de pedido"
+
+msgid ""
+"Thank you for your order!\n"
+"Order: #{order_id}\n"
+"Tickets: {attendees_count}\n"
+"Total: {total_price}\n"
+"\n"
+"Details:\n"
+"{#each attendees as attendee}\n"
+" {attendee.event_title} on {attendee.event_start_date} at {attendee."
+"event_start_time} Ticket: {attendee.ticket_name} (Code: {attendee."
+"attendee_code})\n"
+"{/each}"
+msgstr ""
+"Agradecemos o seu pedido.\n"
+"Pedido: #{order_id}\n"
+"Notas: {attendees_count}\n"
+"Total: {total_price}\n"
+"\n"
+"Detalhes:\n"
+"{#each attendees as attendee}\n"
+"{attendee.event_title} em {attendee.event_start_date} às {attendee."
+"event_start_time} Nota: {attendee.ticket_name} (Code: {attendee."
+"attendee_code})\n"
+"{/each}"
+
+msgid ""
+"Your tickets: {#each attendees as attendee}\n"
+" {attendee.event_title} on {attendee.event_start_date} at {attendee."
+"event_start_time} Ticket: {attendee.ticket_name} (Code: {attendee."
+"attendee_code})\n"
+"{/each}"
+msgstr ""
+"Suas notas: {#each attendees as attendee}\n"
+"{attendee.event_title} em {attendee.event_start_date} às {attendee."
+"event_start_time} Nota: {attendee.ticket_name} (Code: {attendee."
+"attendee_code})\n"
+"{/each}"
+
+msgid "Notification to organizer about new event ticket(s)"
+msgstr "Notificação ao organizador sobre novas notas para o evento"
+
+msgid "Attendee"
+msgstr "Participante"
+
+msgid ""
+"Hello,\n"
+"Order: #{order_id}\n"
+"Tickets: {attendees_count}\n"
+"{#each attendees as attendee}\n"
+"{attendee.event_title} - {attendee.attendee_full_name} {attendee."
+"attendee_phone} (Code: {attendee.attendee_code})\n"
+"{/each}\n"
+"\n"
+"Total: {total_price} {payment_type}"
+msgstr ""
+"Olá,\n"
+"Pedido: #{order_id}\n"
+"Notas: {attendees_count}\n"
+"{#each attendees as attendee}\n"
+"{attendee.event_title} - {attendee.attendee_full_name} {attendee."
+"attendee_phone} (Code: {attendee.attendee_code})\n"
+"{/each}"
+
+msgid "Notification to organizer about purchased new event tickets"
+msgstr "Notificação ao organizador sobre a compra de novas notas para o evento"
+
+msgid "Notification to customer about deleted ticket(s)"
+msgstr "Notificação ao cliente sobre nota(s) excluídas"
+
+msgid "Your ticket {attendee_code} has been cancelled"
+msgstr "A sua nota {attendee_code} foi cancelada."
+
+msgid ""
+"We regret to inform you that your ticket {attendee_code} for {event_title} "
+"on {event_start_date} at {event_start_time} has been cancelled."
+msgstr ""
+"Lamentamos informar que a sua nota {attendee_code} para {event_title} em "
+"{event_start_date} às {event_start_time} foi cancelada."
+
+msgid "Notification to organizer about deleted ticket(s)"
+msgstr "Notificação ao organizador sobre notas eliminadas"
+
+msgid "Ticket {attendee_code} for {event_title} is deleted"
+msgstr "A nota {attendee_code} para {event_title} foi eliminada."
+
+msgid ""
+"Hello.\n"
+"Please note that attendee ticket {attendee_code} for {event_title} (Order "
+"#{order_id}) has been deleted."
+msgstr ""
+"Olá.\n"
+"Informamos que a nota do participante {attendee_code} para {event_title} "
+"(Pedido #{order_id}) foi excluído."
+
+msgid "Notification about new event"
+msgstr "Notificação sobre novo evento"
+
+msgid "Notification about new ticket"
+msgstr "Notificação sobre novas notas"
+
+msgid "Notification about ticket deletion"
+msgstr "Notificação sobre a exclusão de notas"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Title"
+msgstr "Nome"
+
+msgid "Start date"
+msgstr "Data de início"
+
+msgid "End date"
+msgstr "Data de término"
+
+msgid "Published"
+msgstr "Publicado"
+
+msgid "Tags"
+msgstr "Etiquetas"
+
+msgid "Events"
+msgstr "Eventos"
+
+msgid "New event"
+msgstr "Novo evento"
+
+msgid "No."
+msgstr "Núm."
+
+msgid "No events for selected period and criteria."
+msgstr "Não há eventos para o período e critérios selecionados."
+
+msgid "No data available in table"
+msgstr "Não existem dados disponíveis no quadro"
+
+msgid "Processing..."
+msgstr "Processando..."
+
+msgid "Loading..."
+msgstr "Carregando..."
+
+msgid "Tickets"
+msgstr "Notas"
+
+msgid "Attendees"
+msgstr "Participantes"
+
+msgid "No result found"
+msgstr "Nenhum resultado encontrado"
+
+msgid "Searching"
+msgstr "Procurando"
+
+msgid "Default ticket mask"
+msgstr "Máscara padrão para notas"
+
+msgid "Enter a mask containing asterisks \"*\" for variables."
+msgstr "Insira uma máscara contendo asteriscos \"*\" para variáveis."
+
+msgid "Available"
+msgstr "Disponível"
+
+msgid "Sold"
+msgstr "Vendido"
+
+msgid "Reserved"
+msgstr "Reservado"
+
+msgid "On hold"
+msgstr "Em espera"
+
+msgid "Quantity"
+msgstr "Quantidade"
+
+msgid "Events form"
+msgstr "Formulário de eventos"
+
+msgid "Present events and sell tickets with a fast and clear form."
+msgstr "Apresente eventos e venda notas de forma rápida e clara."
+
+msgid "Title of event"
+msgstr "Título do evento"
+
+msgid "Info of event"
+msgstr "Info do evento"
+
+msgid "Start date of event"
+msgstr "Data de início do evento"
+
+msgid "End date of event"
+msgstr "Data de término do evento"
+
+msgid "Start time of event"
+msgstr "Hora de início do evento"
+
+msgid "End time of event"
+msgstr "Hora de término do evento"
+
+msgid "Image URL of event"
+msgstr "URL da imagem do evento"
+
+msgid "Image of event"
+msgstr "Imagem do evento"
+
+msgid "Ticket code of attendee"
+msgstr "Código da nota do participante"
+
+msgid "Email of attendee"
+msgstr "Email do participante"
+
+msgid "Phone of attendee"
+msgstr "Telefone do participante"
+
+msgid "First name of attendee"
+msgstr "Primeiro nome do participante"
+
+msgid "Last name of attendee"
+msgstr "Apelido do participante"
+
+msgid "Full name of attendee"
+msgstr "Nome completo do participante"
+
+msgid "Name of ticket type"
+msgstr "Nome do tipo de nota"
+
+msgid "Price of ticket type"
+msgstr "Preço do tipo de nota"
+
+msgid "Quantity of ticket type"
+msgstr "Quantidade do tipo de nota"
+
+msgid "Reserved of ticket type"
+msgstr "Reservado do tipo de nota"
+
+msgid "Location info"
+msgstr ""
+"Informação da localização\n"
+
+msgid "Location name"
+msgstr ""
+"Nome da localização\n"
+
+msgid "Number of attendees"
+msgstr "Número de participantes"
+
+msgid "Loop over attendees list"
+msgstr "Repetir a lista de participantes"
+
+msgid "Loop over attendees list with delimiter"
+msgstr "Repita a lista de participantes com um delimitador"
+
+msgid "Clear field"
+msgstr "Limpar campo"
+
+msgid "Color"
+msgstr "Cor"
+
+msgid "Edit event"
+msgstr "Editar evento"
+
+msgid "Hidden"
+msgstr "Oculto"
+
+msgid "Image"
+msgstr "Imagem"
+
+msgid "Info"
+msgstr "Informações"
+
+#, php-format
+msgid "This text can be inserted into notifications with %s code"
+msgstr "Este texto pode ser inserido em notificações com o código %s."
+
+msgid "Location"
+msgstr "Local"
+
+msgid "Organizers"
+msgstr "Organizadores"
+
+msgid "Plan and manage the event from start to finish"
+msgstr "Planeie e gerencie o evento do início ao fim."
+
+msgid "Ticket sales end at"
+msgstr "A venda de notas encerra às"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Support staff"
+msgstr "Equipa de suporte"
+
+msgid "Assist with setup, operations, and attendee support during the event"
+msgstr ""
+"Ajudar na preparação, operações e apoio aos participantes durante o evento."
+
+msgid "Ticket mask"
+msgstr "Máscara de nota"
+
+msgid "Select all"
+msgstr "Selecionar tudo"
+
+msgid "Failed"
+msgstr "Falhou"
+
+msgid "Add ticket"
+msgstr "Adicionar nota"
+
+msgid "No tickets added yet"
+msgstr "Ainda não foram adicionadas notas"
+
+#, php-format
+msgid "Click \"%s\" to create your first one"
+msgstr "Clique em \"%s\" para criar o seu primeiro"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "temporarily on hold by the payment system"
+msgstr "temporariamente suspenso pelo sistema de pagamento"
+
+msgid "and"
+msgstr "e"
+
+msgid "Any orders"
+msgstr "Quaisquer pedidos "
+
+msgid "Any tickets"
+msgstr "Qualquer nota"
+
+msgid "Clear"
+msgstr "Limpar"
+
+msgid "Create"
+msgstr "Criar"
+
+msgid "Customer"
+msgstr "Cliente"
+
+#, php-format
+msgid "This will permanently remove the ticket %s"
+msgstr "Isto irá remover permanentemente a nota %s"
+
+msgid "This action cannot be undone."
+msgstr "Esta ação não pode ser desfeita."
+
+msgid "Tickets are not yet available"
+msgstr "As notas ainda não estão disponíveis."
+
+msgid "Set up pricing and inventory to enable sales"
+msgstr "Configure preços e inventário para ativar as vendas"
+
+msgid "Not paid"
+msgstr "Não pago"
+
+msgid "Order"
+msgstr "Pedido"
+
+msgid "Search"
+msgstr "Pesquisa"
+
+msgid "Select"
+msgstr "Selecione"
+
+msgid "Ticket"
+msgstr "Nota"
+
+msgid "Use reserved tickets"
+msgstr "Utilizar notas reservadas"
+
+msgid "Search for customer"
+msgstr "Pesquisar cliente"
+
+msgid "No results found"
+msgstr "Não foram encontrados resultados"
+
+msgid "New customer"
+msgstr "Novo cliente"
+
+msgid "Please select an event"
+msgstr "Por favor, escolha um evento"
+
+msgid "Please select a ticket"
+msgstr "Por favor, selecione uma nota"
+
+msgctxt "tickets left"
+msgid "left"
+msgstr "restante"
+
+msgid "Your ticket has been created."
+msgstr "A sua nota foi criada."
+
+msgid "Select event"
+msgstr "Selecione o evento"
+
+msgid "Event details"
+msgstr "Detalhes do evento"
+
+msgid "Summary"
+msgstr "Sumário"
+
+msgid "Sold out"
+msgstr "Esgotado"
+
+msgid "Add to calendar"
+msgstr "Adicionar ao calendário"
+
+msgid "Event date"
+msgstr "Data do evento"
+
+msgid "Filter events"
+msgstr "Filtrar eventos"
+
+msgid "Today"
+msgstr "Hoje"
+
+msgid "Tomorrow"
+msgstr "Amanhã"
+
+msgid "Next 7 days"
+msgstr "Próximos 7 dias"
+
+msgid "Next 30 days"
+msgstr "Próximos 30 dias"
+
+msgid "All selected"
+msgstr "Tudo selecionado"
+
+msgid "Width"
+msgstr "Largura"
+
+msgid "Header height"
+msgstr "Altura do cabeçalho"
+
+msgid "Events list"
+msgstr "Lista de eventos"
+
+msgid "Any"
+msgstr "Qualquer"
+
+msgid "Show remaining tickets"
+msgstr "Mostrar notas restantes"
+
+msgid "Remaining tickets text"
+msgstr "Texto restante das notas"
+
 msgid "Short Codes"
 msgstr "Códigos curtos"
 
@@ -1743,14 +2230,8 @@ msgstr "Horas especiais"
 msgid "Fields"
 msgstr "Campos"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Created at any time"
 msgstr "Criado em qualquer data"
-
-msgid "Customer"
-msgstr "Cliente"
 
 msgid "All statuses"
 msgstr "Todos os estados"
@@ -1766,21 +2247,6 @@ msgstr "A qualquer momento"
 
 msgid "No appointments for selected period."
 msgstr "Sem reservas para o período selecionado."
-
-msgid "Processing..."
-msgstr "Processando..."
-
-msgid "No data available in table"
-msgstr "Não existem dados disponíveis no quadro"
-
-msgid "Loading..."
-msgstr "Carregando..."
-
-msgid "No result found"
-msgstr "Nenhum resultado encontrado"
-
-msgid "Searching"
-msgstr "Procurando"
 
 msgid "Attachments"
 msgstr "Anexos"
@@ -1831,9 +2297,6 @@ msgstr "Vírgula (,)"
 msgid "Semicolon (;)"
 msgstr "Ponto e vírgula (;)"
 
-msgid "Select all"
-msgstr "Selecionar tudo"
-
 msgid "Booking Time"
 msgstr "Hora da reserva"
 
@@ -1845,9 +2308,6 @@ msgstr "Telefone do cliente"
 
 msgid "Customer Email"
 msgstr "E-mail do cliente"
-
-msgid "Status"
-msgstr "Estado"
 
 msgid "Payment"
 msgstr "Pagamento"
@@ -1864,9 +2324,6 @@ msgstr "%s de %s"
 
 msgid "Full name"
 msgstr "Nome completo"
-
-msgid "Info"
-msgstr "Informações"
 
 msgid ""
 "This text can be inserted into notifications to customers by Administrator."
@@ -1931,9 +2388,6 @@ msgstr "ID de Login do API"
 
 msgid "API Transaction Key"
 msgstr "Chave de transação do API"
-
-msgid "Title"
-msgstr "Nome"
 
 msgid "Rate"
 msgstr "Taxa"
@@ -2212,9 +2666,6 @@ msgstr "Filtros"
 
 msgid "Show timezone"
 msgstr "Exibir fuso horário"
-
-msgid "Location"
-msgstr "Local"
 
 msgid "Category"
 msgstr "Categoria"
@@ -2514,9 +2965,6 @@ msgstr "Enviada"
 
 msgid "Delivered"
 msgstr "Entregue"
-
-msgid "Failed"
-msgstr "Falhou"
 
 msgid "Undelivered"
 msgstr "Não entregue"
@@ -2951,9 +3399,6 @@ msgstr ""
 "com {staff_name}.\n"
 "Clique no horário para prosseguir com a marcação."
 
-msgid "Add to calendar"
-msgstr "Adicionar ao calendário"
-
 msgid "Confirm email"
 msgstr "Confirmar e-mail"
 
@@ -2986,9 +3431,6 @@ msgstr "Tem de aceitar os nossos termos "
 
 msgid "Select category"
 msgstr "Selecione categoria"
-
-msgid "Any"
-msgstr "Qualquer"
 
 msgid "Select service"
 msgstr "Selecione serviço"
@@ -3103,9 +3545,6 @@ msgstr ""
 
 msgid "Uncategorized"
 msgstr "Não categorizado"
-
-msgid "Today"
-msgstr "Hoje"
 
 msgid "Week"
 msgstr "Semana"
@@ -3368,9 +3807,6 @@ msgstr "Até"
 msgid "Custom range"
 msgstr "Intervalo personalizado"
 
-msgid "Tomorrow"
-msgstr "Amanhã"
-
 msgid "Yesterday"
 msgstr "Ontem"
 
@@ -3379,16 +3815,6 @@ msgstr "Últimos 7 dias"
 
 msgid "Last 30 days"
 msgstr "Últimos 30 dias"
-
-msgid "Next 7 days"
-msgstr ""
-"Próximos 7 dias\n"
-"\n"
-
-msgid "Next 30 days"
-msgstr ""
-"Próximos 30 dias\n"
-"\n"
 
 msgid "This month"
 msgstr "Neste mês"
@@ -3426,9 +3852,6 @@ msgstr ""
 
 msgid "Upgrade"
 msgstr "Atualização"
-
-msgid "No."
-msgstr "Núm."
 
 msgid "Appointment date"
 msgstr "Data da reserva"
@@ -3783,6 +4206,9 @@ msgstr ""
 msgid "No matching records found"
 msgstr "Não foram encontrados registos correspondentes"
 
+msgid "WordPress user"
+msgstr "Utilizador do WordPress"
+
 msgid "Add service"
 msgstr "Adicionar um serviço"
 
@@ -4018,9 +4444,6 @@ msgstr "250 ou mais funcionários"
 
 msgid "Select company size"
 msgstr "Selecione tamanho da empresa"
-
-msgid "Image"
-msgstr "Imagem"
 
 msgid "Company name"
 msgstr "Nome da empresa"
@@ -4728,6 +5151,9 @@ msgstr "Cancelar solicitação"
 msgid "Can only contain letters or digits (up to 11 characters)."
 msgstr "Só pode conter letras ou dígitos (até 11 caracteres)."
 
+msgid "Acceptable characters are"
+msgstr "Os caracteres aceitáveis são"
+
 msgid "Quick search"
 msgstr "Pesquisa rápida"
 
@@ -5068,9 +5494,6 @@ msgstr "Importar ficheiro"
 
 msgid "Service name"
 msgstr "Nome do serviço"
-
-msgid "Start date"
-msgstr "Data de início"
 
 msgid "End date / Duration"
 msgstr "Data final / Duração"
@@ -5770,9 +6193,6 @@ msgstr ""
 msgid "Quick search customers"
 msgstr "Pesquisa rápida dos clientes"
 
-msgid "New customer"
-msgstr "Novo cliente"
-
 msgid "Merge with"
 msgstr "Combinar com"
 
@@ -5939,6 +6359,9 @@ msgstr "Endereço do site"
 
 msgid "Verification code"
 msgstr "Código de verificação"
+
+msgid "Order ID"
+msgstr "ID do pedido"
 
 msgid "Image of service category"
 msgstr "Imagem da categoria de serviço"
@@ -6246,13 +6669,27 @@ msgstr "O seu pagamento foi aceite para processamento"
 msgid "Back to the list of amounts"
 msgstr "Voltar à lista dos montantes"
 
+msgid "Add Promo Code"
+msgstr "Adicione o Código Promocional"
+
+msgid "Remove Promo Code"
+msgstr "Remover Código Promocional"
+
 msgid "Please select a payment method"
-msgstr ""
-"Por favor selecione um método de pagamento\n"
+msgstr "Por favor selecione um método de pagamento"
 
 msgid "Credit card"
 msgstr ""
 "Cartão de crédito\n"
+
+msgid "Enter promo code"
+msgstr "Insira o código promocional"
+
+msgid "This promo code is not valid"
+msgstr "Este código promocional não é válido"
+
+msgid "Promo code applied!"
+msgstr "Código promocional aplicado!"
 
 msgid "Account recharge"
 msgstr "Recarregar a conta"
@@ -6295,9 +6732,6 @@ msgid "Please select an amount and recharge your account"
 msgstr ""
 "Por favor selecione um montante e carregue a sua conta\n"
 
-msgid "Select"
-msgstr "Selecione"
-
 msgid "Pay using"
 msgstr "Pague com"
 
@@ -6320,6 +6754,10 @@ msgid "You don't have active auto-recharge"
 msgstr ""
 "Não tem auto carregamento ativo\n"
 "\n"
+
+#, php-format
+msgid "You'll receive a %s bonus on your top-up"
+msgstr "Receberá um bónus de %s na sua recarga"
 
 msgid "Auto-Recharge has failed, please replenish your balance directly."
 msgstr ""
@@ -6350,9 +6788,6 @@ msgstr "Bloco personalizado para exibição de formulário de reserva"
 
 msgid "hide"
 msgstr "ocultar"
-
-msgid "Quantity"
-msgstr "Quantidade"
 
 msgid "Select location"
 msgstr "Selecionar local"
@@ -6416,6 +6851,9 @@ msgstr "Cliente"
 msgid "Administrators"
 msgstr "Administradores"
 
+msgid "Organizer"
+msgstr "Organizador"
+
 msgid "You can enter multiple email addresses (one per line)"
 msgstr "Pode introduzir vários endereços de email (um por linha)"
 
@@ -6459,6 +6897,20 @@ msgid ""
 msgstr ""
 "Escolha se a notificação deve ser enviada apenas para serviços específicos "
 "ou não."
+
+msgid "Associated payment status"
+msgstr "Status do pagamento associado"
+
+msgid "Any status"
+msgstr "Qualquer estado"
+
+msgid "No payment"
+msgstr "Sem pagamento"
+
+msgid "Select the payment status required for this notification to be sent"
+msgstr ""
+"Selecione o estado de pagamento necessário para que esta notificação seja "
+"enviada."
 
 msgid "before"
 msgstr "antes de"
@@ -6519,13 +6971,6 @@ msgstr ""
 "Se deixar este campo vazio, o funcionário não será capaz de aceder ao "
 "calendário pessoal através da área de administração do WP."
 
-#, php-format
-msgid "This text can be inserted into notifications with %s code."
-msgstr "Este texto pode ser inserido em notificações com o código %s."
-
-msgid "Color"
-msgstr "Cor"
-
 msgid "Archive"
 msgstr "Arquivar"
 
@@ -6574,6 +7019,12 @@ msgstr "Vincular pagametno"
 
 msgid "Complete payment"
 msgstr "Complete o pagamento"
+
+msgid "Additional payment"
+msgstr "Pagamento adicional"
+
+msgid "Copy checkout URL"
+msgstr "Copiar URL de checkout"
 
 msgid "Manual adjustment"
 msgstr "Ajuste manual"
@@ -6645,10 +7096,6 @@ msgstr "Enviar como novo"
 msgid "View"
 msgstr "Ver"
 
-msgid "This text can be inserted into notifications with {internal_note} code"
-msgstr ""
-"Este texto pode ser inserido nas notificações com o código {internal_note}"
-
 msgid "Please select a provider"
 msgstr "Por favor, selecione um fornecedor"
 
@@ -6670,26 +7117,53 @@ msgstr ""
 "\n"
 
 msgid ""
-"This text can be inserted into notifications with {appointment_notes} code"
-msgstr ""
-"Este texto pode ser inserido nas notificações com o código "
-"{appointment_notes}"
-
-msgid ""
 "You are going to delete appointment(s). Notifications will be sent in "
 "accordance with your settings."
 msgstr ""
 "Vai apagar a(s) reserva(s). Notificações serão enviadas de acordo com as "
 "suas configurações."
 
+msgid "Associate token with"
+msgstr "Associar token com"
+
+msgid ""
+"By associating a token with a WordPress user, you can provide administrative "
+"access to Bookly from the mobile app. The level of access is determined by "
+"the user's role"
+msgstr ""
+"Ao associar um token a um utilizador do WordPress, é possível aceder a um "
+"nível administrativo no Bookly a partir da app móvel. O nível de acesso é "
+"determinado pela função do utilizador"
+
 msgid "Edit access token"
 msgstr "Editar token de acesso"
+
+msgid "Create new access token"
+msgstr "Crie um novo token de acesso"
+
+msgid "Select WordPress user"
+msgstr "Selecione o utilizador do WordPress"
+
+msgid "Send notification with access data"
+msgstr "Envie uma notificação com os dados de acesso "
+
+msgid "With access to Bookly"
+msgstr "Com acesso ao Bookly"
+
+msgid "Without access to Bookly"
+msgstr "Sem acesso ao Bookly"
 
 msgid "New access token"
 msgstr "Novo token de acesso"
 
+msgid "WordPress user required"
+msgstr "É necessário ser utilizador do WordPress"
+
 msgid "Staff member required"
 msgstr "Necessário um membro do staff"
+
+msgid "Invalid role"
+msgstr "Função inválida"
 
 msgid "Header"
 msgstr "Cabeçalho"
@@ -6717,10 +7191,6 @@ msgstr "Pausado"
 
 msgid "Limit exceeded"
 msgstr "Limite excedido"
-
-msgid "This text can be inserted into notifications with {client_note} code"
-msgstr ""
-"Este texto pode ser inserido nas notificações com o código {client_note}"
 
 #, php-format
 msgid "This WP user is already connected to another customer: %s"
@@ -6924,11 +7394,6 @@ msgstr "Adicione uma categoria"
 
 msgid "Adjust the order of categories in your booking form"
 msgstr "Ajustar a ordem das categorias no formulário de reservas"
-
-msgid "This text can be inserted into notifications with {category_info} code"
-msgstr ""
-"Este texto pode ser inserido em notificações com código {category_info}\n"
-"\n"
 
 msgid "Table settings"
 msgstr "Configurações da tabela"
@@ -7754,6 +8219,9 @@ msgstr "Data de criação"
 msgid "Expires"
 msgstr "Expira"
 
+msgid "Child Payment"
+msgstr "Pagamento para crianças"
+
 msgid "Notification to customer about their WordPress user login details"
 msgstr ""
 "Notificação ao cliente sobre os seus detalhes de login de utilizador "
@@ -8076,7 +8544,7 @@ msgid "This gift card has expired"
 msgstr "Este cartão de oferta expirou"
 
 msgid "This gift card cannot be used for the current order"
-msgstr "Este cartão oferta não pode ser utilizado para a encomenda atual"
+msgstr "Este cartão oferta não pode ser utilizado para o pedido atual"
 
 msgid "Gift card balance is not enough"
 msgstr "Não é suficiente o saldo do cartão de oferta"
@@ -8142,9 +8610,6 @@ msgstr ""
 
 msgid "Customer birthday"
 msgstr "Aniversário do cliente"
-
-msgid "Tags"
-msgstr "Etiquetas"
 
 msgid "Balance"
 msgstr "Balanço"
@@ -8238,12 +8703,18 @@ msgstr ""
 msgid "Staff form"
 msgstr "Formulário de staff"
 
+msgid "Checkout form"
+msgstr "Formulário de checkout"
+
 msgid "A custom block for displaying cancellation confirmation"
 msgstr "Bloco personalizado para exibição de confirmação de cancelamento"
 
 msgid "A custom block for displaying search form"
 msgstr ""
 "Um bloco personalizado para exibir formulário de pesquisa\n"
+
+msgid "A custom block for displaying checkout form"
+msgstr "Um bloco personalizado para exibir o formulário efetue o checkout"
 
 msgid "A custom block for displaying services form"
 msgstr ""
@@ -8325,9 +8796,6 @@ msgstr "Não foram encontrados cartões de oferta."
 
 msgid "All related gift cards will be deleted"
 msgstr "Todos os cartões-presente relacionados serão eliminados"
-
-msgid "Clear field"
-msgstr "Limpar campo"
 
 msgid "No limit"
 msgstr "Sem limite"
@@ -8431,9 +8899,9 @@ msgid ""
 "price. Please note that if the order contains at least one service with a "
 "price other than 0, the WooCommerce order will still be created"
 msgstr ""
-"Se ativado, será criada uma encomenda WooCommerce para serviços com preço 0 "
-"(zero). Por favor, note que se a encomenda contiver pelo menos um serviço "
-"com um preço diferente de 0, a ordem WooCommerce ainda será criada"
+"Se ativado, será criado um pedido WooCommerce para serviços com preço 0 "
+"(zero). Por favor, note que se o pedido contiver pelo menos um serviço com "
+"um preço diferente de 0, a ordem WooCommerce ainda será criada"
 
 msgid "Cart item data"
 msgstr "Dados do item do carrinho"
@@ -9023,6 +9491,13 @@ msgid "Classic booking form with the consequent scheduling process."
 msgstr ""
 "Formulário de reserva clássico com o consequente processo de agendamento."
 
+msgid ""
+"Lightweight form that allows your customers to pay for appointments, events, "
+"and more."
+msgstr ""
+"Formulário leve que permite aos seus clientes efetuarem pagamentos de "
+"marcações, eventos e muito mais."
+
 msgid "Cancellation form"
 msgstr "Formulário de cancelamento"
 
@@ -9038,12 +9513,6 @@ msgstr "Titular do lugar"
 
 msgid "Empty option"
 msgstr "Opção vazia"
-
-msgid "Width"
-msgstr "Largura"
-
-msgid "Header height"
-msgstr "Altura do cabeçalho"
 
 msgid "Body height"
 msgstr "Altura do corpo"
@@ -9216,6 +9685,12 @@ msgstr "Permitir saltar"
 msgid "Skip button title"
 msgstr "Título do botão Saltar"
 
+msgid "Page URL"
+msgstr "URL da página"
+
+msgid "Enter the URL of the page where this forms shortcode is placed."
+msgstr "Insira o URL da página onde este código de formulário está colocado."
+
 msgid "Add new form"
 msgstr "Adicionar novo formulário"
 
@@ -9238,6 +9713,9 @@ msgstr "Apagar formulário"
 msgid "Complete"
 msgstr "Completar"
 
+msgid "Checkout"
+msgstr "Checkout"
+
 msgid "Success appointment booking"
 msgstr "Marcação de consulta bem sucedida"
 
@@ -9255,6 +9733,14 @@ msgstr "Guardar a apresentação para aplicar alterações."
 
 msgid "Changes saved."
 msgstr "Alterações guardadas."
+
+#, php-format
+msgid ""
+"To learn more about this feature, please follow <a href=\"%s\" "
+"target=\"_blank\">this link</a>."
+msgstr ""
+"Para saber mais sobre este recurso, siga <a href=\"%s\" target=\"_blank\">"
+"este link</a>."
 
 msgid ""
 "Select the form you want to publish, click on the menu button, and select "
@@ -9314,14 +9800,14 @@ msgstr "Não há faixas horárias disponíveis"
 msgid "Slot already booked"
 msgstr "Bloco já reservado"
 
-msgid "No results found"
-msgstr "Não foram encontrados resultados"
-
 msgid "Thank you!"
 msgstr "Obrigado!"
 
 msgid "Your booking is complete."
 msgstr "A sua reserva está completa."
+
+msgid "Your order number"
+msgstr "O seu número de pedido"
 
 msgid "Your gift card has been created."
 msgstr "O seu cartão-presente foi criado."
@@ -9384,6 +9870,21 @@ msgstr "Esta marcação não existe."
 
 msgid "Cancellation of this appointment is not allowed."
 msgstr "Não é permitido o cancelamento desta marcação."
+
+msgid "Thank you for your payment."
+msgstr "Agradecemos o seu pagamento."
+
+msgid "Payment successful."
+msgstr "Pagamento bem-sucedido."
+
+msgid "There is no payment required."
+msgstr "Não é necessário efetuar qualquer pagamento."
+
+msgid "Payment not found."
+msgstr "Pagamento não encontrado."
+
+msgid "Something went wrong."
+msgstr "Ocorreu um problema."
 
 msgid "Note"
 msgstr "Observação"
@@ -9479,8 +9980,14 @@ msgstr ""
 msgid "Add Bookly staff form"
 msgstr "Acrescentar o formulário de staff Bookly"
 
+msgid "Add Bookly checkout form"
+msgstr "Adiciona formulário de efetue o checkout Bookly"
+
 msgid "Add appointment cancellation confirmation"
 msgstr "Adicionar a confirmação de cancelamento de reserva"
+
+msgid "Add customer gift cards"
+msgstr "Adicionar cartões de presente para clientes"
 
 #, php-format
 msgid ""
@@ -9607,11 +10114,27 @@ msgstr ""
 msgid "Create WordPress user"
 msgstr "Criar utilizador WordPress"
 
+msgid "Duplicate staff member"
+msgstr "Funcionário duplicado"
+
+msgid "Staff member to duplicate"
+msgstr "Membro da equipa para duplicar"
+
 msgid ""
-"This text can be inserted into notifications with {staff_category_info} code"
+"You're about to duplicate this staff member. All settings - except phone "
+"number, email, and calendar settings - will be copied. The new staff "
+"member's visibility will be set to 'Private' by default."
 msgstr ""
-"Este texto pode ser inserido nas notificações com o código "
-"{staff_category_info}."
+"Está prestes a duplicar este membro da equipa. Todas as configurações, "
+"exceto número de telefone, email e configurações do calendário, serão "
+"copiadas. A visibilidade do novo membro da equipa será definida como "
+"\"Privada\" por padrão."
+
+msgid "Name of duplicated staff member"
+msgstr "Nome do funcionário duplicado"
+
+msgid "Copy of"
+msgstr "Cópia de"
 
 msgid "Create payment"
 msgstr "Criar pagamento"
@@ -9744,10 +10267,6 @@ msgid ""
 msgstr ""
 "Pode inserir uma máscara contendo asteriscos \"*\" para variáveis aqui e "
 "clicar em Gerar."
-
-msgid "This text can be inserted into notifications with {gift_card_note} code"
-msgstr ""
-"Este texto pode ser inserido nas notificações com o código {gift_card_note}"
 
 msgid "Select card type"
 msgstr "Selecione o tipo de cartão"
@@ -10047,6 +10566,12 @@ msgstr ""
 "administrador do seu website para verificar sua licença fornecendo um código "
 "de compra válido."
 
+msgid "Gift cards"
+msgstr "Cartões de presente"
+
+msgid "A custom block for displaying gift cards"
+msgstr "Um bloco personalizado para exibir cartões de presente"
+
 msgid "A custom block for displaying frontend calendar"
 msgstr "Bloco personalizado para mostrar o calendário"
 
@@ -10055,6 +10580,9 @@ msgstr "Lista de compromissos"
 
 msgid "A custom block for displaying appointments list"
 msgstr "Bloco personalizado para exibição de lista de compromissos"
+
+msgid "Copied to clipboard"
+msgstr "Copiar para a área de transferência"
 
 msgid ""
 "Sorry, the time slot %date_time% for %service% has been already occupied."
@@ -10076,6 +10604,9 @@ msgstr "Este serviço já não é fornecido."
 
 msgid "Gift card type was not found"
 msgstr "O tipo de cartão presente não foi encontrado"
+
+msgid "Event was not found"
+msgstr "O evento não foi encontrado"
 
 msgid "Service was not found"
 msgstr "O serviço não foi encontrado"
@@ -10304,9 +10835,6 @@ msgstr "Editar cupão"
 
 msgid "Mask"
 msgstr "Máscara"
-
-msgid "Enter a mask containing asterisks \"*\" for variables."
-msgstr "Insira uma máscara contendo asteriscos \"*\" para variáveis."
 
 msgid "Once per customer"
 msgstr "Uma vez por cliente"
@@ -10786,9 +11314,6 @@ msgstr "Depois da etapa Serviço"
 msgid "After Time step (Extras duration settings will be ignored)"
 msgstr "Depois da etapa Time (definições de duração suplementar ignoradas)"
 
-msgid "Summary"
-msgstr "Sumário"
-
 msgid "Service Extras"
 msgstr "Extras do serviço"
 
@@ -10965,14 +11490,6 @@ msgid ""
 msgstr ""
 "Ative esta configuração para poder definir configurações personalizadas para "
 "membros da equipa em locais diferentes."
-
-msgid "Location info"
-msgstr ""
-"Informação da localização\n"
-
-msgid "Location name"
-msgstr ""
-"Nome da localização\n"
 
 msgid "New Location"
 msgstr "Novo local"

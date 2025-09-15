@@ -15,6 +15,7 @@ abstract class Tables
     const DISCOUNTS = 'discounts';
     const EMAIL_LOGS = 'email_logs';
     const EMAIL_NOTIFICATIONS = 'email_notifications';
+    const EVENTS = 'events';
     const GIFT_CARDS = 'gift_cards';
     const GIFT_CARD_TYPES = 'gift_card_types';
     const LOCATIONS = 'locations';
@@ -230,8 +231,7 @@ abstract class Tables
                 $columns = array(
                     'id' => esc_html__( 'ID', 'bookly' ),
                     'full_name' => esc_html__( 'Name', 'bookly' ),
-                    'email' => esc_html__( 'Email', 'bookly' ),
-                    'cloud_msc_token' => esc_html__( 'Access token', 'bookly' ),
+                    'token' => esc_html__( 'Access token', 'bookly' ),
                 );
                 break;
             case self::CUSTOMER_CABINET_APPOINTMENTS:

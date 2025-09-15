@@ -720,6 +720,13 @@ class UserBookingData
         return $this->address_iso;
     }
 
+    public function setCustomer( Entities\Customer $customer )
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
     /**
      * Get customer.
      *
@@ -800,35 +807,45 @@ class UserBookingData
                 }
             }
             $search_criteria = array();
-            if ( get_current_user_id() > 0 ) {
-                $search_criteria = array(
-                    array(
-                        'wp_user_id' => get_current_user_id(),
-                    ),
-                );
-            }
-
-            $search_criteria[] = array(
-                'phone' => $customer_data['phone'],
-                'email' => $customer_data['email'],
-                'wp_user_id' => null,
-            );
-
-            $verify_credentials = $appearance->get( 'verify_credentials' );
-            if ( $verify_credentials === 'phone' || $verify_credentials === 'email' ) {
-                $search_criteria[] = array_filter( array(
-                    $verify_credentials => $customer_data[ $verify_credentials ],
-                    'wp_user_id' => null,
-                ) );
+            if ( Config::allowDuplicates() ) {
+                $criteria = array();
+                foreach ( $customer_fields as $field ) {
+                    if ( isset( $customer_data[ $field ] ) && $customer_data[ $field ] !== '' ) {
+                        $criteria[ $field ] = $customer_data[ $field ];
+                    }
+                }
+                $search_criteria[] = $criteria;
             } else {
-                $search_criteria[] = array_filter( array(
+                if ( get_current_user_id() > 0 ) {
+                    $search_criteria = array(
+                        array(
+                            'wp_user_id' => get_current_user_id(),
+                        ),
+                    );
+                }
+
+                $search_criteria[] = array(
                     'phone' => $customer_data['phone'],
-                    'wp_user_id' => null,
-                ) );
-                $search_criteria[] = array_filter( array(
                     'email' => $customer_data['email'],
                     'wp_user_id' => null,
-                ) );
+                );
+
+                $verify_credentials = $appearance->get( 'verify_credentials' );
+                if ( $verify_credentials === 'phone' || $verify_credentials === 'email' ) {
+                    $search_criteria[] = array_filter( array(
+                        $verify_credentials => $customer_data[ $verify_credentials ],
+                        'wp_user_id' => null,
+                    ) );
+                } else {
+                    $search_criteria[] = array_filter( array(
+                        'phone' => $customer_data['phone'],
+                        'wp_user_id' => null,
+                    ) );
+                    $search_criteria[] = array_filter( array(
+                        'email' => $customer_data['email'],
+                        'wp_user_id' => null,
+                    ) );
+                }
             }
             $search_criteria = array_filter( $search_criteria );
 
@@ -846,8 +863,14 @@ class UserBookingData
                 $fields = $this->customer->getFields();
                 foreach ( $customer_fields as $field ) {
                     if ( $fields[ $field ] != $customer_data[ $field ] ) {
-                        $this->customer->setId( null );
+                        $this->customer = new Entities\Customer();
+                        break;
                     }
+                }
+            }
+            foreach ( array( 'email', 'phone', 'first_name', 'last_name', 'full_name' ) as $field ) {
+                if ( ! in_array( $field, $customer_fields ) ) {
+                    $this->fillData( array( $field => '' ) );
                 }
             }
             foreach ( $customer_fields as $field ) {

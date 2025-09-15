@@ -8,11 +8,11 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 06:51+0000\n"
-"PO-Revision-Date: 2025-04-29 16:43+0000\n"
-"Last-Translator: support@bookly.info\n"
+"POT-Creation-Date: 2025-08-28 14:30+0000\n"
+"PO-Revision-Date: 2025-08-29 09:32+0000\n"
+"Last-Translator: Wina H <chillhchill@gmail.com>\n"
 "Language-Team: Chinese (Taiwan)\n"
-"X-Loco-Version: 2.3.1; wp-6.7"
+"X-Loco-Version: 2.3.1; wp-6.8.2"
 
 msgid "Invoice #{invoice_number} for your appointment"
 msgstr "您預約的發票＃{invoice_number}"
@@ -206,6 +206,9 @@ msgstr "總計"
 
 msgid "Paid"
 msgstr "付費"
+
+msgid "Child payment"
+msgstr "子付款"
 
 msgid "Due"
 msgstr "應有"
@@ -1517,6 +1520,484 @@ msgid ""
 "searching available slots for all sub-services."
 msgstr "如果啟用此選項，並且客戶在預訂表單的第一步中選擇了一名工作人員，則在搜索所有子服務的可用時段時只會顯示這名工作人員的時間。"
 
+msgid "Dear {client_name}"
+msgstr "尊敬的{client_name}"
+
+msgid "Notification to staff member about new event"
+msgstr "通知工作人員有新活動"
+
+msgid "Event {event_title} on {event_start_date} at {event_start_time}"
+msgstr "活動{event_title}於{event_start_date}的{event_start_time}開始"
+
+msgid ""
+"Hello,\n"
+"Let's organize {event_title} on {event_start_date} at {event_start_time}."
+msgstr ""
+"您好，\n"
+"請安排於{event_start_date}的{event_start_time}開始的{event_title}。"
+
+msgid ""
+"Notification to customer about pending payment for reserved event ticket(s)"
+msgstr "通知客戶有預約活動門票待付款"
+
+msgid "Pending payment for your order #{order_id}"
+msgstr "您的訂單#{order_id}待付款"
+
+msgid ""
+"Thank you for booking with us! Your order #{order_id} has been successfully "
+"reserved. We're currently awaiting payment to confirm your tickets."
+msgstr "感謝您的預約！您的訂單#{order_id}已成功預約。我們正在等待您的付款來確認門票。"
+
+msgid "Notification to customer about new event ticket(s)"
+msgstr "通知客戶有新活動門票"
+
+msgid "Order confirmation"
+msgstr "訂單確認"
+
+msgid ""
+"Thank you for your order!\n"
+"Order: #{order_id}\n"
+"Tickets: {attendees_count}\n"
+"Total: {total_price}\n"
+"\n"
+"Details:\n"
+"{#each attendees as attendee}\n"
+" {attendee.event_title} on {attendee.event_start_date} at {attendee."
+"event_start_time} Ticket: {attendee.ticket_name} (Code: {attendee."
+"attendee_code})\n"
+"{/each}"
+msgstr ""
+"感謝您的訂單！\n"
+"訂單：#{order_id}\n"
+"門票： {attendees_count}\n"
+"總計： {total_price}\n"
+"\n"
+"詳情：\n"
+"{#each attendees as attendee}\n"
+" {attendee.event_title}於{attendee.event_start_date}的{attendee."
+"event_start_time}開始  門票：{attendee.ticket_name} （驗證碼： {attendee.attendee_code}"
+"）\n"
+"{/each}"
+
+msgid ""
+"Your tickets: {#each attendees as attendee}\n"
+" {attendee.event_title} on {attendee.event_start_date} at {attendee."
+"event_start_time} Ticket: {attendee.ticket_name} (Code: {attendee."
+"attendee_code})\n"
+"{/each}"
+msgstr ""
+"您的門票：{#each attendees as attendee}\n"
+"{attendee.event_title}於{attendee.event_start_date}的{attendee."
+"event_start_time}開始  門票：{attendee.ticket_name} （驗證碼：{attendee.attendee_code}"
+"）\n"
+"{/each}"
+
+msgid "Notification to organizer about new event ticket(s)"
+msgstr "通知主辦方有新活動門票"
+
+msgid "Attendee"
+msgstr "參與人員"
+
+msgid ""
+"Hello,\n"
+"Order: #{order_id}\n"
+"Tickets: {attendees_count}\n"
+"{#each attendees as attendee}\n"
+"{attendee.event_title} - {attendee.attendee_full_name} {attendee."
+"attendee_phone} (Code: {attendee.attendee_code})\n"
+"{/each}\n"
+"\n"
+"Total: {total_price} {payment_type}"
+msgstr ""
+"您好，\n"
+"訂單： #{order_id}\n"
+"門票： {attendees_count}\n"
+"{#each attendees as attendee}\n"
+"{attendee.event_title} - {attendee.attendee_full_name} {attendee."
+"attendee_phone}（驗證碼： {attendee.attendee_code}）\n"
+"{/each}\n"
+"\n"
+"總計： {total_price} {payment_type}"
+
+msgid "Notification to organizer about purchased new event tickets"
+msgstr "通知主辦方有新活動門票被購買"
+
+msgid "Notification to customer about deleted ticket(s)"
+msgstr "通知客戶門票刪除"
+
+msgid "Your ticket {attendee_code} has been cancelled"
+msgstr "您的門票{attendee_code}已被取消"
+
+msgid ""
+"We regret to inform you that your ticket {attendee_code} for {event_title} "
+"on {event_start_date} at {event_start_time} has been cancelled."
+msgstr ""
+"我們很遺憾地通知您，您於{event_start_date}的{event_start_time}開始的活動{event_title}"
+"的門票{attendee_code}已被取消。"
+
+msgid "Notification to organizer about deleted ticket(s)"
+msgstr "通知主辦方門票刪除"
+
+msgid "Ticket {attendee_code} for {event_title} is deleted"
+msgstr "活動{event_title}的門票{attendee_code}已刪除"
+
+msgid ""
+"Hello.\n"
+"Please note that attendee ticket {attendee_code} for {event_title} (Order "
+"#{order_id}) has been deleted."
+msgstr ""
+"您好，\n"
+"請注意，{event_title}（訂單 #{order_id}）的參與人員門票{attendee_code}已被刪除。"
+
+msgid "Notification about new event"
+msgstr "新活動通知"
+
+msgid "Notification about new ticket"
+msgstr "新門票通知"
+
+msgid "Notification about ticket deletion"
+msgstr "門票刪除通知"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Title"
+msgstr "標題"
+
+msgid "Start date"
+msgstr "開始日期"
+
+msgid "End date"
+msgstr "結束日期"
+
+msgid "Published"
+msgstr "已發佈"
+
+msgid "Tags"
+msgstr "標記"
+
+msgid "Events"
+msgstr "活動"
+
+msgid "New event"
+msgstr "新活動"
+
+msgid "No."
+msgstr "號"
+
+msgid "No events for selected period and criteria."
+msgstr "所選時間段和條件下沒有活動。"
+
+msgid "No data available in table"
+msgstr "表中無資料可用"
+
+msgid "Processing..."
+msgstr "處理..."
+
+msgid "Loading..."
+msgstr "載入中…"
+
+msgid "Tickets"
+msgstr "門票"
+
+msgid "Attendees"
+msgstr "參與人員"
+
+msgid "No result found"
+msgstr "找不到結果"
+
+msgid "Searching"
+msgstr "搜索"
+
+msgid "Default ticket mask"
+msgstr "默認門票掩碼"
+
+msgid "Enter a mask containing asterisks \"*\" for variables."
+msgstr "輸入包含星號\"*\"作為變量的掩碼。"
+
+msgid "Available"
+msgstr "可用"
+
+msgid "Sold"
+msgstr "已售"
+
+msgid "Reserved"
+msgstr "預約"
+
+msgid "On hold"
+msgstr "擱置"
+
+msgid "Quantity"
+msgstr "數量"
+
+msgid "Events form"
+msgstr "活動表單"
+
+msgid "Present events and sell tickets with a fast and clear form."
+msgstr "以快速且清晰的形式呈現活動和售票情況。"
+
+msgid "Title of event"
+msgstr "活動標題"
+
+msgid "Info of event"
+msgstr "活動資訊"
+
+msgid "Start date of event"
+msgstr "活動開始日期"
+
+msgid "End date of event"
+msgstr "活動結束日期"
+
+msgid "Start time of event"
+msgstr "活動開始時間"
+
+msgid "End time of event"
+msgstr "活動結束時間"
+
+msgid "Image URL of event"
+msgstr "活動圖片URL"
+
+msgid "Image of event"
+msgstr "活動圖片"
+
+msgid "Ticket code of attendee"
+msgstr "參與人員的門票驗證碼"
+
+msgid "Email of attendee"
+msgstr "參與人員電郵地址"
+
+msgid "Phone of attendee"
+msgstr "參與人員電話號碼"
+
+msgid "First name of attendee"
+msgstr "參與人員名字"
+
+msgid "Last name of attendee"
+msgstr "參與人員姓氏"
+
+msgid "Full name of attendee"
+msgstr "參與人員全名"
+
+msgid "Name of ticket type"
+msgstr "門票類型名稱"
+
+msgid "Price of ticket type"
+msgstr "門票類型價格"
+
+msgid "Quantity of ticket type"
+msgstr "門票類型數量"
+
+msgid "Reserved of ticket type"
+msgstr "門票類型預約"
+
+msgid "Location info"
+msgstr "地址資料"
+
+msgid "Location name"
+msgstr "地址名稱"
+
+msgid "Number of attendees"
+msgstr "參與人員數量"
+
+msgid "Loop over attendees list"
+msgstr "循環參與人員名單"
+
+msgid "Loop over attendees list with delimiter"
+msgstr "用分隔符循環參與人員名單"
+
+msgid "Clear field"
+msgstr "清除字段"
+
+msgid "Color"
+msgstr "顏色"
+
+msgid "Edit event"
+msgstr "編輯活動"
+
+msgid "Hidden"
+msgstr "隱藏"
+
+msgid "Image"
+msgstr "圖片"
+
+msgid "Info"
+msgstr "資訊"
+
+#, php-format
+msgid "This text can be inserted into notifications with %s code"
+msgstr "該文本可使用%s代碼插入到通知"
+
+msgid "Location"
+msgstr "位置"
+
+msgid "Organizers"
+msgstr "主辦方"
+
+msgid "Plan and manage the event from start to finish"
+msgstr "全程規劃和管理活動"
+
+msgid "Ticket sales end at"
+msgstr "門票銷售截止時間為"
+
+msgid "Status"
+msgstr "狀態"
+
+msgid "Support staff"
+msgstr "服務人員"
+
+msgid "Assist with setup, operations, and attendee support during the event"
+msgstr "在活動期間協助設置、操作和服務參與人員"
+
+msgid "Ticket mask"
+msgstr "門票掩碼"
+
+msgid "Select all"
+msgstr "選擇所有"
+
+msgid "Failed"
+msgstr "已失敗"
+
+msgid "Add ticket"
+msgstr "添加門票"
+
+msgid "No tickets added yet"
+msgstr "尚未添加門票"
+
+#, php-format
+msgid "Click \"%s\" to create your first one"
+msgstr "點擊\"%s\"來創建第一個"
+
+msgid "Event"
+msgstr "活動"
+
+msgid "temporarily on hold by the payment system"
+msgstr "被付款系統暫時擱置"
+
+msgid "and"
+msgstr "和"
+
+msgid "Any orders"
+msgstr "任何訂單"
+
+msgid "Any tickets"
+msgstr "任何門票"
+
+msgid "Clear"
+msgstr "清空"
+
+msgid "Create"
+msgstr "創建"
+
+msgid "Customer"
+msgstr "客戶"
+
+#, php-format
+msgid "This will permanently remove the ticket %s"
+msgstr "此將永久刪除門票%s"
+
+msgid "This action cannot be undone."
+msgstr "該操作無法撤銷。"
+
+msgid "Tickets are not yet available"
+msgstr "門票尚不可用"
+
+msgid "Set up pricing and inventory to enable sales"
+msgstr "設置價格和庫存以開啟銷售"
+
+msgid "Not paid"
+msgstr "未付"
+
+msgid "Order"
+msgstr "訂單"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Select"
+msgstr "選擇"
+
+msgid "Ticket"
+msgstr "門票"
+
+msgid "Use reserved tickets"
+msgstr "使用預約門票"
+
+msgid "Search for customer"
+msgstr "搜索客戶"
+
+msgid "No results found"
+msgstr "未發現結果"
+
+msgid "New customer"
+msgstr "新客戶"
+
+msgid "Please select an event"
+msgstr "請選擇一項活動"
+
+msgid "Please select a ticket"
+msgstr "請選擇一張門票"
+
+msgctxt "tickets left"
+msgid "left"
+msgstr "剩餘"
+
+msgid "Your ticket has been created."
+msgstr "您的門票已創建。"
+
+msgid "Select event"
+msgstr "選擇活動"
+
+msgid "Event details"
+msgstr "活動詳情"
+
+msgid "Summary"
+msgstr "總結"
+
+msgid "Sold out"
+msgstr "售罄"
+
+msgid "Add to calendar"
+msgstr "新增至日曆"
+
+msgid "Event date"
+msgstr "活動日期"
+
+msgid "Filter events"
+msgstr "篩選活動"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "Tomorrow"
+msgstr "明天"
+
+msgid "Next 7 days"
+msgstr "下一個7天"
+
+msgid "Next 30 days"
+msgstr "下一個30天"
+
+msgid "All selected"
+msgstr "全選"
+
+msgid "Width"
+msgstr "寬度"
+
+msgid "Header height"
+msgstr "頁頭高度"
+
+msgid "Events list"
+msgstr "活動列表"
+
+msgid "Any"
+msgstr "任何"
+
+msgid "Show remaining tickets"
+msgstr "顯示剩餘門票"
+
+msgid "Remaining tickets text"
+msgstr "剩餘門票文本"
+
 msgid "Short Codes"
 msgstr "簡碼"
 
@@ -1618,14 +2099,8 @@ msgstr "特別時間"
 msgid "Fields"
 msgstr "欄目"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Created at any time"
 msgstr "在任何時間建立"
-
-msgid "Customer"
-msgstr "客戶"
 
 msgid "All statuses"
 msgstr "所有狀態"
@@ -1641,21 +2116,6 @@ msgstr "任何時間"
 
 msgid "No appointments for selected period."
 msgstr "選擇時間沒有預約。"
-
-msgid "Processing..."
-msgstr "處理..."
-
-msgid "No data available in table"
-msgstr "表中無資料可用"
-
-msgid "Loading..."
-msgstr "載入中…"
-
-msgid "No result found"
-msgstr "找不到結果"
-
-msgid "Searching"
-msgstr "搜索"
 
 msgid "Attachments"
 msgstr "附件"
@@ -1702,9 +2162,6 @@ msgstr "逗號 (,)"
 msgid "Semicolon (;)"
 msgstr "分號 (;)"
 
-msgid "Select all"
-msgstr "選擇所有"
-
 msgid "Booking Time"
 msgstr "預約時間"
 
@@ -1716,9 +2173,6 @@ msgstr "客戶電話"
 
 msgid "Customer Email"
 msgstr "客戶電郵"
-
-msgid "Status"
-msgstr "狀態"
 
 msgid "Payment"
 msgstr "付款"
@@ -1735,9 +2189,6 @@ msgstr "%s 的 %s"
 
 msgid "Full name"
 msgstr "全名"
-
-msgid "Info"
-msgstr "資訊"
 
 msgid ""
 "This text can be inserted into notifications to customers by Administrator."
@@ -1792,9 +2243,6 @@ msgstr "API登入碼"
 
 msgid "API Transaction Key"
 msgstr "API交易金鑰"
-
-msgid "Title"
-msgstr "標題"
 
 msgid "Rate"
 msgstr "評分"
@@ -2047,9 +2495,6 @@ msgstr "篩選"
 
 msgid "Show timezone"
 msgstr "顯示時區"
-
-msgid "Location"
-msgstr "位置"
 
 msgid "Category"
 msgstr "分類"
@@ -2324,9 +2769,6 @@ msgstr "已發送"
 
 msgid "Delivered"
 msgstr "已發貨"
-
-msgid "Failed"
-msgstr "已失敗"
 
 msgid "Undelivered"
 msgstr "未送達"
@@ -2748,9 +3190,6 @@ msgstr ""
 "您可以在下方查詢 {service_name} 的 {staff_name} 可預約時間.\n"
 "選擇您的預約時間以進行預約。"
 
-msgid "Add to calendar"
-msgstr "新增至日曆"
-
 msgid "Confirm email"
 msgstr "確認電郵"
 
@@ -2783,9 +3222,6 @@ msgstr "您必須接受我們的條款"
 
 msgid "Select category"
 msgstr "選擇分類"
-
-msgid "Any"
-msgstr "任何"
 
 msgid "Select service"
 msgstr "選擇服務"
@@ -2893,9 +3329,6 @@ msgstr "如果您的頁面沒有自動跳轉，請點擊此<a href=“%s”>鏈�
 
 msgid "Uncategorized"
 msgstr "未分類"
-
-msgid "Today"
-msgstr "今天"
 
 msgid "Week"
 msgstr "週"
@@ -3142,9 +3575,6 @@ msgstr "至"
 msgid "Custom range"
 msgstr "自定範圍"
 
-msgid "Tomorrow"
-msgstr "明天"
-
 msgid "Yesterday"
 msgstr "昨天"
 
@@ -3153,12 +3583,6 @@ msgstr "過去7天"
 
 msgid "Last 30 days"
 msgstr "過去30天"
-
-msgid "Next 7 days"
-msgstr "下一個7天"
-
-msgid "Next 30 days"
-msgstr "下一個30天"
 
 msgid "This month"
 msgstr "這個月"
@@ -3195,9 +3619,6 @@ msgstr ""
 
 msgid "Upgrade"
 msgstr "升級"
-
-msgid "No."
-msgstr "號"
 
 msgid "Appointment date"
 msgstr "預約日期"
@@ -3518,6 +3939,9 @@ msgstr "您將刪除訪問令牌。請注意，令牌將被自動撤銷，因此
 msgid "No matching records found"
 msgstr "沒有找到匹配記錄"
 
+msgid "WordPress user"
+msgstr "WordPress用戶"
+
 msgid "Add service"
 msgstr "添加服務"
 
@@ -3720,9 +4144,6 @@ msgstr "250 名或以上員工"
 
 msgid "Select company size"
 msgstr "選擇公司規模"
-
-msgid "Image"
-msgstr "圖片"
 
 msgid "Company name"
 msgstr "公司名稱"
@@ -4317,6 +4738,9 @@ msgstr "取消請求"
 msgid "Can only contain letters or digits (up to 11 characters)."
 msgstr "只能包含字母或數字（最多11個字符）。"
 
+msgid "Acceptable characters are"
+msgstr "可接受的字符包括"
+
 msgid "Quick search"
 msgstr "快速搜索"
 
@@ -4474,7 +4898,7 @@ msgid "The service will be created with the visibility of Private."
 msgstr "將在\"私人\"的可見性下創建該服務。"
 
 msgid "Duplicate"
-msgstr "重覆"
+msgstr "重複"
 
 #, php-format
 msgid "%d service"
@@ -4623,9 +5047,6 @@ msgstr "導入文件"
 
 msgid "Service name"
 msgstr "服務名稱"
-
-msgid "Start date"
-msgstr "開始日期"
 
 msgid "End date / Duration"
 msgstr "結束日期/時長"
@@ -5185,9 +5606,6 @@ msgstr "您的自定義CSS已保存。 請刷新頁面以查看您的更改。"
 msgid "Quick search customers"
 msgstr "快速搜尋客戶"
 
-msgid "New customer"
-msgstr "新客戶"
-
 msgid "Merge with"
 msgstr "合併"
 
@@ -5340,6 +5758,9 @@ msgstr "地址"
 
 msgid "Verification code"
 msgstr "驗證碼"
+
+msgid "Order ID"
+msgstr "訂單ID"
 
 msgid "Image of service category"
 msgstr "服務類別圖像"
@@ -5604,11 +6025,26 @@ msgstr "您的付款已被接受和正在處理。"
 msgid "Back to the list of amounts"
 msgstr "返回金額清單"
 
+msgid "Add Promo Code"
+msgstr "添加促銷碼"
+
+msgid "Remove Promo Code"
+msgstr "移除促銷碼"
+
 msgid "Please select a payment method"
 msgstr "選擇付款方式"
 
 msgid "Credit card"
 msgstr "信用卡"
+
+msgid "Enter promo code"
+msgstr "輸入促銷碼"
+
+msgid "This promo code is not valid"
+msgstr "此促銷碼無效"
+
+msgid "Promo code applied!"
+msgstr "促銷碼已應用！"
 
 msgid "Account recharge"
 msgstr "賬戶充值"
@@ -5644,9 +6080,6 @@ msgstr "如果您的餘額低於%1$s，則將以所選金額<b>馬上</b>充值�
 msgid "Please select an amount and recharge your account"
 msgstr "選擇數目，充值帳戶"
 
-msgid "Select"
-msgstr "選擇"
-
 msgid "Pay using"
 msgstr "付款選用"
 
@@ -5664,6 +6097,10 @@ msgstr "自動充值已續期"
 
 msgid "You don't have active auto-recharge"
 msgstr "您沒有有效的自動充值"
+
+#, php-format
+msgid "You'll receive a %s bonus on your top-up"
+msgstr "您將在充值時獲得%s獎金"
 
 msgid "Auto-Recharge has failed, please replenish your balance directly."
 msgstr "自動充值失敗，請直接補充你的餘額。"
@@ -5689,9 +6126,6 @@ msgstr "用於顯示預約表格的自定義框"
 
 msgid "hide"
 msgstr "隱藏"
-
-msgid "Quantity"
-msgstr "數量"
 
 msgid "Select location"
 msgstr "選擇地點"
@@ -5748,6 +6182,9 @@ msgstr "客戶"
 msgid "Administrators"
 msgstr "管理員"
 
+msgid "Organizer"
+msgstr "主辦方"
+
 msgid "You can enter multiple email addresses (one per line)"
 msgstr "你可以輸入多於一個的電郵（一行一個）"
 
@@ -5785,6 +6222,18 @@ msgstr "選擇預約狀態以發送通知。"
 msgid ""
 "Choose whether notification should be sent for specific services only or not."
 msgstr "選擇是否僅針對特定服務而發送通知。"
+
+msgid "Associated payment status"
+msgstr "關聯付款狀態"
+
+msgid "Any status"
+msgstr "任何狀態"
+
+msgid "No payment"
+msgstr "尚無付款"
+
+msgid "Select the payment status required for this notification to be sent"
+msgstr "選擇要發送此通知的付款狀態"
 
 msgid "before"
 msgstr "之前"
@@ -5838,13 +6287,6 @@ msgid ""
 "personal calendar using WP backend."
 msgstr "如果你將這欄留空，這名員工將無法使用WordPress後端查看個人日曆。"
 
-#, php-format
-msgid "This text can be inserted into notifications with %s code."
-msgstr "使用%s代碼，可以把這個文本插入通知。"
-
-msgid "Color"
-msgstr "顏色"
-
 msgid "Archive"
 msgstr "存檔"
 
@@ -5891,6 +6333,12 @@ msgstr "綁定付款"
 
 msgid "Complete payment"
 msgstr "完成付款"
+
+msgid "Additional payment"
+msgstr "額外付款"
+
+msgid "Copy checkout URL"
+msgstr "複製結算URL"
 
 msgid "Manual adjustment"
 msgstr "手動調整"
@@ -5956,9 +6404,6 @@ msgstr "如新發送"
 msgid "View"
 msgstr "查看"
 
-msgid "This text can be inserted into notifications with {internal_note} code"
-msgstr "該文本可通過{internal_note}代碼插入通知中"
-
 msgid "Please select a provider"
 msgstr "請選擇一個供應商"
 
@@ -5978,22 +6423,48 @@ msgid "Appointment notes"
 msgstr "預約備註"
 
 msgid ""
-"This text can be inserted into notifications with {appointment_notes} code"
-msgstr "該文本可通過{appointment_notes}代碼插入通知中"
-
-msgid ""
 "You are going to delete appointment(s). Notifications will be sent in "
 "accordance with your settings."
 msgstr "您將要刪除預約。通知將根據您的設置發送。"
 
+msgid "Associate token with"
+msgstr "關聯令牌到"
+
+msgid ""
+"By associating a token with a WordPress user, you can provide administrative "
+"access to Bookly from the mobile app. The level of access is determined by "
+"the user's role"
+msgstr "通過將令牌與WordPress用戶關聯，您可以在移動應用提供Bookly的管理訪問權限。訪問權限級別由用戶角色決定"
+
 msgid "Edit access token"
 msgstr "編輯訪問令牌"
+
+msgid "Create new access token"
+msgstr "創建新訪問令牌"
+
+msgid "Select WordPress user"
+msgstr "選擇WordPress用戶"
+
+msgid "Send notification with access data"
+msgstr "發送帶訪問資料的通知"
+
+msgid "With access to Bookly"
+msgstr "擁有Bookly訪問權限"
+
+msgid "Without access to Bookly"
+msgstr "不擁有Bookly訪問權限"
 
 msgid "New access token"
 msgstr "新訪問令牌"
 
+msgid "WordPress user required"
+msgstr "必須WordPress用戶"
+
 msgid "Staff member required"
 msgstr "需要員工"
+
+msgid "Invalid role"
+msgstr "無效角色"
 
 msgid "Header"
 msgstr "頁頭"
@@ -6021,9 +6492,6 @@ msgstr "已暫停"
 
 msgid "Limit exceeded"
 msgstr "已超過限制"
-
-msgid "This text can be inserted into notifications with {client_note} code"
-msgstr "該文本可通過{client_note}代碼插入通知中"
 
 #, php-format
 msgid "This WP user is already connected to another customer: %s"
@@ -6186,9 +6654,6 @@ msgstr "添加分類"
 
 msgid "Adjust the order of categories in your booking form"
 msgstr "更改你的預約名單上的次序"
-
-msgid "This text can be inserted into notifications with {category_info} code"
-msgstr "該文本可以通過{category_info}代碼插入到通知中"
 
 msgid "Table settings"
 msgstr "桌面設定"
@@ -6942,6 +7407,9 @@ msgstr "建立日期"
 msgid "Expires"
 msgstr "過期"
 
+msgid "Child Payment"
+msgstr "子付款"
+
 msgid "Notification to customer about their WordPress user login details"
 msgstr "通知客戶關於他們的WordPress用戶登入信息"
 
@@ -7320,9 +7788,6 @@ msgstr "如果您在{days}內未驗證許可，您的預約將被禁用。"
 msgid "Customer birthday"
 msgstr "客戶生日日期"
 
-msgid "Tags"
-msgstr "標記"
-
 msgid "Balance"
 msgstr "餘額"
 
@@ -7398,11 +7863,17 @@ msgstr "服務表單"
 msgid "Staff form"
 msgstr "員工表單"
 
+msgid "Checkout form"
+msgstr "結算表單"
+
 msgid "A custom block for displaying cancellation confirmation"
 msgstr "用於顯示確認取消的自定義塊"
 
 msgid "A custom block for displaying search form"
 msgstr "顯示搜索表單的自定義區塊"
+
+msgid "A custom block for displaying checkout form"
+msgstr "用於顯示結算表單的自定義塊"
 
 msgid "A custom block for displaying services form"
 msgstr "用於顯示服務表單的自定義塊"
@@ -7478,9 +7949,6 @@ msgstr "未找到禮品卡。"
 
 msgid "All related gift cards will be deleted"
 msgstr "所有相關禮品卡將被刪除"
-
-msgid "Clear field"
-msgstr "清除字段"
 
 msgid "No limit"
 msgstr "沒有限制"
@@ -8020,6 +8488,11 @@ msgstr "分步表單"
 msgid "Classic booking form with the consequent scheduling process."
 msgstr "經典預定表單和相應時間安排流程。"
 
+msgid ""
+"Lightweight form that allows your customers to pay for appointments, events, "
+"and more."
+msgstr "輕量級表單允許您的客戶支付預約和活動等費用。"
+
 msgid "Cancellation form"
 msgstr "取消表格"
 
@@ -8033,12 +8506,6 @@ msgstr "佔位符"
 
 msgid "Empty option"
 msgstr "清空選項"
-
-msgid "Width"
-msgstr "寬度"
-
-msgid "Header height"
-msgstr "頁頭高度"
 
 msgid "Body height"
 msgstr "身高"
@@ -8206,6 +8673,12 @@ msgstr "允許跳過"
 msgid "Skip button title"
 msgstr "跳過按鍵名稱"
 
+msgid "Page URL"
+msgstr "頁面URL"
+
+msgid "Enter the URL of the page where this forms shortcode is placed."
+msgstr "輸入放置此表單短代碼的頁面的URL。"
+
 msgid "Add new form"
 msgstr "添加新表單"
 
@@ -8226,6 +8699,9 @@ msgstr "刪除表單"
 msgid "Complete"
 msgstr "完成"
 
+msgid "Checkout"
+msgstr "結算"
+
 msgid "Success appointment booking"
 msgstr "成功預約預定"
 
@@ -8243,6 +8719,12 @@ msgstr "保存外觀以應用更改。"
 
 msgid "Changes saved."
 msgstr "已保存更改。"
+
+#, php-format
+msgid ""
+"To learn more about this feature, please follow <a href=\"%s\" "
+"target=\"_blank\">this link</a>."
+msgstr "欲了解有關此功能的更多資訊，請點擊<a href=\"%s\" target=\"_blank\">此鏈接</a>。"
 
 msgid ""
 "Select the form you want to publish, click on the menu button, and select "
@@ -8297,14 +8779,14 @@ msgstr "沒有可用時間段"
 msgid "Slot already booked"
 msgstr "時段已被預訂"
 
-msgid "No results found"
-msgstr "未發現結果"
-
 msgid "Thank you!"
 msgstr "感謝您！"
 
 msgid "Your booking is complete."
 msgstr "您的預定已完成。"
+
+msgid "Your order number"
+msgstr "您的訂單號碼"
 
 msgid "Your gift card has been created."
 msgstr "已創建您的禮品卡。"
@@ -8366,6 +8848,21 @@ msgstr "此預約不存在。"
 
 msgid "Cancellation of this appointment is not allowed."
 msgstr "此預約不允許取消。"
+
+msgid "Thank you for your payment."
+msgstr "感謝您的付款。"
+
+msgid "Payment successful."
+msgstr "付款成功。"
+
+msgid "There is no payment required."
+msgstr "無需付款。"
+
+msgid "Payment not found."
+msgstr "未找到付款。"
+
+msgid "Something went wrong."
+msgstr "出現錯誤。"
 
 msgid "Note"
 msgstr "註解"
@@ -8450,8 +8947,14 @@ msgstr "添加Blookly服務表單"
 msgid "Add Bookly staff form"
 msgstr "添加Bookly員工表單"
 
+msgid "Add Bookly checkout form"
+msgstr "添加Bookly結算表單"
+
 msgid "Add appointment cancellation confirmation"
 msgstr "添加取消預約確認"
+
+msgid "Add customer gift cards"
+msgstr "添加客戶禮品卡"
 
 #, php-format
 msgid ""
@@ -8554,9 +9057,23 @@ msgstr "請設置並啟用新員工的WordPress用戶登入詳情通知"
 msgid "Create WordPress user"
 msgstr "創建WordPress用戶"
 
+msgid "Duplicate staff member"
+msgstr "重複員工"
+
+msgid "Staff member to duplicate"
+msgstr "要重複的員工"
+
 msgid ""
-"This text can be inserted into notifications with {staff_category_info} code"
-msgstr "此文本可以通過{staff_category_info}碼插入到通知中"
+"You're about to duplicate this staff member. All settings - except phone "
+"number, email, and calendar settings - will be copied. The new staff "
+"member's visibility will be set to 'Private' by default."
+msgstr "您要重複此員工。所有設定（除電話號碼、電郵、日曆設定）將被複製。新員工的可見性將被默認設定為“私人”。"
+
+msgid "Name of duplicated staff member"
+msgstr "重複員工的姓名"
+
+msgid "Copy of"
+msgstr "副本"
 
 msgid "Create payment"
 msgstr "建立付款"
@@ -8672,9 +9189,6 @@ msgid ""
 "You can enter a mask containing asterisks \"*\" for variables here and click "
 "Generate."
 msgstr "您可以在此處輸入包含星號 \"*\"作為數值的掩碼，然後按進行。"
-
-msgid "This text can be inserted into notifications with {gift_card_note} code"
-msgstr "該文本可通過{gift_card_note}代碼插入通知中"
 
 msgid "Select card type"
 msgstr "選擇卡類型"
@@ -8925,6 +9439,12 @@ msgid ""
 "to verify your license by providing a valid purchase code."
 msgstr "為能訪問您的預約，請提供一個有效購買代碼給網站管理員，以驗證許可證。"
 
+msgid "Gift cards"
+msgstr "禮品卡"
+
+msgid "A custom block for displaying gift cards"
+msgstr "用於顯示禮品卡的自定義塊"
+
 msgid "A custom block for displaying frontend calendar"
 msgstr "用於顯示前端日曆的自定義塊"
 
@@ -8933,6 +9453,9 @@ msgstr "預約名單"
 
 msgid "A custom block for displaying appointments list"
 msgstr "用於顯示預約列表的自定義塊"
+
+msgid "Copied to clipboard"
+msgstr "複製到剪貼板"
 
 msgid ""
 "Sorry, the time slot %date_time% for %service% has been already occupied."
@@ -8949,6 +9472,9 @@ msgstr "不再提供此服務。"
 
 msgid "Gift card type was not found"
 msgstr "找不到禮品卡類型"
+
+msgid "Event was not found"
+msgstr "無法找到活動"
 
 msgid "Service was not found"
 msgstr "找不到服務"
@@ -9169,9 +9695,6 @@ msgstr "編輯優惠券"
 
 msgid "Mask"
 msgstr "掩蓋"
-
-msgid "Enter a mask containing asterisks \"*\" for variables."
-msgstr "輸入包含星號\"*\"作為變量的掩碼。"
 
 msgid "Once per customer"
 msgstr "每個客戶一次"
@@ -9592,9 +10115,6 @@ msgstr "服務步驟後"
 msgid "After Time step (Extras duration settings will be ignored)"
 msgstr "時間步驟後（額外的時間長度設置將被忽略）"
 
-msgid "Summary"
-msgstr "總結"
-
 msgid "Service Extras"
 msgstr "額外服務"
 
@@ -9756,12 +10276,6 @@ msgid ""
 "Enable this setting to be able to set custom settings for staff members for "
 "different locations."
 msgstr "啟用此設置，可以為不同位置的員工設置自定義設置。"
-
-msgid "Location info"
-msgstr "地址資料"
-
-msgid "Location name"
-msgstr "地址名稱"
 
 msgid "New Location"
 msgstr "新地點"

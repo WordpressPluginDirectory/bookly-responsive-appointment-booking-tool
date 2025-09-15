@@ -32,7 +32,6 @@ use Bookly\Backend\Components\Controls\Buttons;
                 <th><?php echo esc_html( $datatable['titles'][ $column ] ) ?></th>
             <?php endif ?>
         <?php endforeach ?>
-        <th width='16'><?php Inputs::renderCheckBox( null, null, null, array( 'id' => 'bookly-mr-check-all' ) ) ?></th>
     </tr>
     </thead>
 </table>

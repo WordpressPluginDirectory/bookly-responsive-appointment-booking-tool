@@ -64,7 +64,7 @@ class Dialog extends Lib\Base\Component
                 'phone' => __( 'Phone', 'bookly' ),
                 'email' => __( 'Email', 'bookly' ),
                 'notes' => __( 'Notes', 'bookly' ),
-                'notes_help' => __( 'This text can be inserted into notifications with {client_note} code', 'bookly' ),
+                'notes_help' => sprintf( __( 'This text can be inserted into notifications with %s code', 'bookly' ), '{client_note}' ),
                 'save' => __( 'Save', 'bookly' ),
                 'cancel' => __( 'Cancel', 'bookly' ),
                 'required' => __( 'Required', 'bookly' ),

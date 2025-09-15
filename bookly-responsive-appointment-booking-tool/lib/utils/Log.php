@@ -14,6 +14,8 @@ abstract class Log
     const OPTION_OUTLOOK = 'bookly_temporary_logs_outlook';
     const OPTION_GOOGLE = 'bookly_temporary_logs_google';
 
+    protected static $author_name = null;
+
     public static function getTypes()
     {
         return array( self::OPTION_OUTLOOK, self::OPTION_GOOGLE );
@@ -146,13 +148,21 @@ abstract class Log
         return substr( $option, strrpos( $option, '_' ) + 1 );
     }
 
+    public static function setAuthor( $name )
+    {
+        self::$author_name = $name;
+    }
+
     /**
      * @return string
      */
     private static function getAuthor()
     {
-        $author_id = get_current_user_id();
+        if ( self::$author_name === null ) {
+            $author_id = get_current_user_id();
+            self::setAuthor( $author_id ? ( trim( get_user_meta( $author_id, 'first_name', true ) . ' ' . get_user_meta( $author_id, 'last_name', true ) ) ?: get_user_meta( $author_id, 'nickname', true ) ) : '' );
+        }
 
-        return $author_id ? ( trim( get_user_meta( $author_id, 'first_name', true ) . ' ' . get_user_meta( $author_id, 'last_name', true ) ) ?: get_user_meta( $author_id, 'nickname', true ) ) : '';
+        return self::$author_name;
     }
 }

@@ -20,7 +20,7 @@ class Page extends Lib\Base\Component
             ) );
 
             self::enqueueScripts( array(
-                'module' => array( 'js/staff-cabinet.js' => array( 'bookly-backend-globals', ), ),
+                'module' => array( 'js/staff-cabinet.js' => array( 'bookly-backend-globals', 'bookly-grant-auth-dialog.js' ), ),
             ) );
 
             $datatables = Lib\Utils\Tables::getSettings( Lib\Utils\Tables::CLOUD_MOBILE_STAFF_CABINET );
@@ -35,7 +35,11 @@ class Page extends Lib\Base\Component
                 'processing' => esc_attr__( 'Processing...', 'bookly' ),
                 'emptyTable' => __( 'No data available in table', 'bookly' ),
                 'loadingRecords' => __( 'Loading...', 'bookly' ),
-                'datatables' => $datatables
+                'staff' => __( 'Staff', 'bookly' ),
+                'wp_user' => __( 'WordPress user', 'bookly' ),
+                'revoke' => __( 'Revoke', 'bookly' ),
+                'cancel' => __( 'Cancel', 'bookly' ),
+                'datatables' => $datatables,
             ) );
 
             self::renderTemplate( 'index', compact( 'datatables' ) );

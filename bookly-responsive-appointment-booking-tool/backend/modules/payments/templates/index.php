@@ -100,7 +100,6 @@ use Bookly\Backend\Components\Controls;
                         <?php endif ?>
                     <?php endforeach ?>
                     <th></th>
-                    <th width="16"><?php Controls\Inputs::renderCheckBox( null, null, null, array( 'id' => 'bookly-check-all' ) ) ?></th>
                 </tr>
                 </thead>
                 <?php if ( array_key_exists( 'paid', $datatables['payments']['settings']['columns'] ) && $datatables['payments']['settings']['columns']['paid'] ) : ?>
@@ -124,7 +123,7 @@ use Bookly\Backend\Components\Controls;
                 <?php endif ?>
             </table>
             <div class="d-flex flex-row-reverse mt-3">
-                <?php Controls\Buttons::renderDelete() ?>
+                <?php Controls\Buttons::renderDelete( 'bookly-payments-list-delete-button' ) ?>
                 <?php Proxy\Invoices::renderDownloadButton() ?>
             </div>
         </div>

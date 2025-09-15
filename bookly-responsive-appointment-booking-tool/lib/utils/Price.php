@@ -63,6 +63,7 @@ abstract class Price
         'MAD' => array( 'symbol' => 'Dh', 'format' => '{price|2} {symbol}' ),
         'MDL' => array( 'symbol' => 'L', 'format' => '{price|2} {symbol}' ),
         'MKD' => array( 'symbol' => 'ден.', 'format' => '{price|2} {symbol}' ),
+        'MNT' => array( 'symbol' => '₮', 'format' => '{price|2} {symbol}' ),
         'MUR' => array( 'symbol' => 'Rs', 'format' => '{symbol}{price|2}' ),
         'MXN' => array( 'symbol' => '$', 'format' => '{symbol}{price|2}' ),
         'MYR' => array( 'symbol' => 'RM', 'format' => '{price|2} {symbol}' ),
