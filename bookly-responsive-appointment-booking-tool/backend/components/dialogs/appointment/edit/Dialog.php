@@ -67,7 +67,7 @@ class Dialog extends Lib\Base\Component
                 'remove_customer' => __( 'Remove customer', 'bookly' ),
                 'search_customers' => __( '-- Search customers --', 'bookly' ),
                 'new_customer' => __( 'New customer', 'bookly' ),
-                'no_result_found' => __( 'No result found', 'bookly' ),
+                'no_result_found' => __( 'No results found', 'bookly' ),
                 'searching' => __( 'Searching', 'bookly' ),
                 'save' => __( 'Save', 'bookly' ),
                 'close' => __( 'Close', 'bookly' ),

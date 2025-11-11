@@ -1,4 +1,4 @@
-const booklyJsVersion="25.4";
+const booklyJsVersion="25.8";
 /*!*/
 var bookly = (function ($) {
 	'use strict';

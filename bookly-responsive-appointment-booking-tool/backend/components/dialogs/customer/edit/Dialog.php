@@ -68,7 +68,7 @@ class Dialog extends Lib\Base\Component
                 'save' => __( 'Save', 'bookly' ),
                 'cancel' => __( 'Cancel', 'bookly' ),
                 'required' => __( 'Required', 'bookly' ),
-                'no_result_found' => __( 'No result found', 'bookly' ),
+                'no_result_found' => __( 'No results found', 'bookly' ),
                 'searching' => __( 'Searching', 'bookly' ),
                 'image' => __( 'Image', 'bookly' ),
                 'delete' => __( 'Delete', 'bookly' )

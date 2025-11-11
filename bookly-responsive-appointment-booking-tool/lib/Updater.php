@@ -3,6 +3,27 @@ namespace Bookly\Lib;
 
 class Updater extends Base\Updater
 {
+    function update_25_8()
+    {
+        $disposable_options = array();
+        $disposable_options[] = $this->disposable( __FUNCTION__ . '-update-schema', function( $self ) {
+            add_option( 'bookly_temporary_logs_mobile_staff_cabinet', '0' );
+            $self->alterTables( array(
+                'bookly_shop' => array(
+                    'ALTER TABLE `%s` ADD COLUMN `bundle_plugins` VARCHAR(256) DEFAULT NULL AFTER `seen`',
+                    'ALTER TABLE `%s` ADD COLUMN `license` VARCHAR(32) DEFAULT NULL AFTER `seen`',
+                    'ALTER TABLE `%s` ADD COLUMN `visible` TINYINT DEFAULT 1 AFTER `seen`',
+                    'ALTER TABLE `%s` ADD `sub_price` VARCHAR(64) AFTER `price`',
+                    'DELETE FROM `%s` WHERE license IS NULL',
+                ),
+            ) );
+        } );
+
+        foreach ( $disposable_options as $option_name ) {
+            delete_option( $option_name );
+        }
+    }
+
     function update_25_4()
     {
         $disposable_options = array();

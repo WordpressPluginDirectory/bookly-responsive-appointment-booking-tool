@@ -69,7 +69,7 @@ class Page extends Lib\Base\Component
                     'emptyTable' => __( 'No data available in table', 'bookly' ),
                     'loadingRecords' => __( 'Loading...', 'bookly' ),
                     'quick_search' => __( 'Quick search', 'bookly' ),
-                    'processing' => __( 'Processing...', 'bookly' ),
+                    'processing' => __( 'Processing', 'bookly' ) . '…',
                     'state' => array( __( 'Disabled', 'bookly' ), __( 'Enabled', 'bookly' ) ),
                     'action' => array( __( 'enable', 'bookly' ), __( 'disable', 'bookly' ) ),
                     'edit' => __( 'Edit', 'bookly' ),

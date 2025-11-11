@@ -97,7 +97,7 @@ class Account extends Base
         $data = array( '_username' => $username, '_password' => $password, 'country' => $country );
 
         if ( $password !== $password_repeat && ! empty ( $password ) ) {
-            $this->api->addError( __( 'Passwords must be the same.', 'bookly' ) );
+            $this->api->addError( __( 'Passwords don\'t match', 'bookly' ) );
 
             return false;
         }

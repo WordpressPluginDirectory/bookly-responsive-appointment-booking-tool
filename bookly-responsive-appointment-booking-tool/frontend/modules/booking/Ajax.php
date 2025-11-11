@@ -717,9 +717,27 @@ class Ajax extends Lib\Base\Ajax
                 if ( array_key_exists( 'cart', $parameters ) ) {
                     $first = current( $parameters['cart'] );
                     if ( array_key_exists( 'custom_fields', $first ) ) {
+                        $cf_data = Lib\Proxy\CustomFields::getWhichHaveData();
                         foreach ( $parameters['cart'] as &$value ) {
                             foreach ( $value['custom_fields'] as &$field ) {
                                 $field['id'] = (int) $field['id'];
+                                // Check if custom field options have encoded symbolic values like &amp.
+                                foreach ( $cf_data as $cf ) {
+                                    if ( $cf->id === $field['id']
+                                        && property_exists( $cf, 'items' )
+                                        && isset( $field['value'] )
+                                    ) {
+                                        if ( is_array( $field['value'] ) ) {
+                                            foreach ( $field['value'] as &$f_value ) {
+                                                if ( ! in_array( $f_value, $cf->items ) && in_array( html_entity_decode( $f_value ), $cf->items ) ) {
+                                                    $f_value = html_entity_decode( $f_value );
+                                                }
+                                            }
+                                        } elseif ( ! in_array( $field['value'], $cf->items ) && in_array( html_entity_decode( $field['value'] ), $cf->items ) ) {
+                                            $field['value'] = html_entity_decode( $field['value'] );
+                                        }
+                                    }
+                                }
                             }
                             $value['custom_fields'] = json_encode( $value['custom_fields'] );
                         }

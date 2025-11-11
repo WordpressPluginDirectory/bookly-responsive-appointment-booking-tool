@@ -1,7 +1,6 @@
 <?php defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 use Bookly\Backend\Components\Dialogs;
 use Bookly\Backend\Components\Notices;
-use Bookly\Backend\Components\Controls\Inputs;
 use Bookly\Backend\Components\Controls\Buttons;
 /** @var array $datatables */
 ?>

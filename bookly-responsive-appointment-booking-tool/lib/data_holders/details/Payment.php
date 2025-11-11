@@ -78,7 +78,9 @@ class Payment extends Base
      */
     public function getItems()
     {
-        return $this->data['items'] ?: array();
+        return array_key_exists( 'items', $this->data )
+            ? $this->data['items']
+            : array();
     }
 
     /**

@@ -1,6 +1,5 @@
 <?php defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 use Bookly\Backend\Components\Controls\Buttons;
-use Bookly\Backend\Components\Controls\Inputs;
 use Bookly\Backend\Components\Dialogs;
 use Bookly\Backend\Components\Support;
 use Bookly\Backend\Modules\Customers\Proxy;

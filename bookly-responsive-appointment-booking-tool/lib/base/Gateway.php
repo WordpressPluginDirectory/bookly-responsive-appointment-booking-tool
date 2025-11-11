@@ -274,14 +274,14 @@ abstract class Gateway
         if ( $payment ) {
             $path = explode( '\\', get_class( $this ) );
             if ( $payment->getStatus() === Entities\Payment::STATUS_COMPLETED ) {
-                BooklyLib\Utils\Log::put( BooklyLib\Utils\Log::ACTION_DEBUG, array_pop( $path ), null, json_encode( $_REQUEST, JSON_PRETTY_PRINT ), $_SERVER['REMOTE_ADDR'], 'call fail for completed payment' );
+                BooklyLib\Utils\Log::put( BooklyLib\Utils\Log::ACTION_DEBUG, array_pop( $path ), null, json_encode( $_REQUEST, 128 ), $_SERVER['REMOTE_ADDR'], 'call fail for completed payment' );
 
                 return;
             }
 
             Payment\Proxy\Shared::rollbackPayment( $payment );
 
-            BooklyLib\Utils\Log::put( BooklyLib\Utils\Log::ACTION_DEBUG, array_pop( $path ), null, json_encode( $_REQUEST, JSON_PRETTY_PRINT ), $_SERVER['REMOTE_ADDR'], 'call fail' );
+            BooklyLib\Utils\Log::put( BooklyLib\Utils\Log::ACTION_DEBUG, array_pop( $path ), null, json_encode( $_REQUEST, 128 ), $_SERVER['REMOTE_ADDR'], 'call fail' );
             $this->removeCascade( $payment );
         }
 

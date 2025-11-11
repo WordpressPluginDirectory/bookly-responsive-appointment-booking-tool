@@ -20,7 +20,7 @@ use Bookly\Backend\Components\Controls;
             <div class="form-row">
                 <div class="col-md-1">
                     <div class="form-group">
-                        <input class="form-control" type="text" id="bookly-filter-id" placeholder="<?php esc_attr_e( 'No.', 'bookly' ) ?>"/>
+                        <input class="form-control" type="text" id="bookly-filter-id" placeholder="<?php echo esc_attr_x( 'No.', 'number', 'bookly' ) ?>"/>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 mb-3 mb-md-0">

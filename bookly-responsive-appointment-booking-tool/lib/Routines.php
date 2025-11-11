@@ -172,29 +172,32 @@ abstract class Routines
                 $seen = Entities\Shop::query()->count() ? 0 : 1;
                 foreach ( $data['plugins'] as $plugin ) {
                     $shop = new Entities\Shop();
-                    if ( $plugin['id'] && $plugin['envatoPrice'] ) {
+                    if ( $plugin['id'] ) {
                         $shop->loadBy( array( 'plugin_id' => $plugin['id'] ) );
                         $shop
                             ->setPluginId( $plugin['id'] )
                             ->setHighlighted( $plugin['highlighted'] ?: 0 )
                             ->setPriority( $plugin['priority'] ?: 0 )
-                            ->setDemoUrl( $plugin['demoUrl'] )
+                            ->setDemoUrl( $plugin['demo_url'] )
                             ->setTitle( $plugin['title'] )
                             ->setSlug( $plugin['slug'] )
-                            ->setDescription( $plugin['envatoDescription'] )
-                            ->setUrl( $plugin['envatoUrl'] )
-                            ->setIcon( $plugin['envatoIcon'] )
-                            ->setImage( $plugin['envatoImage'] )
-                            ->setPrice( $plugin['envatoPrice'] )
-                            ->setSales( $plugin['envatoSales'] )
-                            ->setRating( $plugin['envatoRating'] )
-                            ->setReviews( $plugin['envatoReviews'] )
-                            ->setPublished( isset ( $plugin['envatoPublishedAt']['date'] )
-                                ? date_create( $plugin['envatoPublishedAt']['date'] )->format( 'Y-m-d H:i:s' )
+                            ->setDescription( $plugin['description'] )
+                            ->setUrl( $plugin['sale_url'] )
+                            ->setIcon( $plugin['icon'] )
+                            ->setImage( $plugin['image'] ?: '' )
+                            ->setLifeTimePrice( $plugin['lt_price'] )
+                            ->setSubscriptionPrice( $plugin['sub_price'] ?: '' )
+                            ->setSales( $plugin['sales'] ?: 0 )
+                            ->setRating( $plugin['rating'] ?: 5 )
+                            ->setReviews( $plugin['reviews'] )
+                            ->setPublished( isset ( $plugin['published_at']['date'] )
+                                ? date_create( $plugin['published_at']['date'] )->format( 'Y-m-d H:i:s' )
                                 : current_time( 'mysql' )
                             )
                             ->setCreatedAt( current_time( 'mysql' ) )
                             ->setSeen( $shop->isLoaded() ? $shop->getSeen() : $seen )
+                            ->setBundlePlugins( $plugin['bundle_plugins'] ? json_encode( $plugin['bundle_plugins'] ) : null )
+                            ->setVisible( $plugin['visible'] )
                             ->save();
                     }
                 }

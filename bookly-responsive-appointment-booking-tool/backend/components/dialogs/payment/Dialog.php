@@ -47,7 +47,7 @@ class Dialog extends Lib\Base\Component
                 'gift_card_discount' => __( 'Gift card discount', 'bookly' ),
                 'customer' => __( 'Customer', 'bookly' ),
                 'date' => __( 'Date', 'bookly' ),
-                'deposit' => __( 'Deposit', 'bookly' ),
+                'deposit' => _x( 'Deposit', 'portion of the payment', 'bookly' ),
                 'discount' => __( 'Discount', 'bookly' ),
                 'child_payment' => __( 'Additional payment', 'bookly' ),
                 'checkout_url' => __( 'Copy checkout URL', 'bookly' ),

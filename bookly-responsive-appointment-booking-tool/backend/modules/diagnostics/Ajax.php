@@ -83,6 +83,8 @@ class Ajax extends Lib\Base\Ajax
                     $ignore[] = 'bookly_files';
                     $ignore[] = 'bookly_customer_appointment_files';
                     break;
+                case 'license':
+                    $ignore[] = 'bookly_shop';
             }
         }
         foreach ( $ignore as &$i ) {

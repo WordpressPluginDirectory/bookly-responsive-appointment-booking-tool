@@ -27,6 +27,8 @@ class Shop extends Lib\Base\Entity
     protected $image;
     /** @var float */
     protected $price;
+    /** @var string */
+    protected $sub_price;
     /** @var int */
     protected $sales;
     /** @var float */
@@ -37,6 +39,12 @@ class Shop extends Lib\Base\Entity
     protected $published;
     /** @var  int */
     protected $seen = 0;
+    /** @var  string */
+    protected $license;
+    /** @var  string */
+    protected $bundle_plugins;
+    /** @var  int */
+    protected $visible = 1;
     /** @var  string */
     protected $created_at;
 
@@ -55,11 +63,15 @@ class Shop extends Lib\Base\Entity
         'icon' => array( 'format' => '%s' ),
         'image' => array( 'format' => '%s' ),
         'price' => array( 'format' => '%f' ),
+        'sub_price' => array( 'format' => '%s' ),
         'sales' => array( 'format' => '%d' ),
         'rating' => array( 'format' => '%f' ),
         'reviews' => array( 'format' => '%d' ),
         'published' => array( 'format' => '%s' ),
         'seen' => array( 'format' => '%d' ),
+        'license' => array( 'format' => '%s' ),
+        'bundle_plugins' => array( 'format' => '%s' ),
+        'visible' => array( 'format' => '%d' ),
         'created_at' => array( 'format' => '%s' ),
     );
 
@@ -302,7 +314,7 @@ class Shop extends Lib\Base\Entity
      *
      * @return float
      */
-    public function getPrice()
+    public function getLifeTimePrice()
     {
         return $this->price;
     }
@@ -313,9 +325,32 @@ class Shop extends Lib\Base\Entity
      * @param float $price
      * @return $this
      */
-    public function setPrice( $price )
+    public function setLifeTimePrice( $price )
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Gets price
+     *
+     * @return string
+     */
+    public function getSubscriptionPrice()
+    {
+        return $this->sub_price;
+    }
+
+    /**
+     * Sets price
+     *
+     * @param string $price
+     * @return $this
+     */
+    public function setSubscriptionPrice( $price )
+    {
+        $this->sub_price = $price;
 
         return $this;
     }
@@ -454,6 +489,63 @@ class Shop extends Lib\Base\Entity
     public function setCreatedAt( $created_at )
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLicense()
+    {
+        return $this->license;
+    }
+
+    /**
+     * @param string $license
+     * @return Shop
+     */
+    public function setLicense( $license )
+    {
+        $this->license = $license;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBundlePlugins()
+    {
+        return $this->bundle_plugins;
+    }
+
+    /**
+     * @param string $bundle_plugins
+     * @return Shop
+     */
+    public function setBundlePlugins( $bundle_plugins )
+    {
+        $this->bundle_plugins = $bundle_plugins;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
+
+    /**
+     * @param int $visible
+     * @return Shop
+     */
+    public function setVisible( $visible )
+    {
+        $this->visible = $visible;
 
         return $this;
     }

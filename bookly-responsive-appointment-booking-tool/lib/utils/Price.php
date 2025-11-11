@@ -101,6 +101,7 @@ abstract class Price
         'UZS' => array( 'symbol' => 'so’m', 'format' => '{price|2} {symbol}' ),
         'VND' => array( 'symbol' => 'VNĐ', 'format' => '{price|0} {symbol}' ),
         'XAF' => array( 'symbol' => 'FCFA', 'format' => '{price|0} {symbol}' ),
+        'XCG' => array( 'symbol' => 'Cg', 'format' => '{price|2} {symbol}' ),
         'XOF' => array( 'symbol' => 'CFA', 'format' => '{symbol} {price|2}' ),
         'XPF' => array( 'symbol' => 'FCFP', 'format' => '{price|0} {symbol}' ),
         'ZAR' => array( 'symbol' => 'R', 'format' => '{symbol} {price|2}' ),

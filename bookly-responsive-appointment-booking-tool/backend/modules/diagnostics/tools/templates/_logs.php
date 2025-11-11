@@ -1,7 +1,6 @@
 <?php defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 use Bookly\Backend\Components\Controls\Buttons;
 use Bookly\Backend\Components\Settings\Selects;
-use Bookly\Backend\Components\Controls;
 use Bookly\Lib\Utils\DateTime;
 use Bookly\Lib\Utils\Log;
 
@@ -66,7 +65,7 @@ use Bookly\Lib\Utils\Log;
         </div>
     </div>
     <?php
-    Selects::renderSingle( 'bookly_logs_expire', __( 'Keep logs', 'bookly' ), null, array( array( '7', sprintf( _n( '%s day', '%s days', 7, 'bookly' ), 7 ) ), array( '30', sprintf( _n( '%s day', '%s days', 30, 'bookly' ), 30 ) ), array( '90', sprintf( _n( '%s day', '%s days', 90, 'bookly' ), 90 ) ), array( '365', sprintf( _n( '%s day', '%s days', 365, 'bookly' ), 365 ) ) ) );
+    Selects::renderSingle( 'bookly_logs_expire', __( 'Keep logs', 'bookly' ), null, array( array( '7', sprintf( _n( '%d day', '%d days', 7, 'bookly' ), 7 ) ), array( '30', sprintf( _n( '%d day', '%d days', 30, 'bookly' ), 30 ) ), array( '90', sprintf( _n( '%d day', '%d days', 90, 'bookly' ), 90 ) ), array( '365', sprintf( _n( '%d day', '%d days', 365, 'bookly' ), 365 ) ) ) );
     ?>
     <?php if ( $debug ): ?>
         <div class="row">

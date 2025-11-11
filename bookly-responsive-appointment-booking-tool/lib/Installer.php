@@ -474,6 +474,7 @@ class Installer extends Base\Installer
             'bookly_advanced_time_slot_length_minutes' => '',
             'bookly_advanced_slot_date_format' => 'D, M d',
             'bookly_dashboard_based_on_appointment' => 'created_at',
+            'bookly_temporary_logs_mobile_staff_cabinet' => '0',
         );
     }
 
@@ -1001,11 +1002,15 @@ class Installer extends Base\Installer
                 `icon`        VARCHAR(255) NOT NULL,
                 `image`       VARCHAR(255) NOT NULL,
                 `price`       DECIMAL(10,2) NOT NULL,
+                `sub_price`   VARCHAR(64),
                 `sales`       INT UNSIGNED NOT NULL,
                 `rating`      DECIMAL(10,2) NOT NULL,
                 `reviews`     INT UNSIGNED NOT NULL,
                 `published`   DATETIME NOT NULL,
                 `seen`        TINYINT(1) NOT NULL DEFAULT 0,
+                `license`     VARCHAR(32) NULL,
+                `bundle_plugins` VARCHAR(256) NULL,
+                `visible`     TINYINT DEFAULT 1,
                 `created_at`  DATETIME NOT NULL
             ) ENGINE = INNODB
             ' . $charset_collate

@@ -885,9 +885,19 @@ class UserBookingData
                 $this->setInfoFields( $customer_information );
             }
             if ( isset( $customer_data['time_zone'] ) && $customer_data['time_zone'] !== '' ) {
-                $this->setTimeZone( $customer_data['time_zone'] );
-            }
-            if ( isset( $customer_data['time_zone_offset'] ) && $customer_data['time_zone_offset'] !== '' ) {
+                $time_zone = $customer_data['time_zone'];
+
+                $this->setTimeZone( $time_zone );
+                
+                if ( preg_match( '/^UTC[+-]/', $time_zone ) ) {
+                    $offset = preg_replace( '/UTC\+?/', '', $time_zone );
+                    $time_zone = null;
+                    $time_zone_offset = -$offset * 60;
+                } else {
+                    $time_zone_offset = -timezone_offset_get( timezone_open( $time_zone ), new \DateTime() ) / 60;
+                }
+                $this->setTimeZoneOffset( $time_zone_offset );
+            } else if ( isset( $customer_data['time_zone_offset'] ) && $customer_data['time_zone_offset'] !== '' ) {
                 $this->setTimeZoneOffset( $customer_data['time_zone_offset'] );
             }
             if ( isset( $customer_data['full_address'] ) && $customer_data['full_address'] !== '' ) {

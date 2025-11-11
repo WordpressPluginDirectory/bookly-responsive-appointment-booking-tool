@@ -52,7 +52,7 @@ abstract class Tables
             case self::APPOINTMENTS:
                 $columns = array(
                     'id' => esc_html__( 'ID', 'bookly' ),
-                    'no' => esc_html__( 'No.', 'bookly' ),
+                    'no' => esc_html_x( 'No.', 'number', 'bookly' ),
                     'start_date' => esc_html__( 'Appointment date', 'bookly' ),
                     'staff_name' => esc_html( Common::getTranslatedOption( 'bookly_l10n_label_employee' ) ),
                     'customer_full_name' => esc_html__( 'Customer name', 'bookly' ),
@@ -114,7 +114,7 @@ abstract class Tables
                 break;
             case self::PAYMENTS:
                 $columns = array(
-                    'id' => esc_html__( 'No.', 'bookly' ),
+                    'id' => esc_html_x( 'No.', 'number', 'bookly' ),
                     'created_at' => esc_html__( 'Date', 'bookly' ),
                     'type' => esc_html__( 'Type', 'bookly' ),
                     'customer' => esc_html__( 'Customer', 'bookly' ),

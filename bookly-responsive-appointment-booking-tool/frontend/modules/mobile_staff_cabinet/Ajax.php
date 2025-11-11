@@ -5,13 +5,6 @@ use Bookly\Lib;
 
 class Ajax extends Lib\Base\Ajax
 {
-    /** @var Lib\Entities\Staff */
-    protected static $staff;
-    /** @var \WP_User */
-    protected static $wp_user;
-    /** @var string|null */
-    protected static $role;
-
     /**
      * @inheritDoc
      */
@@ -25,75 +18,19 @@ class Ajax extends Lib\Base\Ajax
      */
     public static function mobileStaffCabinet()
     {
-        $json = file_get_contents( 'php://input' );
-        $data = json_decode( $json, true ) ?: array();
-        $params = isset( $data['params'] ) ? $data['params'] : array();
-        $response = new Response10( self::$role, $params );
-        $action = array_key_exists( 'action', $data ) ? $data['action'] : null;
-        if ( self::$role ) {
-            if ( self::$role === Response10::ROLE_SUPERVISOR ) {
-                $response->setWpUser( self::$wp_user );
-            } elseif ( self::$role === Response10::ROLE_STAFF ) {
-                $response->setStaff( self::$staff );
-            }
-            try {
-                switch ( $data['resource'] ) {
-                    case 'init':
-                        $response->init();
-                        break;
-                    case 'customers':
-                        $response->customers();
-                        break;
-                    case 'customer':
-                        if ( $action == 'save' ) {
-                            $response->saveCustomer();
-                        }
-                        break;
-                    case 'appointments':
-                        $response->appointments();
-                        break;
-                    case 'appointment':
-                        if ( $action == 'save' ) {
-                            $response->saveAppointment();
-                        } elseif ( $action == 'delete' ) {
-                            $response->deleteAppointment();
-                        } else {
-                            $response->appointment();
-                        }
-                        break;
-                    case 'check-appointment-time':
-                        $response->checkAppointmentTime();
-                        break;
-                    case 'slots':
-                        $response->slots();
-                        break;
-                    case 'services':
-                        $response->services();
-                        break;
-                    case 'staff-list':
-                        $response->staffList();
-                        break;
-                    case 'notifications':
-                        $response->sendNotifications();
-                        break;
-                    case 'attachments':
-                        $response->deleteNotificationsAttachmentFiles();
-                        break;
-                    case 'settings':
-                        $response->settings();
-                        break;
-                    default:
-                        $response->setError( '400', 'UNKNOWN_REQUEST', 400 );
-                }
-            } catch ( ParameterException $e ) {
-                $response->setError( '400', 'INVALID_PARAMETER', 400, array( $e->getParameter() => $e->getValue() ) );
-            } catch ( BooklyException $e ) {
-                $response->setError( '400', $e->getMessage(), 400 );
-            } catch ( \Exception $e ) {
-                $response->setError( '400', 'ERROR', 400 );
-            }
-        } else {
-            $response->setError( '401', 'UNAUTHORIZED_REQUEST', 401 );
+        try {
+            $auth = Lib\Entities\Auth::query()->where( 'token', self::parameter( 'access_key' ) )->findOne();
+            $request = new Lib\Base\Request();
+            $handler = Api\HandlerFactory::create( $auth, $request );
+            $response = $handler->process();
+
+            get_option( Lib\Utils\Log::OPTION_MOBILE_STAFF_CABINET ) && self::logDebug( $handler, $request, $response );
+        } catch ( \Error $e ) {
+            $response = self::getThrowableResponse( $e );
+            self::logException( $e );
+        } catch ( \Exception $e ) {
+            $response = self::getThrowableResponse( $e );
+            self::logException( $e );
         }
 
         $response->render();
@@ -104,34 +41,6 @@ class Ajax extends Lib\Base\Ajax
      */
     protected static function hasAccess( $action )
     {
-        $access_key = self::parameter( 'access_key' );
-        if ( $access_key ) {
-            /** @var Lib\Entities\Auth $auth */
-            $auth = Lib\Entities\Auth::query()->where( 'token', $access_key )->findOne();
-            if ( $auth ) {
-                if ( $auth->getStaffId() ) {
-                    // If staff ID is set, load the staff entity.
-                    self::$staff = Lib\Entities\Staff::find( $auth->getStaffId() );
-                    if ( self::$staff ) {
-                        self::$role = 'staff';
-                    }
-                } elseif ( $auth->getWpUserId() ) {
-                    self::$wp_user = get_user_by( 'id', $auth->getWpUserId() );
-                    if ( user_can( $auth->getWpUserId(), 'manage_bookly' ) || user_can( $auth->getWpUserId(), 'manage_options' ) ) {
-                        // is Bookly admin
-                        self::$role = 'supervisor';
-                    } elseif ( user_can( $auth->getWpUserId(), 'manage_bookly_appointments' ) ) {
-                        self::$role = 'supervisor';
-                    }
-                }
-            }
-            if ( self::$role === null ) {
-                $response = new Response10( self::$role, array() );
-                $response->setError( '401', 'UNAUTHORIZED_REQUEST', 401 );
-                $response->render();
-            }
-        }
-
         return true;
     }
 
@@ -144,5 +53,79 @@ class Ajax extends Lib\Base\Ajax
     protected static function csrfTokenValid( $action = null )
     {
         return true;
+    }
+
+    /**
+     * @param Api\ApiHandler $handler
+     * @param Lib\Base\Request $request
+     * @param Api\IResponse $response
+     * @return void
+     */
+    protected static function logDebug( Api\ApiHandler $handler, Lib\Base\Request $request, Api\IResponse $response )
+    {
+        try {
+            $class = get_class( $handler );
+
+            Lib\Utils\Log::tempPut( Lib\Utils\Log::OPTION_MOBILE_STAFF_CABINET, $class . '::' . $handler->getProcessMethod(), null, '<pre>' . json_encode( array(
+                    'API' => $request->getHeaders()->getGreedy( 'X-Bookly-Api-Version' ),
+                    'role' => $handler->getRole(),
+                    'request' => $request->getAll(),
+                    'request.headers' => $request->getHeaders()->getAll(),
+                    'response' => $response->getData(),
+                ), 128 ) . '</pre>' );
+        } catch ( \Exception $e ) {
+        }
+    }
+
+    /**
+     * @param \Exception $e
+     * @return void
+     */
+    protected static function logException( \Exception $e )
+    {
+        if ( $e instanceof Api\Exceptions\HandleException ) {
+            try {
+                Lib\Utils\Log::put( Lib\Utils\Log::ACTION_ERROR,
+                    $e->getClassName() ?: 'Mobile Staff Cabinet API',
+                    null,
+                    '<pre>' . json_encode( $e->getRequest()->getAll(), 128 ) . '</pre>',
+                    'Client API: ' . $e->getRequest()->getHeaders()->getGreedy( 'X-Bookly-Api-Version', 'missing' ),
+                    $e->getInfo()
+                );
+            } catch ( \Exception $e ) {
+            }
+        }
+    }
+
+    /**
+     * @param \Throwable $throwable
+     * @return Api\IResponse
+     */
+    protected static function getThrowableResponse( $throwable )
+    {
+        $response = new Api\Response();
+        $response->setHttpStatus( 400 );
+
+        $data = array(
+            'error' => array(
+                'code' => 400,
+                'message' => $throwable->getMessage(),
+            ),
+        );
+        if ( $throwable instanceof Api\Exceptions\ApiException ) {
+            $response->setHttpStatus( $throwable->getHttpStatus() );
+            if ( $throwable->getErrorData() ) {
+                $data['error']['data'] = $throwable->getErrorData();
+            }
+        } elseif ( $throwable instanceof Api\Exceptions\ParameterException ) {
+            $data['error']['data'] = $throwable->getParameter();
+        } elseif ( ( $throwable instanceof Api\Exceptions\BooklyException ) || ( $throwable instanceof Api\Exceptions\HandleException ) ) {
+            $data['error']['message'] = $throwable->getMessage();
+        } else {
+            $data['error']['message'] = 'ERROR';
+        }
+        $response->setData( $data );
+
+        return $response;
     }
 }

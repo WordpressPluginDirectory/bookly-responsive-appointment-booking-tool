@@ -230,14 +230,14 @@ function requiredBooklyPro() {
                 : dataTable.row($el).data();
         },
 
-        _addCheckboxColumn: function($container, initial_settings) {
+        _addCheckboxColumn: function ($container, initial_settings) {
             const self = this;
             const tableId = $container.prop('id');
             const $deleteButton = $('#' + tableId + '-delete-button');
 
             const $checkAll = $('<input>', {type: 'checkbox', id: 'bookly-check-all', class: 'custom-control-input'});
             const $label = $('<label>', {class: 'custom-control-label', for: 'bookly-check-all'});
-            const $th = $('<th width="16px">').append($('<div>', { class: 'custom-control custom-checkbox' }).append($checkAll, $label));
+            const $th = $('<th width="16px">').append($('<div>', {class: 'custom-control custom-checkbox'}).append($checkAll, $label));
             $('thead tr', $container).append($th);
 
             initial_settings.columns.push({
@@ -254,19 +254,19 @@ function requiredBooklyPro() {
                 }
             });
 
-            $checkAll.on('change', function() {
+            $checkAll.on('change', function () {
                 $container.find('tbody input:checkbox').prop('checked', this.checked);
                 self._updateDeleteButtonState($deleteButton, $container);
             });
 
-            $container.on('change', 'tbody input:checkbox', function() {
+            $container.on('change', 'tbody input:checkbox', function () {
                 $checkAll.prop('checked', $container.find('tbody input:not(:checked)').length === 0);
                 self._updateDeleteButtonState($deleteButton, $container);
             });
 
             this._updateDeleteButtonState($deleteButton, $container);
         },
-        _updateDeleteButtonState: function($deleteButton, $container) {
+        _updateDeleteButtonState: function ($deleteButton, $container) {
             $deleteButton.prop('disabled', $container.find('input:checked').length === 0);
         },
     };
@@ -326,6 +326,60 @@ function requiredBooklyPro() {
                 csrf_token: BooklyL10nGlobal.csrf_token,
                 json_data: JSON.stringify(data),
             }
+        }
+    }
+
+    window.booklyRequest = {
+        objectToQueryString: function (initialObj) {
+            const reducer = (obj, parentPrefix = null) => (prev, key) => {
+                const val = obj[key];
+                key = encodeURIComponent(key);
+                const prefix = parentPrefix ? `${parentPrefix}[${key}]` : key;
+
+                if (val == null || typeof val === 'function') {
+                    prev.push(`${prefix}=`);
+                    return prev;
+                }
+
+                if (['number', 'boolean', 'string'].includes(typeof val)) {
+                    prev.push(`${prefix}=${encodeURIComponent(val)}`);
+                    return prev;
+                }
+
+                prev.push(Object.keys(val).reduce(reducer(val, prefix), []).join('&'));
+                return prev;
+            };
+
+            return Object.keys(initialObj).reduce(reducer(initialObj), []).join('&');
+        },
+        /**
+         * @param data
+         * @returns {Promise<unknown>}
+         */
+        send: function (data) {
+            return new Promise((resolve, reject) => {
+                fetch(ajaxurl, {
+                    method: 'POST',
+                    body: this.objectToQueryString(data),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(err => {
+                                throw new Error(err.message || 'Something went wrong');
+                            });
+                        }
+
+                        return response.json();
+                    })
+                    .then(data => resolve(data))
+                    .catch(error => {
+                        console.log('Invalid response for ' + (data?.action || 'request') + '. Reason ' + error.message);
+                        reject(error);
+                    });
+            });
         }
     }
 })(jQuery);

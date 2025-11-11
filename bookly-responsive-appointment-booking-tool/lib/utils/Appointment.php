@@ -90,13 +90,30 @@ class Appointment
 
         $total_number_of_persons = 0;
         $max_extras_duration = 0;
-        $extras_consider_duration = (bool) Lib\Proxy\ServiceExtras::considerDuration();
+        $allowed_extras = array();
+        $extras_consider_duration = false;
+        if ( Lib\Config::serviceExtrasActive() ) {
+            foreach ( Lib\Proxy\ServiceExtras::findByServiceId( $service_id ) ?: array() as $extras ) {
+                $allowed_extras[] = $extras->getId();
+            }
+            $extras_consider_duration = (bool) ( $allowed_extras && Lib\Proxy\ServiceExtras::considerDuration() );
+        }
+
         $busy_statuses = Lib\Proxy\CustomStatuses::prepareBusyStatuses( array(
             CustomerAppointment::STATUS_PENDING,
             CustomerAppointment::STATUS_APPROVED
         ) );
         $customer_ids = array();
         foreach ( $customers as $i => $customer ) {
+            $filtered_extras = array();
+            if ( $allowed_extras && $customer['extras'] ) {
+                foreach ( $customer['extras'] as $id => $data ) {
+                    if ( in_array( $id, $allowed_extras ) ) {
+                        $filtered_extras[ $id ] = $data;
+                    }
+                }
+            }
+            $customers[ $i ]['extras'] = $filtered_extras;
             if ( in_array( $customer['status'], $busy_statuses ) ) {
                 $total_number_of_persons += $customer['number_of_persons'];
                 if ( $extras_consider_duration ) {
